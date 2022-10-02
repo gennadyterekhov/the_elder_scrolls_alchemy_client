@@ -6,10 +6,15 @@ class DataProvider {
     return _globalMap;
   }
 
-  static Map<String, Effect> _getAllEffects() {
+  static Map<String, Effect> getAllEffects() {
     // TODO this will not work if games have different models. Find out how to make better
     // also will not work if data is empty
     Map<String, Effect> resultMap = {};
+
+    if (globalChosenGame != gameNameSkyrim) {
+      // TODO remove when all data is present
+      return {};
+    }
 
     _getMap()[globalChosenGame]['effects']
         .forEach((id, effect) => resultMap[id] = Effect.fromMap(effect));

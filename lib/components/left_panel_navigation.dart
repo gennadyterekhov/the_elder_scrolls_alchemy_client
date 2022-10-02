@@ -47,8 +47,6 @@ class _LeftPanelNavigationState extends State<LeftPanelNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('_LeftPanelNavigationState build ${widget.selectedIndex}');
-
     return NavigationRail(
       leading: null,
       selectedIndex: widget.selectedIndex,
