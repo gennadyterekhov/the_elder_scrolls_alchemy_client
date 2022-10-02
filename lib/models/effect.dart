@@ -12,7 +12,7 @@ class Effect {
   final int magnitude;
   final int value;
 
-  factory Effect.fromJson(Map<String, dynamic> data) {
+  factory Effect.fromMap(Map<String, dynamic> data) {
     final id = data['id'] as String;
     final name = data['name'] as String;
     final text = data['text'] as String;
