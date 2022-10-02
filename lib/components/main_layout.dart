@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
+import 'package:the_elder_scrolls_alchemy_client/extensions/capitalize.dart';
+import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/pages/home/home.dart';
 import 'package:the_elder_scrolls_alchemy_client/pages/skyrim/effects/effects.dart';
 import 'package:the_elder_scrolls_alchemy_client/pages/skyrim/ingredients/ingredients.dart';
@@ -13,26 +16,13 @@ class MainLayout extends StatefulWidget {
   State<MainLayout> createState() => _MainLayoutState();
 }
 
-class _MainLayoutState extends State<MainLayout> with RestorationMixin {
-  final RestorableInt _selectedIndex = RestorableInt(0);
-
-  @override
-  String get restorationId => 'nav_rail_demo';
+class _MainLayoutState extends State<MainLayout> {
+  int _selectedIndex = 0;
+  String _chosenGame = defaultChosenGame;
 
   Widget _childPage = const HomePage();
 
-  final String _pageTitle = 'The Elder Scrolls Alchemy';
-
-  @override
-  void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
-    registerForRestoration(_selectedIndex, 'selected_index');
-  }
-
-  @override
-  void dispose() {
-    _selectedIndex.dispose();
-    super.dispose();
-  }
+  String _pageTitle = 'The Elder Scrolls Alchemy';
 
   Widget getPage(index) {
     if (index == 1) {
@@ -51,11 +41,47 @@ class _MainLayoutState extends State<MainLayout> with RestorationMixin {
     return const HomePage();
   }
 
-  void onDestinationSelected(index) {
-    debugPrint('onDestinationSelected $index');
-
+  void popupMenuItemOnTap(gameName) {
     setState(() {
-      _selectedIndex.value = index;
+      _chosenGame = gameName;
+    });
+  }
+
+  Function() chooseGame(String gameName) {
+    return () {
+      setState(() {
+        _chosenGame = gameName;
+        _pageTitle = '${_chosenGame.capitalize()} Alchemy';
+      });
+    };
+  }
+
+  List<Widget> getAppBarActions() {
+    return [
+      PopupMenuButton<Text>(
+        itemBuilder: (context) {
+          return [
+            PopupMenuItem(
+              onTap: chooseGame(DataProvider.gameNameSkyrim),
+              child: Text(DataProvider.gameNameSkyrim.capitalize()),
+            ),
+            PopupMenuItem(
+              onTap: chooseGame(DataProvider.gameNameOblivion),
+              child: Text(DataProvider.gameNameOblivion.capitalize()),
+            ),
+            PopupMenuItem(
+              onTap: chooseGame(DataProvider.gameNameMorrowind),
+              child: Text(DataProvider.gameNameMorrowind.capitalize()),
+            ),
+          ];
+        },
+      )
+    ];
+  }
+
+  void onDestinationSelected(index) {
+    setState(() {
+      _selectedIndex = index;
       _childPage = getPage(index);
     });
   }
@@ -75,10 +101,14 @@ class _MainLayoutState extends State<MainLayout> with RestorationMixin {
       appBar: AppBar(
         leading: (showLeading) ? leading : null,
         title: Text(_pageTitle),
+        actions: getAppBarActions(),
       ),
       body: Row(
         children: [
-          LeftPanelNavigation(onDestinationSelected: onDestinationSelected),
+          LeftPanelNavigation(
+            onDestinationSelected: onDestinationSelected,
+            selectedIndex: _selectedIndex,
+          ),
           const VerticalDivider(thickness: 1, width: 1),
           Expanded(child: _childPage),
         ],

@@ -13,7 +13,7 @@ class _EffectsPageState extends State<EffectsPage> {
   @override
   Widget build(BuildContext context) {
     const id = '000ae723';
-    Effect effect = DataProvider.getEffectById(id);
+    Effect effect = DataProvider.getSkyrimEffectById(id);
 
     String dataFromJson = '${effect.id}  ${effect.name} ';
 
@@ -25,6 +25,7 @@ class _EffectsPageState extends State<EffectsPage> {
             text: TextSpan(
               children: [
                 TextSpan(
+
                     // text: '''Effects page''',
                     text: dataFromJson,
                     style: Theme.of(context).textTheme.headline5),

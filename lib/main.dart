@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:the_elder_scrolls_alchemy_client/components/main_layout.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
+
+String defaultChosenGame = DataProvider.gameNameSkyrim;
+String globalChosenGame = defaultChosenGame;
 
 void main() {
   runApp(const MyApp());

@@ -1,33 +1,20 @@
 import 'package:flutter/material.dart';
 
 class LeftPanelNavigation extends StatefulWidget {
-  const LeftPanelNavigation({Key? key, required this.onDestinationSelected})
+  const LeftPanelNavigation(
+      {Key? key,
+      required this.onDestinationSelected,
+      required this.selectedIndex})
       : super(key: key);
 
   final Function(int) onDestinationSelected;
+  final int selectedIndex;
+
   @override
   State<LeftPanelNavigation> createState() => _LeftPanelNavigationState();
 }
 
-class _LeftPanelNavigationState extends State<LeftPanelNavigation>
-    with RestorationMixin {
-  final RestorableInt _selectedIndex = RestorableInt(0);
-
-  @override
-  String get restorationId =>
-      'nav_rail_demo'; // TODO learn how this works with RestorationMixin
-
-  @override
-  void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
-    registerForRestoration(_selectedIndex, 'selected_index');
-  }
-
-  @override
-  void dispose() {
-    _selectedIndex.dispose();
-    super.dispose();
-  }
-
+class _LeftPanelNavigationState extends State<LeftPanelNavigation> {
   List<NavigationRailDestination> getDestinations() {
     return [
       const NavigationRailDestination(
@@ -60,9 +47,11 @@ class _LeftPanelNavigationState extends State<LeftPanelNavigation>
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('_LeftPanelNavigationState build ${widget.selectedIndex}');
+
     return NavigationRail(
       leading: null,
-      selectedIndex: _selectedIndex.value,
+      selectedIndex: widget.selectedIndex,
       onDestinationSelected: widget.onDestinationSelected,
       labelType: NavigationRailLabelType.selected,
       destinations: getDestinations(),
