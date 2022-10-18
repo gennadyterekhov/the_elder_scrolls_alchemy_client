@@ -8,6 +8,7 @@ import 'package:the_elder_scrolls_alchemy_client/pages/skyrim/ingredients/ingred
 import 'package:the_elder_scrolls_alchemy_client/pages/skyrim/potions/potions.dart';
 import 'package:the_elder_scrolls_alchemy_client/pages/skyrim/search/search.dart';
 import 'package:the_elder_scrolls_alchemy_client/components/left_panel_navigation.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({Key? key}) : super(key: key);
@@ -18,9 +19,9 @@ class MainLayout extends StatefulWidget {
 
 class _MainLayoutState extends State<MainLayout> {
   int _selectedIndex = 0;
-  String _chosenGame = defaultChosenGame;
+  // Widget _childPage = const HomePage();
 
-  Widget _childPage = const HomePage();
+//      'The Elder Scrolls Alchemy     |    ${globalChosenGame.capitalize()}';
 
   String _pageTitle = 'The Elder Scrolls Alchemy';
 
@@ -41,17 +42,11 @@ class _MainLayoutState extends State<MainLayout> {
     return const HomePage();
   }
 
-  void popupMenuItemOnTap(gameName) {
-    setState(() {
-      _chosenGame = gameName;
-    });
-  }
-
   Function() chooseGame(String gameName) {
     return () {
       setState(() {
-        _chosenGame = gameName;
-        _pageTitle = '${_chosenGame.capitalize()} Alchemy';
+        globalChosenGame = gameName;
+        _pageTitle = '${gameName.capitalize()} Alchemy';
       });
     };
   }
@@ -62,16 +57,16 @@ class _MainLayoutState extends State<MainLayout> {
         itemBuilder: (context) {
           return [
             PopupMenuItem(
-              onTap: chooseGame(DataProvider.gameNameSkyrim),
-              child: Text(DataProvider.gameNameSkyrim.capitalize()),
+              onTap: chooseGame(DataSource.gameNameSkyrim),
+              child: Text(DataSource.gameNameSkyrim.capitalize()),
             ),
             PopupMenuItem(
-              onTap: chooseGame(DataProvider.gameNameOblivion),
-              child: Text(DataProvider.gameNameOblivion.capitalize()),
+              onTap: chooseGame(DataSource.gameNameOblivion),
+              child: Text(DataSource.gameNameOblivion.capitalize()),
             ),
             PopupMenuItem(
-              onTap: chooseGame(DataProvider.gameNameMorrowind),
-              child: Text(DataProvider.gameNameMorrowind.capitalize()),
+              onTap: chooseGame(DataSource.gameNameMorrowind),
+              child: Text(DataSource.gameNameMorrowind.capitalize()),
             ),
           ];
         },
@@ -82,7 +77,7 @@ class _MainLayoutState extends State<MainLayout> {
   void onDestinationSelected(index) {
     setState(() {
       _selectedIndex = index;
-      _childPage = getPage(index);
+      // globalPage = getPage(index);
     });
   }
 
@@ -97,6 +92,8 @@ class _MainLayoutState extends State<MainLayout> {
       onPressed: () {},
     );
 
+    globalPage = getPage(_selectedIndex);
+
     return Scaffold(
       appBar: AppBar(
         leading: (showLeading) ? leading : null,
@@ -110,7 +107,7 @@ class _MainLayoutState extends State<MainLayout> {
             selectedIndex: _selectedIndex,
           ),
           const VerticalDivider(thickness: 1, width: 1),
-          Expanded(child: _childPage),
+          Expanded(child: globalPage!),
         ],
       ),
     );

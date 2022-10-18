@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:the_elder_scrolls_alchemy_client/components/main_layout.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 
-String defaultChosenGame = DataProvider.gameNameSkyrim;
+String defaultChosenGame = DataSource.gameNameSkyrim;
 String globalChosenGame = defaultChosenGame;
+Widget? globalPage;
 
 void main() {
   runApp(const MyApp());

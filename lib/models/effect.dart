@@ -1,27 +1,29 @@
 class Effect {
   Effect({
-    required this.id,
     required this.name,
-    required this.text,
-    required this.magnitude,
-    required this.value,
+    this.id,
+    this.text,
+    this.magnitude,
+    this.value,
   });
-  final String id;
+  final String? id;
   final String name;
-  final String text;
-  final int magnitude;
-  final int value;
+  final String? text;
+  final int? magnitude;
+  final int? value;
 
   factory Effect.fromMap(Map<String, dynamic> data) {
-    final id = data['id'] as String;
+    // make all necessary checks so that all games are ok
     final name = data['name'] as String;
-    final text = data['text'] as String;
-    final magnitude = data['magnitude'] as int;
-    final value = data['value'] as int;
+    final id = data.containsKey('id') ? data['id'] as String : null;
+    final text = data.containsKey('text') ? data['text'] as String : null;
+    final magnitude =
+        data.containsKey('magnitude') ? data['magnitude'] as int : null;
+    final value = data.containsKey('value') ? data['value'] as int : null;
 
     return Effect(
-      id: id,
       name: name,
+      id: id,
       text: text,
       magnitude: magnitude,
       value: value,

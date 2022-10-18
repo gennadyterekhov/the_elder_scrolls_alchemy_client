@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:the_elder_scrolls_alchemy_client/components/cards/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
+import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 
 class EffectsPage extends StatefulWidget {
@@ -10,30 +12,22 @@ class EffectsPage extends StatefulWidget {
 }
 
 class _EffectsPageState extends State<EffectsPage> {
+  List<EffectCardSmall> _getGridItems(Map<String, Effect> effects) {
+    final gridItems =
+        effects.entries.map((value) => EffectCardSmall(effect: value.value));
+
+    return gridItems.toList();
+  }
+
   @override
   Widget build(BuildContext context) {
-    const id = '000ae723';
-    Effect effect = DataProvider.getSkyrimEffectById(id);
+    Map<String, Effect> effects = DataProvider.getAllEffects();
+    debugPrint('_EffectsPageState.build');
+    debugPrint(globalChosenGame);
 
-    String dataFromJson = '${effect.id}  ${effect.name} ';
-
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          RichText(
-            text: TextSpan(
-              children: [
-                TextSpan(
-
-                    // text: '''Effects page''',
-                    text: dataFromJson,
-                    style: Theme.of(context).textTheme.headline5),
-              ],
-            ),
-          ),
-        ],
-      ),
+    return GridView.count(
+      crossAxisCount: 4,
+      children: _getGridItems(effects),
     );
   }
 }
