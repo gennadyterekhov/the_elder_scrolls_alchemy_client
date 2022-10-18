@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_elder_scrolls_alchemy_client/components/cards/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
+import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 
 class EffectsPage extends StatefulWidget {
@@ -21,6 +22,8 @@ class _EffectsPageState extends State<EffectsPage> {
   @override
   Widget build(BuildContext context) {
     Map<String, Effect> effects = DataProvider.getAllEffects();
+    debugPrint('_EffectsPageState.build');
+    debugPrint(globalChosenGame);
 
     return GridView.count(
       crossAxisCount: 4,
