@@ -9,10 +9,7 @@ class EffectsByIngredient extends StatelessWidget {
   final Ingredient ingredient;
 
   Effect _getEffectByIndex(int index) {
-    debugPrint('_getEffectByIndex');
-    debugPrint('${this.ingredient.effectsNames}');
-
-    final String name = this.ingredient.effectsNames![index] ?? 'Cure Disease';
+    final String name = this.ingredient.effectsNames![index] ?? 'Cure Disease'; //TODO: remove hardcode
 
     final Effect effect = DataProvider.getSkyrimEffectByName(name);
     return effect;

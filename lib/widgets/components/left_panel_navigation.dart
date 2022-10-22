@@ -34,11 +34,11 @@ class _LeftPanelNavigationState extends State<LeftPanelNavigation> {
       //   selectedIcon: Icon(Icons.liquor),
       //   label: Text('Potions'),
       // ),
-      // const NavigationRailDestination(
-      //   icon: Icon(Icons.search_outlined),
-      //   selectedIcon: Icon(Icons.search),
-      //   label: Text('Search'),
-      // ),
+      const NavigationRailDestination(
+        icon: Icon(Icons.search_outlined),
+        selectedIcon: Icon(Icons.search),
+        label: Text('Search'),
+      ),
     ];
   }
 
