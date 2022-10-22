@@ -1,33 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:the_elder_scrolls_alchemy_client/main.dart';
+import 'package:the_elder_scrolls_alchemy_client/router.dart';
 
 class LeftPanelNavigation extends StatefulWidget {
-  const LeftPanelNavigation({Key? key, required this.onDestinationSelected})
-      : super(key: key);
+  const LeftPanelNavigation({Key? key, required this.notifyParent}) : super(key: key);
+  final Function() notifyParent;
 
-  final Function(int) onDestinationSelected;
   @override
   State<LeftPanelNavigation> createState() => _LeftPanelNavigationState();
 }
 
-class _LeftPanelNavigationState extends State<LeftPanelNavigation>
-    with RestorationMixin {
-  final RestorableInt _selectedIndex = RestorableInt(0);
-
-  @override
-  String get restorationId =>
-      'nav_rail_demo'; // TODO learn how this works with RestorationMixin
-
-  @override
-  void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
-    registerForRestoration(_selectedIndex, 'selected_index');
-  }
-
-  @override
-  void dispose() {
-    _selectedIndex.dispose();
-    super.dispose();
-  }
-
+class _LeftPanelNavigationState extends State<LeftPanelNavigation> {
   List<NavigationRailDestination> getDestinations() {
     return [
       const NavigationRailDestination(
@@ -45,11 +29,11 @@ class _LeftPanelNavigationState extends State<LeftPanelNavigation>
         selectedIcon: Icon(Icons.restaurant),
         label: Text('Ingredients'),
       ),
-      const NavigationRailDestination(
-        icon: Icon(Icons.liquor_outlined),
-        selectedIcon: Icon(Icons.liquor),
-        label: Text('Potions'),
-      ),
+      // const NavigationRailDestination(
+      //   icon: Icon(Icons.liquor_outlined),
+      //   selectedIcon: Icon(Icons.liquor),
+      //   label: Text('Potions'),
+      // ),
       const NavigationRailDestination(
         icon: Icon(Icons.search_outlined),
         selectedIcon: Icon(Icons.search),
@@ -58,12 +42,18 @@ class _LeftPanelNavigationState extends State<LeftPanelNavigation>
     ];
   }
 
+  void onDestinationSelected(index) {
+    globalChosenTabIndex = index;
+    String route = AlchemyRouter.getRouteByIndex(index);
+    context.go(route);
+  }
+
   @override
   Widget build(BuildContext context) {
     return NavigationRail(
       leading: null,
-      selectedIndex: _selectedIndex.value,
-      onDestinationSelected: widget.onDestinationSelected,
+      selectedIndex: globalChosenTabIndex,
+      onDestinationSelected: onDestinationSelected,
       labelType: NavigationRailLabelType.selected,
       destinations: getDestinations(),
     );
