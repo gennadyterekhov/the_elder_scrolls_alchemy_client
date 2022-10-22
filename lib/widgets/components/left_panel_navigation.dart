@@ -4,8 +4,7 @@ import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/router.dart';
 
 class LeftPanelNavigation extends StatefulWidget {
-  const LeftPanelNavigation({Key? key, required this.notifyParent})
-      : super(key: key);
+  const LeftPanelNavigation({Key? key, required this.notifyParent}) : super(key: key);
   final Function() notifyParent;
 
   @override
@@ -25,11 +24,11 @@ class _LeftPanelNavigationState extends State<LeftPanelNavigation> {
         selectedIcon: Icon(Icons.menu_book),
         label: Text('Effects'),
       ),
-      // const NavigationRailDestination(
-      //   icon: Icon(Icons.restaurant_outlined),
-      //   selectedIcon: Icon(Icons.restaurant),
-      //   label: Text('Ingredients'),
-      // ),
+      const NavigationRailDestination(
+        icon: Icon(Icons.restaurant_outlined),
+        selectedIcon: Icon(Icons.restaurant),
+        label: Text('Ingredients'),
+      ),
       // const NavigationRailDestination(
       //   icon: Icon(Icons.liquor_outlined),
       //   selectedIcon: Icon(Icons.liquor),

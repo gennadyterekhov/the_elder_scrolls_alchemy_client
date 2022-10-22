@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
+import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -13,23 +16,22 @@ class IngredientsPage extends StatefulWidget {
 }
 
 class _IngredientsPageState extends State<IngredientsPage> {
+  List<IngredientCardSmall> _getGridItems(Map<String, Ingredient> ingredients) {
+    final gridItems = ingredients.entries.map((value) => IngredientCardSmall(ingredient: value.value));
+
+    return gridItems.toList();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          RichText(
-            text: TextSpan(
-              children: [
-                TextSpan(
-                    text: '''Ingredients page''',
-                    style: Theme.of(context).textTheme.headline5),
-              ],
-            ),
-          ),
-        ],
-      ),
+    Map<String, Ingredient> ingredients = DataProvider.getAllSkyrimIngredients();
+
+    return GridView.count(
+      mainAxisSpacing: 4.0,
+      crossAxisSpacing: 4.0,
+      childAspectRatio: 1.4,
+      crossAxisCount: 4,
+      children: _getGridItems(ingredients),
     );
   }
 }
