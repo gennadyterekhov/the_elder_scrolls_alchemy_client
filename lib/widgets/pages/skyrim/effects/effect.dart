@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_elder_scrolls_alchemy_client/components/cards/effect.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/screens/effect_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
-import 'package:the_elder_scrolls_alchemy_client/pages/skyrim/effects/effect.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/pages/skyrim/effects/effect.dart';
 
 class EffectCardMicro extends StatelessWidget {
   const EffectCardMicro(this.effect, {Key? key}) : super(key: key);
@@ -23,9 +25,15 @@ class EffectCardSmall extends StatefulWidget {
 
 class _EffectCardSmallState extends State<EffectCardSmall> {
   void onTap() {
-    setState(() {
-      globalPage = EffectPage(effect: widget.effect);
-    });
+// GoRouter.of(context);
+    context.go('/effect/${widget.effect.name}');
+    // Navigator.of(context).pushReplacement(
+    //   MaterialPageRoute(
+    //       builder: (context) => EffectScreen(effect: widget.effect)),
+    // );
+    // setState(() {
+    //   globalPage = EffectPage(effect: widget.effect);
+    // });
     // debugPrint('EffectCardSmall onTap');
     // Navigator.push();
   }

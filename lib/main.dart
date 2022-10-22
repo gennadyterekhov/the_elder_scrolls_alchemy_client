@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:the_elder_scrolls_alchemy_client/components/main_layout.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
+import 'package:the_elder_scrolls_alchemy_client/router.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/pages/home/home.dart';
 
 String defaultChosenGame = DataSource.gameNameSkyrim;
+int defaultChosenTabIndex = 0;
 String globalChosenGame = defaultChosenGame;
-Widget? globalPage;
+int globalChosenTabIndex = defaultChosenTabIndex;
+Widget globalPage = HomePage();
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
   MaterialColor getPrimarySwatch() {
     const hash = 0xffa5d6a7;
@@ -33,15 +35,11 @@ class MyApp extends StatelessWidget {
     return colorCustom;
   }
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Alchemy',
-      theme: ThemeData(
-        primarySwatch: getPrimarySwatch(),
-      ),
-      home: const MainLayout(),
+    return MaterialApp.router(
+      routerConfig: AlchemyRouter.router,
+      theme: ThemeData(primarySwatch: getPrimarySwatch()),
     );
   }
 }
