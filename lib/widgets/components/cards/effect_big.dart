@@ -20,7 +20,7 @@ class EffectBigCard extends StatelessWidget {
     );
 
     SelectableText textText = SelectableText(
-      this.effect.text ?? Constant.globalUnknown,
+      this.effect.text ?? 'text: ${Constant.globalUnknown}',
       textAlign: TextAlign.center,
       style: const TextStyle(
         fontSize: 15,
@@ -29,10 +29,11 @@ class EffectBigCard extends StatelessWidget {
 
     Text idText = Text(this.effect.id ?? 'id: ' + Constant.globalUnknown);
 
-    Text magnitudeText =
-        Text(this.effect.magnitude != null ? 'magnitude: ${this.effect.magnitude}' : Constant.globalUnknown);
+    Text magnitudeText = Text(
+        this.effect.magnitude != null ? 'magnitude: ${this.effect.magnitude}' : 'magnitude: ${Constant.globalUnknown}');
 
-    Text valueText = Text(this.effect.value != null ? 'value: ${this.effect.value}' : Constant.globalUnknown);
+    Text valueText =
+        Text(this.effect.value != null ? 'value: ${this.effect.value}' : 'value: ${Constant.globalUnknown}');
 
     return Card(
       child: Padding(

@@ -15,13 +15,12 @@ class AlchemyAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _AlchemyAppBarState extends State<AlchemyAppBar> {
-  String _pageTitle =
-      'The Elder Scrolls Alchemy | ${globalChosenGame.capitalize()}';
+  String _pageTitle = 'The Elder Scrolls Alchemy | ${globalChosenGame.capitalize()}';
 
   Function() chooseGame(String gameName) {
     return () {
       globalChosenGame = gameName;
-      globalPage = globalPage;
+      // globalPage = globalPage;
       widget.notifyParent();
 
       setState(() {
@@ -40,10 +39,10 @@ class _AlchemyAppBarState extends State<AlchemyAppBar> {
               onTap: chooseGame(DataSource.gameNameSkyrim),
               child: Text(DataSource.gameNameSkyrim.capitalize()),
             ),
-            PopupMenuItem(
-              onTap: chooseGame(DataSource.gameNameOblivion),
-              child: Text(DataSource.gameNameOblivion.capitalize()),
-            ),
+            // PopupMenuItem(
+            //   onTap: chooseGame(DataSource.gameNameOblivion),
+            //   child: Text(DataSource.gameNameOblivion.capitalize()),
+            // ),
             PopupMenuItem(
               onTap: chooseGame(DataSource.gameNameMorrowind),
               child: Text(DataSource.gameNameMorrowind.capitalize()),
@@ -55,8 +54,7 @@ class _AlchemyAppBarState extends State<AlchemyAppBar> {
   }
 
   AppBar getAppBar() {
-    bool showLeading =
-        false; // TODO show on mobile to toggle left panel, disabled in web
+    bool showLeading = false; // TODO show on mobile to toggle left panel, disabled in web
 
     IconButton leading = IconButton(
       tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
@@ -66,7 +64,7 @@ class _AlchemyAppBarState extends State<AlchemyAppBar> {
     return AppBar(
       leading: (showLeading) ? leading : null,
       title: Text(_pageTitle),
-      // actions: getAppBarActions(),
+      actions: getAppBarActions(),
     );
   }
 

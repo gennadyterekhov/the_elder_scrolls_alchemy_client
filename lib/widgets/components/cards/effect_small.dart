@@ -30,7 +30,7 @@ class _EffectCardSmallState extends State<EffectCardSmall> {
     );
 
     Text textText = Text(
-      widget.effect.text ?? Constant.globalUnknown,
+      widget.effect.text ?? 'text: ${Constant.globalUnknown}',
       textAlign: TextAlign.center,
       style: const TextStyle(
         fontSize: 15,
@@ -39,10 +39,12 @@ class _EffectCardSmallState extends State<EffectCardSmall> {
 
     Text idText = Text(widget.effect.id ?? 'id: ' + Constant.globalUnknown);
 
-    Text magnitudeText =
-        Text(widget.effect.magnitude != null ? 'magnitude: ${widget.effect.magnitude}' : Constant.globalUnknown);
+    Text magnitudeText = Text(widget.effect.magnitude != null
+        ? 'magnitude: ${widget.effect.magnitude}'
+        : 'magnitude: ${Constant.globalUnknown}');
 
-    Text valueText = Text(widget.effect.value != null ? 'value: ${widget.effect.value}' : Constant.globalUnknown);
+    Text valueText =
+        Text(widget.effect.value != null ? 'value: ${widget.effect.value}' : 'value: ${Constant.globalUnknown}');
 
     return Card(
       child: InkWell(

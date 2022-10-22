@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/effect_resource.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/pages/home/home.dart';
@@ -54,8 +56,8 @@ class AlchemyRouter {
       makeRouteWithPageBuilder(
         path: '/effect/:effectName',
         pageBuilder: (context, state) {
-          final String effectName = state.params['effectName'] ?? 'Cure Disease'; // TODO remove hardcode
-          Effect effect = DataProvider.getSkyrimEffectByName(effectName);
+          final String effectName = state.params['effectName'] as String;
+          Effect effect = EffectResource.getEffectByName(effectName);
           final page = EffectScreen(effect: effect);
           return buildPageWithoutTransition<void>(context: context, state: state, child: page);
         },
@@ -63,8 +65,8 @@ class AlchemyRouter {
       makeRouteWithPageBuilder(
         path: '/ingredient/:ingredientName',
         pageBuilder: (BuildContext context, GoRouterState state) {
-          final String ingredientName = state.params['ingredientName'] ?? 'Abecean Longfin'; // TODO remove hardcode
-          Ingredient ingredient = DataProvider.getSkyrimIngredientByName(ingredientName);
+          final String ingredientName = state.params['ingredientName'] as String;
+          Ingredient ingredient = IngredientResource.getIngredientByName(ingredientName);
           final page = IngredientScreen(ingredient: ingredient);
           return buildPageWithoutTransition<void>(context: context, state: state, child: page);
         },

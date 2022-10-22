@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/effect_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_small.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
@@ -19,7 +20,7 @@ class _EffectsPageState extends State<EffectsPage> {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, Effect> effects = DataProvider.getAllEffects();
+    Map<String, Effect> effects = EffectResource.getAllEffects();
 
     return GridView.count(
       mainAxisSpacing: 4.0,
