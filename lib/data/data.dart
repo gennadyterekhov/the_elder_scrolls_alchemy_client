@@ -8,14 +8,28 @@ class DataProvider {
   static Map<String, Effect> getAllEffects() {
     // TODO this will not work if games have different models. Find out how to make better
     Map<String, Effect> resultMap = {};
-    debugPrint('DataProvider.getAllEffects');
-
-    debugPrint(globalChosenGame);
-
     DataSource.getMap()[globalChosenGame]['effects']
         .forEach((name, effect) => resultMap[name] = Effect.fromMap(effect));
 
     return resultMap;
+  }
+
+  static List<Effect> searchSkyrimEffectsByName(String name) {
+    final Map<String, dynamic> effectsMap = DataSource.getMap()[DataSource.gameNameSkyrim]['effects'];
+    final List<String> names = effectsMap.keys.toList();
+
+    final searchResultNames = names.where((element) => element.toLowerCase().contains(name)).toList();
+
+    return getSkyrimEffectsByNames(searchResultNames);
+  }
+
+  static List<Ingredient> searchSkyrimIngredientsByName(String name) {
+    final Map<String, dynamic> effectsMap = DataSource.getMap()[DataSource.gameNameSkyrim]['ingredients'];
+    final List<String> names = effectsMap.keys.toList();
+
+    final searchResultNames = names.where((element) => element.toLowerCase().contains(name)).toList();
+
+    return getSkyrimIngredientsByNames(searchResultNames);
   }
 
   static Map<String, Effect> getAllSkyrimEffects() {
@@ -40,6 +54,21 @@ class DataProvider {
     Effect effect = Effect.fromMap(DataSource.getMap()[DataSource.gameNameSkyrim]['effects'][name]);
 
     return effect;
+  }
+
+  static List<Effect> getSkyrimEffectsByNames(List<String> names) {
+    List<Effect> effects =
+        names.map((name) => (Effect.fromMap(DataSource.getMap()[DataSource.gameNameSkyrim]['effects'][name]))).toList();
+
+    return effects;
+  }
+
+  static List<Ingredient> getSkyrimIngredientsByNames(List<String> names) {
+    List<Ingredient> ingredients = names
+        .map((name) => (Ingredient.fromMap(DataSource.getMap()[DataSource.gameNameSkyrim]['ingredients'][name])))
+        .toList();
+
+    return ingredients;
   }
 
   static Ingredient getSkyrimIngredientByName(String name) {

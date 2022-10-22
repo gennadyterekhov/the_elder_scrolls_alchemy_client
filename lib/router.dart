@@ -13,6 +13,7 @@ import 'package:the_elder_scrolls_alchemy_client/widgets/screens/effect_screen.d
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/effects_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/home_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/ingredients_screen.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/screens/search_screen.dart';
 
 class AlchemyRouter {
   static CustomTransitionPage buildPageWithoutTransition<T>({
@@ -68,6 +69,7 @@ class AlchemyRouter {
           return buildPageWithoutTransition<void>(context: context, state: state, child: page);
         },
       ),
+      makeRoute(path: '/search', page: const SearchScreen()),
     ],
   );
 
@@ -82,10 +84,7 @@ class AlchemyRouter {
       return '/ingredients';
     }
     if (index == 3) {
-      return '/';
-    }
-    if (index == 4) {
-      return '/';
+      return '/search';
     }
     return '/';
   }
@@ -98,9 +97,6 @@ class AlchemyRouter {
       return const IngredientsPage();
     }
     if (index == 3) {
-      return const PotionsPage();
-    }
-    if (index == 4) {
       return const SearchPage();
     }
 

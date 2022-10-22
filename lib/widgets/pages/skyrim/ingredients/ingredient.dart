@@ -13,6 +13,6 @@ class IngredientPage extends StatefulWidget {
 class _IngredientPageState extends State<IngredientPage> {
   @override
   Widget build(BuildContext context) {
-    return IngredientBigCard(ingredient: widget.ingredient);
+    return IngredientCardBig(ingredient: widget.ingredient);
   }
 }

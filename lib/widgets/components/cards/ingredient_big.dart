@@ -4,15 +4,15 @@ import 'package:the_elder_scrolls_alchemy_client/constants.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/effects_by_ingredient.dart';
 
-class IngredientBigCard extends StatefulWidget {
-  const IngredientBigCard({Key? key, required this.ingredient}) : super(key: key);
+class IngredientCardBig extends StatefulWidget {
+  const IngredientCardBig({Key? key, required this.ingredient}) : super(key: key);
   final Ingredient ingredient;
 
   @override
-  State<StatefulWidget> createState() => _IngredientBigCardState();
+  State<StatefulWidget> createState() => _IngredientCardBigState();
 }
 
-class _IngredientBigCardState extends State<IngredientBigCard> {
+class _IngredientCardBigState extends State<IngredientCardBig> {
   void onTap() {
     context.go('/ingredient/${widget.ingredient.name}');
   }
