@@ -15,42 +15,57 @@ import 'package:the_elder_scrolls_alchemy_client/widgets/screens/home_screen.dar
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/ingredients_screen.dart';
 
 class AlchemyRouter {
+  static CustomTransitionPage buildPageWithoutTransition<T>({
+    required BuildContext context,
+    required GoRouterState state,
+    required Widget child,
+  }) {
+    return CustomTransitionPage<T>(
+      key: state.pageKey,
+      child: child,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+          FadeTransition(opacity: animation, child: child),
+    );
+  }
+
+  static GoRoute makeRoute(
+      {required String path, required Widget page, Widget Function(BuildContext, GoRouterState)? builder}) {
+    return GoRoute(
+      path: path,
+      builder: (BuildContext context, GoRouterState state) => page,
+      pageBuilder: (context, state) => buildPageWithoutTransition<void>(context: context, state: state, child: page),
+    );
+  }
+
+  static GoRoute makeRouteWithPageBuilder(
+      {required String path, required Page<dynamic> Function(BuildContext, GoRouterState)? pageBuilder}) {
+    return GoRoute(
+      path: path,
+      pageBuilder: pageBuilder,
+    );
+  }
+
   static final GoRouter router = GoRouter(
     routes: <GoRoute>[
-      GoRoute(
-        path: '/',
-        builder: (BuildContext context, GoRouterState state) {
-          return HomeScreen();
-        },
-      ),
-      GoRoute(
-        path: '/effects',
-        builder: (BuildContext context, GoRouterState state) {
-          return EffectsScreen();
-        },
-      ),
-      GoRoute(
+      makeRoute(path: '/', page: const HomeScreen()),
+      makeRoute(path: '/effects', page: const EffectsScreen()),
+      makeRoute(path: '/ingredients', page: const IngredientsScreen()),
+      makeRouteWithPageBuilder(
         path: '/effect/:effectName',
-        builder: (BuildContext context, GoRouterState state) {
+        pageBuilder: (context, state) {
           final String effectName = state.params['effectName'] ?? 'Cure Disease'; // TODO remove hardcode
-
           Effect effect = DataProvider.getSkyrimEffectByName(effectName);
-          return EffectScreen(effect: effect);
+          final page = EffectScreen(effect: effect);
+          return buildPageWithoutTransition<void>(context: context, state: state, child: page);
         },
       ),
-      GoRoute(
-        path: '/ingredients',
-        builder: (BuildContext context, GoRouterState state) {
-          return IngredientsScreen();
-        },
-      ),
-      GoRoute(
+      makeRouteWithPageBuilder(
         path: '/ingredient/:ingredientName',
-        builder: (BuildContext context, GoRouterState state) {
+        pageBuilder: (BuildContext context, GoRouterState state) {
           final String ingredientName = state.params['ingredientName'] ?? 'Abecean Longfin'; // TODO remove hardcode
-
           Ingredient ingredient = DataProvider.getSkyrimIngredientByName(ingredientName);
-          return IngredientScreen(ingredient: ingredient);
+          final page = IngredientScreen(ingredient: ingredient);
+          return buildPageWithoutTransition<void>(context: context, state: state, child: page);
         },
       ),
     ],
