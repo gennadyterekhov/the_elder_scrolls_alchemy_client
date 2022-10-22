@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
+import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/pages/home/home.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/pages/skyrim/effects/effects.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/pages/skyrim/ingredients/ingredients.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/pages/skyrim/potions/potions.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/pages/skyrim/search/search.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/screens/Ingredient_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/effect_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/effects_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/home_screen.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/screens/ingredients_screen.dart';
 
 class AlchemyRouter {
   static final GoRouter router = GoRouter(
@@ -29,11 +32,25 @@ class AlchemyRouter {
       GoRoute(
         path: '/effect/:effectName',
         builder: (BuildContext context, GoRouterState state) {
-          final String effectName = state.params['effectName'] ??
-              'Cure Disease'; // TODO remove hardcode
+          final String effectName = state.params['effectName'] ?? 'Cure Disease'; // TODO remove hardcode
 
           Effect effect = DataProvider.getSkyrimEffectByName(effectName);
           return EffectScreen(effect: effect);
+        },
+      ),
+      GoRoute(
+        path: '/ingredients',
+        builder: (BuildContext context, GoRouterState state) {
+          return IngredientsScreen();
+        },
+      ),
+      GoRoute(
+        path: '/ingredient/:ingredientName',
+        builder: (BuildContext context, GoRouterState state) {
+          final String ingredientName = state.params['ingredientName'] ?? 'Abecean Longfin'; // TODO remove hardcode
+
+          Ingredient ingredient = DataProvider.getSkyrimIngredientByName(ingredientName);
+          return IngredientScreen(ingredient: ingredient);
         },
       ),
     ],
