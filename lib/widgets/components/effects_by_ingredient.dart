@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/effect_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_micro.dart';
@@ -9,9 +10,9 @@ class EffectsByIngredient extends StatelessWidget {
   final Ingredient ingredient;
 
   Effect _getEffectByIndex(int index) {
-    final String name = this.ingredient.effectsNames![index] ?? 'Cure Disease'; //TODO: remove hardcode
+    final String name = this.ingredient.effectsNames![index] as String;
 
-    final Effect effect = DataProvider.getSkyrimEffectByName(name);
+    final Effect effect = EffectResource.getEffectByName(name);
     return effect;
   }
 

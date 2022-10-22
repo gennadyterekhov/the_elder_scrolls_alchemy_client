@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_micro.dart';
@@ -12,7 +13,7 @@ class IngredientsByEffect extends StatelessWidget {
   List<Ingredient> _getIngredientsByIndex(int index) {
     final List names = this.effect.ingredientsNamesByPosition![index];
 
-    final List<Ingredient> ingredients = names.map((name) => DataProvider.getSkyrimIngredientByName(name)).toList();
+    final List<Ingredient> ingredients = names.map((name) => IngredientResource.getIngredientByName(name)).toList();
     return ingredients;
   }
 

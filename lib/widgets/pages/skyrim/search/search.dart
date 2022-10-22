@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/effect_resource.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_small.dart';
@@ -58,8 +59,8 @@ class _SearchPageState extends State<SearchPage> {
       controller: searchFieldController,
     );
 
-    final List<Effect> effects = DataProvider.searchSkyrimEffectsByName(_searchQuery);
-    final List<Ingredient> ingredients = DataProvider.searchSkyrimIngredientsByName(_searchQuery);
+    final List<Effect> effects = EffectResource.searchEffectsByName(_searchQuery);
+    final List<Ingredient> ingredients = IngredientResource.searchIngredientsByName(_searchQuery);
 
     final List<Widget> allCards = [
       ..._getIngredientsGridItems(ingredients),
@@ -87,7 +88,7 @@ class _SearchPageState extends State<SearchPage> {
         padding: const EdgeInsets.all(30.0),
         child: Column(
           children: [
-            Text('Search by Ingredients and effects (min. 3 characters)'),
+            const Text('Search by Ingredients and effects (min. 3 characters)'),
             searchFieldWidget,
             gridWidget,
           ],
