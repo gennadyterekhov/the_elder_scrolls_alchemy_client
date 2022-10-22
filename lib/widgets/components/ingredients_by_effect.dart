@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_micro.dart';
 
 class IngredientsByEffect extends StatelessWidget {
   const IngredientsByEffect({Key? key, required this.effect, this.showLabel = false}) : super(key: key);
@@ -42,10 +42,13 @@ class IngredientsByEffect extends StatelessWidget {
       final cards = _getCards(_getIngredientsByIndex(i));
       final children = cards.isEmpty ? [const Text('no ingredients')] : cards;
       columns[i] = Card(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: children,
+        child: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: children,
+          ),
         ),
       );
     }

@@ -17,7 +17,7 @@ class Ingredient {
     final id = data.containsKey('id') ? data['id'] as String : null;
     final weight = data.containsKey('weight') ? data['weight'] as double : null;
     final value = data.containsKey('value') ? data['value'] as int : null;
-    final effectsNames = data.containsKey('effectsNames') ? data['effectsNames'] as List<dynamic> : [];
+    final effectsNames = data.containsKey('effects') ? data['effects'] as List<dynamic> : [];
 
     return Ingredient(
       name: name,

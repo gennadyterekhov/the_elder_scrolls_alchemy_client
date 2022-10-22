@@ -8,6 +8,7 @@ int defaultChosenTabIndex = 0;
 String globalChosenGame = defaultChosenGame;
 int globalChosenTabIndex = defaultChosenTabIndex;
 Widget globalPage = HomePage();
+bool globalShowInlineId = false;
 
 void main() {
   runApp(MyApp());

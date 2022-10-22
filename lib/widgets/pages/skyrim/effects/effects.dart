@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_small.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 
@@ -12,8 +12,7 @@ class EffectsPage extends StatefulWidget {
 
 class _EffectsPageState extends State<EffectsPage> {
   List<EffectCardSmall> _getGridItems(Map<String, Effect> effects) {
-    final gridItems =
-        effects.entries.map((value) => EffectCardSmall(effect: value.value));
+    final gridItems = effects.entries.map((value) => EffectCardSmall(effect: value.value));
 
     return gridItems.toList();
   }

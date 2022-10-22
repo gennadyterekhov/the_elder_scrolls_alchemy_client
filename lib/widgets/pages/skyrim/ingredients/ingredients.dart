@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/left_panel_navigation.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_small.dart';
 
 class IngredientsPage extends StatefulWidget {
   const IngredientsPage({Key? key}) : super(key: key);
