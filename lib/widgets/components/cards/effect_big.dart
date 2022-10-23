@@ -45,22 +45,24 @@ class EffectBigCard extends StatelessWidget {
           Row(
             children: [idText],
           ),
-          Spacer(),
+          // Spacer(),
           Row(
             children: [textText],
           ),
-          Spacer(),
+          // Spacer(),
           Row(
             children: [magnitudeText],
           ),
           Row(
             children: [valueText],
           ),
-          Spacer(),
+          // Spacer(),
+          Text(''),
+
           Row(
             children: [Text('Ingredients that have this effect:')],
           ),
-          Spacer(),
+          // Spacer(),
           IngredientsByEffect(effect: this.effect),
           Spacer(),
         ]),

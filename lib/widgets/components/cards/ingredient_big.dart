@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/constants.dart';
+import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/effects_by_ingredient.dart';
 
@@ -14,7 +15,7 @@ class IngredientCardBig extends StatefulWidget {
 
 class _IngredientCardBigState extends State<IngredientCardBig> {
   void onTap() {
-    context.go('/ingredient/${widget.ingredient.name}');
+    context.go('/${globalChosenGame}/ingredient/${widget.ingredient.name}');
   }
 
   @override
@@ -43,13 +44,15 @@ class _IngredientCardBigState extends State<IngredientCardBig> {
           Row(
             children: [idText],
           ),
-          const Spacer(),
+          // const Spacer(),
+          Text(''),
+
           Row(
             children: [Text('Effects:')],
           ),
-          Spacer(),
+          // Spacer(),
           EffectsByIngredient(ingredient: widget.ingredient),
-          Spacer(),
+          // Spacer(),
         ]),
       ),
     );

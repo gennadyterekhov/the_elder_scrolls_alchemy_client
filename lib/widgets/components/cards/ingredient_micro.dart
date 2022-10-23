@@ -14,7 +14,7 @@ class IngredientCardMicro extends StatefulWidget {
 
 class _IngredientCardMicroState extends State<IngredientCardMicro> {
   void _onTap() {
-    context.go('/ingredient/${widget.ingredient.name}');
+    context.go('/${globalChosenGame}/ingredient/${widget.ingredient.name}');
   }
 
   @override

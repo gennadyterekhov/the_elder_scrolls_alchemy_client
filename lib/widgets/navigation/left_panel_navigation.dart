@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/router.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/navigation/navigation.dart';
 
 class LeftPanelNavigation extends StatefulWidget {
   const LeftPanelNavigation({Key? key, required this.notifyParent}) : super(key: key);
@@ -13,38 +14,20 @@ class LeftPanelNavigation extends StatefulWidget {
 
 class _LeftPanelNavigationState extends State<LeftPanelNavigation> {
   List<NavigationRailDestination> getDestinations() {
-    return [
-      const NavigationRailDestination(
-        icon: Icon(Icons.home_outlined),
-        selectedIcon: Icon(Icons.home),
-        label: Text('Home'),
-      ),
-      const NavigationRailDestination(
-        icon: Icon(Icons.menu_book_outlined),
-        selectedIcon: Icon(Icons.menu_book),
-        label: Text('Effects'),
-      ),
-      const NavigationRailDestination(
-        icon: Icon(Icons.restaurant_outlined),
-        selectedIcon: Icon(Icons.restaurant),
-        label: Text('Ingredients'),
-      ),
-      // const NavigationRailDestination(
-      //   icon: Icon(Icons.liquor_outlined),
-      //   selectedIcon: Icon(Icons.liquor),
-      //   label: Text('Potions'),
-      // ),
-      const NavigationRailDestination(
-        icon: Icon(Icons.search_outlined),
-        selectedIcon: Icon(Icons.search),
-        label: Text('Search'),
-      ),
-    ];
+    return Navigation.getItems()
+        .map(
+          (navigationItem) => NavigationRailDestination(
+            icon: navigationItem.icon,
+            selectedIcon: navigationItem.selectedIcon,
+            label: Text(navigationItem.label),
+          ),
+        )
+        .toList();
   }
 
   void onDestinationSelected(index) {
     globalChosenTabIndex = index;
-    String route = AlchemyRouter.getRouteByIndex(index);
+    String route = AlchemyRouter.getRouteByIndex(index: index);
     context.go(route);
   }
 
