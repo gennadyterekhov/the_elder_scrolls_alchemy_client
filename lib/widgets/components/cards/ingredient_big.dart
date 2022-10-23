@@ -29,10 +29,22 @@ class _IngredientCardBigState extends State<IngredientCardBig> {
       ),
     );
 
-    SelectableText idText = SelectableText(
-      widget.ingredient.id ?? 'id: ' + Constant.globalUnknown,
-      textAlign: TextAlign.left,
-    );
+    Widget idText = widget.ingredient.id != null
+        ? SelectableText(
+            'id: ${widget.ingredient.id}',
+            textAlign: TextAlign.left,
+          )
+        : Container();
+
+    Widget textText = widget.ingredient.text != null
+        ? SelectableText(
+            widget.ingredient.text!,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 15,
+            ),
+          )
+        : Container();
 
     return Card(
       child: Padding(
@@ -43,6 +55,11 @@ class _IngredientCardBigState extends State<IngredientCardBig> {
           ),
           Row(
             children: [idText],
+          ),
+          Text(''),
+
+          Row(
+            children: [textText],
           ),
           // const Spacer(),
           Text(''),
