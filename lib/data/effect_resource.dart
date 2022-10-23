@@ -1,3 +1,4 @@
+import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
@@ -63,5 +64,25 @@ class EffectResource {
         names.map((name) => (Effect.fromMap(DataSource.getMap()[globalChosenGame]['effects'][name]))).toList();
 
     return effects;
+  }
+
+  static String getGameOfEffect(String effectName) {
+    for (int i = 0; i < DataSource.gameNames.length; i += 1) {
+      Map<String, dynamic> map = DataSource.getMap()[DataSource.gameNames[i]]['effects'];
+      if (map.containsKey(effectName)) {
+        return DataSource.gameNames[i];
+      }
+    }
+    throw Exception('Effect not found across all these games: ${DataSource.gameNames}');
+  }
+
+  static String getGameOfIngredient(String ingredientName) {
+    for (int i = 0; i < DataSource.gameNames.length; i += 1) {
+      Map<String, dynamic> map = DataSource.getMap()[DataSource.gameNames[i]]['ingredients'];
+      if (map.containsKey(ingredientName)) {
+        return DataSource.gameNames[i];
+      }
+    }
+    throw Exception('Ingredient not found across all these games: ${DataSource.gameNames}');
   }
 }

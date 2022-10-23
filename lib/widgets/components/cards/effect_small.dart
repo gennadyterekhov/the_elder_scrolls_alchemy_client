@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/constants.dart';
+import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/ingredients_by_effect.dart';
 
@@ -14,7 +15,7 @@ class EffectCardSmall extends StatefulWidget {
 
 class _EffectCardSmallState extends State<EffectCardSmall> {
   void onTap() {
-    context.go('/effect/${widget.effect.name}');
+    context.go('/${globalChosenGame}/effect/${widget.effect.name}');
   }
 
   @override
@@ -50,11 +51,11 @@ class _EffectCardSmallState extends State<EffectCardSmall> {
       child: InkWell(
         onTap: onTap,
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(8.0),
           child: Column(children: [
             nameText,
-            const Spacer(),
-            textText,
+            // const Spacer(),
+            // textText,
           ]),
         ),
       ),
