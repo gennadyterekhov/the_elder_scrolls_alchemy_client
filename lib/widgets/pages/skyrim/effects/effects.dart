@@ -3,6 +3,7 @@ import 'package:the_elder_scrolls_alchemy_client/data/effect_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_small.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/search_field.dart';
 
 class EffectsPage extends StatefulWidget {
   const EffectsPage({Key? key}) : super(key: key);
@@ -12,15 +13,41 @@ class EffectsPage extends StatefulWidget {
 }
 
 class _EffectsPageState extends State<EffectsPage> {
-  List<EffectCardSmall> _getGridItems(Map<String, Effect> effects) {
-    final gridItems = effects.entries.map((value) => EffectCardSmall(effect: value.value));
+  final searchFieldController = TextEditingController();
+  String _searchQuery = '';
+  List<Widget> _getEffectsGridItems(List<Effect> effects) {
+    final gridItems = effects.map((value) => EffectCardSmall(effect: value));
 
     return gridItems.toList();
   }
 
   @override
+  void dispose() {
+    searchFieldController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    searchFieldController.addListener(() {
+      final String text = searchFieldController.text.toLowerCase();
+
+      startSearch(text);
+    });
+  }
+
+  void startSearch(String text) {
+    setState(() {
+      _searchQuery = text;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    Map<String, Effect> effects = EffectResource.getAllEffects();
+    final List<Effect> effects = EffectResource.searchEffectsByName(_searchQuery);
+
+    final List<Widget> effectsCards = _getEffectsGridItems(effects);
 
     final width = MediaQuery.of(context).size.width;
 
@@ -39,12 +66,22 @@ class _EffectsPageState extends State<EffectsPage> {
       childAspectRatio = 1.6;
     }
 
-    return GridView.count(
+    final grid = GridView.count(
       mainAxisSpacing: 4.0,
       crossAxisSpacing: 4.0,
       childAspectRatio: childAspectRatio,
       crossAxisCount: crossAxisCount,
-      children: _getGridItems(effects),
+      children: effectsCards,
+    );
+
+    final gridWidget = Expanded(child: grid);
+
+    return Column(
+      children: [
+        const Text('Search by Effects'),
+        SearchField(controller: searchFieldController),
+        gridWidget,
+      ],
     );
   }
 }
