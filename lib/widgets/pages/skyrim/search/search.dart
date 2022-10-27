@@ -5,6 +5,7 @@ import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_small.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_small.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards_grid.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/search_field.dart';
 
 class SearchPage extends StatefulWidget {
@@ -64,21 +65,15 @@ class _SearchPageState extends State<SearchPage> {
       ..._getEffectsGridItems(effects),
     ];
 
-    final grid = GridView.count(
-      mainAxisSpacing: 4.0,
-      crossAxisSpacing: 4.0,
-      childAspectRatio: 1.4,
-      crossAxisCount: 4,
-      children: allCards,
-    );
-
-    final gridWidget = Expanded(child: grid);
-
     final view = Column(
       children: [
         const Text('Search by Ingredients and effects (min. 3 characters)'),
         SearchField(controller: searchFieldController),
-        gridWidget,
+        Expanded(
+          child: CardsGrid(
+            cards: allCards,
+          ),
+        ),
       ],
     );
 

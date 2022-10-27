@@ -5,13 +5,18 @@ import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_micro.dart';
 
-class IngredientsByEffect extends StatelessWidget {
+class IngredientsByEffect extends StatefulWidget {
   const IngredientsByEffect({Key? key, required this.effect, this.showLabel = false}) : super(key: key);
   final Effect effect;
   final bool showLabel;
 
+  @override
+  State<StatefulWidget> createState() => _IngredientsByEffectState();
+}
+
+class _IngredientsByEffectState extends State<IngredientsByEffect> {
   List<Ingredient> _getIngredientsByIndex(int index) {
-    final List names = this.effect.ingredientsNamesByPosition![index];
+    final List names = widget.effect.ingredientsNamesByPosition![index];
 
     final List<Ingredient> ingredients = names.map((name) => IngredientResource.getIngredientByName(name)).toList();
     return ingredients;
@@ -24,7 +29,22 @@ class IngredientsByEffect extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final labelRow = showLabel
+    final width = MediaQuery.of(context).size.width;
+
+    double widthFactor = .95;
+    int columnsInARow = 1;
+
+    if (width > 370) {
+      widthFactor = 0.95;
+    }
+    if (width > 550) {
+      columnsInARow = 2;
+    }
+    if (width > 800) {
+      columnsInARow = 4;
+    }
+
+    final labelRow = widget.showLabel
         ? Row(
             children: [
               Column(children: [Text('In position 1:')]),
@@ -41,7 +61,9 @@ class IngredientsByEffect extends StatelessWidget {
     List<Widget> columns = List.filled(4, Column());
     for (int i = 0; i < 4; i += 1) {
       final cards = _getCards(_getIngredientsByIndex(i));
-      final children = cards.isEmpty ? [const Text('no ingredients')] : cards;
+      final children = cards.isEmpty
+          ? [Text('In position ${i + 1}:'), const Text('no ingredients')]
+          : [Text('In position ${i + 1}:'), ...cards];
       columns[i] = Card(
         child: Padding(
           padding: EdgeInsets.all(10.0),
@@ -53,20 +75,59 @@ class IngredientsByEffect extends StatelessWidget {
         ),
       );
     }
+    final row = Row(
+      children: [
+        columns[0],
+        columns[1],
+        columns[2],
+        columns[3],
+      ],
+    );
 
-    return Column(children: [
-      labelRow,
-      Row(
-        children: [
-          columns[0],
-          const Spacer(),
-          columns[1],
-          const Spacer(),
-          columns[2],
-          const Spacer(),
-          columns[3],
-        ],
-      ),
-    ]);
+    final flexible = Flexible(
+      fit: FlexFit.loose,
+      child: row,
+    );
+
+    if (columnsInARow == 1) {
+      return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: columns);
+    }
+    if (columnsInARow == 2) {
+      return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        labelRow,
+        Row(
+          children: [
+            columns[0],
+            const Spacer(),
+            columns[1],
+          ],
+        ),
+        Row(
+          children: [
+            columns[2],
+            const Spacer(),
+            columns[3],
+          ],
+        ),
+      ]);
+    }
+    if (columnsInARow == 4) {
+      return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        labelRow,
+        Row(
+          children: [
+            columns[0],
+            const Spacer(),
+            columns[1],
+            const Spacer(),
+            columns[2],
+            const Spacer(),
+            columns[3],
+          ],
+        ),
+      ]);
+    }
+
+    return Column(children: columns);
   }
 }

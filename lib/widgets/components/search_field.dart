@@ -1,18 +1,54 @@
 import 'package:flutter/material.dart';
 
-class SearchField extends StatelessWidget {
+class SearchField extends StatefulWidget {
   const SearchField({Key? key, required this.controller}) : super(key: key);
 
   final TextEditingController controller;
+  @override
+  State<SearchField> createState() => _SearchFieldState();
+}
 
+class _SearchFieldState extends State<SearchField> {
   @override
   Widget build(BuildContext context) {
-    final searchFieldWidget = Card(
-      child: Padding(
-        padding: const EdgeInsets.all(3.0),
-        child: TextField(controller: controller),
+    final width = MediaQuery.of(context).size.width;
+
+    double widthFactor = .95;
+
+    if (width > 370) {
+      widthFactor = 0.95;
+    }
+    if (width > 550) {
+      widthFactor = 0.7;
+    }
+    if (width > 800) {
+      widthFactor = 0.5;
+    }
+
+    final textField = TextField(
+      controller: widget.controller,
+      decoration: InputDecoration(
+        hintText: 'Search query',
+        suffixIcon: IconButton(
+          onPressed: widget.controller.clear,
+          icon: const Icon(Icons.clear),
+        ),
       ),
     );
-    return searchFieldWidget;
+
+    final padding = Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: textField,
+    );
+
+    final searchFieldWidget = Card(
+      child: padding,
+    );
+
+    final limitedWidthSearch = FractionallySizedBox(
+      widthFactor: widthFactor,
+      child: searchFieldWidget,
+    );
+    return limitedWidthSearch;
   }
 }

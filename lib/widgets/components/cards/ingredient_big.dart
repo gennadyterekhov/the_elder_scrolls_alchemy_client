@@ -24,6 +24,7 @@ class _IngredientCardBigState extends State<IngredientCardBig> {
       widget.ingredient.name,
       textAlign: TextAlign.left,
       style: const TextStyle(
+        overflow: TextOverflow.fade,
         fontWeight: FontWeight.bold,
         fontSize: 30,
       ),
@@ -39,39 +40,51 @@ class _IngredientCardBigState extends State<IngredientCardBig> {
     Widget textText = widget.ingredient.text != null
         ? SelectableText(
             widget.ingredient.text!,
-            textAlign: TextAlign.center,
+            textAlign: TextAlign.left,
             style: const TextStyle(
               fontSize: 15,
             ),
           )
         : Container();
 
-    return Card(
+    Widget weightText = widget.ingredient.weight != null
+        ? SelectableText(
+            'weight: ${widget.ingredient.weight!}',
+            textAlign: TextAlign.left,
+            style: const TextStyle(
+              fontSize: 15,
+            ),
+          )
+        : Container();
+
+    Widget valueText = widget.ingredient.value != null
+        ? SelectableText(
+            'value: ${widget.ingredient.value!}',
+            textAlign: TextAlign.left,
+            style: const TextStyle(
+              fontSize: 15,
+            ),
+          )
+        : Container();
+
+    final bigCard = Card(
       child: Padding(
         padding: const EdgeInsets.all(30.0),
-        child: Column(children: [
-          Row(
-            children: [nameText],
-          ),
-          Row(
-            children: [idText],
-          ),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          nameText,
+          idText,
+          weightText,
+          valueText,
+          textText,
           Text(''),
-
-          Row(
-            children: [textText],
-          ),
-          // const Spacer(),
-          Text(''),
-
           Row(
             children: [Text('Effects:')],
           ),
-          // Spacer(),
           EffectsByIngredient(ingredient: widget.ingredient),
-          // Spacer(),
         ]),
       ),
     );
+
+    return bigCard;
   }
 }
