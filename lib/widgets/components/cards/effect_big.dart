@@ -22,7 +22,7 @@ class EffectBigCard extends StatelessWidget {
     Widget textText = this.effect.text != null
         ? SelectableText(
             this.effect.text!,
-            textAlign: TextAlign.center,
+            textAlign: TextAlign.left,
             style: const TextStyle(
               fontSize: 15,
             ),
@@ -40,38 +40,33 @@ class EffectBigCard extends StatelessWidget {
 
     Widget valueText = effect.value != null ? Text('value: ${effect.value}') : Container();
 
-    return Card(
+    final listView = [
+      nameText,
+      idText,
+      magnitudeText,
+      valueText,
+      textText,
+      Text(''),
+      Text('Ingredients that have this effect:'),
+      IngredientsByEffect(effect: this.effect),
+    ];
+
+    final bigCard = Card(
       child: Padding(
         padding: EdgeInsets.all(30.0),
-        child: Column(children: [
-          Row(
-            children: [nameText],
-          ),
-          Row(
-            children: [idText],
-          ),
-          // Spacer(),
-          Row(
-            children: [textText],
-          ),
-          // Spacer(),
-          Row(
-            children: [magnitudeText],
-          ),
-          Row(
-            children: [valueText],
-          ),
-          // Spacer(),
-          Text(''),
-
-          Row(
-            children: [Text('Ingredients that have this effect:')],
-          ),
-          // Spacer(),
-          IngredientsByEffect(effect: this.effect),
-          Spacer(),
-        ]),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: listView),
       ),
+    );
+    final height = MediaQuery.of(context).size.height;
+    final box = ConstrainedBox(
+      constraints: BoxConstraints(
+        minHeight: height,
+      ),
+      child: bigCard,
+    );
+
+    return SingleChildScrollView(
+      child: box,
     );
   }
 }

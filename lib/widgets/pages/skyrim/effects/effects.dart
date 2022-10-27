@@ -3,6 +3,7 @@ import 'package:the_elder_scrolls_alchemy_client/data/effect_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_small.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards_grid.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/search_field.dart';
 
 class EffectsPage extends StatefulWidget {
@@ -49,38 +50,15 @@ class _EffectsPageState extends State<EffectsPage> {
 
     final List<Widget> effectsCards = _getEffectsGridItems(effects);
 
-    final width = MediaQuery.of(context).size.width;
-
-    int crossAxisCount = 1;
-    double childAspectRatio = 3;
-    if (width > 370) {
-      crossAxisCount = 2;
-      childAspectRatio = 2;
-    }
-    if (width > 550) {
-      crossAxisCount = 3;
-      childAspectRatio = 2;
-    }
-    if (width > 800) {
-      crossAxisCount = 4;
-      childAspectRatio = 1.6;
-    }
-
-    final grid = GridView.count(
-      mainAxisSpacing: 4.0,
-      crossAxisSpacing: 4.0,
-      childAspectRatio: childAspectRatio,
-      crossAxisCount: crossAxisCount,
-      children: effectsCards,
-    );
-
-    final gridWidget = Expanded(child: grid);
-
     return Column(
       children: [
         const Text('Search by Effects'),
         SearchField(controller: searchFieldController),
-        gridWidget,
+        Expanded(
+          child: CardsGrid(
+            cards: effectsCards,
+          ),
+        ),
       ],
     );
   }

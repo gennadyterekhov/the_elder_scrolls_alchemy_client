@@ -3,6 +3,7 @@ import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_small.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards_grid.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/search_field.dart';
 
 class IngredientsPage extends StatefulWidget {
@@ -56,36 +57,15 @@ class _IngredientsPageState extends State<IngredientsPage> {
 
     final List<Widget> ingredientsCards = _getIngredientsGridItems(ingredients);
 
-    final width = MediaQuery.of(context).size.width;
-
-    int crossAxisCount = 1;
-    double childAspectRatio = 3;
-    if (width > 370) {
-      crossAxisCount = 2;
-      childAspectRatio = 2;
-    }
-    if (width > 550) {
-      crossAxisCount = 3;
-      childAspectRatio = 2;
-    }
-    if (width > 800) {
-      crossAxisCount = 4;
-      childAspectRatio = 1.6;
-    }
-
-    final grid = GridView.count(
-      mainAxisSpacing: 4.0,
-      crossAxisSpacing: 4.0,
-      childAspectRatio: childAspectRatio,
-      crossAxisCount: crossAxisCount,
-      children: ingredientsCards,
-    );
-
     return Column(
       children: [
         const Text('Search by Ingredients'),
         SearchField(controller: searchFieldController),
-        Expanded(child: grid),
+        Expanded(
+          child: CardsGrid(
+            cards: ingredientsCards,
+          ),
+        ),
       ],
     );
   }
