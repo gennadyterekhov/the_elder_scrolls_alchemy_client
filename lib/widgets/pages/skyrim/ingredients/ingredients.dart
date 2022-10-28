@@ -3,6 +3,8 @@ import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_small.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards_grid.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/search_field.dart';
 
 class IngredientsPage extends StatefulWidget {
   const IngredientsPage({Key? key}) : super(key: key);
@@ -18,16 +20,53 @@ class _IngredientsPageState extends State<IngredientsPage> {
     return gridItems.toList();
   }
 
+  final searchFieldController = TextEditingController();
+  String _searchQuery = '';
+
+  @override
+  void dispose() {
+    searchFieldController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    searchFieldController.addListener(() {
+      final String text = searchFieldController.text.toLowerCase();
+
+      startSearch(text);
+    });
+  }
+
+  void startSearch(String text) {
+    setState(() {
+      _searchQuery = text;
+    });
+  }
+
+  List<Widget> _getIngredientsGridItems(List<Ingredient> ingredients) {
+    final gridItems = ingredients.map((value) => IngredientCardSmall(ingredient: value));
+
+    return gridItems.toList();
+  }
+
   @override
   Widget build(BuildContext context) {
-    Map<String, Ingredient> ingredients = IngredientResource.getAllIngredients();
+    final List<Ingredient> ingredients = IngredientResource.searchIngredientsByName(_searchQuery);
 
-    return GridView.count(
-      mainAxisSpacing: 4.0,
-      crossAxisSpacing: 4.0,
-      childAspectRatio: 1.4,
-      crossAxisCount: 4,
-      children: _getGridItems(ingredients),
+    final List<Widget> ingredientsCards = _getIngredientsGridItems(ingredients);
+
+    return Column(
+      children: [
+        const Text('Search by Ingredients'),
+        SearchField(controller: searchFieldController),
+        Expanded(
+          child: CardsGrid(
+            cards: ingredientsCards,
+          ),
+        ),
+      ],
     );
   }
 }

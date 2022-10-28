@@ -5,12 +5,17 @@ import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_micro.dart';
 
-class EffectsByIngredient extends StatelessWidget {
+class EffectsByIngredient extends StatefulWidget {
   const EffectsByIngredient({Key? key, required this.ingredient}) : super(key: key);
   final Ingredient ingredient;
 
+  @override
+  State<StatefulWidget> createState() => _EffectsByIngredientState();
+}
+
+class _EffectsByIngredientState extends State<EffectsByIngredient> {
   Effect _getEffectByIndex(int index) {
-    final String name = this.ingredient.effectsNames![index] as String;
+    final String name = widget.ingredient.effectsNames![index] as String;
 
     final Effect effect = EffectResource.getEffectByName(name);
     return effect;
@@ -28,7 +33,17 @@ class EffectsByIngredient extends StatelessWidget {
       cards[i] = card;
     }
 
-    return Column(children: [
+    final width = MediaQuery.of(context).size.width;
+    bool isVerticalList = true;
+
+    if (width > 800) {
+      isVerticalList = false;
+    }
+
+    final verticalList = Column(
+        mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.stretch, children: cards);
+
+    final horizontalList = Column(children: [
       Row(
         children: [
           cards[0],
@@ -44,5 +59,7 @@ class EffectsByIngredient extends StatelessWidget {
         ],
       ),
     ]);
+
+    return isVerticalList ? verticalList : horizontalList;
   }
 }

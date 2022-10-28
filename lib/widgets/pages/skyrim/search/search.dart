@@ -5,6 +5,8 @@ import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_small.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_small.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards_grid.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/search_field.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -55,10 +57,6 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    final searchField = TextField(
-      controller: searchFieldController,
-    );
-
     final List<Effect> effects = EffectResource.searchEffectsByName(_searchQuery);
     final List<Ingredient> ingredients = IngredientResource.searchIngredientsByName(_searchQuery);
 
@@ -67,33 +65,16 @@ class _SearchPageState extends State<SearchPage> {
       ..._getEffectsGridItems(effects),
     ];
 
-    final grid = GridView.count(
-      mainAxisSpacing: 4.0,
-      crossAxisSpacing: 4.0,
-      childAspectRatio: 1.4,
-      crossAxisCount: 4,
-      children: allCards,
-    );
-
-    final gridWidget = Expanded(child: grid);
-    final searchFieldWidget = Card(
-      child: Padding(
-        padding: const EdgeInsets.all(3.0),
-        child: searchField,
-      ),
-    );
-
-    final view = Card(
-      child: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Column(
-          children: [
-            const Text('Search by Ingredients and effects (min. 3 characters)'),
-            searchFieldWidget,
-            gridWidget,
-          ],
+    final view = Column(
+      children: [
+        const Text('Search by Ingredients and effects (min. 3 characters)'),
+        SearchField(controller: searchFieldController),
+        Expanded(
+          child: CardsGrid(
+            cards: allCards,
+          ),
         ),
-      ),
+      ],
     );
 
     return view;

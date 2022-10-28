@@ -19,52 +19,54 @@ class EffectBigCard extends StatelessWidget {
       ),
     );
 
-    SelectableText textText = SelectableText(
-      this.effect.text ?? 'text: ${Constant.globalUnknown}',
-      textAlign: TextAlign.center,
-      style: const TextStyle(
-        fontSize: 15,
-      ),
-    );
+    Widget textText = this.effect.text != null
+        ? SelectableText(
+            this.effect.text!,
+            textAlign: TextAlign.left,
+            style: const TextStyle(
+              fontSize: 15,
+            ),
+          )
+        : Container();
 
-    Text idText = Text(this.effect.id ?? 'id: ' + Constant.globalUnknown);
+    Widget idText = effect.id != null
+        ? SelectableText(
+            'id: ${effect.id}',
+            textAlign: TextAlign.left,
+          )
+        : Container();
 
-    Text magnitudeText = Text(
-        this.effect.magnitude != null ? 'magnitude: ${this.effect.magnitude}' : 'magnitude: ${Constant.globalUnknown}');
+    Widget magnitudeText = effect.magnitude != null ? Text('magnitude: ${effect.magnitude}') : Container();
 
-    Text valueText =
-        Text(this.effect.value != null ? 'value: ${this.effect.value}' : 'value: ${Constant.globalUnknown}');
+    Widget valueText = effect.value != null ? Text('value: ${effect.value}') : Container();
 
-    return Card(
+    final listView = [
+      nameText,
+      idText,
+      magnitudeText,
+      valueText,
+      textText,
+      Text(''),
+      Text('Ingredients that have this effect:'),
+      IngredientsByEffect(effect: this.effect),
+    ];
+
+    final bigCard = Card(
       child: Padding(
         padding: EdgeInsets.all(30.0),
-        child: Column(children: [
-          Row(
-            children: [nameText],
-          ),
-          Row(
-            children: [idText],
-          ),
-          Spacer(),
-          Row(
-            children: [textText],
-          ),
-          Spacer(),
-          Row(
-            children: [magnitudeText],
-          ),
-          Row(
-            children: [valueText],
-          ),
-          Spacer(),
-          Row(
-            children: [Text('Ingredients that have this effect:')],
-          ),
-          Spacer(),
-          IngredientsByEffect(effect: this.effect),
-          Spacer(),
-        ]),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: listView),
       ),
+    );
+    final height = MediaQuery.of(context).size.height;
+    final box = ConstrainedBox(
+      constraints: BoxConstraints(
+        minHeight: height,
+      ),
+      child: bigCard,
+    );
+
+    return SingleChildScrollView(
+      child: box,
     );
   }
 }
