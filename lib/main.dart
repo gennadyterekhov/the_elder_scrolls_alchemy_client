@@ -39,6 +39,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      title: 'TES Alchemy',
       routerConfig: AlchemyRouter.router,
       theme: ThemeData(primarySwatch: getPrimarySwatch()),
     );
