@@ -5,6 +5,9 @@ class Effect {
     this.text,
     this.magnitude,
     this.value,
+    this.uespUrl,
+    this.iconUrl,
+    this.type,
     this.ingredientsNamesByPosition,
   });
   final String? id;
@@ -12,6 +15,10 @@ class Effect {
   final String? text;
   final int? magnitude;
   final int? value;
+  final String? uespUrl;
+  final String? iconUrl;
+  final String? type;
+
   final List<dynamic>? ingredientsNamesByPosition;
 
   factory Effect.fromMap(Map<String, dynamic> data) {
@@ -22,6 +29,10 @@ class Effect {
     final value = data.containsKey('value') ? data['value'] as int : null;
     final ingredientsNamesByPosition = data.containsKey('ingredients') ? data['ingredients'] as List<dynamic> : [];
 
+    final uespUrl = data.containsKey('uesp_url') ? data['uesp_url'] as String : null; //not found in skyrim
+    final iconUrl = data.containsKey('icon') ? data['icon'] as String : null; //not found in skyrim
+    final type = data.containsKey('type') ? data['type'] as String : null; //not found in skyrim
+
     return Effect(
       name: name,
       id: id,
@@ -29,6 +40,9 @@ class Effect {
       magnitude: magnitude,
       value: value,
       ingredientsNamesByPosition: ingredientsNamesByPosition,
+      type: type,
+      uespUrl: uespUrl,
+      iconUrl: iconUrl,
     );
   }
 }
