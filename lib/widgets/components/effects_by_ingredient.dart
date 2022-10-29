@@ -14,15 +14,23 @@ class EffectsByIngredient extends StatefulWidget {
 }
 
 class _EffectsByIngredientState extends State<EffectsByIngredient> {
-  Effect _getEffectByIndex(int index) {
-    final String name = widget.ingredient.effectsNames![index] as String;
+  Effect? _getEffectByIndex(int index) {
+    final List<dynamic> effectNames = widget.ingredient.effectsNames;
+    if (index < widget.ingredient.effectsNames.length) {
+      final String name = widget.ingredient.effectsNames[index] as String;
 
-    final Effect effect = EffectResource.getEffectByName(name);
-    return effect;
+      final Effect effect = EffectResource.getEffectByName(name);
+      return effect;
+    }
+    return null;
   }
 
-  Widget _getCard(Effect effect) {
-    return EffectCardMicro(effect: effect);
+  Widget _getCard(Effect? effect) {
+    return effect != null
+        ? EffectCardMicro(effect: effect)
+        : const Card(
+            child: Text('No effect in this position'),
+          );
   }
 
   @override

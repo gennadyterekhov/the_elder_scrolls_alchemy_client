@@ -4,6 +4,7 @@ import 'package:the_elder_scrolls_alchemy_client/constants.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/effects_by_ingredient.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class IngredientCardBig extends StatefulWidget {
   const IngredientCardBig({Key? key, required this.ingredient}) : super(key: key);
@@ -66,15 +67,41 @@ class _IngredientCardBigState extends State<IngredientCardBig> {
             ),
           )
         : Container();
+    Widget harvestProbabilityText = widget.ingredient.harvestProbability != null
+        ? SelectableText(
+            'harvest probability: ${widget.ingredient.harvestProbability!}',
+            textAlign: TextAlign.left,
+            style: const TextStyle(
+              fontSize: 15,
+            ),
+          )
+        : Container();
+
+    Widget link = Container();
+    if (widget.ingredient.uespUrl != null) {
+      link = Row(
+        children: [
+          InkWell(
+            child: Text(
+              '[uesp]',
+              style: TextStyle(color: Colors.blue),
+            ),
+            onTap: () => launch(widget.ingredient.uespUrl!),
+          ),
+        ],
+      );
+    }
 
     final bigCard = Card(
       child: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           nameText,
+          link,
           idText,
           weightText,
           valueText,
+          harvestProbabilityText,
           textText,
           Text(''),
           Row(

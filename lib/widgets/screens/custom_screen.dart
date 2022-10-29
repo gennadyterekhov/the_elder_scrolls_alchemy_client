@@ -34,6 +34,7 @@ class _CustomScreenState extends State<CustomScreen> {
 
   Widget _buildVerticalLayout() {
     final layout = Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Expanded(child: widget.pageWidget),
         BottomPanelNavigation(notifyParent: refresh),
@@ -44,6 +45,7 @@ class _CustomScreenState extends State<CustomScreen> {
 
   Widget _buildHorizontalLayout() {
     final layout = Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         LeftPanelNavigation(notifyParent: refresh),
         const VerticalDivider(thickness: 1, width: 1),

@@ -6,9 +6,9 @@ import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_micro.dart';
 
 class IngredientsByEffect extends StatefulWidget {
-  const IngredientsByEffect({Key? key, required this.effect, this.showLabel = false}) : super(key: key);
+  const IngredientsByEffect({Key? key, required this.effect}) : super(key: key);
   final Effect effect;
-  final bool showLabel;
+  final bool showLabel = false;
 
   @override
   State<StatefulWidget> createState() => _IngredientsByEffectState();
@@ -31,12 +31,8 @@ class _IngredientsByEffectState extends State<IngredientsByEffect> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
 
-    double widthFactor = .95;
     int columnsInARow = 1;
 
-    if (width > 370) {
-      widthFactor = 0.95;
-    }
     if (width > 550) {
       columnsInARow = 2;
     }
@@ -59,6 +55,7 @@ class _IngredientsByEffectState extends State<IngredientsByEffect> {
         : const SizedBox.shrink();
 
     List<Widget> columns = List.filled(4, Column());
+
     for (int i = 0; i < 4; i += 1) {
       final cards = _getCards(_getIngredientsByIndex(i));
       final children = cards.isEmpty
@@ -66,7 +63,7 @@ class _IngredientsByEffectState extends State<IngredientsByEffect> {
           : [Text('In position ${i + 1}:'), ...cards];
       columns[i] = Card(
         child: Padding(
-          padding: EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(10.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,19 +72,6 @@ class _IngredientsByEffectState extends State<IngredientsByEffect> {
         ),
       );
     }
-    final row = Row(
-      children: [
-        columns[0],
-        columns[1],
-        columns[2],
-        columns[3],
-      ],
-    );
-
-    final flexible = Flexible(
-      fit: FlexFit.loose,
-      child: row,
-    );
 
     if (columnsInARow == 1) {
       return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: columns);
