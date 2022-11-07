@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/effect_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_small.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards_grid.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/search_field.dart';
