@@ -27,14 +27,21 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
 
   @override
   Widget build(BuildContext context) {
-    const githubLink = 'https://github.com/gennadyterekhov/skyrim_alchemy';
-
     final link = InkWell(
       child: SelectableText(
-        githubLink,
+        'Data Repository',
         style: const TextStyle(color: Colors.blue),
         onTap: () {
-          launch(githubLink);
+          launch('https://github.com/gennadyterekhov/skyrim_alchemy');
+        },
+      ),
+    );
+    final repoLink = InkWell(
+      child: SelectableText(
+        'Repository',
+        style: const TextStyle(color: Colors.blue),
+        onTap: () {
+          launch('https://github.com/gennadyterekhov/the_elder_scrolls_alchemy_client');
         },
       ),
     );
@@ -49,8 +56,14 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
                 'This app allows to expore data about alchemy in various elder scrolls games.',
                 style: Theme.of(context).textTheme.headline5,
               ),
-              SelectableText('Data sources: ', style: Theme.of(context).textTheme.headline5),
-              link,
+              Spacer(),
+              Row(
+                children: [
+                  repoLink,
+                  Spacer(),
+                  link,
+                ],
+              ),
             ],
           ),
         ),
