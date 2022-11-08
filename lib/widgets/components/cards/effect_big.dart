@@ -5,8 +5,8 @@ import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/ingredients_by_effect.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class EffectBigCard extends StatelessWidget {
-  const EffectBigCard({Key? key, required this.effect}) : super(key: key);
+class EffectCardBig extends StatelessWidget {
+  const EffectCardBig({Key? key, required this.effect}) : super(key: key);
   final Effect effect;
 
   @override
