@@ -1,0 +1,12 @@
+name: integration_test
+on: [push, workflow_dispatch]
+jobs:
+  integration_test:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: subosito/flutter-action@v2.8.0
+    # flutter test -d windows integration_test/full_test.dart
+    - run: |
+           flutter config --enable-windows-desktop
+           drive --driver integration_test/driver.dart --target integration_test/full_test.dart --no-dds -d windows
