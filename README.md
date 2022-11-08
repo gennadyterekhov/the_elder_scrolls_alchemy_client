@@ -21,6 +21,15 @@ this command opens chrome window with the app in debug mode
 
 for more commands, see [flutter documentation](https://docs.flutter.dev/get-started/test-drive?tab=terminal)  
 
+### Test  
+
+this command runs specific integration test  
+`flutter drive --driver integration_test/driver.dart --target integration_test/full_test.dart --no-dds`  
+
+this command runs cpecific widget/unit test  
+`flutter test test/data/data_source_test.dart`  
+
+
  
 ## Data sources 
 

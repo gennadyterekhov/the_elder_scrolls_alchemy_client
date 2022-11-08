@@ -13,6 +13,6 @@ class EffectPage extends StatefulWidget {
 class _EffectPageState extends State<EffectPage> {
   @override
   Widget build(BuildContext context) {
-    return EffectBigCard(effect: widget.effect);
+    return EffectCardBig(effect: widget.effect);
   }
 }
