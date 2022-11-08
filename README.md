@@ -1,3 +1,6 @@
+<a href="https://github.com/gennadyterekhov/the_elder_scrolls_alchemy_client/actions">
+    <img src="https://github.com/gennadyterekhov/the_elder_scrolls_alchemy_client/workflows/test-ci/badge.svg" alt="Build Status">
+</a>
 
 # the_elder_scrolls_alchemy_client
 
