@@ -10,9 +10,8 @@ import 'package:the_elder_scrolls_alchemy_client/widgets/navigation/navigation.d
 import 'package:the_elder_scrolls_alchemy_client/widgets/pages/home/home.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/pages/effects/effects.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/pages/ingredients/ingredients.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/pages/potions/potions.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/pages/search/search.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/screens/Ingredient_screen.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/screens/ingredient_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/effect_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/effects_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/home_screen.dart';
