@@ -7,14 +7,10 @@ import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/navigation/navigation.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/pages/home/home.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/pages/effects/effects.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/pages/ingredients/ingredients.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/pages/search/search.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/screens/ingredient_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/effect_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/effects_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/home_screen.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/screens/ingredient_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/ingredients_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/search_screen.dart';
 
@@ -52,8 +48,6 @@ class AlchemyRouter {
   static final GoRouter router = GoRouter(
     routes: <GoRoute>[
       makeRoute(path: '/', page: const HomeScreen()),
-      // makeRoute(path: '/effects', page: const EffectsScreen()),
-      // makeRoute(path: '/ingredients', page: const IngredientsScreen()),
       makeRouteWithPageBuilder(
         path: '/:gameName/effects',
         pageBuilder: (context, state) {
@@ -63,7 +57,6 @@ class AlchemyRouter {
           return buildPageWithoutTransition<void>(context: context, state: state, child: const EffectsScreen());
         },
       ),
-
       makeRouteWithPageBuilder(
         path: '/:gameName/ingredients',
         pageBuilder: (context, state) {
@@ -108,20 +101,5 @@ class AlchemyRouter {
     }
 
     return '/$globalChosenGame${items[index].path}';
-  }
-
-  @Deprecated('use getRouteByIndex instead')
-  static Widget getPageWidgetByIndex(index) {
-    if (index == 1) {
-      return const EffectsPage();
-    }
-    if (index == 2) {
-      return const IngredientsPage();
-    }
-    if (index == 3) {
-      return const SearchPage();
-    }
-
-    return const HomePage();
   }
 }

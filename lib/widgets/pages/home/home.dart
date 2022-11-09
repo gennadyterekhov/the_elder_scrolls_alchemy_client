@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/web_link.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -27,43 +27,35 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
 
   @override
   Widget build(BuildContext context) {
-    final link = InkWell(
-      child: SelectableText(
-        'Data Repository',
-        style: const TextStyle(color: Colors.blue),
-        onTap: () {
-          launch('https://github.com/gennadyterekhov/skyrim_alchemy');
-        },
-      ),
+    final welcomeText = SelectableText(
+      'This app allows to expore data about alchemy in various elder scrolls games.',
+      style: Theme.of(context).textTheme.headline5,
     );
-    final repoLink = InkWell(
-      child: SelectableText(
-        'Repository',
-        style: const TextStyle(color: Colors.blue),
-        onTap: () {
-          launch('https://github.com/gennadyterekhov/the_elder_scrolls_alchemy_client');
-        },
-      ),
+
+    const dataRepositoryLink =
+        WebLink(text: 'Data Repository', url: 'https://github.com/gennadyterekhov/skyrim_alchemy');
+
+    const appRepositoryLink =
+        WebLink(text: 'Repository', url: 'https://github.com/gennadyterekhov/the_elder_scrolls_alchemy_client');
+
+    final linksRow = Row(
+      children: const [
+        appRepositoryLink,
+        Spacer(),
+        dataRepositoryLink,
+      ],
     );
+
     return Card(
       child: Padding(
-        padding: EdgeInsets.all(30.0),
+        padding: const EdgeInsets.all(30.0),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SelectableText(
-                'This app allows to expore data about alchemy in various elder scrolls games.',
-                style: Theme.of(context).textTheme.headline5,
-              ),
-              Spacer(),
-              Row(
-                children: [
-                  repoLink,
-                  Spacer(),
-                  link,
-                ],
-              ),
+              welcomeText,
+              const Spacer(),
+              linksRow,
             ],
           ),
         ),

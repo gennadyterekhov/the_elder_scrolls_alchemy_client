@@ -14,13 +14,13 @@ class EffectsByIngredient extends StatefulWidget {
 
 class _EffectsByIngredientState extends State<EffectsByIngredient> {
   Effect? _getEffectByIndex(int index) {
-    final List<dynamic> effectNames = widget.ingredient.effectsNames;
     if (index < widget.ingredient.effectsNames.length) {
       final String name = widget.ingredient.effectsNames[index] as String;
-
       final Effect effect = EffectResource.getEffectByName(name);
+
       return effect;
     }
+
     return null;
   }
 
@@ -52,18 +52,12 @@ class _EffectsByIngredientState extends State<EffectsByIngredient> {
 
     final horizontalList = Column(children: [
       Row(
-        children: [
-          cards[0],
-          const Spacer(),
-          cards[1],
-        ],
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [cards[0], cards[1]],
       ),
       Row(
-        children: [
-          cards[2],
-          const Spacer(),
-          cards[3],
-        ],
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [cards[2], cards[3]],
       ),
     ]);
 

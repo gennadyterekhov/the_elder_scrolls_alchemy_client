@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:the_elder_scrolls_alchemy_client/constants.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/effects_by_ingredient.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_long.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/common_ingredients_by_column.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/divider_text.dart';
 
 class IngredientCardBig extends StatefulWidget {
   const IngredientCardBig({Key? key, required this.ingredient}) : super(key: key);
@@ -16,102 +16,32 @@ class IngredientCardBig extends StatefulWidget {
 
 class _IngredientCardBigState extends State<IngredientCardBig> {
   void onTap() {
-    context.go('/${globalChosenGame}/ingredient/${widget.ingredient.name}');
+    context.go('/$globalChosenGame/ingredient/${widget.ingredient.name}');
   }
 
   @override
   Widget build(BuildContext context) {
-    SelectableText nameText = SelectableText(
-      widget.ingredient.name,
-      textAlign: TextAlign.left,
-      style: const TextStyle(
-        overflow: TextOverflow.fade,
-        fontWeight: FontWeight.bold,
-        fontSize: 30,
-      ),
+    final cardsList = [
+      IngredientCardLong(ingredient: widget.ingredient),
+      const DividerText(text: 'Ingredients with at least one common effect'),
+      CommonIngredientsByColumn(ingredient: widget.ingredient),
+    ];
+
+    final cardsColumn = Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: cardsList,
     );
 
-    Widget idText = widget.ingredient.id != null
-        ? SelectableText(
-            'id: ${widget.ingredient.id}',
-            textAlign: TextAlign.left,
-          )
-        : Container();
-
-    Widget textText = widget.ingredient.text != null
-        ? SelectableText(
-            widget.ingredient.text!,
-            textAlign: TextAlign.left,
-            style: const TextStyle(
-              fontSize: 15,
-            ),
-          )
-        : Container();
-
-    Widget weightText = widget.ingredient.weight != null
-        ? SelectableText(
-            'weight: ${widget.ingredient.weight!}',
-            textAlign: TextAlign.left,
-            style: const TextStyle(
-              fontSize: 15,
-            ),
-          )
-        : Container();
-
-    Widget valueText = widget.ingredient.value != null
-        ? SelectableText(
-            'value: ${widget.ingredient.value!}',
-            textAlign: TextAlign.left,
-            style: const TextStyle(
-              fontSize: 15,
-            ),
-          )
-        : Container();
-    Widget harvestProbabilityText = widget.ingredient.harvestProbability != null
-        ? SelectableText(
-            'harvest probability: ${widget.ingredient.harvestProbability!}',
-            textAlign: TextAlign.left,
-            style: const TextStyle(
-              fontSize: 15,
-            ),
-          )
-        : Container();
-
-    Widget link = Container();
-    if (widget.ingredient.uespUrl != null) {
-      link = Row(
-        children: [
-          InkWell(
-            child: Text(
-              '[uesp]',
-              style: TextStyle(color: Colors.blue),
-            ),
-            onTap: () => launch(widget.ingredient.uespUrl!),
-          ),
-        ],
-      );
-    }
-
-    final bigCard = Card(
-      child: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          nameText,
-          link,
-          idText,
-          weightText,
-          valueText,
-          harvestProbabilityText,
-          textText,
-          Text(''),
-          Row(
-            children: [Text('Effects:')],
-          ),
-          EffectsByIngredient(ingredient: widget.ingredient),
-        ]),
+    final box = ConstrainedBox(
+      constraints: BoxConstraints(
+        minHeight: MediaQuery.of(context).size.height,
+        minWidth: MediaQuery.of(context).size.width,
       ),
+      child: cardsColumn,
     );
 
-    return bigCard;
+    return SingleChildScrollView(
+      child: box,
+    );
   }
 }
