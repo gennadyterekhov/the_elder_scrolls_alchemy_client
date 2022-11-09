@@ -8,7 +8,7 @@ class Effect {
     this.uespUrl,
     this.iconUrl,
     this.type,
-    this.ingredientsNamesByPosition,
+    this.ingredientsNamesByPosition = const [],
   });
   final String? id;
   final String name;
@@ -19,7 +19,7 @@ class Effect {
   final String? iconUrl;
   final String? type;
 
-  final List<dynamic>? ingredientsNamesByPosition;
+  final List<dynamic> ingredientsNamesByPosition;
 
   factory Effect.fromMap(Map<String, dynamic> data) {
     final name = data['name'] as String;

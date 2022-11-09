@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/extensions/capitalize.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
-import 'package:the_elder_scrolls_alchemy_client/router.dart';
 
 class AlchemyAppBar extends StatefulWidget implements PreferredSizeWidget {
   const AlchemyAppBar({Key? key, required this.notifyParent}) : super(key: key);
@@ -17,7 +16,6 @@ class AlchemyAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _AlchemyAppBarState extends State<AlchemyAppBar> {
-  // String _pageTitle = 'The Elder Scrolls Alchemy | ${globalChosenGame.capitalize()}';
   String _pageTitle = '${globalChosenGame.capitalize()} Alchemy';
 
   Function() chooseGame(String gameName) {
@@ -61,22 +59,14 @@ class _AlchemyAppBarState extends State<AlchemyAppBar> {
     context.go('/');
   }
 
-  AppBar getAppBar() {
-    bool showLeading = false; // TODO show on mobile to toggle left panel, disabled in web
-    IconButton leading = IconButton(
-      tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-      icon: const Icon(Icons.menu),
-      onPressed: () {},
-    );
-    return AppBar(
-      leading: (showLeading) ? leading : null,
-      title: InkWell(child: Text(_pageTitle), onTap: onTap),
-      actions: getAppBarActions(),
-    );
-  }
-
   @override
   AppBar build(BuildContext context) {
-    return getAppBar();
+    return AppBar(
+      title: InkWell(
+        onTap: onTap,
+        child: Text(_pageTitle),
+      ),
+      actions: getAppBarActions(),
+    );
   }
 }
