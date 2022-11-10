@@ -10,10 +10,17 @@ final globalGameNameStateProvider = riverpod.StateProvider((ref) {
 
 void main() {
   runApp(
-    riverpod.ProviderScope(
-      child: MyApp(),
-    ),
+    Root(),
   );
+}
+
+class Root extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return riverpod.ProviderScope(
+      child: MyApp(),
+    );
+  }
 }
 
 class MyApp extends riverpod.ConsumerWidget {
