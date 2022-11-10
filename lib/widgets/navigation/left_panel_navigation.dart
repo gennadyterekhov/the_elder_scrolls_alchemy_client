@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/router.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/app_bar.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/navigation/navigation.dart';
 
 class LeftPanelNavigation extends ConsumerStatefulWidget {
@@ -38,6 +37,7 @@ class _LeftPanelNavigationState extends ConsumerState<LeftPanelNavigation> {
   @override
   Widget build(BuildContext context) {
     return NavigationRail(
+      backgroundColor: Colors.grey[50],
       leading: null,
       selectedIndex: globalChosenTabIndex,
       onDestinationSelected: onDestinationSelected,
