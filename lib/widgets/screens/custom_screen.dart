@@ -46,13 +46,15 @@ class _CustomScreenState extends State<CustomScreen> {
   }
 
   Widget _buildHorizontalLayout() {
-    final layout = Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        LeftPanelNavigation(notifyParent: refresh),
-        const VerticalDivider(thickness: 1, width: 1),
-        _buildPageWidget(),
-      ],
+    final layout = SafeArea(
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          LeftPanelNavigation(notifyParent: refresh),
+          const VerticalDivider(thickness: 1, width: 1),
+          _buildPageWidget(),
+        ],
+      ),
     );
     return layout;
   }
