@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/router.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/navigation/navigation.dart';
 
-class BottomPanelNavigation extends StatefulWidget {
+class BottomPanelNavigation extends ConsumerStatefulWidget {
   const BottomPanelNavigation({Key? key, required this.notifyParent}) : super(key: key);
   final Function() notifyParent;
 
   @override
-  State<BottomPanelNavigation> createState() => _BottomPanelNavigationState();
+  ConsumerState<BottomPanelNavigation> createState() => _BottomPanelNavigationState();
 }
 
-class _BottomPanelNavigationState extends State<BottomPanelNavigation> {
+class _BottomPanelNavigationState extends ConsumerState<BottomPanelNavigation> {
   List<BottomNavigationBarItem> getDestinations() {
     return Navigation.getItems(withHome: false)
         .map(
@@ -26,8 +27,10 @@ class _BottomPanelNavigationState extends State<BottomPanelNavigation> {
 
   void onDestinationSelected(index) {
     globalChosenTabIndex = index;
+    var gameName = ref.watch(globalGameNameStateProvider);
+
     String route = AlchemyRouter.getRouteByIndex(index: index, withHome: false);
-    context.go(route);
+    context.push('/$gameName$route');
   }
 
   @override

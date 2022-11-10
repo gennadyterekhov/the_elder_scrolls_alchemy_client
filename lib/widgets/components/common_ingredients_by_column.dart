@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/effect_resource.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/effect_resource_dynamic.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource_dynamic.dart';
+import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_micro.dart';
 
-class CommonIngredientsByColumn extends StatefulWidget {
+class CommonIngredientsByColumn extends ConsumerStatefulWidget {
   const CommonIngredientsByColumn({Key? key, required this.ingredient}) : super(key: key);
   final Ingredient ingredient;
 
   @override
-  State<StatefulWidget> createState() => _CommonIngredientsByColumnState();
+  ConsumerState<CommonIngredientsByColumn> createState() => _CommonIngredientsByColumnState();
 }
 
-class _CommonIngredientsByColumnState extends State<CommonIngredientsByColumn> {
+class _CommonIngredientsByColumnState extends ConsumerState<CommonIngredientsByColumn> {
   List<Ingredient> _getIngredientsByIndex(Effect effect, int index) {
     if (index < effect.ingredientsNamesByPosition.length) {
       final List names = effect.ingredientsNamesByPosition[index];
 
       final List<Ingredient> ingredients = names
           .where((ingredientName) => ingredientName != widget.ingredient.name)
-          .map((name) => IngredientResource.getIngredientByName(name))
+          .map((name) => IngredientResourceDynamic(ref.watch(globalGameNameStateProvider)).getIngredientByName(name))
           .toList();
 
       return ingredients;
@@ -48,7 +50,9 @@ class _CommonIngredientsByColumnState extends State<CommonIngredientsByColumn> {
     List<Widget> cards = [];
     for (var i = 0; i < widget.ingredient.effectsNames.length; i += 1) {
       final ingredientsCardsList = _getIngredientsCardsByEffect(
-          EffectResource.getEffectByName(widget.ingredient.effectsNames[i]), widget.ingredient);
+          EffectResourceDynamic(ref.watch(globalGameNameStateProvider))
+              .getEffectByName(widget.ingredient.effectsNames[i]),
+          widget.ingredient);
       if (ingredientsCardsList.isNotEmpty) {
         cards.add(
           Card(

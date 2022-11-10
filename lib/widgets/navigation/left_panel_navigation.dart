@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/router.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/app_bar.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/navigation/navigation.dart';
 
-class LeftPanelNavigation extends StatefulWidget {
+class LeftPanelNavigation extends ConsumerStatefulWidget {
   const LeftPanelNavigation({Key? key, required this.notifyParent}) : super(key: key);
   final Function() notifyParent;
 
   @override
-  State<LeftPanelNavigation> createState() => _LeftPanelNavigationState();
+  ConsumerState<LeftPanelNavigation> createState() => _LeftPanelNavigationState();
 }
 
-class _LeftPanelNavigationState extends State<LeftPanelNavigation> {
+class _LeftPanelNavigationState extends ConsumerState<LeftPanelNavigation> {
   List<NavigationRailDestination> getDestinations() {
     return Navigation.getItems()
         .map(
@@ -27,8 +29,10 @@ class _LeftPanelNavigationState extends State<LeftPanelNavigation> {
 
   void onDestinationSelected(index) {
     globalChosenTabIndex = index;
+    var gameName = ref.watch(globalGameNameStateProvider);
+
     String route = AlchemyRouter.getRouteByIndex(index: index);
-    context.go(route);
+    context.push('/$gameName$route');
   }
 
   @override

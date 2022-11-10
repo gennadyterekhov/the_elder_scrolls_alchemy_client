@@ -13,9 +13,7 @@ class CustomScreen extends StatefulWidget {
 
 class _CustomScreenState extends State<CustomScreen> {
   refresh() {
-    setState(() {
-      // widget.pageWidget = globalPage;
-    });
+    setState(() {});
   }
 
   @override
@@ -27,7 +25,7 @@ class _CustomScreenState extends State<CustomScreen> {
     );
 
     return Scaffold(
-      appBar: AlchemyAppBar(notifyParent: refresh),
+      appBar: AlchemyAppBar(),
       body: orientationBuilder,
     );
   }
@@ -36,11 +34,15 @@ class _CustomScreenState extends State<CustomScreen> {
     final layout = Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Expanded(child: widget.pageWidget),
+        _buildPageWidget(),
         BottomPanelNavigation(notifyParent: refresh),
       ],
     );
     return layout;
+  }
+
+  Widget _buildPageWidget() {
+    return Expanded(child: widget.pageWidget);
   }
 
   Widget _buildHorizontalLayout() {
@@ -49,7 +51,7 @@ class _CustomScreenState extends State<CustomScreen> {
       children: [
         LeftPanelNavigation(notifyParent: refresh),
         const VerticalDivider(thickness: 1, width: 1),
-        Expanded(child: widget.pageWidget),
+        _buildPageWidget(),
       ],
     );
     return layout;
