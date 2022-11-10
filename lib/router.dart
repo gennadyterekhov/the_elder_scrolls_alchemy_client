@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/effect_resource.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
-import 'package:the_elder_scrolls_alchemy_client/main.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/effect_resource_dynamic.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource_dynamic.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/navigation/navigation.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/pages/home/home.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/pages/skyrim/effects/effects.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/pages/skyrim/ingredients/ingredients.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/pages/skyrim/potions/potions.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/pages/skyrim/search/search.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/screens/Ingredient_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/effect_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/effects_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/home_screen.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/screens/ingredient_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/ingredients_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/search_screen.dart';
 
@@ -51,79 +45,71 @@ class AlchemyRouter {
     );
   }
 
-  static final GoRouter router = GoRouter(
-    routes: <GoRoute>[
-      makeRoute(path: '/', page: const HomeScreen()),
-      // makeRoute(path: '/effects', page: const EffectsScreen()),
-      // makeRoute(path: '/ingredients', page: const IngredientsScreen()),
-      makeRouteWithPageBuilder(
-        path: '/:gameName/effects',
-        pageBuilder: (context, state) {
-          final gameName = state.params['gameName'] as String;
-          DataSource.checkGameName(gameName);
-          globalChosenGame = gameName;
-          return buildPageWithoutTransition<void>(context: context, state: state, child: const EffectsScreen());
-        },
-      ),
+  static GoRouter getRouter(WidgetRef ref) {
+    final GoRouter router = GoRouter(
+      routes: <GoRoute>[
+        makeRoute(path: '/', page: const HomeScreen()),
+        makeRouteWithPageBuilder(
+          path: '/:gameName/home',
+          pageBuilder: (context, state) {
+            final gameName = state.params['gameName'] as String;
+            DataSource.checkGameName(gameName);
+            return buildPageWithoutTransition<void>(context: context, state: state, child: const HomeScreen());
+          },
+        ),
+        makeRouteWithPageBuilder(
+          path: '/:gameName/effects',
+          pageBuilder: (context, state) {
+            final gameName = state.params['gameName'] as String;
+            DataSource.checkGameName(gameName);
+            return buildPageWithoutTransition<void>(context: context, state: state, child: const EffectsScreen());
+          },
+        ),
+        makeRouteWithPageBuilder(
+          path: '/:gameName/ingredients',
+          pageBuilder: (context, state) {
+            final gameName = state.params['gameName'] as String;
+            DataSource.checkGameName(gameName);
 
-      makeRouteWithPageBuilder(
-        path: '/:gameName/ingredients',
-        pageBuilder: (context, state) {
-          final gameName = state.params['gameName'] as String;
-          DataSource.checkGameName(gameName);
-          globalChosenGame = gameName;
-          return buildPageWithoutTransition<void>(context: context, state: state, child: const IngredientsScreen());
-        },
-      ),
-      makeRouteWithPageBuilder(
-        path: '/:gameName/effect/:effectName',
-        pageBuilder: (context, state) {
-          final String effectName = state.params['effectName'] as String;
-          final gameName = state.params['gameName'] as String;
-          DataSource.checkGameName(gameName);
-          globalChosenGame = gameName;
-          Effect effect = EffectResource.getEffectByName(effectName);
-          final page = EffectScreen(effect: effect);
-          return buildPageWithoutTransition<void>(context: context, state: state, child: page);
-        },
-      ),
-      makeRouteWithPageBuilder(
-        path: '/:gameName/ingredient/:ingredientName',
-        pageBuilder: (BuildContext context, GoRouterState state) {
-          final String ingredientName = state.params['ingredientName'] as String;
-          final gameName = state.params['gameName'] as String;
-          DataSource.checkGameName(gameName);
-          globalChosenGame = gameName;
-          Ingredient ingredient = IngredientResource.getIngredientByName(ingredientName);
-          final page = IngredientScreen(ingredient: ingredient);
-          return buildPageWithoutTransition<void>(context: context, state: state, child: page);
-        },
-      ),
-      makeRoute(path: '/:gameName/search', page: const SearchScreen()),
-    ],
-  );
+            return buildPageWithoutTransition<void>(context: context, state: state, child: const IngredientsScreen());
+          },
+        ),
+        makeRouteWithPageBuilder(
+          path: '/:gameName/effect/:effectName',
+          pageBuilder: (context, state) {
+            final String effectName = state.params['effectName'] as String;
+            final gameName = state.params['gameName'] as String;
+            DataSource.checkGameName(gameName);
+
+            Effect effect = EffectResourceDynamic(gameName).getEffectByName(effectName);
+            final page = EffectScreen(effect: effect);
+            return buildPageWithoutTransition<void>(context: context, state: state, child: page);
+          },
+        ),
+        makeRouteWithPageBuilder(
+          path: '/:gameName/ingredient/:ingredientName',
+          pageBuilder: (BuildContext context, GoRouterState state) {
+            final String ingredientName = state.params['ingredientName'] as String;
+            final gameName = state.params['gameName'] as String;
+            DataSource.checkGameName(gameName);
+
+            Ingredient ingredient = IngredientResourceDynamic(gameName).getIngredientByName(ingredientName);
+            final page = IngredientScreen(ingredient: ingredient);
+            return buildPageWithoutTransition<void>(context: context, state: state, child: page);
+          },
+        ),
+        makeRoute(path: '/:gameName/search', page: const SearchScreen()),
+      ],
+    );
+    return router;
+  }
 
   static String getRouteByIndex({int index = 0, bool withHome = true}) {
     final items = Navigation.getItems();
     if (index > items.length) {
-      return '/';
+      return '/skyrim/home';
     }
 
-    return '/$globalChosenGame${items[index].path}';
-  }
-
-  @Deprecated('use getRouteByIndex instead')
-  static Widget getPageWidgetByIndex(index) {
-    if (index == 1) {
-      return const EffectsPage();
-    }
-    if (index == 2) {
-      return const IngredientsPage();
-    }
-    if (index == 3) {
-      return const SearchPage();
-    }
-
-    return const HomePage();
+    return '${items[index].path}';
   }
 }

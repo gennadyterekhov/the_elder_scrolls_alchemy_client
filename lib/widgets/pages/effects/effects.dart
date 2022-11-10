@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/effect_resource.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/effect_resource_dynamic.dart';
+import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_small.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards_grid.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/search_field.dart';
 
-class EffectsPage extends StatefulWidget {
+class EffectsPage extends ConsumerStatefulWidget {
   const EffectsPage({Key? key}) : super(key: key);
 
   @override
-  State<EffectsPage> createState() => _EffectsPageState();
+  ConsumerState<EffectsPage> createState() => _EffectsPageState();
 }
 
-class _EffectsPageState extends State<EffectsPage> {
+class _EffectsPageState extends ConsumerState<EffectsPage> {
   final searchFieldController = TextEditingController();
   String _searchQuery = '';
   List<Widget> _getEffectsGridItems(List<Effect> effects) {
@@ -34,7 +35,9 @@ class _EffectsPageState extends State<EffectsPage> {
     searchFieldController.addListener(() {
       final String text = searchFieldController.text.toLowerCase();
 
-      startSearch(text);
+      if (_searchQuery != text) {
+        startSearch(text);
+      }
     });
   }
 
@@ -46,7 +49,9 @@ class _EffectsPageState extends State<EffectsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Effect> effects = EffectResource.searchEffectsByName(_searchQuery);
+    var currentName = ref.watch(globalGameNameStateProvider);
+
+    final List<Effect> effects = EffectResourceDynamic(currentName).searchEffectsByName(_searchQuery);
 
     final List<Widget> effectsCards = _getEffectsGridItems(effects);
 

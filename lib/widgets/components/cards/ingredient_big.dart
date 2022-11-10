@@ -1,90 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:the_elder_scrolls_alchemy_client/constants.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/effects_by_ingredient.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_long.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/common_ingredients_by_column.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/divider_text.dart';
 
-class IngredientCardBig extends StatefulWidget {
+class IngredientCardBig extends ConsumerStatefulWidget {
   const IngredientCardBig({Key? key, required this.ingredient}) : super(key: key);
   final Ingredient ingredient;
 
   @override
-  State<StatefulWidget> createState() => _IngredientCardBigState();
+  ConsumerState<IngredientCardBig> createState() => _IngredientCardBigState();
 }
 
-class _IngredientCardBigState extends State<IngredientCardBig> {
+class _IngredientCardBigState extends ConsumerState<IngredientCardBig> {
   void onTap() {
-    context.go('/${globalChosenGame}/ingredient/${widget.ingredient.name}');
+    var gameName = ref.watch(globalGameNameStateProvider);
+
+    context.push('/$gameName/ingredient/${widget.ingredient.name}');
   }
 
   @override
   Widget build(BuildContext context) {
-    SelectableText nameText = SelectableText(
-      widget.ingredient.name,
-      textAlign: TextAlign.left,
-      style: const TextStyle(
-        overflow: TextOverflow.fade,
-        fontWeight: FontWeight.bold,
-        fontSize: 30,
-      ),
+    final cardsList = [
+      IngredientCardLong(ingredient: widget.ingredient),
+      const DividerText(text: 'Ingredients with at least one common effect'),
+      CommonIngredientsByColumn(ingredient: widget.ingredient),
+    ];
+
+    final cardsColumn = Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: cardsList,
     );
 
-    Widget idText = widget.ingredient.id != null
-        ? SelectableText(
-            'id: ${widget.ingredient.id}',
-            textAlign: TextAlign.left,
-          )
-        : Container();
-
-    Widget textText = widget.ingredient.text != null
-        ? SelectableText(
-            widget.ingredient.text!,
-            textAlign: TextAlign.left,
-            style: const TextStyle(
-              fontSize: 15,
-            ),
-          )
-        : Container();
-
-    Widget weightText = widget.ingredient.weight != null
-        ? SelectableText(
-            'weight: ${widget.ingredient.weight!}',
-            textAlign: TextAlign.left,
-            style: const TextStyle(
-              fontSize: 15,
-            ),
-          )
-        : Container();
-
-    Widget valueText = widget.ingredient.value != null
-        ? SelectableText(
-            'value: ${widget.ingredient.value!}',
-            textAlign: TextAlign.left,
-            style: const TextStyle(
-              fontSize: 15,
-            ),
-          )
-        : Container();
-
-    final bigCard = Card(
-      child: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          nameText,
-          idText,
-          weightText,
-          valueText,
-          textText,
-          Text(''),
-          Row(
-            children: [Text('Effects:')],
-          ),
-          EffectsByIngredient(ingredient: widget.ingredient),
-        ]),
+    final box = ConstrainedBox(
+      constraints: BoxConstraints(
+        minHeight: MediaQuery.of(context).size.height,
+        minWidth: MediaQuery.of(context).size.width,
       ),
+      child: cardsColumn,
     );
 
-    return bigCard;
+    return SingleChildScrollView(
+      child: box,
+    );
   }
 }

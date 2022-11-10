@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/constants.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 
-class IngredientCardSmall extends StatefulWidget {
+class IngredientCardSmall extends ConsumerStatefulWidget {
   const IngredientCardSmall({Key? key, required this.ingredient}) : super(key: key);
   final Ingredient ingredient;
 
   @override
-  State<StatefulWidget> createState() => _IngredientCardSmallState();
+  ConsumerState<IngredientCardSmall> createState() => _IngredientCardSmallState();
 }
 
-class _IngredientCardSmallState extends State<IngredientCardSmall> {
+class _IngredientCardSmallState extends ConsumerState<IngredientCardSmall> {
   void onTap() {
-    context.go('/${globalChosenGame}/ingredient/${widget.ingredient.name}');
+    var gameName = ref.watch(globalGameNameStateProvider);
+
+    context.push('/${gameName}/ingredient/${widget.ingredient.name}');
   }
 
   @override
@@ -38,8 +41,6 @@ class _IngredientCardSmallState extends State<IngredientCardSmall> {
           padding: const EdgeInsets.all(8.0),
           child: Column(children: [
             nameText,
-            // const Spacer(),
-            // idText,
           ]),
         ),
       ),

@@ -39,7 +39,6 @@ class Navigation {
     final List<NavigationItem> itemsNoHome = [
       effects,
       ingredients,
-      search,
     ];
 
     return itemsNoHome;

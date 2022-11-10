@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource_dynamic.dart';
+import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_small.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards_grid.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/search_field.dart';
 
-class IngredientsPage extends StatefulWidget {
+class IngredientsPage extends ConsumerStatefulWidget {
   const IngredientsPage({Key? key}) : super(key: key);
 
   @override
-  State<IngredientsPage> createState() => _IngredientsPageState();
+  ConsumerState<IngredientsPage> createState() => _IngredientsPageState();
 }
 
-class _IngredientsPageState extends State<IngredientsPage> {
+class _IngredientsPageState extends ConsumerState<IngredientsPage> {
   List<IngredientCardSmall> _getGridItems(Map<String, Ingredient> ingredients) {
     final gridItems = ingredients.entries.map((value) => IngredientCardSmall(ingredient: value.value));
 
@@ -53,7 +54,8 @@ class _IngredientsPageState extends State<IngredientsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Ingredient> ingredients = IngredientResource.searchIngredientsByName(_searchQuery);
+    final List<Ingredient> ingredients =
+        IngredientResourceDynamic(ref.watch(globalGameNameStateProvider)).searchIngredientsByName(_searchQuery);
 
     final List<Widget> ingredientsCards = _getIngredientsGridItems(ingredients);
 

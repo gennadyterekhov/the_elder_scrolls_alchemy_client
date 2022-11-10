@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/constants.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/ingredients_by_effect.dart';
 
-class EffectCardSmall extends StatefulWidget {
+class EffectCardSmall extends ConsumerStatefulWidget {
   const EffectCardSmall({Key? key, required this.effect}) : super(key: key);
   final Effect effect;
 
   @override
-  State<StatefulWidget> createState() => _EffectCardSmallState();
+  ConsumerState<EffectCardSmall> createState() => _EffectCardSmallState();
 }
 
-class _EffectCardSmallState extends State<EffectCardSmall> {
+class _EffectCardSmallState extends ConsumerState<EffectCardSmall> {
   void onTap() {
-    context.go('/${globalChosenGame}/effect/${widget.effect.name}');
+    var gameName = ref.watch(globalGameNameStateProvider);
+
+    context.push('/${gameName}/effect/${widget.effect.name}');
   }
 
   @override
@@ -54,8 +56,6 @@ class _EffectCardSmallState extends State<EffectCardSmall> {
           padding: const EdgeInsets.all(8.0),
           child: Column(children: [
             nameText,
-            // const Spacer(),
-            // textText,
           ]),
         ),
       ),

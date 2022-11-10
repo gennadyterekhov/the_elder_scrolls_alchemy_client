@@ -1,20 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart' as riverpod;
 import 'package:the_elder_scrolls_alchemy_client/router.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/pages/home/home.dart';
 
-String defaultChosenGame = DataSource.gameNameSkyrim;
-int defaultChosenTabIndex = 0;
-String globalChosenGame = defaultChosenGame;
-int globalChosenTabIndex = defaultChosenTabIndex;
-Widget globalPage = HomePage();
-bool globalShowInlineId = false;
+int globalChosenTabIndex = 0;
+
+final globalGameNameStateProvider = riverpod.StateProvider((ref) {
+  return 'skyrim';
+});
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    Root(),
+  );
 }
 
-class MyApp extends StatelessWidget {
+class Root extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return riverpod.ProviderScope(
+      child: MyApp(),
+    );
+  }
+}
+
+class MyApp extends riverpod.ConsumerWidget {
   MyApp({Key? key}) : super(key: key);
 
   MaterialColor getPrimarySwatch() {
@@ -37,9 +46,12 @@ class MyApp extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, riverpod.WidgetRef ref) {
+    final String gameName = ref.watch(globalGameNameStateProvider);
+
     return MaterialApp.router(
-      routerConfig: AlchemyRouter.router,
+      title: 'TES Alchemy',
+      routerConfig: AlchemyRouter.getRouter(ref),
       theme: ThemeData(primarySwatch: getPrimarySwatch()),
     );
   }

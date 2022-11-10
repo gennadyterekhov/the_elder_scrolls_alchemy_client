@@ -4,14 +4,20 @@ class Ingredient {
     this.id,
     this.weight,
     this.value,
-    this.effectsNames,
+    this.uespUrl,
+    this.harvestProbability,
+    this.iconUrl,
+    this.effectsNames = const [],
     this.text = 'text: unknown',
   });
   final String? id;
   final String name;
   final double? weight;
   final int? value;
-  final List<dynamic>? effectsNames;
+  final String? uespUrl;
+  final String? iconUrl;
+  final int? harvestProbability;
+  final List<dynamic> effectsNames;
   final String? text;
 
   factory Ingredient.fromMap(Map<String, dynamic> data) {
@@ -31,6 +37,10 @@ class Ingredient {
     final effectsNames = data.containsKey('effects') ? data['effects'] as List<dynamic> : [];
     final text = data.containsKey('text') ? data['text'] as String : null; //not found in skyrim
 
+    final uespUrl = data.containsKey('uesp_url') ? data['uesp_url'] as String : null; //not found in skyrim
+    final harvestProbability =
+        data.containsKey('harvest_probability') ? data['harvest_probability'] : null; //not found in skyrim
+    final iconUrl = data.containsKey('icon') ? data['icon'] : null; //not found in skyrim
     return Ingredient(
       name: name,
       id: id,
@@ -38,6 +48,9 @@ class Ingredient {
       value: value,
       effectsNames: effectsNames,
       text: text,
+      uespUrl: uespUrl,
+      harvestProbability: harvestProbability,
+      iconUrl: iconUrl,
     );
   }
 }

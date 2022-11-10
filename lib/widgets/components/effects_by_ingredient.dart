@@ -1,28 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/data.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/effect_resource.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/effect_resource_dynamic.dart';
+import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_micro.dart';
 
-class EffectsByIngredient extends StatefulWidget {
+class EffectsByIngredient extends ConsumerStatefulWidget {
   const EffectsByIngredient({Key? key, required this.ingredient}) : super(key: key);
   final Ingredient ingredient;
 
   @override
-  State<StatefulWidget> createState() => _EffectsByIngredientState();
+  ConsumerState<EffectsByIngredient> createState() => _EffectsByIngredientState();
 }
 
-class _EffectsByIngredientState extends State<EffectsByIngredient> {
-  Effect _getEffectByIndex(int index) {
-    final String name = widget.ingredient.effectsNames![index] as String;
+class _EffectsByIngredientState extends ConsumerState<EffectsByIngredient> {
+  Effect? _getEffectByIndex(int index) {
+    if (index < widget.ingredient.effectsNames.length) {
+      final String name = widget.ingredient.effectsNames[index] as String;
+      final Effect effect = EffectResourceDynamic(ref.watch(globalGameNameStateProvider)).getEffectByName(name);
 
-    final Effect effect = EffectResource.getEffectByName(name);
-    return effect;
+      return effect;
+    }
+
+    return null;
   }
 
-  Widget _getCard(Effect effect) {
-    return EffectCardMicro(effect: effect);
+  Widget _getCard(Effect? effect) {
+    return effect != null
+        ? EffectCardMicro(effect: effect)
+        : const Card(
+            child: Text('No effect in this position'),
+          );
   }
 
   @override
@@ -45,18 +54,12 @@ class _EffectsByIngredientState extends State<EffectsByIngredient> {
 
     final horizontalList = Column(children: [
       Row(
-        children: [
-          cards[0],
-          const Spacer(),
-          cards[1],
-        ],
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [cards[0], cards[1]],
       ),
       Row(
-        children: [
-          cards[2],
-          const Spacer(),
-          cards[3],
-        ],
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [cards[2], cards[3]],
       ),
     ]);
 

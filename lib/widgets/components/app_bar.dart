@@ -1,82 +1,65 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/extensions/capitalize.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/router.dart';
 
-class AlchemyAppBar extends StatefulWidget implements PreferredSizeWidget {
-  const AlchemyAppBar({Key? key, required this.notifyParent}) : super(key: key);
-  final Function() notifyParent;
+class AlchemyAppBar extends ConsumerWidget implements PreferredSizeWidget {
+  AlchemyAppBar({Key? key}) : super(key: key);
 
+  String chosenGameName = 'skyrim';
   @override
-  State<AlchemyAppBar> createState() => _AlchemyAppBarState();
+  Size get preferredSize => Size(20.0, 50.0);
 
-  @override
-  Size get preferredSize => Size(20.0, 50.0); // TODO remove hardcode
-}
-
-class _AlchemyAppBarState extends State<AlchemyAppBar> {
-  // String _pageTitle = 'The Elder Scrolls Alchemy | ${globalChosenGame.capitalize()}';
-  String _pageTitle = '${globalChosenGame.capitalize()} Alchemy';
-
-  Function() chooseGame(String gameName) {
+  Function() chooseGame(context, ref, String gameName) {
     return () {
-      globalChosenGame = gameName;
-      // globalPage = globalPage;
-      widget.notifyParent();
-      setState(() {
-        globalChosenGame = gameName;
-        _pageTitle = '${gameName.capitalize()} Alchemy';
-      });
-      // context.go(AlchemyRouter.getRouteByIndex(index: globalChosenTabIndex));
-      context.go('/');
+      chosenGameName = gameName;
+
+      var location = GoRouter.of(context).location;
+      if (location == '/') {
+        GoRouter.of(context).go('/');
+      } else {
+        var path = '/$gameName' + AlchemyRouter.getRouteByIndex(index: globalChosenTabIndex);
+        GoRouter.of(context).go(path);
+      }
+      ref.read(globalGameNameStateProvider.notifier).state = gameName;
     };
   }
 
-  List<Widget> getAppBarActions() {
-    return [
+  @override
+  AppBar build(BuildContext context, WidgetRef ref) {
+    chosenGameName = ref.watch(globalGameNameStateProvider);
+
+    final actions = [
       PopupMenuButton<Text>(
         itemBuilder: (context) {
           return [
             PopupMenuItem(
-              onTap: chooseGame(DataSource.gameNameSkyrim),
+              onTap: chooseGame(context, ref, DataSource.gameNameSkyrim),
               child: Text(DataSource.gameNameSkyrim.capitalize()),
             ),
             PopupMenuItem(
-              onTap: chooseGame(DataSource.gameNameOblivion),
+              onTap: chooseGame(context, ref, DataSource.gameNameOblivion),
               child: Text(DataSource.gameNameOblivion.capitalize()),
             ),
             PopupMenuItem(
-              onTap: chooseGame(DataSource.gameNameMorrowind),
+              onTap: chooseGame(context, ref, DataSource.gameNameMorrowind),
               child: Text(DataSource.gameNameMorrowind.capitalize()),
             ),
           ];
         },
       )
     ];
-  }
 
-  void onTap() {
-    context.go('/');
-  }
-
-  AppBar getAppBar() {
-    bool showLeading = false; // TODO show on mobile to toggle left panel, disabled in web
-    IconButton leading = IconButton(
-      tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-      icon: const Icon(Icons.menu),
-      onPressed: () {},
-    );
     return AppBar(
-      leading: (showLeading) ? leading : null,
-      title: InkWell(child: Text(_pageTitle), onTap: onTap),
-      actions: getAppBarActions(),
+      automaticallyImplyLeading: true,
+      title: InkWell(
+        onTap: () => context.push('/'),
+        child: Text('${chosenGameName.capitalize()} Alchemy'),
+      ),
+      actions: actions,
     );
-  }
-
-  @override
-  AppBar build(BuildContext context) {
-    return getAppBar();
   }
 }

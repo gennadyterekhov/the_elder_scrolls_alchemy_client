@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/pages/skyrim/ingredients/ingredients.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/pages/ingredients/ingredients.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/custom_screen.dart';
 
 class IngredientsScreen extends StatelessWidget {
