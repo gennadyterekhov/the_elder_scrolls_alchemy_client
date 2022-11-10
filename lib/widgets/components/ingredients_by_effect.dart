@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource_dynamic.dart';
+import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_micro.dart';
 
-class IngredientsByEffect extends StatefulWidget {
+class IngredientsByEffect extends ConsumerStatefulWidget {
   const IngredientsByEffect({Key? key, required this.effect}) : super(key: key);
   final Effect effect;
   final bool showLabel = false;
 
   @override
-  State<StatefulWidget> createState() => _IngredientsByEffectState();
+  ConsumerState<IngredientsByEffect> createState() => _IngredientsByEffectState();
 }
 
-class _IngredientsByEffectState extends State<IngredientsByEffect> {
+class _IngredientsByEffectState extends ConsumerState<IngredientsByEffect> {
   List<Ingredient> _getIngredientsByIndex(int index) {
     if (index < widget.effect.ingredientsNamesByPosition.length) {
       final List names = widget.effect.ingredientsNamesByPosition[index];
-      final List<Ingredient> ingredients = names.map((name) => IngredientResource.getIngredientByName(name)).toList();
+      final List<Ingredient> ingredients = names
+          .map((name) => IngredientResourceDynamic(ref.watch(globalGameNameStateProvider)).getIngredientByName(name))
+          .toList();
 
       return ingredients;
     }
