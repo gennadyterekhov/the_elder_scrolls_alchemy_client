@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/constants.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 
@@ -14,14 +15,9 @@ class EffectCardSmall extends ConsumerStatefulWidget {
 }
 
 class _EffectCardSmallState extends ConsumerState<EffectCardSmall> {
-  void onTap() {
-    var gameName = ref.watch(globalGameNameStateProvider);
-
-    context.push('/${gameName}/effect/${widget.effect.name}');
-  }
-
   @override
   Widget build(BuildContext context) {
+    var gameName = ref.watch(globalGameNameStateProvider);
     Text nameText = Text(
       widget.effect.name,
       textAlign: TextAlign.center,
@@ -49,16 +45,25 @@ class _EffectCardSmallState extends ConsumerState<EffectCardSmall> {
     Text valueText =
         Text(widget.effect.value != null ? 'value: ${widget.effect.value}' : 'value: ${Constant.globalUnknown}');
 
-    return Card(
-      child: InkWell(
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(children: [
-            nameText,
-          ]),
-        ),
+    final extension = gameName == DataSource.gameNameMorrowind ? 'jpg' : 'png';
+
+    final rowWithImage = Row(mainAxisSize: MainAxisSize.min, children: [
+      Image(
+        width: 32,
+        height: 32,
+        image: AssetImage('assets/img/${gameName}/effects/${widget.effect.name}.$extension'),
       ),
+      Container(margin: const EdgeInsets.only(left: 8.0), child: nameText),
+    ]);
+
+    final inkWell = InkWell(
+      onTap: (() => context.push('/${gameName}/effect/${widget.effect.name}')),
+      child: rowWithImage,
     );
+    return Card(
+        child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: inkWell,
+    ));
   }
 }

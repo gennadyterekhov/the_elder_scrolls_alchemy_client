@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/effect_resource_dynamic.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource_dynamic.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/effect_resource.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/navigation/navigation.dart';
@@ -81,7 +81,7 @@ class AlchemyRouter {
             final gameName = state.params['gameName'] as String;
             DataSource.checkGameName(gameName);
 
-            Effect effect = EffectResourceDynamic(gameName).getEffectByName(effectName);
+            Effect effect = EffectResource(gameName).getEffectByName(effectName);
             final page = EffectScreen(effect: effect);
             return buildPageWithoutTransition<void>(context: context, state: state, child: page);
           },
@@ -93,7 +93,7 @@ class AlchemyRouter {
             final gameName = state.params['gameName'] as String;
             DataSource.checkGameName(gameName);
 
-            Ingredient ingredient = IngredientResourceDynamic(gameName).getIngredientByName(ingredientName);
+            Ingredient ingredient = IngredientResource(gameName).getIngredientByName(ingredientName);
             final page = IngredientScreen(ingredient: ingredient);
             return buildPageWithoutTransition<void>(context: context, state: state, child: page);
           },

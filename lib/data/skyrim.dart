@@ -1029,9 +1029,8 @@ class SkyrimData {
         "weight": 1,
         "value": 5,
         "effects": ["Restore Stamina", "Ravage Stamina", "Regenerate Stamina", "Weakness to Shock"],
-        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Beehive_Husk",
-        "icon":
-            "https://images.uesp.net/thumb/8/84/SR-icon-ingredient-Beehive_Husk.png/72px-SR-icon-ingredient-Beehive_Husk.png",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Bee",
+        "icon": "https://images.uesp.net/thumb/b/b8/SR-icon-ingredient-Bee.png/96px-SR-icon-ingredient-Bee.png",
         "text": "Collected from beehives."
       },
       "Beehive Husk": {
@@ -1039,6 +1038,9 @@ class SkyrimData {
         "name": "Beehive Husk",
         "weight": 1,
         "value": 5,
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Beehive_Husk",
+        "icon":
+            "https://images.uesp.net/thumb/8/84/SR-icon-ingredient-Beehive_Husk.png/72px-SR-icon-ingredient-Beehive_Husk.png",
         "effects": ["Resist Poison", "Fortify Light Armor", "Fortify Sneak", "Fortify Destruction"]
       },
       "Bleeding Crown": {
@@ -1765,9 +1767,8 @@ class SkyrimData {
         "weight": 0.1,
         "value": 2,
         "effects": ["Restore Stamina", "Fortify Block", "Restore Magicka", "Resist Shock"],
-        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Small_Pearl",
-        "icon":
-            "https://images.uesp.net/thumb/8/8f/SR-icon-ingredient-Small_Pearl.png/72px-SR-icon-ingredient-Small_Pearl.png",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Pearl",
+        "icon": "https://images.uesp.net/thumb/a/ad/SR-icon-ingredient-Pearl.png/96px-SR-icon-ingredient-Pearl.png",
         "text":
             "Cannot be harvested or collected in the original version of the game; only readily available after the Merchant perk has been unlocked. With Dragonborn, they can be harvested from Pearl Oysters in Solstheim."
       },
@@ -1963,6 +1964,11 @@ class SkyrimData {
         "name": "Small Pearl",
         "weight": 0.1,
         "value": 2,
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Small_Pearl",
+        "text":
+            "Cannot be harvested or collected in the original version of the game; only readily available after the Merchant perk has been unlocked. With Dragonborn, they can be harvested from Pearl Oysters in Solstheim.",
+        "icon":
+            "https://images.uesp.net/thumb/8/8f/SR-icon-ingredient-Small_Pearl.png/72px-SR-icon-ingredient-Small_Pearl.png",
         "effects": ["Restore Stamina", "Fortify One Handed", "Fortify Restoration", "Resist Frost"]
       },
       "Snowberries": {
