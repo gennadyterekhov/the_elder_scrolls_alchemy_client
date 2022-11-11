@@ -13,8 +13,9 @@ Supported games:
 3. Morrowind
 
 
-web version: https://the-elder-scrolls-alchemy.website.yandexcloud.net/#/
-
+[web version](https://the-elder-scrolls-alchemy.website.yandexcloud.net/#/)  
+[android](https://github.com/gennadyterekhov/the_elder_scrolls_alchemy_client/tree/main/public/android)  
+[ios](https://github.com/gennadyterekhov/the_elder_scrolls_alchemy_client/tree/main/public/ios)  
 
 ## How to run
 
