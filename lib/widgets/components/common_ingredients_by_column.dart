@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/effect_resource_dynamic.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource_dynamic.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/effect_resource.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
@@ -22,7 +22,7 @@ class _CommonIngredientsByColumnState extends ConsumerState<CommonIngredientsByC
 
       final List<Ingredient> ingredients = names
           .where((ingredientName) => ingredientName != widget.ingredient.name)
-          .map((name) => IngredientResourceDynamic(ref.watch(globalGameNameStateProvider)).getIngredientByName(name))
+          .map((name) => IngredientResource(ref.watch(globalGameNameStateProvider)).getIngredientByName(name))
           .toList();
 
       return ingredients;
@@ -50,8 +50,7 @@ class _CommonIngredientsByColumnState extends ConsumerState<CommonIngredientsByC
     List<Widget> cards = [];
     for (var i = 0; i < widget.ingredient.effectsNames.length; i += 1) {
       final ingredientsCardsList = _getIngredientsCardsByEffect(
-          EffectResourceDynamic(ref.watch(globalGameNameStateProvider))
-              .getEffectByName(widget.ingredient.effectsNames[i]),
+          EffectResource(ref.watch(globalGameNameStateProvider)).getEffectByName(widget.ingredient.effectsNames[i]),
           widget.ingredient);
       if (ingredientsCardsList.isNotEmpty) {
         cards.add(

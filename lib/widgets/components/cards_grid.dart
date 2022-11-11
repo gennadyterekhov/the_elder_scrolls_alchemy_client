@@ -27,14 +27,24 @@ class _CardsGridState extends State<CardsGrid> {
       childAspectRatio = 1.6;
     }
 
-    final grid = GridView.count(
-      mainAxisSpacing: 4.0,
-      crossAxisSpacing: 4.0,
-      childAspectRatio: childAspectRatio,
-      crossAxisCount: crossAxisCount,
+    final wrap = Wrap(
+      alignment: WrapAlignment.spaceEvenly,
+      runAlignment: WrapAlignment.spaceBetween,
+      crossAxisAlignment: WrapCrossAlignment.start,
+      runSpacing: 8,
+      spacing: 24,
       children: widget.cards,
     );
 
-    return grid;
+    final box = ConstrainedBox(
+      constraints: BoxConstraints(
+        minHeight: MediaQuery.of(context).size.height,
+      ),
+      child: wrap,
+    );
+
+    return SingleChildScrollView(
+      child: box,
+    );
   }
 }

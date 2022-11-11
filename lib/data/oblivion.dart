@@ -315,6 +315,9 @@ class OblivionData {
       },
       "Drain Fatigue": {
         "name": "Drain Fatigue",
+        "type": "negative",
+        "icon": "https://images.uesp.net/7/71/OB-icon-Drain.png",
+        "uesp_url": "https://en.uesp.net/wiki/Oblivion:Drain_Fatigue",
         "ingredients": [
           ["Unrefined Greenmote"],
           [],
@@ -324,6 +327,9 @@ class OblivionData {
       },
       "Drain Health": {
         "name": "Drain Health",
+        "type": "negative",
+        "icon": "https://images.uesp.net/7/71/OB-icon-Drain.png",
+        "uesp_url": "https://en.uesp.net/wiki/Oblivion:Drain_Health",
         "ingredients": [
           [],
           ["Unrefined Greenmote"],
@@ -333,6 +339,9 @@ class OblivionData {
       },
       "Drain Intelligence": {
         "name": "Drain Intelligence",
+        "type": "negative",
+        "icon": "https://images.uesp.net/7/71/OB-icon-Drain.png",
+        "uesp_url": "https://en.uesp.net/wiki/Oblivion:Drain_Intelligence",
         "ingredients": [
           [],
           [],
@@ -342,6 +351,9 @@ class OblivionData {
       },
       "Drain Magicka": {
         "name": "Drain Magicka",
+        "type": "negative",
+        "icon": "https://images.uesp.net/7/71/OB-icon-Drain.png",
+        "uesp_url": "https://en.uesp.net/wiki/Oblivion:Drain_Magicka",
         "ingredients": [
           [],
           [],
@@ -970,6 +982,9 @@ class OblivionData {
         "uesp_url": "https://en.uesp.net/wiki/Oblivion:Water_Walking"
       },
       "Weakness to Fire": {
+        "type": "negative",
+        "icon": "https://images.uesp.net/4/40/OB-icon-Fire.png",
+        "uesp_url": "https://en.uesp.net/wiki/Oblivion:Weakness_to_Fire",
         "name": "Weakness to Fire",
         "ingredients": [
           [],
@@ -2284,7 +2299,7 @@ class OblivionData {
       },
       "Unrefined Greenmote": {
         "name": "Unrefined Greenmote",
-        "icon": "http://images.uesp.net/4/4b/SI-icon-ingredient-Greenspore.png",
+        "icon": "http://images.uesp.net/4/4b/SI-icon-ingredient-Greenspore.png", //inaccurate TODO : update
         "text": "Harvested from Mania variety Mushroom Tree Saplings.",
         "effects": ["Drain Fatigue", "Drain Health", "Drain Magicka", "Drain Intelligence"]
       },

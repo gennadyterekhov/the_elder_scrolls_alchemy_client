@@ -1,4 +1,4 @@
-package com.example.the_elder_scrolls_alchemy_client
+package com.gennadyterekhov.the_elder_scrolls_alchemy_client
 
 import io.flutter.embedding.android.FlutterActivity
 
