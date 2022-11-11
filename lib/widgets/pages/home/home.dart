@@ -38,14 +38,20 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
     const appRepositoryLink =
         WebLink(text: 'Repository', url: 'https://github.com/gennadyterekhov/the_elder_scrolls_alchemy_client');
 
-    final linksRow = Row(
+    const apkLink = WebLink(
+        text: 'Android APK',
+        url: 'https://github.com/gennadyterekhov/the_elder_scrolls_alchemy_client/tree/main/public/android');
+
+    final linksRow = Wrap(
+      alignment: WrapAlignment.spaceEvenly,
+      spacing: 32,
+      runSpacing: 32,
       children: const [
         appRepositoryLink,
-        Spacer(),
+        apkLink,
         dataRepositoryLink,
       ],
     );
-
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(30.0),
@@ -54,6 +60,8 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               welcomeText,
+              const Spacer(),
+              const Image(image: AssetImage('assets/img/logo.png')),
               const Spacer(),
               linksRow,
             ],

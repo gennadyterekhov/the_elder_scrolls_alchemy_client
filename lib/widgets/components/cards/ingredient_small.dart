@@ -14,21 +14,20 @@ class IngredientCardSmall extends ConsumerStatefulWidget {
 }
 
 class _IngredientCardSmallState extends ConsumerState<IngredientCardSmall> {
-  void onTap() {
-    var gameName = ref.watch(globalGameNameStateProvider);
-
-    context.push('/${gameName}/ingredient/${widget.ingredient.name}');
-  }
-
   @override
   Widget build(BuildContext context) {
-    Text nameText = Text(
-      widget.ingredient.name,
-      textAlign: TextAlign.center,
-      overflow: TextOverflow.visible,
-      style: const TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 20,
+    var gameName = ref.watch(globalGameNameStateProvider);
+
+    final nameText = Container(
+      margin: const EdgeInsets.only(top: 8.0),
+      child: Text(
+        widget.ingredient.name,
+        textAlign: TextAlign.center,
+        overflow: TextOverflow.visible,
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 10,
+        ),
       ),
     );
 
@@ -36,10 +35,15 @@ class _IngredientCardSmallState extends ConsumerState<IngredientCardSmall> {
 
     return Card(
       child: InkWell(
-        onTap: onTap,
+        onTap: () => context.push('/${gameName}/ingredient/${widget.ingredient.name}'),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(children: [
+            Image(
+              width: 64,
+              height: 64,
+              image: AssetImage('assets/img/${gameName}/ingredients/${widget.ingredient.name}.png'),
+            ),
             nameText,
           ]),
         ),

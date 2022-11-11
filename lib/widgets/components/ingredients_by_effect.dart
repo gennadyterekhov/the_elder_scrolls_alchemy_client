@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource_dynamic.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
@@ -20,7 +20,7 @@ class _IngredientsByEffectState extends ConsumerState<IngredientsByEffect> {
     if (index < widget.effect.ingredientsNamesByPosition.length) {
       final List names = widget.effect.ingredientsNamesByPosition[index];
       final List<Ingredient> ingredients = names
-          .map((name) => IngredientResourceDynamic(ref.watch(globalGameNameStateProvider)).getIngredientByName(name))
+          .map((name) => IngredientResource(ref.watch(globalGameNameStateProvider)).getIngredientByName(name))
           .toList();
 
       return ingredients;

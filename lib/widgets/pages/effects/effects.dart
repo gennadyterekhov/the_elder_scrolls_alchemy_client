@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/effect_resource_dynamic.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/effect_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_small.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
@@ -51,7 +51,7 @@ class _EffectsPageState extends ConsumerState<EffectsPage> {
   Widget build(BuildContext context) {
     var currentName = ref.watch(globalGameNameStateProvider);
 
-    final List<Effect> effects = EffectResourceDynamic(currentName).searchEffectsByName(_searchQuery);
+    final List<Effect> effects = EffectResource(currentName).searchEffectsByName(_searchQuery);
 
     final List<Widget> effectsCards = _getEffectsGridItems(effects);
 
