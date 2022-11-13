@@ -47,14 +47,16 @@ class _EffectCardSmallState extends ConsumerState<EffectCardSmall> {
 
     final extension = gameName == DataSource.gameNameMorrowind ? 'jpg' : 'png';
 
-    final rowWithImage = Row(mainAxisSize: MainAxisSize.min, children: [
-      Image(
-        width: 32,
-        height: 32,
-        image: AssetImage('assets/img/${gameName}/effects/${widget.effect.name}.$extension'),
-      ),
-      Container(margin: const EdgeInsets.only(left: 8.0), child: nameText),
-    ]);
+    final rowWithImage = Wrap(
+      children: [
+        Image(
+          width: 32,
+          height: 32,
+          image: AssetImage('assets/img/${gameName}/effects/${widget.effect.name}.$extension'),
+        ),
+        Container(margin: const EdgeInsets.only(left: 8.0), child: nameText),
+      ],
+    );
 
     final inkWell = InkWell(
       onTap: (() => context.push('/${gameName}/effect/${widget.effect.name}')),

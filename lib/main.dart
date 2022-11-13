@@ -7,6 +7,9 @@ int globalChosenTabIndex = 0;
 final globalGameNameStateProvider = riverpod.StateProvider((ref) {
   return 'skyrim';
 });
+final globalIsSearchShownStateProvider = riverpod.StateProvider((ref) {
+  return true;
+});
 
 void main() {
   runApp(

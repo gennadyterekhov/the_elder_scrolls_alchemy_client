@@ -54,6 +54,8 @@ class _IngredientsPageState extends ConsumerState<IngredientsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final isSearchShown = ref.watch(globalIsSearchShownStateProvider);
+
     final List<Ingredient> ingredients =
         IngredientResource(ref.watch(globalGameNameStateProvider)).searchIngredientsByName(_searchQuery);
 
@@ -61,8 +63,7 @@ class _IngredientsPageState extends ConsumerState<IngredientsPage> {
 
     return Column(
       children: [
-        const Text('Search by Ingredients'),
-        SearchField(controller: searchFieldController),
+        isSearchShown ? SearchField(controller: searchFieldController) : Container(),
         Expanded(
           child: CardsGrid(
             cards: ingredientsCards,

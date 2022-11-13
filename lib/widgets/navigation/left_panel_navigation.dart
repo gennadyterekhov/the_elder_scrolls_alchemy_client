@@ -41,7 +41,7 @@ class _LeftPanelNavigationState extends ConsumerState<LeftPanelNavigation> {
       leading: null,
       selectedIndex: globalChosenTabIndex,
       onDestinationSelected: onDestinationSelected,
-      labelType: NavigationRailLabelType.selected,
+      labelType: NavigationRailLabelType.all,
       destinations: getDestinations(),
     );
   }
