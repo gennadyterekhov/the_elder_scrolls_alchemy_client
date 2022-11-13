@@ -28,7 +28,7 @@ class Root extends StatelessWidget {
   }
 }
 
-class MyApp extends riverpod.ConsumerWidget {
+class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
 
   MaterialColor getPrimarySwatch() {
@@ -51,13 +51,23 @@ class MyApp extends riverpod.ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, riverpod.WidgetRef ref) {
-    final String gameName = ref.watch(globalGameNameStateProvider);
-
+  Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'TES Alchemy',
-      routerConfig: AlchemyRouter.getRouter(ref),
-      theme: ThemeData(primarySwatch: getPrimarySwatch()),
+      routerConfig: AlchemyRouter.getRouter(),
+      theme: ThemeData(
+        primarySwatch: getPrimarySwatch(),
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: ZoomPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.fuchsia: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.windows: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.linux: CupertinoPageTransitionsBuilder(),
+          },
+        ),
+      ),
     );
   }
 }

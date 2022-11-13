@@ -3,16 +3,12 @@ import 'package:the_elder_scrolls_alchemy_client/exception/wrong_game.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 
 class IngredientResource {
-  IngredientResource(gameName) {
-    currentMap = DataSource.byGame(gameName).getCurrentGameMap()['ingredients'];
+  IngredientResource(this.gameName) {
+    currentMap = DataSource.getMap()[gameName]['ingredients'];
   }
 
-  String gameName = '';
+  String gameName;
   Map<String, dynamic> currentMap = {};
-
-  factory IngredientResource.byGame(String gameName) {
-    return IngredientResource(gameName);
-  }
 
   List<Ingredient> searchIngredientsByName(String name) {
     final List<String> names = currentMap.keys.toList();
@@ -38,20 +34,25 @@ class IngredientResource {
 
   Ingredient getIngredientByName(String name) {
     if (!currentMap.containsKey(name)) {
-      throw WrongGameException('ingredient from another game', getGameOfIngredient(name));
+      throw WrongGameException(
+        message: 'ingredient from another game',
+        correctGame: getGameOfIngredient(name),
+        wrongGame: gameName,
+        subject: name,
+      );
     }
     Ingredient ingredient = Ingredient.fromMap(currentMap[name]);
 
     return ingredient;
   }
 
-  String getGameOfIngredient(String ingredientName) {
+  static String getGameOfIngredient(String ingredientName) {
     for (int i = 0; i < DataSource.gameNames.length; i += 1) {
       Map<String, dynamic> map = DataSource.getMap()[DataSource.gameNames[i]]['ingredients'];
       if (map.containsKey(ingredientName)) {
         return DataSource.gameNames[i];
       }
     }
-    throw Exception('Ingredient not found across all these games: ${DataSource.gameNames}');
+    throw Exception('Ingredient $ingredientName not found across all these games: ${DataSource.gameNames}');
   }
 }
