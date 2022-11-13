@@ -54,8 +54,8 @@ class AlchemyAppBar extends ConsumerWidget implements PreferredSizeWidget {
     ];
 
     final homeLink = InkWell(
-      onTap: () => context.push('/'),
-      child: Text('${chosenGameName.capitalize()}'),
+      onTap: () => context.push('/home'),
+      child: Text(chosenGameName.capitalize()),
     );
 
     final isSearchVisible = ref.watch(globalIsSearchShownStateProvider);
@@ -69,8 +69,6 @@ class AlchemyAppBar extends ConsumerWidget implements PreferredSizeWidget {
     );
 
     final titleLine = Wrap(
-      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      // wrapAli,
       alignment: WrapAlignment.spaceEvenly,
       spacing: 32,
       runAlignment: WrapAlignment.spaceEvenly,

@@ -11,6 +11,10 @@ final globalIsSearchShownStateProvider = riverpod.StateProvider((ref) {
   return true;
 });
 
+final globalChosenTabIndexStateProvider = riverpod.StateProvider((ref) {
+  return 1;
+});
+
 void main() {
   runApp(
     Root(),
