@@ -26,7 +26,8 @@ class _BottomPanelNavigationState extends ConsumerState<BottomPanelNavigation> {
   }
 
   void onDestinationSelected(index) {
-    globalChosenTabIndex = index;
+    ref.read(globalChosenTabIndexStateProvider.notifier).state = index;
+
     var gameName = ref.watch(globalGameNameStateProvider);
 
     String route = AlchemyRouter.getRouteByIndex(index: index, withHome: false);
@@ -36,7 +37,7 @@ class _BottomPanelNavigationState extends ConsumerState<BottomPanelNavigation> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      currentIndex: globalChosenTabIndex,
+      currentIndex: ref.watch(globalChosenTabIndexStateProvider),
       items: getDestinations(),
       selectedItemColor: Colors.green[200],
       unselectedItemColor: Colors.grey[800],

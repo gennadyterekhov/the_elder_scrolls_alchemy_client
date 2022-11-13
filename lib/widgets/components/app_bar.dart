@@ -16,15 +16,10 @@ class AlchemyAppBar extends ConsumerWidget implements PreferredSizeWidget {
   Function() chooseGame(context, ref, String gameName) {
     return () {
       chosenGameName = gameName;
-
-      var location = GoRouter.of(context).location;
-      if (location == '/') {
-        GoRouter.of(context).go('/');
-      } else {
-        var path = '/$gameName' + AlchemyRouter.getRouteByIndex(index: globalChosenTabIndex);
-        GoRouter.of(context).go(path);
-      }
       ref.read(globalGameNameStateProvider.notifier).state = gameName;
+
+      var path = '/$gameName${AlchemyRouter.getRouteByIndex(index: ref.read(globalChosenTabIndexStateProvider))}';
+      GoRouter.of(context).push(path);
     };
   }
 
@@ -53,12 +48,30 @@ class AlchemyAppBar extends ConsumerWidget implements PreferredSizeWidget {
       )
     ];
 
+    final homeLink = InkWell(
+      onTap: () => context.push('/home'),
+      child: Text(chosenGameName.capitalize()),
+    );
+
+    final isSearchVisible = ref.watch(globalIsSearchShownStateProvider);
+
+    final toggleSearchInkWell = InkWell(
+      child: Wrap(children: [
+        isSearchVisible ? const Icon(Icons.visibility_off) : const Icon(Icons.visibility),
+        const Text(' Search'),
+      ]),
+      onTap: () => ref.read(globalIsSearchShownStateProvider.notifier).state = !isSearchVisible,
+    );
+
+    final titleLine = Wrap(
+      alignment: WrapAlignment.spaceEvenly,
+      spacing: 32,
+      runAlignment: WrapAlignment.spaceEvenly,
+      children: [homeLink, toggleSearchInkWell],
+    );
     return AppBar(
       automaticallyImplyLeading: true,
-      title: InkWell(
-        onTap: () => context.push('/'),
-        child: Text('${chosenGameName.capitalize()} Alchemy'),
-      ),
+      title: titleLine,
       actions: actions,
     );
   }

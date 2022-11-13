@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/effect_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
+import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/navigation/navigation.dart';
@@ -48,7 +49,17 @@ class AlchemyRouter {
   static GoRouter getRouter(WidgetRef ref) {
     final GoRouter router = GoRouter(
       routes: <GoRoute>[
-        makeRoute(path: '/', page: const HomeScreen()),
+        makeRoute(path: '/home', page: const HomeScreen()),
+        makeRouteWithPageBuilder(
+          path: '/',
+          pageBuilder: (context, state) {
+            final index = ref.read(globalChosenTabIndexStateProvider);
+
+            final page = index == 0 ? const EffectsScreen() : const IngredientsScreen();
+
+            return buildPageWithoutTransition<void>(context: context, state: state, child: page);
+          },
+        ),
         makeRouteWithPageBuilder(
           path: '/:gameName/home',
           pageBuilder: (context, state) {
@@ -107,9 +118,9 @@ class AlchemyRouter {
   static String getRouteByIndex({int index = 0, bool withHome = true}) {
     final items = Navigation.getItems();
     if (index > items.length) {
-      return '/skyrim/home';
+      return '/home';
     }
 
-    return '${items[index].path}';
+    return items[index].path;
   }
 }

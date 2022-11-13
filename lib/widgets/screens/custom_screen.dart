@@ -20,7 +20,7 @@ class _CustomScreenState extends State<CustomScreen> {
   Widget build(BuildContext context) {
     final orientationBuilder = OrientationBuilder(
       builder: (context, orientation) {
-        return orientation == Orientation.portrait ? _buildVerticalLayout() : _buildHorizontalLayout();
+        return MediaQuery.of(context).size.width < 600 ? _buildVerticalLayout() : _buildHorizontalLayout();
       },
     );
 

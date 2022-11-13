@@ -50,6 +50,7 @@ class _EffectsPageState extends ConsumerState<EffectsPage> {
   @override
   Widget build(BuildContext context) {
     var currentName = ref.watch(globalGameNameStateProvider);
+    final isSearchShown = ref.watch(globalIsSearchShownStateProvider);
 
     final List<Effect> effects = EffectResource(currentName).searchEffectsByName(_searchQuery);
 
@@ -57,8 +58,7 @@ class _EffectsPageState extends ConsumerState<EffectsPage> {
 
     return Column(
       children: [
-        const Text('Search by Effects'),
-        SearchField(controller: searchFieldController),
+        isSearchShown ? SearchField(controller: searchFieldController) : Container(),
         Expanded(
           child: CardsGrid(
             cards: effectsCards,

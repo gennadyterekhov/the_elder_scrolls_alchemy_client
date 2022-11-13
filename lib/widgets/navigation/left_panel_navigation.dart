@@ -27,7 +27,8 @@ class _LeftPanelNavigationState extends ConsumerState<LeftPanelNavigation> {
   }
 
   void onDestinationSelected(index) {
-    globalChosenTabIndex = index;
+    ref.read(globalChosenTabIndexStateProvider.notifier).state = index;
+
     var gameName = ref.watch(globalGameNameStateProvider);
 
     String route = AlchemyRouter.getRouteByIndex(index: index);
@@ -39,9 +40,9 @@ class _LeftPanelNavigationState extends ConsumerState<LeftPanelNavigation> {
     return NavigationRail(
       backgroundColor: Colors.grey[50],
       leading: null,
-      selectedIndex: globalChosenTabIndex,
+      selectedIndex: ref.watch(globalChosenTabIndexStateProvider),
       onDestinationSelected: onDestinationSelected,
-      labelType: NavigationRailLabelType.selected,
+      labelType: NavigationRailLabelType.all,
       destinations: getDestinations(),
     );
   }

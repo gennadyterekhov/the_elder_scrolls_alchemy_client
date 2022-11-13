@@ -65,7 +65,6 @@ class _SearchPageState extends State<SearchPage> {
 
     final view = Column(
       children: [
-        const Text('Search by Ingredients and effects (min. 3 characters)'),
         SearchField(controller: searchFieldController),
         Expanded(
           child: CardsGrid(
