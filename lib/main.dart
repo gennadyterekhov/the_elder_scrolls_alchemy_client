@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' as riverpod;
 import 'package:the_elder_scrolls_alchemy_client/router.dart';
 
-int globalChosenTabIndex = 0;
-
 final globalGameNameStateProvider = riverpod.StateProvider((ref) {
   return 'skyrim';
 });

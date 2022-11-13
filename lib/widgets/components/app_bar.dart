@@ -16,15 +16,10 @@ class AlchemyAppBar extends ConsumerWidget implements PreferredSizeWidget {
   Function() chooseGame(context, ref, String gameName) {
     return () {
       chosenGameName = gameName;
-
-      var location = GoRouter.of(context).location;
-      if (location == '/') {
-        GoRouter.of(context).go('/');
-      } else {
-        var path = '/$gameName' + AlchemyRouter.getRouteByIndex(index: globalChosenTabIndex);
-        GoRouter.of(context).go(path);
-      }
       ref.read(globalGameNameStateProvider.notifier).state = gameName;
+
+      var path = '/$gameName${AlchemyRouter.getRouteByIndex(index: ref.read(globalChosenTabIndexStateProvider))}';
+      GoRouter.of(context).push(path);
     };
   }
 

@@ -1,4 +1,5 @@
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
+import 'package:the_elder_scrolls_alchemy_client/exception/wrong_game.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 
 class EffectResource {
@@ -30,7 +31,7 @@ class EffectResource {
 
   Effect getEffectByName(String name) {
     if (!currentMap.containsKey(name)) {
-      throw Exception('effect not from this game');
+      throw WrongGameException('effect from another game', getGameOfEffect(name));
     }
     Effect effect = Effect.fromMap(currentMap[name]);
 

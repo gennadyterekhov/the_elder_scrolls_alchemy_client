@@ -1,4 +1,5 @@
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
+import 'package:the_elder_scrolls_alchemy_client/exception/wrong_game.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 
 class IngredientResource {
@@ -37,7 +38,7 @@ class IngredientResource {
 
   Ingredient getIngredientByName(String name) {
     if (!currentMap.containsKey(name)) {
-      throw Exception('ingredient from another game');
+      throw WrongGameException('ingredient from another game', getGameOfIngredient(name));
     }
     Ingredient ingredient = Ingredient.fromMap(currentMap[name]);
 
