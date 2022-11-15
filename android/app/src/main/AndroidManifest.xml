@@ -3,7 +3,7 @@
    <application
         android:label="TES Alchemy"
         android:name="${applicationName}"
-        android:icon="@drawable/logo">
+        android:icon="@drawable/ic_launcher">
         <activity
             android:name=".MainActivity"
             android:exported="true"
