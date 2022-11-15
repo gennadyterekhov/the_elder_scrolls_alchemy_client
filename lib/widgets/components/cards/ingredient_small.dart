@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/constants.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 
@@ -35,7 +36,9 @@ class _IngredientCardSmallState extends ConsumerState<IngredientCardSmall> {
 
     return Card(
       child: InkWell(
-        onTap: () => context.push('/${gameName}/ingredient/${widget.ingredient.name}'),
+        onTap: () {
+          context.go('/${gameName}/ingredient/${widget.ingredient.name}');
+        },
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(children: [

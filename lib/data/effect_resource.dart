@@ -1,14 +1,28 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/provider.dart';
+import 'package:the_elder_scrolls_alchemy_client/exception/not_found.dart';
 import 'package:the_elder_scrolls_alchemy_client/exception/wrong_game.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 
 class EffectResource {
-  EffectResource(this.gameName) {
+  late String gameName;
+  Ref? ref;
+  Map<String, dynamic> currentMap = {};
+
+  EffectResource({this.gameName = 'skyrim', this.ref}) {
     currentMap = DataSource.getMap()[gameName]['effects'];
   }
 
-  String gameName;
-  Map<String, dynamic> currentMap = {};
+  factory EffectResource.fromGameName(name) {
+    return EffectResource(gameName: name);
+  }
+
+  factory EffectResource.fromMap(gameMap) {
+    var e = EffectResource(ref: null);
+    e.currentMap = gameMap;
+    return e;
+  }
 
   Map<String, Effect> getAllEffects() {
     Map<String, Effect> resultMap = {};
@@ -27,11 +41,10 @@ class EffectResource {
 
   Effect getEffectByName(String name) {
     if (!currentMap.containsKey(name)) {
-      throw WrongGameException(
-        message: 'effect from another game',
-        correctGame: getGameOfEffect(name),
-        wrongGame: gameName,
+      throw NotFoundException(
+        message: 'effect',
         subject: name,
+        probableCorrectGame: getGameOfEffect(name),
       );
     }
     Effect effect = Effect.fromMap(currentMap[name]);
@@ -40,7 +53,7 @@ class EffectResource {
   }
 
   List<Effect> getEffectsByNames(List<String> names) {
-    List<Effect> effects = names.map((name) => (Effect.fromMap(currentMap[name]))).toList();
+    List<Effect> effects = names.map((name) => getEffectByName(name)).toList();
 
     return effects;
   }

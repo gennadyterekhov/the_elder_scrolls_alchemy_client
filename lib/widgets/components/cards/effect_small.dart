@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/constants.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 
@@ -59,7 +60,9 @@ class _EffectCardSmallState extends ConsumerState<EffectCardSmall> {
     );
 
     final inkWell = InkWell(
-      onTap: (() => context.push('/${gameName}/effect/${widget.effect.name}')),
+      onTap: (() {
+        context.go('/${gameName}/effect/${widget.effect.name}');
+      }),
       child: rowWithImage,
     );
     return Card(

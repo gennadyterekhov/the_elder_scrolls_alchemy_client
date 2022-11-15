@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/extensions/capitalize.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/router.dart';
@@ -19,7 +20,7 @@ class AlchemyAppBar extends ConsumerWidget implements PreferredSizeWidget {
       ref.read(globalGameNameStateProvider.notifier).state = gameName;
 
       var path = '/$gameName${AlchemyRouter.getRouteByIndex(index: ref.read(globalChosenTabIndexStateProvider))}';
-      GoRouter.of(context).push(path);
+      GoRouter.of(context).go(path);
     };
   }
 
@@ -49,7 +50,7 @@ class AlchemyAppBar extends ConsumerWidget implements PreferredSizeWidget {
     ];
 
     final homeLink = InkWell(
-      onTap: () => context.push('/home'),
+      onTap: () => context.go('/home'),
       child: Text(chosenGameName.capitalize()),
     );
 

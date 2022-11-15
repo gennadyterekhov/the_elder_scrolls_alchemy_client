@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_small.dart';
@@ -56,8 +57,9 @@ class _IngredientsPageState extends ConsumerState<IngredientsPage> {
   Widget build(BuildContext context) {
     final isSearchShown = ref.watch(globalIsSearchShownStateProvider);
 
-    final List<Ingredient> ingredients =
-        IngredientResource(ref.watch(globalGameNameStateProvider)).searchIngredientsByName(_searchQuery);
+    final gameName = ref.watch(globalGameNameStateProvider);
+
+    final List<Ingredient> ingredients = IngredientResource(gameName: gameName).searchIngredientsByName(_searchQuery);
 
     final List<Widget> ingredientsCards = _getIngredientsGridItems(ingredients);
 

@@ -29,7 +29,7 @@ class _CardsGridState extends State<CardsGrid> {
 
     final wrap = Wrap(
       alignment: WrapAlignment.spaceEvenly,
-      runAlignment: WrapAlignment.spaceBetween,
+      runAlignment: WrapAlignment.start,
       crossAxisAlignment: WrapCrossAlignment.start,
       runSpacing: 8,
       spacing: 2,
