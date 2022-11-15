@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
@@ -20,7 +22,7 @@ class _IngredientsByEffectState extends ConsumerState<IngredientsByEffect> {
     if (index < widget.effect.ingredientsNamesByPosition.length) {
       final List names = widget.effect.ingredientsNamesByPosition[index];
       final List<Ingredient> ingredients = names
-          .map((name) => IngredientResource(ref.watch(globalGameNameStateProvider)).getIngredientByName(name))
+          .map((name) => IngredientResource(gameName: ref.watch(globalGameNameStateProvider)).getIngredientByName(name))
           .toList();
 
       return ingredients;
@@ -33,22 +35,7 @@ class _IngredientsByEffectState extends ConsumerState<IngredientsByEffect> {
     return widgets;
   }
 
-  @override
-  Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-
-    int columnsInARow = 1;
-
-    if (width > 550) {
-      columnsInARow = 2;
-    }
-    if (width > 700) {
-      columnsInARow = 2;
-    }
-    if (width > 900) {
-      columnsInARow = 4;
-    }
-
+  List<Widget> _getColumns() {
     List<Widget> columns = List.filled(4, Column());
 
     for (int i = 0; i < 4; i += 1) {
@@ -73,6 +60,30 @@ class _IngredientsByEffectState extends ConsumerState<IngredientsByEffect> {
           ),
         ),
       );
+    }
+    return columns;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
+    int columnsInARow = 1;
+
+    if (width > 550) {
+      columnsInARow = 2;
+    }
+    if (width > 700) {
+      columnsInARow = 2;
+    }
+    if (width > 900) {
+      columnsInARow = 4;
+    }
+    var columns;
+    try {
+      columns = _getColumns();
+    } catch (exception) {
+      return Column(children: [CupertinoActivityIndicator(), Text(exception.toString())]);
     }
 
     if (columnsInARow == 1) {

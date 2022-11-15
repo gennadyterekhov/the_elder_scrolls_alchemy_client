@@ -1,35 +1,25 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart' as riverpod;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:the_elder_scrolls_alchemy_client/router.dart';
-
-final globalGameNameStateProvider = riverpod.StateProvider((ref) {
-  return 'skyrim';
-});
-final globalIsSearchShownStateProvider = riverpod.StateProvider((ref) {
-  return true;
-});
-
-final globalChosenTabIndexStateProvider = riverpod.StateProvider((ref) {
-  return 1;
-});
 
 void main() {
   runApp(
-    Root(),
+    const Root(),
   );
 }
 
 class Root extends StatelessWidget {
+  const Root({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return riverpod.ProviderScope(
-      child: MyApp(),
-    );
+    return const ProviderScope(child: MyApp());
   }
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   MaterialColor getPrimarySwatch() {
     const hash = 0xffa5d6a7;
@@ -54,6 +44,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'TES Alchemy',
+      builder: (context, widget) {
+        ErrorWidget.builder = (errorDetails) => Column(
+              children: [
+                CupertinoActivityIndicator(),
+                Text(errorDetails.toString()),
+              ],
+            );
+        if (widget != null) return widget;
+        throw ('widget is null');
+      },
       routerConfig: AlchemyRouter.getRouter(),
       theme: ThemeData(
         primarySwatch: getPrimarySwatch(),

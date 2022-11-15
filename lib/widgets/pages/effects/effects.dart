@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/effect_resource.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_small.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
@@ -47,12 +48,27 @@ class _EffectsPageState extends ConsumerState<EffectsPage> {
     });
   }
 
+  List<Effect> searchEffectsByName(currentMap, String name) {
+    final List<String> names = currentMap.keys.toList();
+
+    final searchResultNames = names.where((element) => element.toLowerCase().contains(name.toLowerCase())).toList();
+
+    return getEffectsByNames(currentMap, searchResultNames);
+  }
+
+  List<Effect> getEffectsByNames(currentMap, List<String> names) {
+    List<Effect> effects = names.map((name) => (Effect.fromMap(currentMap[name]))).toList();
+
+    return effects;
+  }
+
   @override
   Widget build(BuildContext context) {
-    var currentName = ref.watch(globalGameNameStateProvider);
+    // var currentName = ref.watch(globalGameNameStateProvider);
     final isSearchShown = ref.watch(globalIsSearchShownStateProvider);
+    Map<String, dynamic> currentMap = ref.watch(globalCurrentGameMapProvider)['effects'];
 
-    final List<Effect> effects = EffectResource(currentName).searchEffectsByName(_searchQuery);
+    final List<Effect> effects = searchEffectsByName(currentMap, _searchQuery);
 
     final List<Widget> effectsCards = _getEffectsGridItems(effects);
 

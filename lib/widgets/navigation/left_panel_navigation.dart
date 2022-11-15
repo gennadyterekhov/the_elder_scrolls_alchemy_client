@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/router.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/navigation/navigation.dart';
@@ -32,7 +33,7 @@ class _LeftPanelNavigationState extends ConsumerState<LeftPanelNavigation> {
     var gameName = ref.watch(globalGameNameStateProvider);
 
     String route = AlchemyRouter.getRouteByIndex(index: index);
-    context.push('/$gameName$route');
+    context.go('/$gameName$route');
   }
 
   @override
