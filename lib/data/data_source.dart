@@ -3,18 +3,6 @@ import 'package:the_elder_scrolls_alchemy_client/data/oblivion.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/skyrim.dart';
 
 class DataSource {
-  DataSource(this.gameName);
-  late String gameName;
-
-  factory DataSource.byGame(String gameName) {
-    return DataSource(gameName);
-  }
-
-  Map<String, dynamic> getCurrentGameMap() {
-    DataSource.checkGameName(gameName);
-    return DataSource.getMap()[gameName];
-  }
-
   static Map<String, dynamic> getMap() {
     return _globalMap;
   }

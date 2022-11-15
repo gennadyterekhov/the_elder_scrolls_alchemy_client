@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/app_bar.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/navigation/bottom_panel_navigation.dart';
@@ -20,7 +21,7 @@ class _CustomScreenState extends State<CustomScreen> {
   Widget build(BuildContext context) {
     final orientationBuilder = OrientationBuilder(
       builder: (context, orientation) {
-        return orientation == Orientation.portrait ? _buildVerticalLayout() : _buildHorizontalLayout();
+        return MediaQuery.of(context).size.width < 600 ? _buildVerticalLayout() : _buildHorizontalLayout();
       },
     );
 
@@ -42,7 +43,11 @@ class _CustomScreenState extends State<CustomScreen> {
   }
 
   Widget _buildPageWidget() {
-    return Expanded(child: widget.pageWidget);
+    try {
+      return Expanded(child: widget.pageWidget);
+    } catch (exception) {
+      return Column(children: [CupertinoActivityIndicator(), Text(exception.toString())]);
+    }
   }
 
   Widget _buildHorizontalLayout() {

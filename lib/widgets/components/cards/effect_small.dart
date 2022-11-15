@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/constants.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 
@@ -47,17 +48,21 @@ class _EffectCardSmallState extends ConsumerState<EffectCardSmall> {
 
     final extension = gameName == DataSource.gameNameMorrowind ? 'jpg' : 'png';
 
-    final rowWithImage = Row(mainAxisSize: MainAxisSize.min, children: [
-      Image(
-        width: 32,
-        height: 32,
-        image: AssetImage('assets/img/${gameName}/effects/${widget.effect.name}.$extension'),
-      ),
-      Container(margin: const EdgeInsets.only(left: 8.0), child: nameText),
-    ]);
+    final rowWithImage = Wrap(
+      children: [
+        Image(
+          width: 32,
+          height: 32,
+          image: AssetImage('assets/img/${gameName}/effects/${widget.effect.name}.$extension'),
+        ),
+        Container(margin: const EdgeInsets.only(left: 8.0), child: nameText),
+      ],
+    );
 
     final inkWell = InkWell(
-      onTap: (() => context.push('/${gameName}/effect/${widget.effect.name}')),
+      onTap: (() {
+        context.go('/${gameName}/effect/${widget.effect.name}');
+      }),
       child: rowWithImage,
     );
     return Card(

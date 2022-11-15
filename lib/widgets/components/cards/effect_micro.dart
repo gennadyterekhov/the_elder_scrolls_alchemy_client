@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 
@@ -16,7 +17,7 @@ class _EffectCardMicroState extends ConsumerState<EffectCardMicro> {
   void _onTap() {
     var gameName = ref.watch(globalGameNameStateProvider);
 
-    context.push('/$gameName/effect/${widget.effect.name}');
+    context.go('/$gameName/effect/${widget.effect.name}');
   }
 
   @override

@@ -29,17 +29,16 @@ class _CardsGridState extends State<CardsGrid> {
 
     final wrap = Wrap(
       alignment: WrapAlignment.spaceEvenly,
-      runAlignment: WrapAlignment.spaceBetween,
+      runAlignment: WrapAlignment.start,
       crossAxisAlignment: WrapCrossAlignment.start,
       runSpacing: 8,
-      spacing: 24,
+      spacing: 2,
       children: widget.cards,
     );
 
     final box = ConstrainedBox(
-      constraints: BoxConstraints(
-        minHeight: MediaQuery.of(context).size.height,
-      ),
+      constraints:
+          BoxConstraints(minHeight: MediaQuery.of(context).size.height, maxWidth: MediaQuery.of(context).size.width),
       child: wrap,
     );
 
