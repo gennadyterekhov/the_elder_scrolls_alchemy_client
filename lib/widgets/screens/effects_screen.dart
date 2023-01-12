@@ -4,17 +4,11 @@ import 'package:the_elder_scrolls_alchemy_client/widgets/screens/custom_screen.d
 import 'package:the_elder_scrolls_alchemy_client/widgets/pages/effects/effects.dart';
 
 class EffectsScreen extends StatelessWidget {
-  const EffectsScreen({Key? key}) : super(key: key);
+  const EffectsScreen({Key? key, required this.gameName}) : super(key: key);
+  final String gameName;
 
   @override
   Widget build(BuildContext context) {
-    var widget;
-    try {
-      widget = CustomScreen(pageWidget: const EffectsPage());
-    } catch (exception) {
-      widget = Column(children: [CupertinoActivityIndicator(), Text(exception.toString())]);
-    }
-
-    return widget;
+    return CustomScreen(pageWidget: EffectsPage(gameName: gameName));
   }
 }

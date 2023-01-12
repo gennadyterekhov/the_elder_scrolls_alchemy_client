@@ -27,7 +27,7 @@ class AlchemyRouter {
             final gameName = state.params['gameName'] as String;
             DataSource.checkGameName(gameName);
 
-            return const EffectsScreen();
+            return EffectsScreen(gameName: gameName);
           },
         ),
         GoRoute(
@@ -36,7 +36,7 @@ class AlchemyRouter {
             final gameName = state.params['gameName'] as String;
             DataSource.checkGameName(gameName);
 
-            return const IngredientsScreen();
+            return IngredientsScreen(gameName: gameName);
           },
         ),
         GoRoute(
