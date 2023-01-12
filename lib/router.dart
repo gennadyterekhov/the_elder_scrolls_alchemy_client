@@ -19,8 +19,17 @@ class AlchemyRouter {
   static GoRouter getRouter() {
     final GoRouter router = GoRouter(
       routes: <GoRoute>[
-        makeSimpleRoute(path: '/home', page: const HomeScreen()),
-        makeSimpleRoute(path: '/', page: const HomeScreen()),
+        makeSimpleRoute(path: '/home', page: const HomeScreen(gameName: DataSource.gameNameSkyrim)),
+        makeSimpleRoute(path: '/', page: const HomeScreen(gameName: DataSource.gameNameSkyrim)),
+        GoRoute(
+          path: '/home/:gameName',
+          builder: (context, state) {
+            final gameName = state.params['gameName'] as String;
+            DataSource.checkGameName(gameName);
+
+            return HomeScreen(gameName: gameName);
+          },
+        ),
         GoRoute(
           path: '/:gameName/effects',
           builder: (context, state) {

@@ -7,8 +7,9 @@ import 'package:the_elder_scrolls_alchemy_client/router.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/navigation/navigation.dart';
 
 class LeftPanelNavigation extends ConsumerStatefulWidget {
-  const LeftPanelNavigation({Key? key, required this.notifyParent}) : super(key: key);
+  const LeftPanelNavigation({Key? key, required this.gameName, required this.notifyParent}) : super(key: key);
   final Function() notifyParent;
+  final String gameName;
 
   @override
   ConsumerState<LeftPanelNavigation> createState() => _LeftPanelNavigationState();
@@ -30,7 +31,7 @@ class _LeftPanelNavigationState extends ConsumerState<LeftPanelNavigation> {
   void onDestinationSelected(index) {
     ref.read(globalChosenTabIndexStateProvider.notifier).state = index;
 
-    var gameName = ref.watch(globalGameNameStateProvider);
+    var gameName = widget.gameName;
 
     String route = AlchemyRouter.getRouteByIndex(index: index);
     context.go('/$gameName$route');

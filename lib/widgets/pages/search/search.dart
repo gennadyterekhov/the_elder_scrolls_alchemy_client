@@ -14,17 +14,17 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  List<Widget> _getEffectsGridItems(List<Effect> effects) {
-    final gridItems = effects.map((value) => EffectCardSmall(effect: value));
+  // List<Widget> _getEffectsGridItems(List<Effect> effects) {
+  //   final gridItems = effects.map((value) => EffectCardSmall(effect: value));
 
-    return gridItems.toList();
-  }
+  //   return gridItems.toList();
+  // }
 
-  List<Widget> _getIngredientsGridItems(List<Ingredient> ingredients) {
-    final gridItems = ingredients.map((value) => IngredientCardSmall(ingredient: value));
+  // List<Widget> _getIngredientsGridItems(List<Ingredient> ingredients) {
+  //   final gridItems = ingredients.map((value) => IngredientCardSmall(ingredient: value));
 
-    return gridItems.toList();
-  }
+  //   return gridItems.toList();
+  // }
 
   final searchFieldController = TextEditingController();
   String _searchQuery = '';
@@ -59,8 +59,8 @@ class _SearchPageState extends State<SearchPage> {
     final List<Ingredient> ingredients = []; //IngredientResource.searchIngredientsByName(_searchQuery);
 
     final List<Widget> allCards = [
-      ..._getIngredientsGridItems(ingredients),
-      ..._getEffectsGridItems(effects),
+      // ..._getIngredientsGridItems(ingredients),
+      // ..._getEffectsGridItems(effects),
     ];
 
     final view = Column(

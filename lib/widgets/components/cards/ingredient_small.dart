@@ -7,8 +7,9 @@ import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 
 class IngredientCardSmall extends ConsumerStatefulWidget {
-  const IngredientCardSmall({Key? key, required this.ingredient}) : super(key: key);
+  const IngredientCardSmall({Key? key, required this.gameName, required this.ingredient}) : super(key: key);
   final Ingredient ingredient;
+  final String gameName;
 
   @override
   ConsumerState<IngredientCardSmall> createState() => _IngredientCardSmallState();
@@ -17,7 +18,7 @@ class IngredientCardSmall extends ConsumerStatefulWidget {
 class _IngredientCardSmallState extends ConsumerState<IngredientCardSmall> {
   @override
   Widget build(BuildContext context) {
-    var gameName = ref.watch(globalGameNameStateProvider);
+    final gameName = widget.gameName;
 
     final nameText = Container(
       margin: const EdgeInsets.only(top: 8.0),

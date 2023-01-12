@@ -5,8 +5,9 @@ import 'package:the_elder_scrolls_alchemy_client/widgets/navigation/bottom_panel
 import 'package:the_elder_scrolls_alchemy_client/widgets/navigation/left_panel_navigation.dart';
 
 class CustomScreen extends StatefulWidget {
-  CustomScreen({Key? key, required this.pageWidget}) : super(key: key);
+  CustomScreen({Key? key, required this.gameName, required this.pageWidget}) : super(key: key);
   Widget pageWidget;
+  final String gameName;
 
   @override
   State<CustomScreen> createState() => _CustomScreenState();
@@ -26,7 +27,9 @@ class _CustomScreenState extends State<CustomScreen> {
     );
 
     return Scaffold(
-      appBar: AlchemyAppBar(),
+      appBar: AlchemyAppBar(
+        gameName: widget.gameName,
+      ),
       body: orientationBuilder,
     );
   }
@@ -36,7 +39,7 @@ class _CustomScreenState extends State<CustomScreen> {
       mainAxisSize: MainAxisSize.min,
       children: [
         _buildPageWidget(),
-        BottomPanelNavigation(notifyParent: refresh),
+        BottomPanelNavigation(gameName: widget.gameName, notifyParent: refresh),
       ],
     );
     return layout;
@@ -55,7 +58,7 @@ class _CustomScreenState extends State<CustomScreen> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          LeftPanelNavigation(notifyParent: refresh),
+          LeftPanelNavigation(gameName: widget.gameName, notifyParent: refresh),
           const VerticalDivider(thickness: 1, width: 1),
           _buildPageWidget(),
         ],

@@ -5,8 +5,9 @@ import 'package:the_elder_scrolls_alchemy_client/widgets/components/effects_by_i
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/web_link.dart';
 
 class IngredientCardLong extends StatefulWidget {
-  const IngredientCardLong({Key? key, required this.ingredient}) : super(key: key);
+  const IngredientCardLong({Key? key, required this.gameName, required this.ingredient}) : super(key: key);
   final Ingredient ingredient;
+  final String gameName;
 
   @override
   State<StatefulWidget> createState() => _IngredientCardLongState();
@@ -86,7 +87,7 @@ class _IngredientCardLongState extends State<IngredientCardLong> {
           harvestProbabilityText,
           textText,
           const DividerText(text: 'Effects'),
-          EffectsByIngredient(ingredient: widget.ingredient),
+          EffectsByIngredient(gameName: widget.gameName, ingredient: widget.ingredient),
         ]),
       ),
     );

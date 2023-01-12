@@ -9,8 +9,9 @@ import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_micro.dart';
 
 class CommonIngredientsByColumn extends ConsumerStatefulWidget {
-  const CommonIngredientsByColumn({Key? key, required this.ingredient}) : super(key: key);
+  const CommonIngredientsByColumn({Key? key, required this.gameName, required this.ingredient}) : super(key: key);
   final Ingredient ingredient;
+  final String gameName;
 
   @override
   ConsumerState<CommonIngredientsByColumn> createState() => _CommonIngredientsByColumnState();
@@ -23,7 +24,7 @@ class _CommonIngredientsByColumnState extends ConsumerState<CommonIngredientsByC
 
       final List<Ingredient> ingredients = names
           .where((ingredientName) => ingredientName != widget.ingredient.name)
-          .map((name) => IngredientResource(gameName: ref.watch(globalGameNameStateProvider)).getIngredientByName(name))
+          .map((name) => IngredientResource(gameName: widget.gameName).getIngredientByName(name))
           .toList();
 
       return ingredients;
@@ -42,7 +43,8 @@ class _CommonIngredientsByColumnState extends ConsumerState<CommonIngredientsByC
   }
 
   List<Widget> _getCards(List<Ingredient> ingredients) {
-    final List<Widget> widgets = ingredients.map((e) => IngredientCardMicro(ingredient: e)).toList();
+    final List<Widget> widgets =
+        ingredients.map((e) => IngredientCardMicro(gameName: widget.gameName, ingredient: e)).toList();
     return widgets;
   }
 
@@ -51,8 +53,7 @@ class _CommonIngredientsByColumnState extends ConsumerState<CommonIngredientsByC
     List<Widget> cards = [];
     for (var i = 0; i < widget.ingredient.effectsNames.length; i += 1) {
       final ingredientsCardsList = _getIngredientsCardsByEffect(
-          EffectResource(gameName: ref.watch(globalGameNameStateProvider))
-              .getEffectByName(widget.ingredient.effectsNames[i]),
+          EffectResource(gameName: widget.gameName).getEffectByName(widget.ingredient.effectsNames[i]),
           widget.ingredient);
       if (ingredientsCardsList.isNotEmpty) {
         cards.add(

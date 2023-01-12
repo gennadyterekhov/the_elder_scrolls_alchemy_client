@@ -9,6 +9,6 @@ class EffectsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScreen(pageWidget: EffectsPage(gameName: gameName));
+    return CustomScreen(gameName: this.gameName, pageWidget: EffectsPage(gameName: gameName));
   }
 }

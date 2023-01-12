@@ -6,5 +6,7 @@ class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => CustomScreen(pageWidget: const SearchPage());
+  Widget build(BuildContext context) => CustomScreen(gameName: '', pageWidget: const Scaffold());
+  // Widget build(BuildContext context) => CustomScreen(pageWidget: const SearchPage());
+
 }

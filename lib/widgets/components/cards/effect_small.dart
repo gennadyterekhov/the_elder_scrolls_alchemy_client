@@ -8,8 +8,9 @@ import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 
 class EffectCardSmall extends ConsumerStatefulWidget {
-  const EffectCardSmall({Key? key, required this.effect}) : super(key: key);
+  const EffectCardSmall({Key? key, required this.gameName, required this.effect}) : super(key: key);
   final Effect effect;
+  final String gameName;
 
   @override
   ConsumerState<EffectCardSmall> createState() => _EffectCardSmallState();
@@ -18,7 +19,7 @@ class EffectCardSmall extends ConsumerStatefulWidget {
 class _EffectCardSmallState extends ConsumerState<EffectCardSmall> {
   @override
   Widget build(BuildContext context) {
-    var gameName = ref.watch(globalGameNameStateProvider);
+    final gameName = widget.gameName;
     Text nameText = Text(
       widget.effect.name,
       textAlign: TextAlign.center,

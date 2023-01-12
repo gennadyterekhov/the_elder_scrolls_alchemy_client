@@ -9,6 +9,6 @@ class IngredientsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScreen(pageWidget: IngredientsPage(gameName: gameName));
+    return CustomScreen(gameName: this.gameName, pageWidget: IngredientsPage(gameName: gameName));
   }
 }

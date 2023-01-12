@@ -6,8 +6,9 @@ import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 
 class EffectCardMicro extends ConsumerStatefulWidget {
-  const EffectCardMicro({Key? key, required this.effect}) : super(key: key);
+  const EffectCardMicro({Key? key, required this.gameName, required this.effect}) : super(key: key);
   final Effect effect;
+  final String gameName;
 
   @override
   ConsumerState<EffectCardMicro> createState() => _EffectCardMicroState();
@@ -15,9 +16,7 @@ class EffectCardMicro extends ConsumerStatefulWidget {
 
 class _EffectCardMicroState extends ConsumerState<EffectCardMicro> {
   void _onTap() {
-    var gameName = ref.watch(globalGameNameStateProvider);
-
-    context.go('/$gameName/effect/${widget.effect.name}');
+    context.go('/${widget.gameName}/effect/${widget.effect.name}');
   }
 
   @override

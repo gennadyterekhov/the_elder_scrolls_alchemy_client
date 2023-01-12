@@ -6,8 +6,9 @@ import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 
 class IngredientCardMicro extends ConsumerStatefulWidget {
-  const IngredientCardMicro({Key? key, required this.ingredient}) : super(key: key);
+  const IngredientCardMicro({Key? key, required this.gameName, required this.ingredient}) : super(key: key);
   final Ingredient ingredient;
+  final String gameName;
 
   @override
   ConsumerState<IngredientCardMicro> createState() => _IngredientCardMicroState();
@@ -15,9 +16,7 @@ class IngredientCardMicro extends ConsumerStatefulWidget {
 
 class _IngredientCardMicroState extends ConsumerState<IngredientCardMicro> {
   void _onTap() {
-    var gameName = ref.watch(globalGameNameStateProvider);
-
-    context.go('/${gameName}/ingredient/${widget.ingredient.name}');
+    context.go('/${widget.gameName}/ingredient/${widget.ingredient.name}');
   }
 
   @override

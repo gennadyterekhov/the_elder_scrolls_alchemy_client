@@ -9,8 +9,9 @@ import 'package:the_elder_scrolls_alchemy_client/widgets/components/common_ingre
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/divider_text.dart';
 
 class IngredientCardBig extends ConsumerStatefulWidget {
-  const IngredientCardBig({Key? key, required this.ingredient}) : super(key: key);
+  const IngredientCardBig({Key? key, required this.gameName, required this.ingredient}) : super(key: key);
   final Ingredient ingredient;
+  final String gameName;
 
   @override
   ConsumerState<IngredientCardBig> createState() => _IngredientCardBigState();
@@ -18,17 +19,15 @@ class IngredientCardBig extends ConsumerStatefulWidget {
 
 class _IngredientCardBigState extends ConsumerState<IngredientCardBig> {
   void onTap() {
-    var gameName = ref.watch(globalGameNameStateProvider);
-
-    context.go('/$gameName/ingredient/${widget.ingredient.name}');
+    context.go('/${widget.gameName}/ingredient/${widget.ingredient.name}');
   }
 
   @override
   Widget build(BuildContext context) {
     final cardsList = [
-      IngredientCardLong(ingredient: widget.ingredient),
+      IngredientCardLong(gameName: widget.gameName, ingredient: widget.ingredient),
       const DividerText(text: 'Ingredients with at least one common effect'),
-      CommonIngredientsByColumn(ingredient: widget.ingredient),
+      CommonIngredientsByColumn(gameName: widget.gameName, ingredient: widget.ingredient),
     ];
 
     final cardsColumn = Column(

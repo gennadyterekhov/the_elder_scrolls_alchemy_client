@@ -9,10 +9,10 @@ import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_micro.dart';
 
 class IngredientsByEffect extends ConsumerStatefulWidget {
-  const IngredientsByEffect({Key? key, required this.effect}) : super(key: key);
+  const IngredientsByEffect({Key? key, required this.gameName, required this.effect}) : super(key: key);
   final Effect effect;
   final bool showLabel = false;
-
+  final String gameName;
   @override
   ConsumerState<IngredientsByEffect> createState() => _IngredientsByEffectState();
 }
@@ -21,9 +21,8 @@ class _IngredientsByEffectState extends ConsumerState<IngredientsByEffect> {
   List<Ingredient> _getIngredientsByIndex(int index) {
     if (index < widget.effect.ingredientsNamesByPosition.length) {
       final List names = widget.effect.ingredientsNamesByPosition[index];
-      final List<Ingredient> ingredients = names
-          .map((name) => IngredientResource(gameName: ref.watch(globalGameNameStateProvider)).getIngredientByName(name))
-          .toList();
+      final List<Ingredient> ingredients =
+          names.map((name) => IngredientResource(gameName: widget.gameName).getIngredientByName(name)).toList();
 
       return ingredients;
     }
@@ -31,7 +30,8 @@ class _IngredientsByEffectState extends ConsumerState<IngredientsByEffect> {
   }
 
   List<Widget> _getCards(List<Ingredient> ingredients) {
-    final List<Widget> widgets = ingredients.map((e) => IngredientCardMicro(ingredient: e)).toList();
+    final List<Widget> widgets =
+        ingredients.map((e) => IngredientCardMicro(gameName: widget.gameName, ingredient: e)).toList();
     return widgets;
   }
 
