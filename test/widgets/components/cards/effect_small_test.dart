@@ -8,9 +8,10 @@ import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_big.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_small.dart';
 
-Widget createWidget() => ProviderScope(
+Widget createWidget() => Container(
       child: MaterialApp(
         home: EffectCardSmall(
+          gameName: DataSource.gameNameSkyrim,
           effect: Effect.fromMap(DataSource.getMap()[DataSource.gameNameSkyrim]['effects']['Cure Disease']),
         ),
       ),

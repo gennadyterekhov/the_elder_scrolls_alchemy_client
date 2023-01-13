@@ -6,9 +6,10 @@ import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_big.dart';
 
-Widget createWidget() => ProviderScope(
+Widget createWidget() => Container(
       child: MaterialApp(
         home: IngredientCardBig(
+          gameName: DataSource.gameNameSkyrim,
           ingredient: Ingredient.fromMap(DataSource.getMap()[DataSource.gameNameMorrowind]['ingredients']['Bread']),
         ),
       ),

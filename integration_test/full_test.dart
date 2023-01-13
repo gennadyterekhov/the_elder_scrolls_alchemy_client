@@ -10,7 +10,7 @@ void main() {
     binding.framePolicy = LiveTestWidgetsFlutterBindingFramePolicy.fullyLive;
 
     testWidgets('Scrolling test', (tester) async {
-      await tester.pumpWidget(Root());
+      await tester.pumpWidget(MyApp());
 
       await tester.tap(find.text('Effects'));
       await tester.pump();
