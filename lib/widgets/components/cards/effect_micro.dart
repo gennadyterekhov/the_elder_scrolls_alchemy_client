@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:go_router/go_router.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 
-class EffectCardMicro extends ConsumerStatefulWidget {
-  const EffectCardMicro({Key? key, required this.effect}) : super(key: key);
+class EffectCardMicro extends StatefulWidget {
+  const EffectCardMicro({Key? key, required this.gameName, required this.effect}) : super(key: key);
   final Effect effect;
+  final String gameName;
 
   @override
-  ConsumerState<EffectCardMicro> createState() => _EffectCardMicroState();
+  State<EffectCardMicro> createState() => _EffectCardMicroState();
 }
 
-class _EffectCardMicroState extends ConsumerState<EffectCardMicro> {
+class _EffectCardMicroState extends State<EffectCardMicro> {
   void _onTap() {
-    var gameName = ref.watch(globalGameNameStateProvider);
-
-    context.go('/$gameName/effect/${widget.effect.name}');
+    context.go('/${widget.gameName}/effect/${widget.effect.name}');
   }
 
   @override

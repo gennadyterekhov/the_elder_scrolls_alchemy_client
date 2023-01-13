@@ -3,10 +3,10 @@ import 'package:the_elder_scrolls_alchemy_client/widgets/screens/custom_screen.d
 import 'package:the_elder_scrolls_alchemy_client/widgets/pages/home/home.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-
+  const HomeScreen({Key? key, required this.gameName}) : super(key: key);
+  final String gameName;
   @override
   Widget build(BuildContext context) {
-    return CustomScreen(pageWidget: HomePage());
+    return CustomScreen(gameName: this.gameName, pageWidget: HomePage());
   }
 }

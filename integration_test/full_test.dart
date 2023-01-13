@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_big.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_big.dart';
 
 void main() {
   group('Testing App Performance Tests', () {
@@ -10,7 +13,7 @@ void main() {
     binding.framePolicy = LiveTestWidgetsFlutterBindingFramePolicy.fullyLive;
 
     testWidgets('Scrolling test', (tester) async {
-      await tester.pumpWidget(Root());
+      await tester.pumpWidget(MyApp());
 
       await tester.tap(find.text('Effects'));
       await tester.pump();
@@ -26,11 +29,43 @@ void main() {
       }, reportKey: 'scrolling_summary');
     });
 
-    testWidgets('Favorites operations test', (tester) async {
-      // TODO implement
+    testWidgets('Test inkwell works as a link', (tester) async {
+      await tester.pumpWidget(MyApp());
+
+      await tester.tap(find.text('Effects'));
+      await tester.pump();
+
+      expect(find.text('Cure Disease'), findsOneWidget);
+
+      await tester.tap(find.text('Cure Disease'));
+      await tester.pump();
+
+      expect(find.byType(EffectCardBig), findsOneWidget);
+
+      await tester.tap(find.text('Hawk Feathers'));
+      await tester.pump();
+
+      expect(find.byType(IngredientCardBig), findsOneWidget);
     });
+
     testWidgets('Change game', (tester) async {
-      // TODO implement
+      await tester.pumpWidget(MyApp());
+      expect(find.text('Skyrim Alchemy'), findsOneWidget);
+
+      await tester.tap(find.text('Effects'));
+      await tester.pump();
+
+      expect(find.text('Cure Disease'), findsOneWidget);
+
+      await tester.tap(find.byType(PopupMenuButton));
+      await tester.pump();
+      await tester.tap(find.text(DataSource.gameNameMorrowind));
+      await tester.pump();
+
+      await tester.tap(find.text('Effects'));
+      await tester.pump();
+
+      expect(find.text('Cure Blight Disease'), findsOneWidget);
     });
   });
 }
