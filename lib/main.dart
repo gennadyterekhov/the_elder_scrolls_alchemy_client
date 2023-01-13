@@ -58,13 +58,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: getPrimarySwatch(),
         pageTransitionsTheme: const PageTransitionsTheme(
-          builders: {
-            TargetPlatform.android: ZoomPageTransitionsBuilder(),
+          builders: <TargetPlatform, PageTransitionsBuilder>{
+            TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
             TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.fuchsia: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.linux: FadeUpwardsPageTransitionsBuilder(),
             TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.windows: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.linux: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.windows: FadeUpwardsPageTransitionsBuilder(),
           },
         ),
       ),

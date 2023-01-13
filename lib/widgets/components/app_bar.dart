@@ -4,8 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/extensions/capitalize.dart';
-import 'package:the_elder_scrolls_alchemy_client/main.dart';
-import 'package:the_elder_scrolls_alchemy_client/router.dart';
 
 class AlchemyAppBar extends ConsumerWidget implements PreferredSizeWidget {
   AlchemyAppBar({Key? key, required this.gameName}) : super(key: key);
@@ -16,8 +14,7 @@ class AlchemyAppBar extends ConsumerWidget implements PreferredSizeWidget {
 
   Function() chooseGame(context, ref, String gameName) {
     return () {
-      var path = '/$gameName${AlchemyRouter.getRouteByIndex(index: ref.read(globalChosenTabIndexStateProvider))}';
-      GoRouter.of(context).go(path);
+      GoRouter.of(context).go('/home/$gameName');
     };
   }
 

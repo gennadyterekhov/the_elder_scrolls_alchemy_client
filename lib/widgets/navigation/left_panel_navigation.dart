@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/provider.dart';
-import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/router.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/navigation/navigation.dart';
 
-class LeftPanelNavigation extends ConsumerStatefulWidget {
+class LeftPanelNavigation extends StatefulWidget {
   const LeftPanelNavigation({Key? key, required this.gameName, required this.notifyParent}) : super(key: key);
   final Function() notifyParent;
   final String gameName;
 
   @override
-  ConsumerState<LeftPanelNavigation> createState() => _LeftPanelNavigationState();
+  State<LeftPanelNavigation> createState() => _LeftPanelNavigationState();
 }
 
-class _LeftPanelNavigationState extends ConsumerState<LeftPanelNavigation> {
+class _LeftPanelNavigationState extends State<LeftPanelNavigation> {
   List<NavigationRailDestination> getDestinations() {
     return Navigation.getItems()
         .map(
@@ -29,8 +26,6 @@ class _LeftPanelNavigationState extends ConsumerState<LeftPanelNavigation> {
   }
 
   void onDestinationSelected(index) {
-    ref.read(globalChosenTabIndexStateProvider.notifier).state = index;
-
     var gameName = widget.gameName;
 
     String route = AlchemyRouter.getRouteByIndex(index: index);
@@ -39,10 +34,18 @@ class _LeftPanelNavigationState extends ConsumerState<LeftPanelNavigation> {
 
   @override
   Widget build(BuildContext context) {
+    var selectedIndex = 0;
+    String? url;
+    url = ModalRoute.of(context)?.settings.name;
+
+    if (url != null && url.contains('ingredient')) {
+      selectedIndex = 1;
+    }
+
     return NavigationRail(
       backgroundColor: Colors.grey[50],
       leading: null,
-      selectedIndex: ref.watch(globalChosenTabIndexStateProvider),
+      selectedIndex: selectedIndex,
       onDestinationSelected: onDestinationSelected,
       labelType: NavigationRailLabelType.all,
       destinations: getDestinations(),

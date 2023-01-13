@@ -5,8 +5,8 @@ import 'package:the_elder_scrolls_alchemy_client/widgets/navigation/bottom_panel
 import 'package:the_elder_scrolls_alchemy_client/widgets/navigation/left_panel_navigation.dart';
 
 class CustomScreen extends StatefulWidget {
-  CustomScreen({Key? key, required this.gameName, required this.pageWidget}) : super(key: key);
-  Widget pageWidget;
+  const CustomScreen({Key? key, required this.gameName, required this.pageWidget}) : super(key: key);
+  final Widget pageWidget;
   final String gameName;
 
   @override
