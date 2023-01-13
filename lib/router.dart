@@ -10,6 +10,19 @@ import 'package:the_elder_scrolls_alchemy_client/widgets/screens/ingredient_scre
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/ingredients_screen.dart';
 
 class AlchemyRouter {
+  static bool isGameNameValid({required String gameName}) {
+    return DataSource.gameNames.contains(gameName);
+  }
+
+  static bool isEffectValid({required String gameName, required String effectName}) {
+    return isGameNameValid(gameName: gameName) && DataSource.getMap()[gameName]['effects'].containsKey(effectName);
+  }
+
+  static bool isIngredientValid({required String gameName, required String ingredientName}) {
+    return isGameNameValid(gameName: gameName) &&
+        DataSource.getMap()[gameName]['ingredients'].containsKey(ingredientName);
+  }
+
   static GoRoute makeSimpleRoute({required String path, required Widget page}) {
     return GoRoute(
       path: path,
@@ -27,7 +40,10 @@ class AlchemyRouter {
           path: '/home/:gameName',
           builder: (context, state) {
             final gameName = state.params['gameName'] as String;
-            DataSource.checkGameName(gameName);
+
+            if (!isGameNameValid(gameName: gameName)) {
+              return ErrorScreen(error: 'Unknown game name');
+            }
 
             return HomeScreen(gameName: gameName);
           },
@@ -36,8 +52,9 @@ class AlchemyRouter {
           path: '/:gameName/effects',
           builder: (context, state) {
             final gameName = state.params['gameName'] as String;
-            DataSource.checkGameName(gameName);
-
+            if (!isGameNameValid(gameName: gameName)) {
+              return ErrorScreen(error: 'Unknown game name');
+            }
             return EffectsScreen(gameName: gameName);
           },
         ),
@@ -45,7 +62,9 @@ class AlchemyRouter {
           path: '/:gameName/ingredients',
           builder: (context, state) {
             final gameName = state.params['gameName'] as String;
-            DataSource.checkGameName(gameName);
+            if (!isGameNameValid(gameName: gameName)) {
+              return ErrorScreen(error: 'Unknown game name');
+            }
 
             return IngredientsScreen(gameName: gameName);
           },
@@ -56,6 +75,9 @@ class AlchemyRouter {
             final String effectName = state.params['effectName'] as String;
             final gameName = state.params['gameName'] as String;
 
+            if (!isEffectValid(gameName: gameName, effectName: effectName)) {
+              return ErrorScreen(error: 'Unknown game or effect name');
+            }
             return EffectScreen(gameName: gameName, effectName: effectName);
           },
         ),
@@ -64,6 +86,11 @@ class AlchemyRouter {
           builder: (context, state) {
             final String ingredientName = state.params['ingredientName'] as String;
             final gameName = state.params['gameName'] as String;
+
+            if (!isIngredientValid(gameName: gameName, ingredientName: ingredientName)) {
+              return ErrorScreen(error: 'Unknown game or ingredient name');
+            }
+
             return IngredientScreen(gameName: gameName, ingredientName: ingredientName);
           },
         ),

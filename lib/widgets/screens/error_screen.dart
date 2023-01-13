@@ -31,7 +31,7 @@ class ErrorScreenState extends State<ErrorScreen> {
     if (widget.error is Exception) {
       errorText = Text(widget.error.toString());
     }
-    debugPrint('$errorText');
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
