@@ -1,22 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:provider/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/router.dart';
+import 'package:the_elder_scrolls_alchemy_client/state/search_field_toggle.dart';
 
 void main() {
   runApp(
-    const Root(),
+    const MyApp(),
   );
 }
 
-class Root extends StatelessWidget {
-  const Root({super.key});
+// class Root extends StatelessWidget {
+//   const Root({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const ProviderScope(child: MyApp());
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return const ProviderScope(child: MyApp());
+//   }
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -42,29 +43,34 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'TES Alchemy',
-      builder: (context, widget) {
-        ErrorWidget.builder = (errorDetails) => Column(
-              children: [
-                CupertinoActivityIndicator(),
-                Text(errorDetails.toString()),
-              ],
-            );
-        if (widget != null) return widget;
-        throw ('widget is null');
+    return ChangeNotifierProvider(
+      create: (BuildContext context) {
+        return SearchFieldToggle();
       },
-      routerConfig: AlchemyRouter.getRouter(),
-      theme: ThemeData(
-        primarySwatch: getPrimarySwatch(),
-        pageTransitionsTheme: const PageTransitionsTheme(
-          builders: <TargetPlatform, PageTransitionsBuilder>{
-            TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
-            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.linux: FadeUpwardsPageTransitionsBuilder(),
-            TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.windows: FadeUpwardsPageTransitionsBuilder(),
-          },
+      child: MaterialApp.router(
+        title: 'TES Alchemy',
+        builder: (context, widget) {
+          ErrorWidget.builder = (errorDetails) => Column(
+                children: [
+                  CupertinoActivityIndicator(),
+                  Text(errorDetails.toString()),
+                ],
+              );
+          if (widget != null) return widget;
+          throw ('widget is null');
+        },
+        routerConfig: AlchemyRouter.getRouter(),
+        theme: ThemeData(
+          primarySwatch: getPrimarySwatch(),
+          pageTransitionsTheme: const PageTransitionsTheme(
+            builders: <TargetPlatform, PageTransitionsBuilder>{
+              TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+              TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+              TargetPlatform.linux: FadeUpwardsPageTransitionsBuilder(),
+              TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+              TargetPlatform.windows: FadeUpwardsPageTransitionsBuilder(),
+            },
+          ),
         ),
       ),
     );

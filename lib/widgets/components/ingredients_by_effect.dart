@@ -1,23 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_micro.dart';
 
-class IngredientsByEffect extends ConsumerStatefulWidget {
+class IngredientsByEffect extends StatefulWidget {
   const IngredientsByEffect({Key? key, required this.gameName, required this.effect}) : super(key: key);
   final Effect effect;
   final bool showLabel = false;
   final String gameName;
   @override
-  ConsumerState<IngredientsByEffect> createState() => _IngredientsByEffectState();
+  State<IngredientsByEffect> createState() => _IngredientsByEffectState();
 }
 
-class _IngredientsByEffectState extends ConsumerState<IngredientsByEffect> {
+class _IngredientsByEffectState extends State<IngredientsByEffect> {
   List<Ingredient> _getIngredientsByIndex(int index) {
     if (index < widget.effect.ingredientsNamesByPosition.length) {
       final List names = widget.effect.ingredientsNamesByPosition[index];

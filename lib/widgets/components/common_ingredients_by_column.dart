@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:the_elder_scrolls_alchemy_client/data/effect_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_micro.dart';
 
-class CommonIngredientsByColumn extends ConsumerStatefulWidget {
+class CommonIngredientsByColumn extends StatefulWidget {
   const CommonIngredientsByColumn({Key? key, required this.gameName, required this.ingredient}) : super(key: key);
   final Ingredient ingredient;
   final String gameName;
 
   @override
-  ConsumerState<CommonIngredientsByColumn> createState() => _CommonIngredientsByColumnState();
+  State<CommonIngredientsByColumn> createState() => _CommonIngredientsByColumnState();
 }
 
-class _CommonIngredientsByColumnState extends ConsumerState<CommonIngredientsByColumn> {
+class _CommonIngredientsByColumnState extends State<CommonIngredientsByColumn> {
   List<Ingredient> _getIngredientsByIndex(Effect effect, int index) {
     if (index < effect.ingredientsNamesByPosition.length) {
       final List names = effect.ingredientsNamesByPosition[index];

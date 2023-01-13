@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:the_elder_scrolls_alchemy_client/state/search_field_toggle.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/app_bar.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/navigation/bottom_panel_navigation.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/navigation/left_panel_navigation.dart';
@@ -26,7 +28,10 @@ class _CustomScreenState extends State<CustomScreen> {
       },
     );
 
-    return Scaffold(
+    return
+        // builder: (context, child) => SearchFieldToggle(),
+
+        Scaffold(
       appBar: AlchemyAppBar(
         gameName: widget.gameName,
       ),

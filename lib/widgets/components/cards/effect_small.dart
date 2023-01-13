@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/constants.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/provider.dart';
-import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 
-class EffectCardSmall extends ConsumerStatefulWidget {
+class EffectCardSmall extends StatefulWidget {
   const EffectCardSmall({Key? key, required this.gameName, required this.effect}) : super(key: key);
   final Effect effect;
   final String gameName;
 
   @override
-  ConsumerState<EffectCardSmall> createState() => _EffectCardSmallState();
+  State<EffectCardSmall> createState() => _EffectCardSmallState();
 }
 
-class _EffectCardSmallState extends ConsumerState<EffectCardSmall> {
+class _EffectCardSmallState extends State<EffectCardSmall> {
   @override
   Widget build(BuildContext context) {
     final gameName = widget.gameName;

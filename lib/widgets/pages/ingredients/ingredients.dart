@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:provider/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
+import 'package:the_elder_scrolls_alchemy_client/state/search_field_toggle.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_small.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards_grid.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/search_field.dart';
@@ -57,8 +58,8 @@ class _IngredientsPageState extends State<IngredientsPage> {
 
   @override
   Widget build(BuildContext context) {
-    // final isSearchShown = ref.watch(globalIsSearchShownStateProvider);
-    final isSearchShown = true;
+    final searchFieldToggle = Provider.of<SearchFieldToggle>(context);
+    final isSearchVisible = searchFieldToggle.isSearchFieldShown; // final isSearchShown = true;
 
     final gameName = widget.gameName;
 
@@ -68,7 +69,7 @@ class _IngredientsPageState extends State<IngredientsPage> {
 
     return Column(
       children: [
-        isSearchShown ? SearchField(controller: searchFieldController) : Container(),
+        isSearchVisible ? SearchField(controller: searchFieldController) : Container(),
         Expanded(
           child: CardsGrid(
             cards: ingredientsCards,

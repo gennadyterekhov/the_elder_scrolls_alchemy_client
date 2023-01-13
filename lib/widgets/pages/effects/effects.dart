@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
+import 'package:the_elder_scrolls_alchemy_client/state/search_field_toggle.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_small.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards_grid.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/search_field.dart';
 
 class EffectsPage extends StatefulWidget {
-  // const EffectsPage({Key? key}) : super(key: key);
-  EffectsPage({Key? key, required this.gameName}) : super(key: key);
-  String gameName;
+  const EffectsPage({Key? key, required this.gameName}) : super(key: key);
+  final String gameName;
 
   @override
   State<EffectsPage> createState() => _EffectsPageState();
@@ -17,6 +18,7 @@ class EffectsPage extends StatefulWidget {
 class _EffectsPageState extends State<EffectsPage> {
   final searchFieldController = TextEditingController();
   String _searchQuery = '';
+
   List<Widget> _getEffectsGridItems(List<Effect> effects) {
     final gridItems = effects.map((value) => EffectCardSmall(gameName: widget.gameName, effect: value));
 
@@ -63,11 +65,8 @@ class _EffectsPageState extends State<EffectsPage> {
 
   @override
   Widget build(BuildContext context) {
-    // var currentName = ref.watch(globalGameNameStateProvider);
-    // final isSearchShown = ref.watch(globalIsSearchShownStateProvider);
-    final isSearchShown = true; //TODO use provider, no riverpod
-
-    // Map<String, dynamic> currentMap = ref.watch(globalCurrentGameMapProvider)['effects'];
+    final searchFieldToggle = Provider.of<SearchFieldToggle>(context);
+    final isSearchVisible = searchFieldToggle.isSearchFieldShown;
 
     Map<String, dynamic> currentMap = DataSource.getMap()[widget.gameName]['effects'];
 
@@ -77,7 +76,7 @@ class _EffectsPageState extends State<EffectsPage> {
 
     return Column(
       children: [
-        isSearchShown ? SearchField(controller: searchFieldController) : Container(),
+        isSearchVisible ? SearchField(controller: searchFieldController) : Container(),
         Expanded(
           child: CardsGrid(
             cards: effectsCards,
