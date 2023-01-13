@@ -4,17 +4,11 @@ import 'package:the_elder_scrolls_alchemy_client/widgets/pages/ingredients/ingre
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/custom_screen.dart';
 
 class IngredientsScreen extends StatelessWidget {
-  const IngredientsScreen({Key? key}) : super(key: key);
+  const IngredientsScreen({Key? key, required this.gameName}) : super(key: key);
+  final String gameName;
 
   @override
   Widget build(BuildContext context) {
-    var widget;
-    try {
-      widget = CustomScreen(pageWidget: const IngredientsPage());
-    } catch (exception) {
-      widget = Column(children: [CupertinoActivityIndicator(), Text(exception.toString())]);
-    }
-
-    return widget;
+    return CustomScreen(gameName: this.gameName, pageWidget: IngredientsPage(gameName: gameName));
   }
 }

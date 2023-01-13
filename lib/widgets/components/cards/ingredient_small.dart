@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/constants.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 
-class IngredientCardSmall extends ConsumerStatefulWidget {
-  const IngredientCardSmall({Key? key, required this.ingredient}) : super(key: key);
+class IngredientCardSmall extends StatefulWidget {
+  const IngredientCardSmall({Key? key, required this.gameName, required this.ingredient}) : super(key: key);
   final Ingredient ingredient;
+  final String gameName;
 
   @override
-  ConsumerState<IngredientCardSmall> createState() => _IngredientCardSmallState();
+  State<IngredientCardSmall> createState() => _IngredientCardSmallState();
 }
 
-class _IngredientCardSmallState extends ConsumerState<IngredientCardSmall> {
+class _IngredientCardSmallState extends State<IngredientCardSmall> {
   @override
   Widget build(BuildContext context) {
-    var gameName = ref.watch(globalGameNameStateProvider);
+    final gameName = widget.gameName;
 
     final nameText = Container(
       margin: const EdgeInsets.only(top: 8.0),

@@ -1,16 +1,13 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/exception/not_found.dart';
 import 'package:the_elder_scrolls_alchemy_client/exception/wrong_game.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 
 class EffectResource {
   late String gameName;
-  Ref? ref;
   Map<String, dynamic> currentMap = {};
 
-  EffectResource({this.gameName = 'skyrim', this.ref}) {
+  EffectResource({this.gameName = 'skyrim'}) {
     currentMap = DataSource.getMap()[gameName]['effects'];
   }
 
@@ -19,7 +16,7 @@ class EffectResource {
   }
 
   factory EffectResource.fromMap(gameMap) {
-    var e = EffectResource(ref: null);
+    var e = EffectResource();
     e.currentMap = gameMap;
     return e;
   }

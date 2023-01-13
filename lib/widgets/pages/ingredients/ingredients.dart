@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:provider/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
+import 'package:the_elder_scrolls_alchemy_client/state/search_field_toggle.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_small.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards_grid.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/search_field.dart';
 
-class IngredientsPage extends ConsumerStatefulWidget {
-  const IngredientsPage({Key? key}) : super(key: key);
+class IngredientsPage extends StatefulWidget {
+  IngredientsPage({Key? key, required this.gameName}) : super(key: key);
+  String gameName;
 
   @override
-  ConsumerState<IngredientsPage> createState() => _IngredientsPageState();
+  State<IngredientsPage> createState() => _IngredientsPageState();
 }
 
-class _IngredientsPageState extends ConsumerState<IngredientsPage> {
+class _IngredientsPageState extends State<IngredientsPage> {
   List<IngredientCardSmall> _getGridItems(Map<String, Ingredient> ingredients) {
-    final gridItems = ingredients.entries.map((value) => IngredientCardSmall(ingredient: value.value));
+    final gridItems =
+        ingredients.entries.map((value) => IngredientCardSmall(gameName: widget.gameName, ingredient: value.value));
 
     return gridItems.toList();
   }
@@ -48,16 +51,17 @@ class _IngredientsPageState extends ConsumerState<IngredientsPage> {
   }
 
   List<Widget> _getIngredientsGridItems(List<Ingredient> ingredients) {
-    final gridItems = ingredients.map((value) => IngredientCardSmall(ingredient: value));
+    final gridItems = ingredients.map((value) => IngredientCardSmall(gameName: widget.gameName, ingredient: value));
 
     return gridItems.toList();
   }
 
   @override
   Widget build(BuildContext context) {
-    final isSearchShown = ref.watch(globalIsSearchShownStateProvider);
+    final searchFieldToggle = Provider.of<SearchFieldToggle>(context);
+    final isSearchVisible = searchFieldToggle.isSearchFieldShown; // final isSearchShown = true;
 
-    final gameName = ref.watch(globalGameNameStateProvider);
+    final gameName = widget.gameName;
 
     final List<Ingredient> ingredients = IngredientResource(gameName: gameName).searchIngredientsByName(_searchQuery);
 
@@ -65,7 +69,7 @@ class _IngredientsPageState extends ConsumerState<IngredientsPage> {
 
     return Column(
       children: [
-        isSearchShown ? SearchField(controller: searchFieldController) : Container(),
+        isSearchVisible ? SearchField(controller: searchFieldController) : Container(),
         Expanded(
           child: CardsGrid(
             cards: ingredientsCards,

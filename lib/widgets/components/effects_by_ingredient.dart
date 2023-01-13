@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:the_elder_scrolls_alchemy_client/data/effect_resource.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/provider.dart';
-import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_micro.dart';
 
-class EffectsByIngredient extends ConsumerStatefulWidget {
-  const EffectsByIngredient({Key? key, required this.ingredient}) : super(key: key);
+class EffectsByIngredient extends StatefulWidget {
+  const EffectsByIngredient({Key? key, required this.gameName, required this.ingredient}) : super(key: key);
   final Ingredient ingredient;
-
+  final String gameName;
   @override
-  ConsumerState<EffectsByIngredient> createState() => _EffectsByIngredientState();
+  State<EffectsByIngredient> createState() => _EffectsByIngredientState();
 }
 
-class _EffectsByIngredientState extends ConsumerState<EffectsByIngredient> {
+class _EffectsByIngredientState extends State<EffectsByIngredient> {
   Effect? _getEffectByIndex(int index) {
     if (index < widget.ingredient.effectsNames.length) {
       final String name = widget.ingredient.effectsNames[index] as String;
-      final Effect effect = EffectResource(gameName: ref.watch(globalGameNameStateProvider)).getEffectByName(name);
+      final Effect effect = EffectResource(gameName: widget.gameName).getEffectByName(name);
 
       return effect;
     }
@@ -29,7 +27,7 @@ class _EffectsByIngredientState extends ConsumerState<EffectsByIngredient> {
 
   Widget _getCard(Effect? effect) {
     return effect != null
-        ? EffectCardMicro(effect: effect)
+        ? EffectCardMicro(gameName: widget.gameName, effect: effect)
         : const Card(
             child: Text('No effect in this position'),
           );
