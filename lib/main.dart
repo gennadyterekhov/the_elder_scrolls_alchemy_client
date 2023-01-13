@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/router.dart';
 import 'package:the_elder_scrolls_alchemy_client/state/search_field_toggle.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/screens/error_screen.dart';
 
 void main() {
   runApp(
@@ -50,11 +52,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp.router(
         title: 'TES Alchemy',
         builder: (context, widget) {
-          ErrorWidget.builder = (errorDetails) => Column(
-                children: [
-                  CupertinoActivityIndicator(),
-                  Text(errorDetails.toString()),
-                ],
+          ErrorWidget.builder = (errorDetails) => ErrorScreen(
+                error: errorDetails.exception,
               );
           if (widget != null) return widget;
           throw ('widget is null');

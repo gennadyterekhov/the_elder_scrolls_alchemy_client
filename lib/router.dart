@@ -4,6 +4,7 @@ import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/navigation/navigation.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/effect_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/effects_screen.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/screens/error_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/home_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/ingredient_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/ingredients_screen.dart';
@@ -18,6 +19,7 @@ class AlchemyRouter {
 
   static GoRouter getRouter() {
     final GoRouter router = GoRouter(
+      errorBuilder: (context, state) => ErrorScreen(error: state.error),
       routes: <GoRoute>[
         makeSimpleRoute(path: '/home', page: const HomeScreen(gameName: DataSource.gameNameSkyrim)),
         makeSimpleRoute(path: '/', page: const HomeScreen(gameName: DataSource.gameNameSkyrim)),
