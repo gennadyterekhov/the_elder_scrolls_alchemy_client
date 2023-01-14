@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/constants.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/web_link.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:the_elder_scrolls_alchemy_client/extensions/capitalize.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key, required this.gameName}) : super(key: key);
+  final String gameName;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -23,6 +27,20 @@ List<DropdownMenuItem<String>> getLocaleButtonsDropdown(context) {
       ),
     );
   });
+
+  return popupMenuItems;
+}
+
+List<DropdownMenuItem<String>> getGameButtonsDropdown(context) {
+  List<DropdownMenuItem<String>> popupMenuItems = [];
+  for (var gameName in DataSource.gameNames) {
+    popupMenuItems.add(
+      DropdownMenuItem(
+        value: gameName,
+        child: Text(gameName.capitalize()),
+      ),
+    );
+  }
 
   return popupMenuItems;
 }
@@ -69,9 +87,30 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
     return languagePicker;
   }
 
+  Widget getGamePicker(context) {
+    final gamePicker = DropdownButtonFormField(
+      decoration: InputDecoration(
+        prefixIcon: const Icon(Icons.videogame_asset),
+        labelText: AppLocalizations.of(context)!.homePageChangeGame,
+      ),
+      value: widget.gameName,
+      icon: const Icon(Icons.expand_more),
+      items: getGameButtonsDropdown(context),
+      onChanged: (String? gameName) {
+        if (gameName is String) {
+          GoRouter.of(context).go('/$gameName/home');
+        }
+      },
+    );
+
+    return gamePicker;
+  }
+
   @override
   Widget build(BuildContext context) {
     final languagePicker = getLanguagePicker(context);
+
+    final gamePicker = getGamePicker(context);
 
     final welcomeText = SelectableText(
       AppLocalizations.of(context)!.homePageDescription,
@@ -115,6 +154,7 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
             children: [
               welcomeText,
               dataOriginDescriptionText,
+              gamePicker,
               languagePicker,
               const Image(image: AssetImage('assets/img/logo.png')),
               linksRow,

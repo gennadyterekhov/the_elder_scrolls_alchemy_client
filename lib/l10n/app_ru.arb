@@ -26,7 +26,8 @@
   "errorScreenFallbackMessage": "Возникла неизвестная ошибка",
   "effectsLeftPanel": "Эффекты",
   "ingredientsLeftPanel": "Ингредиенты",
-  "homePageChangeLanguage": "Изменить язык:",
+  "homePageChangeGame":"Изменить игру",
+  "homePageChangeLanguage": "Изменить язык",
   "homePageDescription": "Справочник алхимических эффектов и ингредиентов из 'Древних свитков'.",
   "homePageDataOriginDescription": "Данные взяты из открытых источников, напр. en.uesp.net ."
 }

@@ -15,37 +15,10 @@ class AlchemyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => Size(20.0, 50.0);
 
-  Function() chooseGame(context, String gameName) {
-    return () {
-      GoRouter.of(context).go('/$gameName/home');
-    };
-  }
-
   @override
   AppBar build(
     BuildContext context,
   ) {
-    final actions = [
-      PopupMenuButton<Text>(
-        itemBuilder: (context) {
-          return [
-            PopupMenuItem(
-              onTap: chooseGame(context, DataSource.gameNameSkyrim),
-              child: Text(DataSource.gameNameSkyrim.capitalize()),
-            ),
-            PopupMenuItem(
-              onTap: chooseGame(context, DataSource.gameNameOblivion),
-              child: Text(DataSource.gameNameOblivion.capitalize()),
-            ),
-            PopupMenuItem(
-              onTap: chooseGame(context, DataSource.gameNameMorrowind),
-              child: Text(DataSource.gameNameMorrowind.capitalize()),
-            ),
-          ];
-        },
-      )
-    ];
-
     final homeLink = InkWell(
       onTap: () => context.go('/$gameName/home'),
       child: Text(gameName.capitalize()),
@@ -71,7 +44,6 @@ class AlchemyAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       automaticallyImplyLeading: true,
       title: titleLine,
-      actions: actions,
     );
   }
 }
