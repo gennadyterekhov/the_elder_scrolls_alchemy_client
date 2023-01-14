@@ -1,25 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/router.dart';
 import 'package:the_elder_scrolls_alchemy_client/state/search_field_toggle.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/error_screen.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(
     const MyApp(),
   );
 }
-
-// class Root extends StatelessWidget {
-//   const Root({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return const ProviderScope(child: MyApp());
-//   }
-// }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -50,6 +41,28 @@ class MyApp extends StatelessWidget {
         return SearchFieldToggle();
       },
       child: MaterialApp.router(
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('en', ''),
+          Locale('es', ''),
+          Locale('fr', ''),
+          Locale('de', ''),
+          Locale('ru', ''),
+          Locale('it', ''),
+          Locale('ja', ''),
+          Locale('po', ''),
+          Locale.fromSubtags(languageCode: 'zh'), // generic Chinese
+          Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans'), // generic simplified Chinese
+          Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'), // generic traditional Chinese
+          Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans', countryCode: 'CN'),
+          Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant', countryCode: 'TW'),
+          Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant', countryCode: 'HK'),
+        ],
         title: 'TES Alchemy',
         builder: (context, widget) {
           ErrorWidget.builder = (errorDetails) => ErrorScreen(

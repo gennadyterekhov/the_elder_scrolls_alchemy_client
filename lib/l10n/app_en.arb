@@ -1,0 +1,11 @@
+{
+  "effectsLeftPanel": "Effects",
+  "ingredientsLeftPanel": "Ingredients",
+
+  "homePageDescription": "The Library of Alchemy Effects and Ingredients from 'The Elder Scrolls'.",
+  "homePageDataOriginDescription": "The data are taken from open sources, such as en.uesp.net .",
+
+  "@helloWorld": {
+    "description": "The conventional newborn programmer greeting"
+  }
+}

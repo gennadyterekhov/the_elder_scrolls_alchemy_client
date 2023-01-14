@@ -14,7 +14,7 @@ class LeftPanelNavigation extends StatefulWidget {
 
 class _LeftPanelNavigationState extends State<LeftPanelNavigation> {
   List<NavigationRailDestination> getDestinations() {
-    return Navigation.getItems()
+    return Navigation.getItems(context: context)
         .map(
           (navigationItem) => NavigationRailDestination(
             icon: navigationItem.icon,

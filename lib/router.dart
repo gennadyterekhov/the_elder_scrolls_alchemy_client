@@ -8,6 +8,7 @@ import 'package:the_elder_scrolls_alchemy_client/widgets/screens/error_screen.da
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/home_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/ingredient_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/ingredients_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AlchemyRouter {
   static bool isGameNameValid({required String gameName}) {
@@ -23,6 +24,12 @@ class AlchemyRouter {
         DataSource.getMap()[gameName]['ingredients'].containsKey(ingredientName);
   }
 
+  static bool isLocaleValid({
+    required String locale,
+  }) {
+    return AppLocalizations.supportedLocales.contains(Locale(locale));
+  }
+
   static GoRoute makeSimpleRoute({required String path, required Widget page}) {
     return GoRoute(
       path: path,
@@ -30,12 +37,51 @@ class AlchemyRouter {
     );
   }
 
+  static Widget Function(BuildContext) customBuilder({required Widget screen}) {
+    return (BuildContext context) => screen;
+  }
+
   static GoRouter getRouter() {
     final GoRouter router = GoRouter(
+      // redirect: (BuildContext context, GoRouterState state) {
+      //   // if no locale in url, use device locale and redirect to url with this locale; english is fallback
+
+      //   final locale = state.params['locale'];
+      //   if (locale is String && isLocaleValid(locale: locale)) {
+      //     return null;
+      //   }
+
+      //   String newPath = state.path ?? '/home';
+
+      //   Locale deviceLocale = Localizations.localeOf(context);
+      //   if (isLocaleValid(locale: deviceLocale.languageCode)) {
+      //     return '/${deviceLocale.languageCode}$newPath';
+      //   }
+      //   return '/en$newPath';
+      // },
       errorBuilder: (context, state) => ErrorScreen(error: state.error),
       routes: <GoRoute>[
         makeSimpleRoute(path: '/home', page: const HomeScreen(gameName: DataSource.gameNameSkyrim)),
         makeSimpleRoute(path: '/', page: const HomeScreen(gameName: DataSource.gameNameSkyrim)),
+
+        // GoRoute(
+        //   path: '/:locale/home/:gameName',
+        //   builder: (context, state) {
+        //     final locale = state.params['locale'] as String;
+
+        //     final gameName = state.params['gameName'] as String;
+
+        //     if (!isGameNameValid(gameName: gameName) || !isLocaleValid(locale: locale)) {
+        //       return ErrorScreen(error: 'Unknown game name or locale');
+        //     }
+
+        //     return Localizations.override(
+        //       context: context,
+        //       locale: Locale(locale),
+        //       child: Builder(builder: customBuilder(screen: HomeScreen(gameName: gameName))),
+        //     );
+        //   },
+        // ),
         GoRoute(
           path: '/home/:gameName',
           builder: (context, state) {
@@ -100,12 +146,12 @@ class AlchemyRouter {
     return router;
   }
 
-  static String getRouteByIndex({int index = 0, bool withHome = true}) {
-    final items = Navigation.getItems();
+  static String getRouteByIndex({int index = 0}) {
+    final items = Navigation.getItemsPaths();
     if (index > items.length) {
       return '/home';
     }
 
-    return items[index].path;
+    return items[index]['path'] ?? '/home';
   }
 }

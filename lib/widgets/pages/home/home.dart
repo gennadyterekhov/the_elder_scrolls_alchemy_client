@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/web_link.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -28,7 +29,12 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
   @override
   Widget build(BuildContext context) {
     final welcomeText = SelectableText(
-      'This app allows to expore data about alchemy in various elder scrolls games.',
+      AppLocalizations.of(context)!.homePageDescription,
+      style: Theme.of(context).textTheme.headline5,
+    );
+
+    final dataOriginDescriptionText = SelectableText(
+      AppLocalizations.of(context)!.homePageDataOriginDescription,
       style: Theme.of(context).textTheme.headline5,
     );
 
@@ -57,12 +63,11 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
         padding: const EdgeInsets.all(30.0),
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               welcomeText,
-              const Spacer(),
+              dataOriginDescriptionText,
               const Image(image: AssetImage('assets/img/logo.png')),
-              const Spacer(),
               linksRow,
             ],
           ),

@@ -2,6 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>zh_TW</string>
+		<string>zh_CN</string>
+		<string>fr</string>
+		<string>de</string>
+		<string>it</string>
+		<string>ja</string>
+		<string>Russian</string>
+		<string>Spanish</string>
+		<string>Polish</string>
+	</array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
@@ -50,14 +63,14 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
-		<key>CFBundleTypeRole</key>
-		<string>Editor</string>
-		<key>CFBundleURLName</key>
-		<string>the-elder-scrolls-alchemy.website.yandexcloud.net</string>
-		<key>CFBundleURLSchemes</key>
-		<array>
-		<string>customscheme</string>
-		</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>the-elder-scrolls-alchemy.website.yandexcloud.net</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>customscheme</string>
+			</array>
 		</dict>
 	</array>
 </dict>
