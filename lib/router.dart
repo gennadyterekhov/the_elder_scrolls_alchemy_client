@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:the_elder_scrolls_alchemy_client/constants.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/navigation/navigation.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/effect_screen.dart';
@@ -43,47 +44,11 @@ class AlchemyRouter {
 
   static GoRouter getRouter() {
     final GoRouter router = GoRouter(
-      // redirect: (BuildContext context, GoRouterState state) {
-      //   // if no locale in url, use device locale and redirect to url with this locale; english is fallback
-
-      //   final locale = state.params['locale'];
-      //   if (locale is String && isLocaleValid(locale: locale)) {
-      //     return null;
-      //   }
-
-      //   String newPath = state.path ?? '/home';
-
-      //   Locale deviceLocale = Localizations.localeOf(context);
-      //   if (isLocaleValid(locale: deviceLocale.languageCode)) {
-      //     return '/${deviceLocale.languageCode}$newPath';
-      //   }
-      //   return '/en$newPath';
-      // },
+      initialLocation: Constant.skyrimHomeLink,
       errorBuilder: (context, state) => ErrorScreen(error: state.error),
       routes: <GoRoute>[
-        makeSimpleRoute(path: '/home', page: const HomeScreen(gameName: DataSource.gameNameSkyrim)),
-        makeSimpleRoute(path: '/', page: const HomeScreen(gameName: DataSource.gameNameSkyrim)),
-
-        // GoRoute(
-        //   path: '/:locale/home/:gameName',
-        //   builder: (context, state) {
-        //     final locale = state.params['locale'] as String;
-
-        //     final gameName = state.params['gameName'] as String;
-
-        //     if (!isGameNameValid(gameName: gameName) || !isLocaleValid(locale: locale)) {
-        //       return ErrorScreen(error: 'Unknown game name or locale');
-        //     }
-
-        //     return Localizations.override(
-        //       context: context,
-        //       locale: Locale(locale),
-        //       child: Builder(builder: customBuilder(screen: HomeScreen(gameName: gameName))),
-        //     );
-        //   },
-        // ),
         GoRoute(
-          path: '/home/:gameName',
+          path: '/:gameName/home',
           builder: (context, state) {
             final gameName = state.params['gameName'] as String;
 
@@ -149,9 +114,9 @@ class AlchemyRouter {
   static String getRouteByIndex({int index = 0}) {
     final items = Navigation.getItemsPaths();
     if (index > items.length) {
-      return '/home';
+      return Constant.skyrimHomeLink;
     }
 
-    return items[index]['path'] ?? '/home';
+    return items[index]['path'] ?? Constant.skyrimHomeLink;
   }
 }

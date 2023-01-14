@@ -1,9 +1,16 @@
 {
-  "effectsLeftPanel": "Эффеты",
+
+  "errorScreenHomeLink": "Домой",
+  "errorScreenGithub": "Оставить багрепорт",
+  "errorScreenTitle": "Ошибка",
+  "errorScreenFallbackMessage": "Возникла неизвестная ошибка",
+
+
+  "effectsLeftPanel": "Эффекты",
   "ingredientsLeftPanel": "Ингредиенты",
   
+  "homePageChangeLanguage": "Изменить язык:",
   "homePageDescription": "Справочник алхимических эффектов и ингредиентов из 'Древних свитков'.",
-
   "homePageDataOriginDescription": "Данные взяты из открытых источников, напр. en.uesp.net ."
 
 }

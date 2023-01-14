@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:the_elder_scrolls_alchemy_client/constants.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/extensions/capitalize.dart';
+import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/state/search_field_toggle.dart';
 
 class AlchemyAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -14,7 +16,7 @@ class AlchemyAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   Function() chooseGame(context, String gameName) {
     return () {
-      GoRouter.of(context).go('/home/$gameName');
+      GoRouter.of(context).go('/$gameName/home');
     };
   }
 
@@ -44,7 +46,7 @@ class AlchemyAppBar extends StatelessWidget implements PreferredSizeWidget {
     ];
 
     final homeLink = InkWell(
-      onTap: () => context.go('/home/$gameName'),
+      onTap: () => context.go('/$gameName/home'),
       child: Text(gameName.capitalize()),
     );
 
