@@ -6,6 +6,7 @@ import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/extensions/capitalize.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/state/search_field_toggle.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AlchemyAppBar extends StatelessWidget implements PreferredSizeWidget {
   const AlchemyAppBar({Key? key, required this.gameName}) : super(key: key);
@@ -56,7 +57,7 @@ class AlchemyAppBar extends StatelessWidget implements PreferredSizeWidget {
     final toggleSearchInkWell = InkWell(
       child: Wrap(children: [
         isSearchVisible ? const Icon(Icons.visibility_off) : const Icon(Icons.visibility),
-        const Text(' Search'),
+        Text(' ' + AppLocalizations.of(context)!.appBarSearchToggle),
       ]),
       onTap: () => searchFieldToggle.isSearchFieldShown = !isSearchVisible,
     );

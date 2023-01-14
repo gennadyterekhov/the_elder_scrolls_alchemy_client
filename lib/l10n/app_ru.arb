@@ -1,16 +1,32 @@
 {
+  "appBarSearchToggle":"Поиск",
+  "searchFieldHintText":"Поисковый запрос",
+
+  "effectCardBigIngredientsWithThisEffect":"Ингредиенты с этим эффектом",
+  "effectMagnitude":"мощность",
+  "effectValue":"цена",
+  "effectType":"тип",
+  "effectText": "описание",
+
+  "effectsByIngredientNoEffectInThisPosition" :"В этой позиции нет эффекта",
+
+
+  "ingredientCardBigIngredientsWithAtLeastOneCommonEffect":"Ингредиенты с общими эффектами",
+  "ingredientValue":"цена",
+  "ingredientWeight":"вес",
+  "ingredientText": "описание",
+  "ingredientHarvestProbability":"вероятность сбора",
+
+  "ingredientsByEffectNoIngredients" :"нет ингредиентов",
+  "ingredientsByEffectInPosition": "В позиции",
 
   "errorScreenHomeLink": "Домой",
   "errorScreenGithub": "Оставить багрепорт",
   "errorScreenTitle": "Ошибка",
   "errorScreenFallbackMessage": "Возникла неизвестная ошибка",
-
-
   "effectsLeftPanel": "Эффекты",
   "ingredientsLeftPanel": "Ингредиенты",
-  
   "homePageChangeLanguage": "Изменить язык:",
   "homePageDescription": "Справочник алхимических эффектов и ингредиентов из 'Древних свитков'.",
   "homePageDataOriginDescription": "Данные взяты из открытых источников, напр. en.uesp.net ."
-
 }

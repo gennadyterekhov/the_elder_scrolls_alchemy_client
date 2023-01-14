@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
@@ -43,12 +44,14 @@ class _IngredientsByEffectState extends State<IngredientsByEffect> {
       final text = Container(
         margin: const EdgeInsets.only(bottom: 10.0),
         child: Text(
-          'In position ${i + 1}:',
+          AppLocalizations.of(context)!.ingredientsByEffectInPosition + ' ${i + 1}:',
           style: const TextStyle(color: Colors.grey),
         ),
       );
 
-      final children = cards.isEmpty ? [text, const Text('no ingredients')] : [text, ...cards];
+      final children = cards.isEmpty
+          ? [text, Text(AppLocalizations.of(context)!.ingredientsByEffectNoIngredients)]
+          : [text, ...cards];
       columns[i] = Card(
         child: Padding(
           padding: const EdgeInsets.all(10.0),

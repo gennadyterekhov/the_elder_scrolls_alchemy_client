@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/web_link.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EffectCardLong extends StatelessWidget {
   const EffectCardLong({Key? key, required this.effect}) : super(key: key);
@@ -36,14 +37,17 @@ class EffectCardLong extends StatelessWidget {
 
     Widget typeText = effect.type != null
         ? SelectableText(
-            'type: ${effect.type}',
+            AppLocalizations.of(context)!.effectType + ': ${effect.type}',
             textAlign: TextAlign.left,
           )
         : Container();
 
-    Widget magnitudeText = effect.magnitude != null ? Text('magnitude: ${effect.magnitude}') : Container();
+    Widget magnitudeText = effect.magnitude != null
+        ? Text(AppLocalizations.of(context)!.effectMagnitude + ': ${effect.magnitude}')
+        : Container();
 
-    Widget valueText = effect.value != null ? Text('value: ${effect.value}') : Container();
+    Widget valueText =
+        effect.value != null ? Text(AppLocalizations.of(context)!.effectValue + ': ${effect.value}') : Container();
 
     Widget link = effect.uespUrl != null ? WebLink(text: '[uesp]', url: effect.uespUrl!) : Container();
 

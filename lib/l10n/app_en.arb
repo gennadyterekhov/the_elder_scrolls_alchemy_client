@@ -1,22 +1,32 @@
 {
+  "appBarSearchToggle":"Search",
+  "searchFieldHintText":"Search query",
 
+  "effectCardBigIngredientsWithThisEffect":"Ingredients with this effect",
+  "effectMagnitude":"magnitude",
+  "effectValue":"value",
+  "effectType":"type",
+  "effectText": "text",
+
+  "effectsByIngredientNoEffectInThisPosition" :"No effect in this position",
+
+
+  "ingredientCardBigIngredientsWithAtLeastOneCommonEffect":"Ingredients with at least one common effect",
+  "ingredientValue":"value",
+  "ingredientWeight":"weight",
+  "ingredientText": "text",
+  "ingredientHarvestProbability":"harvest probability",
+
+  "ingredientsByEffectNoIngredients" :"no ingredients",
+  "ingredientsByEffectInPosition": "In position",
 
   "errorScreenHomeLink": "Go Home",
   "errorScreenGithub": "File an issue",
   "errorScreenTitle": "An Error occurred",
   "errorScreenFallbackMessage": "An Unknown error occurred",
-
-
-
   "effectsLeftPanel": "Effects",
   "ingredientsLeftPanel": "Ingredients",
-
-
   "homePageChangeLanguage": "Change language:",
   "homePageDescription": "The Library of Alchemy Effects and Ingredients from 'The Elder Scrolls'.",
-  "homePageDataOriginDescription": "The data are taken from open sources, such as en.uesp.net .",
-
-  "@helloWorld": {
-    "description": "The conventional newborn programmer greeting"
-  }
+  "homePageDataOriginDescription": "The data are taken from open sources, such as en.uesp.net ."
 }

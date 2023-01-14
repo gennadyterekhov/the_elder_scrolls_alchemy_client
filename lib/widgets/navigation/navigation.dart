@@ -12,6 +12,8 @@ class NavigationItem {
 class Navigation {
   static List<Map<String, String>> getItemsPaths() {
     final List<Map<String, String>> items = [
+      // {'path': '/home'}, // TODO how to get gameName here????
+
       {'path': '/effects'},
       {'path': '/ingredients'},
     ];
@@ -21,6 +23,12 @@ class Navigation {
 
   static List<NavigationItem> getItems({required BuildContext context}) {
     final paths = Navigation.getItemsPaths();
+
+    // final home = NavigationItem(
+    //     icon: const Icon(Icons.house_outlined),
+    //     selectedIcon: const Icon(Icons.house),
+    //     label: AppLocalizations.of(context)!.homeLeftPanel,
+    //     path: paths[0]['path']!);
 
     final effects = NavigationItem(
         icon: const Icon(Icons.menu_book_outlined),

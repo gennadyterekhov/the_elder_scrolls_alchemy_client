@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:the_elder_scrolls_alchemy_client/data/effect_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
@@ -28,8 +29,8 @@ class _EffectsByIngredientState extends State<EffectsByIngredient> {
   Widget _getCard(Effect? effect) {
     return effect != null
         ? EffectCardMicro(gameName: widget.gameName, effect: effect)
-        : const Card(
-            child: Text('No effect in this position'),
+        : Card(
+            child: Text(AppLocalizations.of(context)!.effectsByIngredientNoEffectInThisPosition),
           );
   }
 

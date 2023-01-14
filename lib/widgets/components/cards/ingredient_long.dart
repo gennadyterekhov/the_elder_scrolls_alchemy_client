@@ -3,6 +3,7 @@ import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/divider_text.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/effects_by_ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/web_link.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class IngredientCardLong extends StatefulWidget {
   const IngredientCardLong({Key? key, required this.gameName, required this.ingredient}) : super(key: key);
@@ -45,7 +46,7 @@ class _IngredientCardLongState extends State<IngredientCardLong> {
 
     Widget weightText = widget.ingredient.weight != null
         ? SelectableText(
-            'weight: ${widget.ingredient.weight!}',
+            AppLocalizations.of(context)!.ingredientWeight + ': ${widget.ingredient.weight!}',
             textAlign: TextAlign.left,
             style: const TextStyle(
               fontSize: 15,
@@ -55,7 +56,7 @@ class _IngredientCardLongState extends State<IngredientCardLong> {
 
     Widget valueText = widget.ingredient.value != null
         ? SelectableText(
-            'value: ${widget.ingredient.value!}',
+            AppLocalizations.of(context)!.ingredientValue + ': ${widget.ingredient.value!}',
             textAlign: TextAlign.left,
             style: const TextStyle(
               fontSize: 15,
@@ -64,7 +65,7 @@ class _IngredientCardLongState extends State<IngredientCardLong> {
         : Container();
     Widget harvestProbabilityText = widget.ingredient.harvestProbability != null
         ? SelectableText(
-            'harvest probability: ${widget.ingredient.harvestProbability!}',
+            AppLocalizations.of(context)!.ingredientHarvestProbability + ': ${widget.ingredient.harvestProbability!}',
             textAlign: TextAlign.left,
             style: const TextStyle(
               fontSize: 15,
@@ -86,7 +87,7 @@ class _IngredientCardLongState extends State<IngredientCardLong> {
           valueText,
           harvestProbabilityText,
           textText,
-          const DividerText(text: 'Effects'),
+          DividerText(text: AppLocalizations.of(context)!.effectsLeftPanel),
           EffectsByIngredient(gameName: widget.gameName, ingredient: widget.ingredient),
         ]),
       ),

@@ -6,6 +6,7 @@ import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_long.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/common_ingredients_by_column.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/divider_text.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class IngredientCardBig extends StatefulWidget {
   const IngredientCardBig({Key? key, required this.gameName, required this.ingredient}) : super(key: key);
@@ -25,7 +26,7 @@ class _IngredientCardBigState extends State<IngredientCardBig> {
   Widget build(BuildContext context) {
     final cardsList = [
       IngredientCardLong(gameName: widget.gameName, ingredient: widget.ingredient),
-      const DividerText(text: 'Ingredients with at least one common effect'),
+      DividerText(text: AppLocalizations.of(context)!.ingredientCardBigIngredientsWithAtLeastOneCommonEffect),
       CommonIngredientsByColumn(gameName: widget.gameName, ingredient: widget.ingredient),
     ];
 
