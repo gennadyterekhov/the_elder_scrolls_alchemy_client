@@ -1,7 +1,18 @@
 {
+
+
+  "errorScreenHomeLink": "Go Home",
+  "errorScreenGithub": "File an issue",
+  "errorScreenTitle": "An Error occurred",
+  "errorScreenFallbackMessage": "An Unknown error occurred",
+
+
+
   "effectsLeftPanel": "Effects",
   "ingredientsLeftPanel": "Ingredients",
 
+
+  "homePageChangeLanguage": "Change language:",
   "homePageDescription": "The Library of Alchemy Effects and Ingredients from 'The Elder Scrolls'.",
   "homePageDataOriginDescription": "The data are taken from open sources, such as en.uesp.net .",
 

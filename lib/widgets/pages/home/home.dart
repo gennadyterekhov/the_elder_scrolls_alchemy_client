@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:the_elder_scrolls_alchemy_client/constants.dart';
+import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/web_link.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -7,6 +9,26 @@ class HomePage extends StatefulWidget {
 
   @override
   State<HomePage> createState() => _HomePageState();
+}
+
+List<DropdownMenuItem<String>> getLocaleButtonsDropdown(context) {
+  List<DropdownMenuItem<String>> popupMenuItems = [];
+  Constant.supportedLanguageCodesToCountryCodesMap.forEach((langCode, countryCode) {
+    popupMenuItems.add(
+      DropdownMenuItem(
+        value: langCode,
+        child: Text(
+          Constant.supportedLanguageCodesToLanguageNamesMap[langCode] ?? 'unknown',
+        ),
+      ),
+    );
+  });
+
+  return popupMenuItems;
+}
+
+String getCountryCodeByLanguageCode(String languageCode) {
+  return Constant.supportedLanguageCodesToCountryCodesMap[languageCode] ?? 'un';
 }
 
 class _HomePageState extends State<HomePage> with RestorationMixin {
@@ -26,8 +48,31 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
     super.dispose();
   }
 
+  Widget getLanguagePicker(context) {
+    final currentLanguageCode = MyApp.getLocaleLanguageCode(context);
+
+    final languagePicker = DropdownButtonFormField(
+      decoration: InputDecoration(
+        prefixIcon: const Icon(Icons.translate),
+        labelText: AppLocalizations.of(context)!.homePageChangeLanguage,
+      ),
+      value: currentLanguageCode,
+      icon: const Icon(Icons.expand_more),
+      items: getLocaleButtonsDropdown(context),
+      onChanged: (String? value) {
+        if (value is String) {
+          MyApp.setLocaleLanguageCode(context, value);
+        }
+      },
+    );
+
+    return languagePicker;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final languagePicker = getLanguagePicker(context);
+
     final welcomeText = SelectableText(
       AppLocalizations.of(context)!.homePageDescription,
       style: Theme.of(context).textTheme.headline5,
@@ -56,23 +101,39 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
         appRepositoryLink,
         apkLink,
         dataRepositoryLink,
+        //TODO add google play market and ruStore and appStore links
       ],
     );
-    return Card(
+
+    final mainCard = Card(
       child: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               welcomeText,
               dataOriginDescriptionText,
+              languagePicker,
               const Image(image: AssetImage('assets/img/logo.png')),
               linksRow,
             ],
           ),
         ),
       ),
+    );
+
+    final height = MediaQuery.of(context).size.height;
+    final box = ConstrainedBox(
+      constraints: BoxConstraints(
+        maxHeight: height,
+      ),
+      child: mainCard,
+    );
+
+    return SingleChildScrollView(
+      child: box,
     );
   }
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:the_elder_scrolls_alchemy_client/constants.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ErrorScreen extends StatefulWidget {
   const ErrorScreen({Key? key, this.error}) : super(key: key);
@@ -18,16 +21,16 @@ class ErrorScreenState extends State<ErrorScreen> {
   @override
   Widget build(BuildContext context) {
     final homeLinkButton = ElevatedButton(
-      onPressed: () => context.go('/home'),
-      child: const Text('Go Home'),
+      onPressed: () => context.go(Constant.skyrimHomeLink),
+      child: Text(AppLocalizations.of(context)!.errorScreenHomeLink),
     );
 
     final issueLinkButton = ElevatedButton(
       onPressed: () => launch('https://github.com/gennadyterekhov/the_elder_scrolls_alchemy_client/issues'),
-      child: const Text('File an issue'),
+      child: Text(AppLocalizations.of(context)!.errorScreenGithub),
     );
 
-    var errorText = Text(widget.error?.toString() ?? 'An Unknown error occurred');
+    var errorText = Text(widget.error?.toString() ?? AppLocalizations.of(context)!.errorScreenFallbackMessage);
     if (widget.error is Exception) {
       errorText = Text(widget.error.toString());
     }
@@ -35,7 +38,7 @@ class ErrorScreenState extends State<ErrorScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
-        title: const Text('An Error occurred'),
+        title: Text(AppLocalizations.of(context)!.errorScreenTitle),
       ),
       body: Center(
         child: Column(

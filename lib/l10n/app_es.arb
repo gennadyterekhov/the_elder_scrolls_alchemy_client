@@ -1,6 +1,8 @@
 {
   "effectsLeftPanel": "Efectos",
   "ingredientsLeftPanel": "Ingredientes",
+
+  "homePageChangeLanguage": "Cambiar idioma:",
       "homePageDescription": "La biblioteca de efectos e ingredientes de la alquimia de 'The Elder Scrolls'.",
   "homePageDataOriginDescription": "Los datos se toman de fuentes abiertas, como en.uesp.net ."
 }
