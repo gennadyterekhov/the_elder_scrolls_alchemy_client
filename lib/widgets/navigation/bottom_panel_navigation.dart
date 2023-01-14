@@ -14,7 +14,7 @@ class BottomPanelNavigation extends StatefulWidget {
 
 class _BottomPanelNavigationState extends State<BottomPanelNavigation> {
   List<BottomNavigationBarItem> getDestinations() {
-    return Navigation.getItems(withHome: false)
+    return Navigation.getItems(context: context)
         .map(
           (navigationItem) => BottomNavigationBarItem(
             icon: navigationItem.selectedIcon,
@@ -27,7 +27,7 @@ class _BottomPanelNavigationState extends State<BottomPanelNavigation> {
   void onDestinationSelected(index) {
     var gameName = widget.gameName;
 
-    String route = AlchemyRouter.getRouteByIndex(index: index, withHome: false);
+    String route = AlchemyRouter.getRouteByIndex(index: index);
     context.go('/$gameName$route');
   }
 
