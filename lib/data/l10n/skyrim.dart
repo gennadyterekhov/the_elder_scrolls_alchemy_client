@@ -552,9 +552,18 @@ class SkyrimL10nData {
         "jp": "",
         "zh": ""
       },
-      "Butterfly Wing": {"de": "", "ru": "", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
+      "Butterfly Wing": {"de": "", "ru": "Крыло монарха", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
       "Canis Root": {"de": "", "ru": "Собачий корень", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
-      "Charred Skeever Hide": {"de": "", "ru": "", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
+      "Charred Skeever Hide": {
+        "de": "",
+        "ru": "Жареная злокрысья кожа",
+        "fr": "",
+        "es": "",
+        "it": "",
+        "pl": "",
+        "jp": "",
+        "zh": ""
+      },
       "Chaurus Eggs": {"de": "", "ru": "Яйцо коруса", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
       "Chaurus Hunter Antennae": {
         "de": "",
@@ -578,7 +587,16 @@ class SkyrimL10nData {
         "jp": "",
         "zh": ""
       },
-      "Cyrodilic Spadetail": {"de": "", "ru": "", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
+      "Cyrodilic Spadetail": {
+        "de": "",
+        "ru": "Сиродильский лопатохвост",
+        "fr": "",
+        "es": "",
+        "it": "",
+        "pl": "",
+        "jp": "",
+        "zh": ""
+      },
       "Daedra Heart": {"de": "", "ru": "Сердце даэдра", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
       "Deathbell": {"de": "", "ru": "Ядовитый колокольчик", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
       "Dragon's Tongue": {"de": "", "ru": "Язык дракона", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
@@ -653,7 +671,7 @@ class SkyrimL10nData {
         "jp": "",
         "zh": ""
       },
-      "Grass Pod": {"de": "", "ru": "", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
+      "Grass Pod": {"de": "", "ru": "Травяной стручок", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
       "Hagraven Claw": {"de": "", "ru": "Коготь ворожеи", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
       "Hagraven Feathers": {
         "de": "",
@@ -669,7 +687,7 @@ class SkyrimL10nData {
       "Hawk Beak": {"de": "", "ru": "Клюв ястреба", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
       "Hawk Feathers": {"de": "", "ru": "Перья ястреба", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
       "Hawk's Egg": {"de": "", "ru": "Яйцо ястреба", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
-      "Histcarp": {"de": "", "ru": "", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
+      "Histcarp": {"de": "", "ru": "Хисткарп", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
       "Honeycomb": {"de": "", "ru": "Медовые соты", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
       "Human Flesh": {"de": "", "ru": "Человечье мясо", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
       "Human Heart": {
@@ -815,7 +833,16 @@ class SkyrimL10nData {
       },
       "Slaughterfish Scales": {"de": "", "ru": "Шип", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
       "Small Antlers": {"de": "", "ru": "Маленькие рога", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
-      "Small Pearl": {"de": "", "ru": "", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
+      "Small Pearl": {
+        "de": "",
+        "ru": "Маленькая жемчужина",
+        "fr": "",
+        "es": "",
+        "it": "",
+        "pl": "",
+        "jp": "",
+        "zh": ""
+      },
       "Snowberries": {"de": "", "ru": "Снежные ягоды", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
       "Spawn Ash": {"de": "", "ru": "Пепел порождения", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
       "Spider Egg": {"de": "", "ru": "Паучье яйцо", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
