@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/constants.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/custom_localization.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 
@@ -23,7 +24,8 @@ class _IngredientCardSmallState extends State<IngredientCardSmall> {
     final nameText = Container(
       margin: const EdgeInsets.only(top: 8.0),
       child: Text(
-        widget.ingredient.name,
+        CustomLocalization.getIngredientName(
+            gameName: widget.gameName, englishIngredientName: widget.ingredient.name, context: context),
         textAlign: TextAlign.center,
         overflow: TextOverflow.visible,
         style: const TextStyle(

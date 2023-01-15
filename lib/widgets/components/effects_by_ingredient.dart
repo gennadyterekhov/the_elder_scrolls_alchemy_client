@@ -63,6 +63,31 @@ class _EffectsByIngredientState extends State<EffectsByIngredient> {
       ),
     ]);
 
+    // TODO
+    // final horizontalList = Column(children: [
+    //   Wrap(
+    //     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //     alignment: WrapAlignment.spaceBetween,
+    //     runAlignment: WrapAlignment.spaceBetween,
+    //     crossAxisAlignment: WrapCrossAlignment.center,
+
+    //     spacing: 120,
+    //     runSpacing: 120,
+
+    //     children: [cards[0], cards[1]],
+    //   ),
+    //   Wrap(
+    //     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //     alignment: WrapAlignment.spaceBetween,
+    //     runAlignment: WrapAlignment.spaceBetween,
+    //     crossAxisAlignment: WrapCrossAlignment.center,
+    //     spacing: 120,
+    //     runSpacing: 120,
+
+    //     children: [cards[2], cards[3]],
+    //   ),
+    // ]);
+
     return isVerticalList ? verticalList : horizontalList;
   }
 }

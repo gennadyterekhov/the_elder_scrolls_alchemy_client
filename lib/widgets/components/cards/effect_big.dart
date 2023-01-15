@@ -13,7 +13,7 @@ class EffectCardBig extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final listView = [
-      EffectCardLong(effect: effect),
+      EffectCardLong(gameName: gameName, effect: effect),
       DividerText(text: AppLocalizations.of(context)!.effectCardBigIngredientsWithThisEffect),
       IngredientsByEffect(gameName: this.gameName, effect: effect),
     ];

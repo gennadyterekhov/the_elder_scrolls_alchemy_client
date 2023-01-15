@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/custom_localization.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/divider_text.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/effects_by_ingredient.dart';
@@ -18,7 +19,8 @@ class _IngredientCardLongState extends State<IngredientCardLong> {
   @override
   Widget build(BuildContext context) {
     SelectableText nameText = SelectableText(
-      widget.ingredient.name,
+      CustomLocalization.getIngredientName(
+          gameName: widget.gameName, englishIngredientName: widget.ingredient.name, context: context),
       textAlign: TextAlign.left,
       style: const TextStyle(
         overflow: TextOverflow.fade,
