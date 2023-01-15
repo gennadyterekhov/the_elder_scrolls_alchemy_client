@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/custom_localization.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/web_link.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EffectCardLong extends StatelessWidget {
-  const EffectCardLong({Key? key, required this.effect}) : super(key: key);
+  const EffectCardLong({Key? key, required this.gameName, required this.effect}) : super(key: key);
   final Effect effect;
+  final String gameName;
 
   @override
   Widget build(BuildContext context) {
     SelectableText nameText = SelectableText(
-      effect.name,
+      CustomLocalization.getEffectName(gameName: gameName, englishEffectName: effect.name, context: context),
       textAlign: TextAlign.left,
       style: const TextStyle(
         fontWeight: FontWeight.bold,

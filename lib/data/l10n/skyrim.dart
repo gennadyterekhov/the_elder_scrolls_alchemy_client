@@ -637,16 +637,7 @@ class SkyrimL10nData {
       "Fire Salts": {"de": "", "ru": "Огненная соль", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
       "Fly Amanita": {"de": "", "ru": "Мухомор", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
       "Frost Mirriam": {"de": "", "ru": "Морозная мириам", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
-      "Frost Salts": {
-        "de": "",
-        "ru": "Морозная соль Фаренгара",
-        "fr": "",
-        "es": "",
-        "it": "",
-        "pl": "",
-        "jp": "",
-        "zh": ""
-      },
+      "Frost Salts": {"de": "", "ru": "Морозная соль", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
       "Garlic": {"de": "", "ru": "Чеснок", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
       "Giant Lichen": {
         "de": "",
@@ -831,7 +822,16 @@ class SkyrimL10nData {
         "jp": "",
         "zh": ""
       },
-      "Slaughterfish Scales": {"de": "", "ru": "Шип", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
+      "Slaughterfish Scales": {
+        "de": "",
+        "ru": "Чешуя рыбы-убийцы",
+        "fr": "",
+        "es": "",
+        "it": "",
+        "pl": "",
+        "jp": "",
+        "zh": ""
+      },
       "Small Antlers": {"de": "", "ru": "Маленькие рога", "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""},
       "Small Pearl": {
         "de": "",

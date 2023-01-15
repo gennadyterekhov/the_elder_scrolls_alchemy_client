@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/constants.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/custom_localization.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -19,7 +20,8 @@ class _EffectCardSmallState extends State<EffectCardSmall> {
   Widget build(BuildContext context) {
     final gameName = widget.gameName;
     Text nameText = Text(
-      widget.effect.name,
+      CustomLocalization.getEffectName(
+          gameName: widget.gameName, englishEffectName: widget.effect.name, context: context),
       textAlign: TextAlign.center,
       overflow: TextOverflow.visible,
       style: const TextStyle(

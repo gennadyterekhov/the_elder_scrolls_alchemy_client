@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/custom_localization.dart';
 
 import 'package:the_elder_scrolls_alchemy_client/data/effect_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
@@ -64,7 +65,11 @@ class _CommonIngredientsByColumnState extends State<CommonIngredientsByColumn> {
                   Container(
                     margin: EdgeInsets.only(bottom: 10.0),
                     child: Text(
-                      widget.ingredient.effectsNames[i],
+                      CustomLocalization.getEffectName(
+                        gameName: widget.gameName,
+                        englishEffectName: widget.ingredient.effectsNames[i],
+                        context: context,
+                      ),
                       style: TextStyle(color: Colors.grey),
                     ),
                   ),
