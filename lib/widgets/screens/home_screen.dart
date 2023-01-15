@@ -7,6 +7,6 @@ class HomeScreen extends StatelessWidget {
   final String gameName;
   @override
   Widget build(BuildContext context) {
-    return CustomScreen(gameName: this.gameName, pageWidget: HomePage());
+    return CustomScreen(gameName: this.gameName, pageWidget: HomePage(gameName: this.gameName));
   }
 }

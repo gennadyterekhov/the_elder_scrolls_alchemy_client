@@ -8,6 +8,7 @@ import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingred
 
 Widget createWidget() => Container(
       child: MaterialApp(
+        locale: Locale('en'),
         home: IngredientCardBig(
           gameName: DataSource.gameNameSkyrim,
           ingredient: Ingredient.fromMap(DataSource.getMap()[DataSource.gameNameMorrowind]['ingredients']['Bread']),

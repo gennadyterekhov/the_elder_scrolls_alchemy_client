@@ -13,7 +13,7 @@ class Constant {
     'de': 'de',
     'pl': 'pl',
     'it': 'it',
-    'jp': 'jp',
+    'ja': 'jp',
     'zh': 'cn',
   };
 
@@ -25,7 +25,7 @@ class Constant {
     'de': 'Deutsch',
     'pl': 'Polski',
     'it': 'Italiano',
-    'jp': '日本語',
+    'ja': '日本語',
     'zh': '中文',
   };
 }

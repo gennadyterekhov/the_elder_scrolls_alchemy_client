@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/constants.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EffectCardSmall extends StatefulWidget {
   const EffectCardSmall({Key? key, required this.gameName, required this.effect}) : super(key: key);
@@ -26,23 +27,6 @@ class _EffectCardSmallState extends State<EffectCardSmall> {
         fontSize: 20,
       ),
     );
-
-    Text textText = Text(
-      widget.effect.text ?? 'text: ${Constant.globalUnknown}',
-      textAlign: TextAlign.center,
-      style: const TextStyle(
-        fontSize: 15,
-      ),
-    );
-
-    Text idText = Text(widget.effect.id ?? 'id: ' + Constant.globalUnknown);
-
-    Text magnitudeText = Text(widget.effect.magnitude != null
-        ? 'magnitude: ${widget.effect.magnitude}'
-        : 'magnitude: ${Constant.globalUnknown}');
-
-    Text valueText =
-        Text(widget.effect.value != null ? 'value: ${widget.effect.value}' : 'value: ${Constant.globalUnknown}');
 
     final extension = gameName == DataSource.gameNameMorrowind ? 'jpg' : 'png';
 

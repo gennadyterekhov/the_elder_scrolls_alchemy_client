@@ -1,8 +1,27 @@
 {
+  "appBarSearchToggle": "Buscar",
+  "searchFieldHintText": "Consulta de busqueda",
+  "effectCardBigIngredientsWithThisEffect": "Ingredientes con este efecto",
+  "effectMagnitude": "magnitud",
+  "effectValue": "precio",
+  "effectType": "tipo",
+  "effectText": "descripción",
+  "effectsByIngredientNoEffectInThisPosition": "Sin efecto en esta posición",
+  "ingredientCardBigIngredientsWithAtLeastOneCommonEffect": "Ingredientes con al menos un efecto común",
+  "ingredientValue": "precio",
+  "ingredientWeight": "peso",
+  "ingredientText": "descripción",
+  "ingredientHarvestProbability": "probabilidad de cosecha",
+  "ingredientsByEffectNoIngredients": "sin ingredientes",
+  "ingredientsByEffectInPosition": "En posición",
+  "errorScreenHomeLink": "Vete a casa",
+  "errorScreenGithub": "Presentar un problema",
+  "errorScreenTitle": "Ocurrió un error",
+  "errorScreenFallbackMessage": "Un error desconocido ocurrió",
   "effectsLeftPanel": "Efectos",
   "ingredientsLeftPanel": "Ingredientes",
-
-  "homePageChangeLanguage": "Cambiar idioma:",
-      "homePageDescription": "La biblioteca de efectos e ingredientes de la alquimia de 'The Elder Scrolls'.",
-  "homePageDataOriginDescription": "Los datos se toman de fuentes abiertas, como en.uesp.net ."
+  "homePageChangeGame": "Cambiar juego",
+  "homePageChangeLanguage": "Cambiar idioma",
+  "homePageDescription": "La biblioteca de efectos e ingredientes de la alquimia de 'The Elder Scrolls'.",
+  "homePageDataOriginDescription": "Los datos se toman de fuentes abiertas, como en.uesp.net."
 }

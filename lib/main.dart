@@ -72,7 +72,7 @@ class _MyAppState extends State<MyApp> {
         Locale('de', ''),
         Locale('ru', ''),
         Locale('it', ''),
-        Locale('jp', ''),
+        Locale('ja', ''),
         Locale('pl', ''),
         Locale.fromSubtags(languageCode: 'zh'), // generic Chinese
         Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans'), // generic simplified Chinese
