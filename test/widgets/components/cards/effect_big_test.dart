@@ -6,6 +6,7 @@ import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_big.dart';
 
 Widget createWidget() => MaterialApp(
+      locale: Locale('en'),
       home: EffectCardBig(
         gameName: DataSource.gameNameSkyrim,
         effect: Effect.fromMap(DataSource.getMap()[DataSource.gameNameSkyrim]['effects']['Cure Disease']),

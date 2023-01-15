@@ -28,24 +28,6 @@ class _EffectCardSmallState extends State<EffectCardSmall> {
       ),
     );
 
-    Text textText = Text(
-      widget.effect.text ?? AppLocalizations.of(context)!.effectText + ': ${Constant.globalUnknown}',
-      textAlign: TextAlign.center,
-      style: const TextStyle(
-        fontSize: 15,
-      ),
-    );
-
-    Text idText = Text(widget.effect.id ?? 'id: ' + Constant.globalUnknown);
-
-    Text magnitudeText = Text(widget.effect.magnitude != null
-        ? AppLocalizations.of(context)!.effectMagnitude + ': ${widget.effect.magnitude}'
-        : AppLocalizations.of(context)!.effectMagnitude + ': ${Constant.globalUnknown}');
-
-    Text valueText = Text(widget.effect.value != null
-        ? AppLocalizations.of(context)!.effectValue + ': ${widget.effect.value}'
-        : AppLocalizations.of(context)!.effectValue + ': ${Constant.globalUnknown}');
-
     final extension = gameName == DataSource.gameNameMorrowind ? 'jpg' : 'png';
 
     final rowWithImage = Wrap(
