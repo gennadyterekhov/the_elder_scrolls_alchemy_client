@@ -1,3 +1,27 @@
 {
-
+    "appBarSearchToggle": "搜索",
+    "searchFieldHintText": "搜索查詢",
+    "effectCardBigIngredientsWithThisEffect": "具有這種作用的成分",
+    "effectMagnitude": "震級",
+    "effectValue": "價格",
+    "effectType": "類型",
+    "effectText": "描述",
+    "effectsByIngredientNoEffectInThisPosition": "在這個位置沒有效果",
+    "ingredientCardBigIngredientsWithAtLeastOneCommonEffect": "具有至少一種共同作用的成分",
+    "ingredientValue": "價格",
+    "ingredientWeight": "重量",
+    "ingredientText": "描述",
+    "ingredientHarvestProbability": "收穫概率",
+    "ingredientsByEffectNoIngredients": "沒有成分",
+    "ingredientsByEffectInPosition": "到位",
+    "errorScreenHomeLink": "回家",
+    "errorScreenGithub": "提出問題",
+    "errorScreenTitle": "發生錯誤",
+    "errorScreenFallbackMessage": "出現未知錯誤",
+    "effectsLeftPanel": "效果",
+    "ingredientsLeftPanel": "原料",
+    "homePageChangeGame": "改變遊戲",
+    "homePageChangeLanguage": "改變語言",
+    "homePageDescription": "“上古捲軸”中的煉金術效果和成分庫。",
+    "homePageDataOriginDescription": "數據取自開源，例如 en.uesp.net。"
 }

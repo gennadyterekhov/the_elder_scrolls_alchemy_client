@@ -1,3 +1,27 @@
 {
-
+    "appBarSearchToggle": "Suche",
+    "searchFieldHintText": "Suchanfrage",
+    "effectCardBigIngredientsWithThisEffect": "Zutaten mit dieser Wirkung",
+    "effectMagnitude": "Größe",
+    "effectValue": "Preis",
+    "effectType": "Art",
+    "effectText": "Bezeichnung",
+    "effectsByIngredientNoEffectInThisPosition": "Keine Wirkung in dieser Position",
+    "ingredientCardBigIngredientsWithAtLeastOneCommonEffect": "Inhaltsstoffe mit mindestens einer gemeinsamen Wirkung",
+    "ingredientValue": "Preis",
+    "ingredientWeight": "Gewicht",
+    "ingredientText": "Bezeichnung",
+    "ingredientHarvestProbability": "Erntewahrscheinlichkeit",
+    "ingredientsByEffectNoIngredients": "keine Zutaten",
+    "ingredientsByEffectInPosition": "In Position",
+    "errorScreenHomeLink": "Nach Hause gehen",
+    "errorScreenGithub": "Melden Sie ein Problem",
+    "errorScreenTitle": "Ein Fehler ist aufgetreten",
+    "errorScreenFallbackMessage": "Ein unbekannter Fehler ist aufgetreten",
+    "effectsLeftPanel": "Auswirkungen",
+    "ingredientsLeftPanel": "Zutaten",
+    "homePageChangeGame": "Spiel ändern",
+    "homePageChangeLanguage": "Sprache ändern",
+    "homePageDescription": "Die Bibliothek der Alchemieeffekte und Zutaten aus „The Elder Scrolls“.",
+    "homePageDataOriginDescription": "Die Daten stammen aus offenen Quellen wie en.uesp.net ."
 }

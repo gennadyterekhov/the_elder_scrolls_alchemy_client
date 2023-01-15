@@ -1,3 +1,27 @@
 {
-
+    "appBarSearchToggle": "探す",
+    "searchFieldHintText": "検索クエリー",
+    "effectCardBigIngredientsWithThisEffect": "この効果のある成分",
+    "effectMagnitude": "マグニチュード",
+    "effectValue": "価格",
+    "effectType": "タイプ",
+    "effectText": "説明",
+    "effectsByIngredientNoEffectInThisPosition": "この位置では効果なし",
+    "ingredientCardBigIngredientsWithAtLeastOneCommonEffect": "少なくとも1つの共通の効果を持つ成分",
+    "ingredientValue": "価格",
+    "ingredientWeight": "重さ",
+    "ingredientText": "説明",
+    "ingredientHarvestProbability": "収穫確率",
+    "ingredientsByEffectNoIngredients": "成分なし",
+    "ingredientsByEffectInPosition": "位置している",
+    "errorScreenHomeLink": "家に帰れ",
+    "errorScreenGithub": "問題を報告する",
+    "errorScreenTitle": "エラーが発生しました",
+    "errorScreenFallbackMessage": "不明なエラーが発生しました",
+    "effectsLeftPanel": "効果",
+    "ingredientsLeftPanel": "材料",
+    "homePageChangeGame": "チェンジゲーム",
+    "homePageChangeLanguage": "言語を変更",
+    "homePageDescription": "「The Elder Scrolls」の錬金術効果と成分のライブラリ。",
+    "homePageDataOriginDescription": "データは en.uesp.net などのオープン ソースから取得されます。"
 }

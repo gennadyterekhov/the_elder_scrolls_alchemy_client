@@ -4,17 +4,17 @@
 
   "effectCardBigIngredientsWithThisEffect":"Ingredients with this effect",
   "effectMagnitude":"magnitude",
-  "effectValue":"value",
+  "effectValue":"price",
   "effectType":"type",
-  "effectText": "text",
+  "effectText": "description",
 
   "effectsByIngredientNoEffectInThisPosition" :"No effect in this position",
 
 
   "ingredientCardBigIngredientsWithAtLeastOneCommonEffect":"Ingredients with at least one common effect",
-  "ingredientValue":"value",
+  "ingredientValue":"price",
   "ingredientWeight":"weight",
-  "ingredientText": "text",
+  "ingredientText": "description",
   "ingredientHarvestProbability":"harvest probability",
 
   "ingredientsByEffectNoIngredients" :"no ingredients",
