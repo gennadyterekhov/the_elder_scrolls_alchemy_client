@@ -29,7 +29,7 @@ class _LeftPanelNavigationState extends State<LeftPanelNavigation> {
     var gameName = widget.gameName;
 
     String route = AlchemyRouter.getRouteByIndex(index: index);
-    context.go('/$gameName$route');
+    context.push('/$gameName$route');
   }
 
   @override

@@ -19,7 +19,7 @@ class IngredientCardBig extends StatefulWidget {
 
 class _IngredientCardBigState extends State<IngredientCardBig> {
   void onTap() {
-    context.go('/${widget.gameName}/ingredient/${widget.ingredient.name}');
+    context.push('/${widget.gameName}/ingredient/${widget.ingredient.name}');
   }
 
   @override

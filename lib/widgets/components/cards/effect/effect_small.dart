@@ -45,7 +45,7 @@ class _EffectCardSmallState extends State<EffectCardSmall> {
 
     final inkWell = InkWell(
       onTap: (() {
-        context.go('/${gameName}/effect/${widget.effect.name}');
+        context.push('/${gameName}/effect/${widget.effect.name}');
       }),
       child: rowWithImage,
     );
