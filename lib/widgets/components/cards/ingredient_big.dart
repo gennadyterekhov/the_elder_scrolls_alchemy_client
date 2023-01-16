@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_long.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/common_ingredients_by_column.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/lists/common_ingredients_by_column.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/divider_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

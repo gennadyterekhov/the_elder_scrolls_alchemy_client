@@ -1,27 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_elder_scrolls_alchemy_client/router.dart';
 import 'package:the_elder_scrolls_alchemy_client/state/search_field_toggle.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/error_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-void main() {
+void main() async {
+  String languageCodeFromPreferences = await MyApp.getSafeLanguageCode();
+
   runApp(
-    MyApp(),
+    MyApp(languageCode: languageCodeFromPreferences),
   );
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key, this.languageCode = 'en'}) : super(key: key);
+
+  String languageCode;
 
   static String getLocaleLanguageCode(BuildContext context) {
     return Localizations.localeOf(context).languageCode;
   }
 
-  static void setLocaleLanguageCode(BuildContext context, String languageCode) {
+  static Future<String> getSafeLanguageCode() async {
+    String? languageCodeFromPreferences = await getLanguageCodeFromPreferences();
+    if (languageCodeFromPreferences == null) {
+      return 'en';
+    }
+    return languageCodeFromPreferences;
+  }
+
+  static Future<String?> getLanguageCodeFromPreferences() async {
+    final prefs = await SharedPreferences.getInstance();
+    final String? languageCode = prefs.getString('languageCode');
+
+    return languageCode;
+  }
+
+  static void setLocaleLanguageCode(BuildContext context, String languageCode) async {
     _MyAppState state = context.findAncestorStateOfType<_MyAppState>()!;
     state.setLocaleLanguageCode(languageCode);
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('languageCode', languageCode);
   }
 
   @override
@@ -29,11 +51,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _languageCode = 'en';
-
   setLocaleLanguageCode(String languageCode) {
     setState(() {
-      _languageCode = languageCode;
+      widget.languageCode = languageCode;
     });
   }
 
@@ -90,7 +110,7 @@ class _MyAppState extends State<MyApp> {
         throw ('widget is null');
       },
       routerConfig: AlchemyRouter.getRouter(),
-      locale: Locale(_languageCode),
+      locale: Locale(widget.languageCode),
       theme: ThemeData(
         primarySwatch: getPrimarySwatch(),
         pageTransitionsTheme: const PageTransitionsTheme(

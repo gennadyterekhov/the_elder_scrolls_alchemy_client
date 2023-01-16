@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/custom_localization.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/l10n/custom_localization.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/divider_text.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/effects_by_ingredient.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/lists/effects_by_ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/web_link.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
