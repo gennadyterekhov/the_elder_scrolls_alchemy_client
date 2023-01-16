@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/constants.dart';
 import 'package:the_elder_scrolls_alchemy_client/router.dart';
 import 'package:the_elder_scrolls_alchemy_client/state/search_field_toggle.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/error_screen.dart';
@@ -16,7 +17,7 @@ void main() async {
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({Key? key, this.languageCode = 'en'}) : super(key: key);
+  MyApp({Key? key, this.languageCode = Constant.fallbackLanguage}) : super(key: key);
 
   String languageCode;
 
@@ -27,7 +28,7 @@ class MyApp extends StatefulWidget {
   static Future<String> getSafeLanguageCode() async {
     String? languageCodeFromPreferences = await getLanguageCodeFromPreferences();
     if (languageCodeFromPreferences == null) {
-      return 'en';
+      return Constant.fallbackLanguage;
     }
     return languageCodeFromPreferences;
   }
@@ -86,20 +87,20 @@ class _MyAppState extends State<MyApp> {
         GlobalWidgetsLocalizations.delegate,
       ],
       supportedLocales: const [
-        Locale('en', ''),
-        Locale('es', ''),
-        Locale('fr', ''),
-        Locale('de', ''),
-        Locale('ru', ''),
-        Locale('it', ''),
-        Locale('ja', ''),
-        Locale('pl', ''),
-        Locale.fromSubtags(languageCode: 'zh'), // generic Chinese
-        Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans'), // generic simplified Chinese
-        Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'), // generic traditional Chinese
-        Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans', countryCode: 'CN'),
-        Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant', countryCode: 'TW'),
-        Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant', countryCode: 'HK'),
+        Locale(Constant.lcEnglish, ''),
+        Locale(Constant.lcSpanish, ''),
+        Locale(Constant.lcFrench, ''),
+        Locale(Constant.lcGerman, ''),
+        Locale(Constant.lcRussian, ''),
+        Locale(Constant.lcItalian, ''),
+        Locale(Constant.lcJapanese, ''),
+        Locale(Constant.lcPolish, ''),
+        Locale.fromSubtags(languageCode: Constant.lcChinese), // generic Chinese
+        Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hans'), // generic simplified Chinese
+        Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hant'), // generic traditional Chinese
+        Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hans', countryCode: 'CN'),
+        Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hant', countryCode: 'TW'),
+        Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hant', countryCode: 'HK'),
       ],
       title: 'TES Alchemy',
       builder: (context, widget) {

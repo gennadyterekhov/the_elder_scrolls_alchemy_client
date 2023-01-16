@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/constants.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient/ingredient_big.dart';
 
-const String _languageCode = 'en';
+const String _languageCode = Constant.fallbackLanguage;
 
-Widget createWidget({String languageCode = 'en'}) => Container(
+Widget createWidget({String languageCode = Constant.fallbackLanguage}) => Container(
       child: MaterialApp(
         locale: Locale(languageCode),
         home: IngredientCardBig(

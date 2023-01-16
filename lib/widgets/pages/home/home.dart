@@ -17,12 +17,12 @@ class HomePage extends StatefulWidget {
 
 List<DropdownMenuItem<String>> getLocaleButtonsDropdown(context) {
   List<DropdownMenuItem<String>> popupMenuItems = [];
-  Constant.supportedLanguageCodesToCountryCodesMap.forEach((langCode, countryCode) {
+  Constant.supportedLanguageCodesToLanguageNamesMap.forEach((langCode, langName) {
     popupMenuItems.add(
       DropdownMenuItem(
         value: langCode,
         child: Text(
-          Constant.supportedLanguageCodesToLanguageNamesMap[langCode] ?? 'unknown',
+          langName,
         ),
       ),
     );
@@ -43,10 +43,6 @@ List<DropdownMenuItem<String>> getGameButtonsDropdown(context) {
   }
 
   return popupMenuItems;
-}
-
-String getCountryCodeByLanguageCode(String languageCode) {
-  return Constant.supportedLanguageCodesToCountryCodesMap[languageCode] ?? 'un';
 }
 
 class _HomePageState extends State<HomePage> with RestorationMixin {

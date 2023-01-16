@@ -1,4 +1,6 @@
+import 'package:the_elder_scrolls_alchemy_client/data/constants.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/l10n/search_indices.dart';
 import 'package:the_elder_scrolls_alchemy_client/exception/not_found.dart';
 import 'package:the_elder_scrolls_alchemy_client/exception/wrong_game.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
@@ -6,7 +8,7 @@ import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 class IngredientResource {
   String gameName;
   Map<String, dynamic> currentMap = {};
-
+  static const int _searchQueryLengthThreshold = 2;
   IngredientResource({this.gameName = 'skyrim'}) {
     currentMap = DataSource.getMap()[gameName]['ingredients'];
   }
@@ -22,12 +24,37 @@ class IngredientResource {
     return e;
   }
 
-  List<Ingredient> searchIngredientsByName(String name) {
-    final List<String> names = currentMap.keys.toList();
+  List<Ingredient> searchIngredientsByName(String nameFromQuery, String languageCode) {
+    final List<String> englishNames = currentMap.keys.toList();
 
-    final searchResultNames = names.where((element) => element.toLowerCase().contains(name)).toList();
+    if (nameFromQuery.length <= _searchQueryLengthThreshold) {
+      return getIngredientsByNames(englishNames);
+    }
 
-    return getIngredientsByNames(searchResultNames);
+    final filteredNames = englishNames.where((element) => element.toLowerCase().contains(nameFromQuery)).toList();
+
+    if (languageCode == Constant.lcEnglish) {
+      return getIngredientsByNames(filteredNames);
+    }
+
+    if (languageCode == Constant.lcRussian) {
+      ///now there are only russian translations for effects and ingredients
+      Map<String, String> localNameToEnglishNameMap =
+          SearchLocalizedNameIndex.allIndices[this.gameName]!['ingredients']!;
+      List<String> localNames = localNameToEnglishNameMap.keys.toList();
+
+      final filteredLocalNames =
+          localNames.where((element) => element.toLowerCase().contains(nameFromQuery.toLowerCase())).toList();
+
+      for (String foundLocalName in filteredLocalNames) {
+        final correspondingEnglishName = localNameToEnglishNameMap[foundLocalName]!;
+        filteredNames.add(correspondingEnglishName);
+      }
+
+      return getIngredientsByNames(filteredNames);
+    }
+
+    return getIngredientsByNames(filteredNames);
   }
 
   Map<String, Ingredient> getAllIngredients() {

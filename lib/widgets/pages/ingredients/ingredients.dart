@@ -59,11 +59,13 @@ class _IngredientsPageState extends State<IngredientsPage> {
   @override
   Widget build(BuildContext context) {
     final searchFieldToggle = Provider.of<SearchFieldToggle>(context);
-    final isSearchVisible = searchFieldToggle.isSearchFieldShown; // final isSearchShown = true;
+    final isSearchVisible = searchFieldToggle.isSearchFieldShown;
 
     final gameName = widget.gameName;
+    final String languageCode = MyApp.getLocaleLanguageCode(context);
 
-    final List<Ingredient> ingredients = IngredientResource(gameName: gameName).searchIngredientsByName(_searchQuery);
+    final List<Ingredient> ingredients =
+        IngredientResource(gameName: gameName).searchIngredientsByName(_searchQuery, languageCode);
 
     final List<Widget> ingredientsCards = _getIngredientsGridItems(ingredients);
 
