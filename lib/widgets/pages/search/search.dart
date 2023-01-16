@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_small.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_small.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect/effect_small.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient/ingredient_small.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards_grid.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/search_field.dart';
 

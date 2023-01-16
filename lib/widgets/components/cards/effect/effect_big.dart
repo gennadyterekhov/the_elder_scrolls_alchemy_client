@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_long.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect/effect_long.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/divider_text.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/lists/ingredients_by_effect.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

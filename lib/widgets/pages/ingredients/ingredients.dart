@@ -5,7 +5,7 @@ import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/state/search_field_toggle.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_small.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient/ingredient_small.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards_grid.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/search_field.dart';
 

@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/effect_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_micro.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect/effect_micro.dart';
 
 class EffectsByIngredient extends StatefulWidget {
   const EffectsByIngredient({Key? key, required this.gameName, required this.ingredient}) : super(key: key);
