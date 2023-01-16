@@ -22,7 +22,7 @@ class EffectsPage extends StatefulWidget {
 
 class _EffectsPageState extends State<EffectsPage> {
   final searchFieldController = TextEditingController();
-  String _searchQuery = ''; //TODO issue-76
+  String _searchQuery = '';
 
   List<Widget> _getEffectsGridItems(List<Effect> effects) {
     final gridItems = effects.map((value) => EffectCardSmall(gameName: widget.gameName, effect: value));

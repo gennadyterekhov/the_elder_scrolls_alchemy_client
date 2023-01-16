@@ -79,58 +79,58 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final router = MaterialApp.router(
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale(Constant.lcEnglish, ''),
-        Locale(Constant.lcSpanish, ''),
-        Locale(Constant.lcFrench, ''),
-        Locale(Constant.lcGerman, ''),
-        Locale(Constant.lcRussian, ''),
-        Locale(Constant.lcItalian, ''),
-        Locale(Constant.lcJapanese, ''),
-        Locale(Constant.lcPolish, ''),
-        Locale.fromSubtags(languageCode: Constant.lcChinese), // generic Chinese
-        Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hans'), // generic simplified Chinese
-        Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hant'), // generic traditional Chinese
-        Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hans', countryCode: 'CN'),
-        Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hant', countryCode: 'TW'),
-        Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hant', countryCode: 'HK'),
-      ],
-      title: 'TES Alchemy',
-      builder: (context, widget) {
-        ErrorWidget.builder = (errorDetails) => ErrorScreen(
-              error: errorDetails.exception,
-            );
-        if (widget != null) return widget;
-        throw ('widget is null');
-      },
-      routerConfig: AlchemyRouter.getRouter(),
-      locale: Locale(widget.languageCode),
-      theme: ThemeData(
-        primarySwatch: getPrimarySwatch(),
-        pageTransitionsTheme: const PageTransitionsTheme(
-          builders: <TargetPlatform, PageTransitionsBuilder>{
-            TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
-            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.linux: FadeUpwardsPageTransitionsBuilder(),
-            TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.windows: FadeUpwardsPageTransitionsBuilder(),
-          },
+    try {
+      final router = MaterialApp.router(
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale(Constant.lcEnglish, ''),
+          Locale(Constant.lcSpanish, ''),
+          Locale(Constant.lcFrench, ''),
+          Locale(Constant.lcGerman, ''),
+          Locale(Constant.lcRussian, ''),
+          Locale(Constant.lcItalian, ''),
+          Locale(Constant.lcJapanese, ''),
+          Locale(Constant.lcPolish, ''),
+          Locale.fromSubtags(languageCode: Constant.lcChinese), // generic Chinese
+          Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hans'), // generic simplified Chinese
+          Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hant'), // generic traditional Chinese
+          Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hans', countryCode: 'CN'),
+          Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hant', countryCode: 'TW'),
+          Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hant', countryCode: 'HK'),
+        ],
+        title: 'TES Alchemy',
+        routerConfig: AlchemyRouter.getRouter(),
+        locale: Locale(widget.languageCode),
+        theme: ThemeData(
+          primarySwatch: getPrimarySwatch(),
+          pageTransitionsTheme: const PageTransitionsTheme(
+            builders: <TargetPlatform, PageTransitionsBuilder>{
+              TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+              TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+              TargetPlatform.linux: FadeUpwardsPageTransitionsBuilder(),
+              TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+              TargetPlatform.windows: FadeUpwardsPageTransitionsBuilder(),
+            },
+          ),
         ),
-      ),
-    );
+      );
 
-    return ChangeNotifierProvider(
-      create: (BuildContext context) {
-        return SearchFieldToggle();
-      },
-      child: router,
-    );
+      final correctWidget = ChangeNotifierProvider(
+        create: (BuildContext context) {
+          return SearchFieldToggle();
+        },
+        child: router,
+      );
+      return correctWidget;
+    } catch (exception) {
+      return ErrorScreen(
+        error: exception,
+      );
+    }
   }
 }

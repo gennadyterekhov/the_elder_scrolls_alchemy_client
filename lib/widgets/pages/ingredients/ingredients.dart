@@ -26,7 +26,7 @@ class _IngredientsPageState extends State<IngredientsPage> {
   }
 
   final searchFieldController = TextEditingController();
-  String _searchQuery = ''; //TODO issue-76
+  String _searchQuery = '';
 
   @override
   void dispose() {

@@ -4,9 +4,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/constants.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
+import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient/ingredient_big.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/screens/effect_screen.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/screens/effects_screen.dart';
 
 const String _languageCode = Constant.fallbackLanguage;
 
