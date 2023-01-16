@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_big.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect/effect_big.dart';
 
 Widget createWidget() => MaterialApp(
       locale: Locale('en'),

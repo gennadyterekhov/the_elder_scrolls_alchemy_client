@@ -3,8 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_big.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_big.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect/effect_big.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient/ingredient_big.dart';
 
 void main() {
   group('Testing App Performance Tests', () {

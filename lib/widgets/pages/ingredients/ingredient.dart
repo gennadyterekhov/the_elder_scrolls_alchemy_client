@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_big.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient/ingredient_big.dart';
 
 class IngredientPage extends StatefulWidget {
   const IngredientPage({Key? key, required this.gameName, required this.ingredient}) : super(key: key);

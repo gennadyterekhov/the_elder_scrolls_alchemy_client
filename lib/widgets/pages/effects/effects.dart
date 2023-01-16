@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/state/search_field_toggle.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_small.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect/effect_small.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards_grid.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/search_field.dart';
@@ -17,7 +17,7 @@ class EffectsPage extends StatefulWidget {
 
 class _EffectsPageState extends State<EffectsPage> {
   final searchFieldController = TextEditingController();
-  String _searchQuery = '';
+  String _searchQuery = ''; //TODO issue-76
 
   List<Widget> _getEffectsGridItems(List<Effect> effects) {
     final gridItems = effects.map((value) => EffectCardSmall(gameName: widget.gameName, effect: value));

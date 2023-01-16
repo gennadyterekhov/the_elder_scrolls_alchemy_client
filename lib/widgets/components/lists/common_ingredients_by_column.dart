@@ -6,7 +6,7 @@ import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_micro.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient/ingredient_micro.dart';
 
 class CommonIngredientsByColumn extends StatefulWidget {
   const CommonIngredientsByColumn({Key? key, required this.gameName, required this.ingredient}) : super(key: key);
