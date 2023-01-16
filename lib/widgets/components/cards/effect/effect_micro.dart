@@ -7,9 +7,11 @@ import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 
 class EffectCardMicro extends StatefulWidget {
-  const EffectCardMicro({Key? key, required this.gameName, required this.effect}) : super(key: key);
+  const EffectCardMicro({Key? key, required this.gameName, required this.effect, this.fontSize = 30.0})
+      : super(key: key);
   final Effect effect;
   final String gameName;
+  final double fontSize;
 
   @override
   State<EffectCardMicro> createState() => _EffectCardMicroState();
@@ -24,18 +26,13 @@ class _EffectCardMicroState extends State<EffectCardMicro> {
   Widget build(BuildContext context) {
     final label = CustomLocalization.getEffectName(
         gameName: widget.gameName, englishEffectName: widget.effect.name, context: context);
-    final fontSize = 30.0;
 
     final text = Text(
       label,
-      style: TextStyle(fontSize: fontSize),
+      style: TextStyle(fontSize: widget.fontSize),
     );
 
-    final ret = InkWell(
-      onTap: _onTap,
-      child: text,
-    );
-    final ret2 = Wrap(
+    final wrappedCard = Wrap(
       children: [
         InkWell(
           onTap: _onTap,
@@ -43,6 +40,6 @@ class _EffectCardMicroState extends State<EffectCardMicro> {
         ),
       ],
     );
-    return ret2;
+    return wrappedCard;
   }
 }

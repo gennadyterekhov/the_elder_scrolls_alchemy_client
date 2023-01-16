@@ -26,9 +26,13 @@ class _EffectsByIngredientState extends State<EffectsByIngredient> {
     return null;
   }
 
-  Widget _getCard(Effect? effect) {
+  Widget _getCard(Effect? effect, double fontSize) {
     return effect != null
-        ? EffectCardMicro(gameName: widget.gameName, effect: effect)
+        ? EffectCardMicro(
+            gameName: widget.gameName,
+            effect: effect,
+            fontSize: fontSize,
+          )
         : Card(
             child: Text(AppLocalizations.of(context)!.effectsByIngredientNoEffectInThisPosition),
           );
@@ -36,57 +40,56 @@ class _EffectsByIngredientState extends State<EffectsByIngredient> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> cards = List.filled(4, Column());
-    for (int i = 0; i < 4; i += 1) {
-      final card = _getCard(_getEffectByIndex(i));
-      cards[i] = card;
-    }
-
     final width = MediaQuery.of(context).size.width;
+
+    double fontSize = 30.0;
+
     bool isVerticalList = true;
 
     if (width > 800) {
       isVerticalList = false;
     }
+    if (width < 750) {
+      fontSize = 25.0;
+    }
+    if (width < 550) {
+      fontSize = 20.0;
+    }
 
-    final verticalList = Column(
-        mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.stretch, children: cards);
+    List<Widget> cards = List.filled(4, Column());
+    for (int i = 0; i < 4; i += 1) {
+      final card = _getCard(_getEffectByIndex(i), fontSize);
+      cards[i] = card;
+    }
 
-    final horizontalList = Column(children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [cards[0], cards[1]],
-      ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [cards[2], cards[3]],
-      ),
-    ]);
+    final verticalList = Wrap(
+      alignment: WrapAlignment.start,
+      runAlignment: WrapAlignment.spaceBetween,
+      crossAxisAlignment: WrapCrossAlignment.start,
+      spacing: 30,
+      runSpacing: 10,
+      children: cards,
+    );
 
-    // TODO
-    // final horizontalList = Column(children: [
-    //   Wrap(
-    //     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //     alignment: WrapAlignment.spaceBetween,
-    //     runAlignment: WrapAlignment.spaceBetween,
-    //     crossAxisAlignment: WrapCrossAlignment.center,
-
-    //     spacing: 120,
-    //     runSpacing: 120,
-
-    //     children: [cards[0], cards[1]],
-    //   ),
-    //   Wrap(
-    //     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //     alignment: WrapAlignment.spaceBetween,
-    //     runAlignment: WrapAlignment.spaceBetween,
-    //     crossAxisAlignment: WrapCrossAlignment.center,
-    //     spacing: 120,
-    //     runSpacing: 120,
-
-    //     children: [cards[2], cards[3]],
-    //   ),
-    // ]);
+    final horizontalList = Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Wrap(
+          alignment: WrapAlignment.spaceBetween,
+          runAlignment: WrapAlignment.spaceBetween,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          spacing: 30,
+          children: [cards[0], cards[1]],
+        ),
+        Wrap(
+          alignment: WrapAlignment.spaceBetween,
+          runAlignment: WrapAlignment.spaceBetween,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          spacing: 30,
+          children: [cards[2], cards[3]],
+        ),
+      ],
+    );
 
     return isVerticalList ? verticalList : horizontalList;
   }
