@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/custom_localization.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/l10n/custom_localization.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/web_link.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
