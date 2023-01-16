@@ -1,10 +1,14 @@
+import 'package:the_elder_scrolls_alchemy_client/data/constants.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/l10n/search_indices.dart';
 import 'package:the_elder_scrolls_alchemy_client/exception/not_found.dart';
 import 'package:the_elder_scrolls_alchemy_client/exception/wrong_game.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 
 class EffectResource {
   late String gameName;
+  static const int _searchQueryLengthThreshold = 2;
+
   Map<String, dynamic> currentMap = {};
 
   EffectResource({this.gameName = 'skyrim'}) {
@@ -28,13 +32,13 @@ class EffectResource {
     return resultMap;
   }
 
-  List<Effect> searchEffectsByName(String name) {
-    final List<String> names = currentMap.keys.toList();
+  // List<Effect> searchEffectsByName(String name) {
+  //   final List<String> names = currentMap.keys.toList();
 
-    final searchResultNames = names.where((element) => element.toLowerCase().contains(name.toLowerCase())).toList();
+  //   final searchResultNames = names.where((element) => element.toLowerCase().contains(name.toLowerCase())).toList();
 
-    return getEffectsByNames(searchResultNames);
-  }
+  //   return getEffectsByNames(searchResultNames);
+  // }
 
   Effect getEffectByName(String name) {
     if (!currentMap.containsKey(name)) {
@@ -64,5 +68,38 @@ class EffectResource {
       }
     }
     throw Exception('Effect $effectName not found across all these games: ${DataSource.gameNames}');
+  }
+
+  List<Effect> searchEffectsByName(String nameFromQuery, String languageCode) {
+    final List<String> englishNames = currentMap.keys.toList();
+
+    if (nameFromQuery.length <= _searchQueryLengthThreshold) {
+      return getEffectsByNames(englishNames);
+    }
+
+    List<String> filteredNames =
+        englishNames.where((element) => element.toLowerCase().contains(nameFromQuery.toLowerCase())).toList();
+
+    if (languageCode == Constant.lcEnglish) {
+      return getEffectsByNames(filteredNames);
+    }
+
+    if (languageCode == Constant.lcRussian) {
+      ///now there are only russian translations for effects and ingredients
+      Map<String, String> localNameToEnglishNameMap = SearchLocalizedNameIndex.allIndices[this.gameName]!['effects']!;
+      List<String> localNames = localNameToEnglishNameMap.keys.toList();
+
+      final filteredLocalNames =
+          localNames.where((element) => element.toLowerCase().contains(nameFromQuery.toLowerCase())).toList();
+
+      for (String foundLocalName in filteredLocalNames) {
+        final correspondingEnglishName = localNameToEnglishNameMap[foundLocalName]!;
+        filteredNames.add(correspondingEnglishName);
+      }
+
+      return getEffectsByNames(filteredNames);
+    }
+
+    return getEffectsByNames(filteredNames);
   }
 }

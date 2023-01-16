@@ -20,7 +20,7 @@ class AlchemyAppBar extends StatelessWidget implements PreferredSizeWidget {
     BuildContext context,
   ) {
     final homeLink = InkWell(
-      onTap: () => context.go('/$gameName/home'),
+      onTap: () => context.push('/$gameName/home'),
       child: Text(gameName.capitalize()),
     );
 

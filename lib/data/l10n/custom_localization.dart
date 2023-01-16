@@ -9,7 +9,7 @@ class CustomLocalization {
     required BuildContext context,
   }) {
     String? localizedEffectName =
-        DataSource.getLocalizedMap()[gameName]['effects']?[englishEffectName]?[MyApp.getLocaleLanguageCode(context)];
+        DataSource.getLocalizedMap()[gameName]!['effects']?[englishEffectName]?[MyApp.getLocaleLanguageCode(context)];
 
     return ((localizedEffectName != null) && (localizedEffectName != '')) ? localizedEffectName : englishEffectName;
   }
@@ -19,7 +19,7 @@ class CustomLocalization {
     required String englishIngredientName,
     required BuildContext context,
   }) {
-    String? localizedIngredientName = DataSource.getLocalizedMap()[gameName]['ingredients']?[englishIngredientName]
+    String? localizedIngredientName = DataSource.getLocalizedMap()[gameName]!['ingredients']?[englishIngredientName]
         ?[MyApp.getLocaleLanguageCode(context)];
 
     return ((localizedIngredientName != null) && (localizedIngredientName != ''))

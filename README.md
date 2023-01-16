@@ -27,11 +27,14 @@ for more commands, see [flutter documentation](https://docs.flutter.dev/get-star
 
 ### Test  
 
+[how to run integration test in browser](https://docs.flutter.dev/testing/integration-tests#running-in-a-browser)
+
 this command runs specific integration test  
 `flutter drive --driver integration_test/driver.dart --target integration_test/full_test.dart --no-dds`  
 
 this command runs cpecific widget/unit test  
 `flutter test test/data/data_source_test.dart`  
+
 
 
  

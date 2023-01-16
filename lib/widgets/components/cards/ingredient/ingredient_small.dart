@@ -40,7 +40,7 @@ class _IngredientCardSmallState extends State<IngredientCardSmall> {
     return Card(
       child: InkWell(
         onTap: () {
-          context.go('/${gameName}/ingredient/${widget.ingredient.name}');
+          context.push('/${gameName}/ingredient/${widget.ingredient.name}');
         },
         child: Padding(
           padding: const EdgeInsets.all(8.0),

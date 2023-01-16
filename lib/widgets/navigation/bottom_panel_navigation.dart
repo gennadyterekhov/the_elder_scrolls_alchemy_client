@@ -28,7 +28,7 @@ class _BottomPanelNavigationState extends State<BottomPanelNavigation> {
     var gameName = widget.gameName;
 
     String route = AlchemyRouter.getRouteByIndex(index: index);
-    context.go('/$gameName$route');
+    context.push('/$gameName$route');
   }
 
   @override

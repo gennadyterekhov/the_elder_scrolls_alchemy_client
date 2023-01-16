@@ -10,7 +10,7 @@ class DataSource {
     return _globalMap;
   }
 
-  static Map<String, dynamic> getLocalizedMap() {
+  static Map<String, Map<String, Map<String, Map<String, String>>>> getLocalizedMap() {
     return _localizedMap;
   }
 

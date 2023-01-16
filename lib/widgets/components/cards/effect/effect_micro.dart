@@ -19,7 +19,7 @@ class EffectCardMicro extends StatefulWidget {
 
 class _EffectCardMicroState extends State<EffectCardMicro> {
   void _onTap() {
-    context.go('/${widget.gameName}/effect/${widget.effect.name}');
+    context.push('/${widget.gameName}/effect/${widget.effect.name}');
   }
 
   @override
