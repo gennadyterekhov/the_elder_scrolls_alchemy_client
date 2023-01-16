@@ -63,7 +63,7 @@ class _EffectsByIngredientState extends State<EffectsByIngredient> {
     }
 
     final verticalList = Wrap(
-      alignment: WrapAlignment.start,
+      alignment: WrapAlignment.spaceBetween,
       runAlignment: WrapAlignment.spaceBetween,
       crossAxisAlignment: WrapCrossAlignment.start,
       spacing: 30,
