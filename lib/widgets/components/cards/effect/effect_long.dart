@@ -65,7 +65,7 @@ class EffectCardLong extends StatelessWidget {
 
     final longCard = Card(
       child: Padding(
-        padding: EdgeInsets.all(30.0),
+        padding: EdgeInsets.all(20.0),
         child: Column(
           children: listView,
           crossAxisAlignment: CrossAxisAlignment.start,

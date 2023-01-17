@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/l10n/custom_localization.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
@@ -27,16 +28,31 @@ class _EffectCardMicroState extends State<EffectCardMicro> {
     final label = CustomLocalization.getEffectName(
         gameName: widget.gameName, englishEffectName: widget.effect.name, context: context);
 
+    final effectColor = widget.effect.type == 'positive'
+        ? Constant.positiveEffectBackgroundColor
+        : Constant.negativeEffectBackgroundColor;
+
     final text = Text(
       label,
-      style: TextStyle(fontSize: widget.fontSize),
+      style: TextStyle(
+        fontSize: widget.fontSize,
+      ),
     );
 
     final wrappedCard = Wrap(
       children: [
-        InkWell(
-          onTap: _onTap,
-          child: text,
+        Card(
+          color: Color(effectColor),
+          child: Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: InkWell(
+              splashColor: Color(effectColor),
+              focusColor: Color(effectColor),
+              highlightColor: Color(effectColor),
+              onTap: _onTap,
+              child: text,
+            ),
+          ),
         ),
       ],
     );

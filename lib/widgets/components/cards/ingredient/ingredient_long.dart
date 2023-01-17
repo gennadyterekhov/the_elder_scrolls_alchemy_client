@@ -80,18 +80,21 @@ class _IngredientCardLongState extends State<IngredientCardLong> {
 
     final longCard = Card(
       child: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          nameText,
-          link,
-          idText,
-          weightText,
-          valueText,
-          harvestProbabilityText,
-          textText,
-          DividerText(text: AppLocalizations.of(context)!.effectsLeftPanel),
-          EffectsByIngredient(gameName: widget.gameName, ingredient: widget.ingredient),
-        ]),
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            nameText,
+            link,
+            idText,
+            weightText,
+            valueText,
+            harvestProbabilityText,
+            textText,
+            DividerText(text: AppLocalizations.of(context)!.effectsLeftPanel),
+            EffectsByIngredient(gameName: widget.gameName, ingredient: widget.ingredient),
+          ],
+        ),
       ),
     );
 
