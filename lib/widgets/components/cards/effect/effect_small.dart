@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/constants.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/l10n/custom_localization.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
@@ -16,9 +16,7 @@ class EffectCardSmall extends StatefulWidget {
 }
 
 class _EffectCardSmallState extends State<EffectCardSmall> {
-  @override
-  Widget build(BuildContext context) {
-    final gameName = widget.gameName;
+  Widget getEffectCard() {
     Text nameText = Text(
       CustomLocalization.getEffectName(
           gameName: widget.gameName, englishEffectName: widget.effect.name, context: context),
@@ -29,30 +27,45 @@ class _EffectCardSmallState extends State<EffectCardSmall> {
         fontSize: 20,
       ),
     );
-
-    final extension = gameName == DataSource.gameNameMorrowind ? 'jpg' : 'png';
+    if (widget.gameName == DataSource.gameNameSkyrim) {
+      return nameText;
+    }
+    final extension = widget.gameName == DataSource.gameNameMorrowind ? 'jpg' : 'png';
 
     final rowWithImage = Wrap(
       children: [
         Image(
           width: 32,
           height: 32,
-          image: AssetImage('assets/img/${gameName}/effects/${widget.effect.name}.$extension'),
+          image: AssetImage('assets/img/${widget.gameName}/effects/${widget.effect.name}.$extension'),
         ),
         Container(margin: const EdgeInsets.only(left: 8.0), child: nameText),
       ],
     );
+    return rowWithImage;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final effectCard = getEffectCard();
 
     final inkWell = InkWell(
       onTap: (() {
-        context.push('/${gameName}/effect/${widget.effect.name}');
+        context.push('/${widget.gameName}/effect/${widget.effect.name}');
       }),
-      child: rowWithImage,
+      child: effectCard,
     );
+
+    final int effectColor = (widget.effect.type == 'positive')
+        ? Constant.positiveEffectBackgroundColor
+        : Constant.negativeEffectBackgroundColor;
+
     return Card(
-        child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: inkWell,
-    ));
+      color: Color(effectColor),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: inkWell,
+      ),
+    );
   }
 }

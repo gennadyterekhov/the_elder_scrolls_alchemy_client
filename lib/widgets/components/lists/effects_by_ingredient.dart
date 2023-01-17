@@ -66,8 +66,6 @@ class _EffectsByIngredientState extends State<EffectsByIngredient> {
       alignment: WrapAlignment.spaceBetween,
       runAlignment: WrapAlignment.spaceBetween,
       crossAxisAlignment: WrapCrossAlignment.start,
-      spacing: 30,
-      runSpacing: 10,
       children: cards,
     );
 
@@ -78,14 +76,12 @@ class _EffectsByIngredientState extends State<EffectsByIngredient> {
           alignment: WrapAlignment.spaceBetween,
           runAlignment: WrapAlignment.spaceBetween,
           crossAxisAlignment: WrapCrossAlignment.center,
-          spacing: 30,
           children: [cards[0], cards[1]],
         ),
         Wrap(
           alignment: WrapAlignment.spaceBetween,
           runAlignment: WrapAlignment.spaceBetween,
           crossAxisAlignment: WrapCrossAlignment.center,
-          spacing: 30,
           children: [cards[2], cards[3]],
         ),
       ],

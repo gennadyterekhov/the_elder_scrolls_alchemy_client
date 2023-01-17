@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/constants.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/router.dart';
 import 'package:the_elder_scrolls_alchemy_client/state/search_field_toggle.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/error_screen.dart';

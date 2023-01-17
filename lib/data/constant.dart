@@ -3,6 +3,9 @@ import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 class Constant {
   static const String fallbackLanguage = lcEnglish;
 
+  static const int positiveEffectBackgroundColor = 0xffd4fae3;
+  static const int negativeEffectBackgroundColor = 0xfffad4d4;
+
   /// lc for languageCode
   static const String lcEnglish = 'en';
   static const String lcRussian = 'ru';

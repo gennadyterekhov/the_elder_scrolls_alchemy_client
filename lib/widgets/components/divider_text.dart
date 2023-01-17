@@ -17,7 +17,7 @@ class DividerText extends StatelessWidget {
     );
 
     final dividerLine = Container(
-      margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+      margin: const EdgeInsets.only(top: 20.0, bottom: 2.0),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

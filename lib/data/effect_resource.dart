@@ -1,4 +1,4 @@
-import 'package:the_elder_scrolls_alchemy_client/data/constants.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/l10n/search_indices.dart';
 import 'package:the_elder_scrolls_alchemy_client/exception/not_found.dart';
