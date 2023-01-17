@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
@@ -122,13 +126,15 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
     const dataRepositoryLink =
         WebLink(text: 'Data Repository', url: 'https://github.com/gennadyterekhov/skyrim_alchemy');
 
-    const appRepositoryLink =
-        WebLink(text: 'Repository', url: 'https://github.com/gennadyterekhov/the_elder_scrolls_alchemy_client');
+    final Widget svg = SvgPicture.asset(
+      'assets/img/play_stores/rustore/black.svg',
+      semanticsLabel: 'Download from RuStore',
+      width: 32,
+      height: 32,
+    );
 
     final ruStoreLink = ImageWebLink(
-      image: Image(
-        image: AssetImage('assets/img/play_stores/rustore/black.svg'),
-      ),
+      image: svg,
       url: 'https://apps.rustore.ru/app/com.gennadyterekhov.the_elder_scrolls_alchemy_client',
     );
 
@@ -137,7 +143,7 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
       spacing: 32,
       runSpacing: 32,
       children: [
-        ruStoreLink,
+        kIsWeb ? ruStoreLink : Container(),
         dataRepositoryLink,
       ],
     );
