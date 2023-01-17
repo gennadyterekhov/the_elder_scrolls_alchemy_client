@@ -3,7 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/web_link.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/links/image_link.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/links/web_link.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:the_elder_scrolls_alchemy_client/extensions/capitalize.dart';
 
@@ -124,19 +125,20 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
     const appRepositoryLink =
         WebLink(text: 'Repository', url: 'https://github.com/gennadyterekhov/the_elder_scrolls_alchemy_client');
 
-    const apkLink = WebLink(
-        text: 'Android APK',
-        url: 'https://github.com/gennadyterekhov/the_elder_scrolls_alchemy_client/tree/main/public/android');
+    final ruStoreLink = ImageWebLink(
+      image: Image(
+        image: AssetImage('assets/img/play_stores/rustore/black.svg'),
+      ),
+      url: 'https://apps.rustore.ru/app/com.gennadyterekhov.the_elder_scrolls_alchemy_client',
+    );
 
     final linksRow = Wrap(
       alignment: WrapAlignment.spaceEvenly,
       spacing: 32,
       runSpacing: 32,
-      children: const [
-        appRepositoryLink,
-        apkLink,
+      children: [
+        ruStoreLink,
         dataRepositoryLink,
-        //TODO add google play market and ruStore and appStore links
       ],
     );
 

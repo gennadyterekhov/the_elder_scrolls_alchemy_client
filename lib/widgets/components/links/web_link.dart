@@ -9,12 +9,12 @@ class WebLink extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final link = InkWell(
+      onTap: () {
+        launch(url);
+      },
       child: SelectableText(
         text,
         style: const TextStyle(color: Colors.blue),
-        onTap: () {
-          launch(url);
-        },
       ),
     );
 
