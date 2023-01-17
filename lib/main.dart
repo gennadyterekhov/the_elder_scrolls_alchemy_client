@@ -89,22 +89,23 @@ class _MyAppState extends State<MyApp> {
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
-        supportedLocales: const [
-          Locale(Constant.lcEnglish, ''),
-          Locale(Constant.lcSpanish, ''),
-          Locale(Constant.lcFrench, ''),
-          Locale(Constant.lcGerman, ''),
-          Locale(Constant.lcRussian, ''),
-          Locale(Constant.lcItalian, ''),
-          Locale(Constant.lcJapanese, ''),
-          Locale(Constant.lcPolish, ''),
-          Locale.fromSubtags(languageCode: Constant.lcChinese), // generic Chinese
-          Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hans'), // generic simplified Chinese
-          Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hant'), // generic traditional Chinese
-          Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hans', countryCode: 'CN'),
-          Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hant', countryCode: 'TW'),
-          Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hant', countryCode: 'HK'),
-        ],
+        supportedLocales: Constant.supportedLanguageCodesToLanguageNamesMap.keys.map((e) => Locale(e)),
+        // supportedLocales: const [
+        //   Locale(Constant.lcEnglish, ''),
+        //   Locale(Constant.lcRussian, ''),
+        //   Locale(Constant.lcSpanish, ''),
+        //   Locale(Constant.lcFrench, ''),
+        //   Locale(Constant.lcGerman, ''),
+        //   Locale(Constant.lcItalian, ''),
+        //   Locale(Constant.lcJapanese, ''),
+        //   Locale(Constant.lcPolish, ''),
+        //   Locale.fromSubtags(languageCode: Constant.lcChinese), // generic Chinese
+        //   Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hans'), // generic simplified Chinese
+        //   Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hant'), // generic traditional Chinese
+        //   Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hans', countryCode: 'CN'),
+        //   Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hant', countryCode: 'TW'),
+        //   Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hant', countryCode: 'HK'),
+        // ],
         title: 'TES Alchemy',
         routerConfig: AlchemyRouter.getRouter(),
         locale: Locale(widget.languageCode),
