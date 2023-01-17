@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_long.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/common_ingredients_by_column.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient/ingredient_long.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/lists/common_ingredients_by_column.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/divider_text.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class IngredientCardBig extends StatefulWidget {
   const IngredientCardBig({Key? key, required this.gameName, required this.ingredient}) : super(key: key);
@@ -18,14 +19,14 @@ class IngredientCardBig extends StatefulWidget {
 
 class _IngredientCardBigState extends State<IngredientCardBig> {
   void onTap() {
-    context.go('/${widget.gameName}/ingredient/${widget.ingredient.name}');
+    context.push('/${widget.gameName}/ingredient/${widget.ingredient.name}');
   }
 
   @override
   Widget build(BuildContext context) {
     final cardsList = [
       IngredientCardLong(gameName: widget.gameName, ingredient: widget.ingredient),
-      const DividerText(text: 'Ingredients with at least one common effect'),
+      DividerText(text: AppLocalizations.of(context)!.ingredientCardBigIngredientsWithAtLeastOneCommonEffect),
       CommonIngredientsByColumn(gameName: widget.gameName, ingredient: widget.ingredient),
     ];
 

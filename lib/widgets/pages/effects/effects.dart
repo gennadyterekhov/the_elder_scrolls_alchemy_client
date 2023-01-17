@@ -1,8 +1,13 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/effect_resource.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/l10n/search_indices.dart';
+import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/state/search_field_toggle.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect_small.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect/effect_small.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards_grid.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/search_field.dart';
@@ -49,28 +54,15 @@ class _EffectsPageState extends State<EffectsPage> {
     });
   }
 
-  List<Effect> searchEffectsByName(currentMap, String name) {
-    final List<String> names = currentMap.keys.toList();
-
-    final searchResultNames = names.where((element) => element.toLowerCase().contains(name.toLowerCase())).toList();
-
-    return getEffectsByNames(currentMap, searchResultNames);
-  }
-
-  List<Effect> getEffectsByNames(currentMap, List<String> names) {
-    List<Effect> effects = names.map((name) => (Effect.fromMap(currentMap[name]))).toList();
-
-    return effects;
-  }
-
   @override
   Widget build(BuildContext context) {
     final searchFieldToggle = Provider.of<SearchFieldToggle>(context);
-    final isSearchVisible = searchFieldToggle.isSearchFieldShown;
+    final bool isSearchVisible = searchFieldToggle.isSearchFieldShown;
 
-    Map<String, dynamic> currentMap = DataSource.getMap()[widget.gameName]['effects'];
+    final String languageCode = MyApp.getLocaleLanguageCode(context);
 
-    final List<Effect> effects = searchEffectsByName(currentMap, _searchQuery);
+    final List<Effect> effects =
+        EffectResource(gameName: widget.gameName).searchEffectsByName(_searchQuery, languageCode);
 
     final List<Widget> effectsCards = _getEffectsGridItems(effects);
 

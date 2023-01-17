@@ -5,7 +5,7 @@ import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/state/search_field_toggle.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_small.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient/ingredient_small.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards_grid.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/search_field.dart';
 
@@ -59,11 +59,13 @@ class _IngredientsPageState extends State<IngredientsPage> {
   @override
   Widget build(BuildContext context) {
     final searchFieldToggle = Provider.of<SearchFieldToggle>(context);
-    final isSearchVisible = searchFieldToggle.isSearchFieldShown; // final isSearchShown = true;
+    final isSearchVisible = searchFieldToggle.isSearchFieldShown;
 
     final gameName = widget.gameName;
+    final String languageCode = MyApp.getLocaleLanguageCode(context);
 
-    final List<Ingredient> ingredients = IngredientResource(gameName: gameName).searchIngredientsByName(_searchQuery);
+    final List<Ingredient> ingredients =
+        IngredientResource(gameName: gameName).searchIngredientsByName(_searchQuery, languageCode);
 
     final List<Widget> ingredientsCards = _getIngredientsGridItems(ingredients);
 

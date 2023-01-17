@@ -1,28 +1,64 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/router.dart';
 import 'package:the_elder_scrolls_alchemy_client/state/search_field_toggle.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/error_screen.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  String languageCodeFromPreferences = await MyApp.getSafeLanguageCode();
+
   runApp(
-    const MyApp(),
+    MyApp(languageCode: languageCodeFromPreferences),
   );
 }
 
-// class Root extends StatelessWidget {
-//   const Root({super.key});
+class MyApp extends StatefulWidget {
+  MyApp({Key? key, this.languageCode = Constant.fallbackLanguage}) : super(key: key);
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return const ProviderScope(child: MyApp());
-//   }
-// }
+  String languageCode;
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  static String getLocaleLanguageCode(BuildContext context) {
+    return Localizations.localeOf(context).languageCode;
+  }
+
+  static Future<String> getSafeLanguageCode() async {
+    String? languageCodeFromPreferences = await getLanguageCodeFromPreferences();
+    if (languageCodeFromPreferences == null) {
+      return Constant.fallbackLanguage;
+    }
+    return languageCodeFromPreferences;
+  }
+
+  static Future<String?> getLanguageCodeFromPreferences() async {
+    final prefs = await SharedPreferences.getInstance();
+    final String? languageCode = prefs.getString('languageCode');
+
+    return languageCode;
+  }
+
+  static void setLocaleLanguageCode(BuildContext context, String languageCode) async {
+    _MyAppState state = context.findAncestorStateOfType<_MyAppState>()!;
+    state.setLocaleLanguageCode(languageCode);
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('languageCode', languageCode);
+  }
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  setLocaleLanguageCode(String languageCode) {
+    setState(() {
+      widget.languageCode = languageCode;
+    });
+  }
 
   MaterialColor getPrimarySwatch() {
     const hash = 0xffa5d6a7;
@@ -45,20 +81,34 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (BuildContext context) {
-        return SearchFieldToggle();
-      },
-      child: MaterialApp.router(
+    try {
+      final router = MaterialApp.router(
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: Constant.supportedLanguageCodesToLanguageNamesMap.keys.map((e) => Locale(e)),
+        // supportedLocales: const [
+        //   Locale(Constant.lcEnglish, ''),
+        //   Locale(Constant.lcRussian, ''),
+        //   Locale(Constant.lcSpanish, ''),
+        //   Locale(Constant.lcFrench, ''),
+        //   Locale(Constant.lcGerman, ''),
+        //   Locale(Constant.lcItalian, ''),
+        //   Locale(Constant.lcJapanese, ''),
+        //   Locale(Constant.lcPolish, ''),
+        //   Locale.fromSubtags(languageCode: Constant.lcChinese), // generic Chinese
+        //   Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hans'), // generic simplified Chinese
+        //   Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hant'), // generic traditional Chinese
+        //   Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hans', countryCode: 'CN'),
+        //   Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hant', countryCode: 'TW'),
+        //   Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hant', countryCode: 'HK'),
+        // ],
         title: 'TES Alchemy',
-        builder: (context, widget) {
-          ErrorWidget.builder = (errorDetails) => ErrorScreen(
-                error: errorDetails.exception,
-              );
-          if (widget != null) return widget;
-          throw ('widget is null');
-        },
         routerConfig: AlchemyRouter.getRouter(),
+        locale: Locale(widget.languageCode),
         theme: ThemeData(
           primarySwatch: getPrimarySwatch(),
           pageTransitionsTheme: const PageTransitionsTheme(
@@ -71,7 +121,19 @@ class MyApp extends StatelessWidget {
             },
           ),
         ),
-      ),
-    );
+      );
+
+      final correctWidget = ChangeNotifierProvider(
+        create: (BuildContext context) {
+          return SearchFieldToggle();
+        },
+        child: router,
+      );
+      return correctWidget;
+    } catch (exception) {
+      return ErrorScreen(
+        error: exception,
+      );
+    }
   }
 }

@@ -14,7 +14,7 @@ class LeftPanelNavigation extends StatefulWidget {
 
 class _LeftPanelNavigationState extends State<LeftPanelNavigation> {
   List<NavigationRailDestination> getDestinations() {
-    return Navigation.getItems()
+    return Navigation.getItems(context: context)
         .map(
           (navigationItem) => NavigationRailDestination(
             icon: navigationItem.icon,
@@ -29,7 +29,7 @@ class _LeftPanelNavigationState extends State<LeftPanelNavigation> {
     var gameName = widget.gameName;
 
     String route = AlchemyRouter.getRouteByIndex(index: index);
-    context.go('/$gameName$route');
+    context.push('/$gameName$route');
   }
 
   @override
@@ -38,8 +38,11 @@ class _LeftPanelNavigationState extends State<LeftPanelNavigation> {
     String? url;
     url = ModalRoute.of(context)?.settings.name;
 
-    if (url != null && url.contains('ingredient')) {
+    if (url != null && url.contains('effect')) {
       selectedIndex = 1;
+    }
+    if (url != null && url.contains('ingredient')) {
+      selectedIndex = 2;
     }
 
     return NavigationRail(

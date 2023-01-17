@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+1
+version: 1.0.1+1
 
 environment:
   sdk: ">=2.17.6 <3.0.0"
@@ -38,7 +38,11 @@ dependencies:
   go_router: ^5.1.1
   selectable: ^0.2.6
   provider: ^6.0.5
-
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.17.0
+  shared_preferences:
+  flutter_svg: ^1.1.6
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -57,7 +61,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
+  generate: true
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -65,6 +69,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/img/play_stores/rustore/
     - assets/img/skyrim/effects/
     - assets/img/skyrim/ingredients/
     - assets/img/oblivion/effects/

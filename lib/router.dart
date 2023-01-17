@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/navigation/navigation.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/effect_screen.dart';
@@ -8,6 +9,7 @@ import 'package:the_elder_scrolls_alchemy_client/widgets/screens/error_screen.da
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/home_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/ingredient_screen.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/ingredients_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AlchemyRouter {
   static bool isGameNameValid({required String gameName}) {
@@ -23,6 +25,12 @@ class AlchemyRouter {
         DataSource.getMap()[gameName]['ingredients'].containsKey(ingredientName);
   }
 
+  static bool isLocaleValid({
+    required String locale,
+  }) {
+    return AppLocalizations.supportedLocales.contains(Locale(locale));
+  }
+
   static GoRoute makeSimpleRoute({required String path, required Widget page}) {
     return GoRoute(
       path: path,
@@ -30,14 +38,17 @@ class AlchemyRouter {
     );
   }
 
+  static Widget Function(BuildContext) customBuilder({required Widget screen}) {
+    return (BuildContext context) => screen;
+  }
+
   static GoRouter getRouter() {
     final GoRouter router = GoRouter(
+      initialLocation: Constant.skyrimHomeLink,
       errorBuilder: (context, state) => ErrorScreen(error: state.error),
       routes: <GoRoute>[
-        makeSimpleRoute(path: '/home', page: const HomeScreen(gameName: DataSource.gameNameSkyrim)),
-        makeSimpleRoute(path: '/', page: const HomeScreen(gameName: DataSource.gameNameSkyrim)),
         GoRoute(
-          path: '/home/:gameName',
+          path: '/:gameName/home',
           builder: (context, state) {
             final gameName = state.params['gameName'] as String;
 
@@ -100,12 +111,12 @@ class AlchemyRouter {
     return router;
   }
 
-  static String getRouteByIndex({int index = 0, bool withHome = true}) {
-    final items = Navigation.getItems();
+  static String getRouteByIndex({int index = 0}) {
+    final items = Navigation.getItemsPaths();
     if (index > items.length) {
       return '/home';
     }
 
-    return items[index].path;
+    return items[index]['path'] ?? '/home';
   }
 }

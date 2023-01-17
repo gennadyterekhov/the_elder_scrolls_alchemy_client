@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/l10n/custom_localization.dart';
 
 import 'package:the_elder_scrolls_alchemy_client/data/effect_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/ingredient_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient_micro.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient/ingredient_micro.dart';
 
 class CommonIngredientsByColumn extends StatefulWidget {
   const CommonIngredientsByColumn({Key? key, required this.gameName, required this.ingredient}) : super(key: key);
@@ -64,7 +65,11 @@ class _CommonIngredientsByColumnState extends State<CommonIngredientsByColumn> {
                   Container(
                     margin: EdgeInsets.only(bottom: 10.0),
                     child: Text(
-                      widget.ingredient.effectsNames[i],
+                      CustomLocalization.getEffectName(
+                        gameName: widget.gameName,
+                        englishEffectName: widget.ingredient.effectsNames[i],
+                        context: context,
+                      ),
                       style: TextStyle(color: Colors.grey),
                     ),
                   ),

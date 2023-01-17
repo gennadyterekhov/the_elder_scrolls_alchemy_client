@@ -14,7 +14,7 @@ class BottomPanelNavigation extends StatefulWidget {
 
 class _BottomPanelNavigationState extends State<BottomPanelNavigation> {
   List<BottomNavigationBarItem> getDestinations() {
-    return Navigation.getItems(withHome: false)
+    return Navigation.getItems(context: context)
         .map(
           (navigationItem) => BottomNavigationBarItem(
             icon: navigationItem.selectedIcon,
@@ -27,8 +27,8 @@ class _BottomPanelNavigationState extends State<BottomPanelNavigation> {
   void onDestinationSelected(index) {
     var gameName = widget.gameName;
 
-    String route = AlchemyRouter.getRouteByIndex(index: index, withHome: false);
-    context.go('/$gameName$route');
+    String route = AlchemyRouter.getRouteByIndex(index: index);
+    context.push('/$gameName$route');
   }
 
   @override
@@ -37,9 +37,13 @@ class _BottomPanelNavigationState extends State<BottomPanelNavigation> {
     String? url;
     url = ModalRoute.of(context)?.settings.name;
 
-    if (url != null && url.contains('ingredient')) {
+    if (url != null && url.contains('effect')) {
       selectedIndex = 1;
     }
+    if (url != null && url.contains('ingredient')) {
+      selectedIndex = 2;
+    }
+
     return BottomNavigationBar(
       currentIndex: selectedIndex,
       items: getDestinations(),

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/extensions/capitalize.dart';
+import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/state/search_field_toggle.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AlchemyAppBar extends StatelessWidget implements PreferredSizeWidget {
   const AlchemyAppBar({Key? key, required this.gameName}) : super(key: key);
@@ -12,39 +15,12 @@ class AlchemyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => Size(20.0, 50.0);
 
-  Function() chooseGame(context, String gameName) {
-    return () {
-      GoRouter.of(context).go('/home/$gameName');
-    };
-  }
-
   @override
   AppBar build(
     BuildContext context,
   ) {
-    final actions = [
-      PopupMenuButton<Text>(
-        itemBuilder: (context) {
-          return [
-            PopupMenuItem(
-              onTap: chooseGame(context, DataSource.gameNameSkyrim),
-              child: Text(DataSource.gameNameSkyrim.capitalize()),
-            ),
-            PopupMenuItem(
-              onTap: chooseGame(context, DataSource.gameNameOblivion),
-              child: Text(DataSource.gameNameOblivion.capitalize()),
-            ),
-            PopupMenuItem(
-              onTap: chooseGame(context, DataSource.gameNameMorrowind),
-              child: Text(DataSource.gameNameMorrowind.capitalize()),
-            ),
-          ];
-        },
-      )
-    ];
-
     final homeLink = InkWell(
-      onTap: () => context.go('/home/$gameName'),
+      onTap: () => context.push('/$gameName/home'),
       child: Text(gameName.capitalize()),
     );
 
@@ -54,7 +30,7 @@ class AlchemyAppBar extends StatelessWidget implements PreferredSizeWidget {
     final toggleSearchInkWell = InkWell(
       child: Wrap(children: [
         isSearchVisible ? const Icon(Icons.visibility_off) : const Icon(Icons.visibility),
-        const Text(' Search'),
+        Text(' ' + AppLocalizations.of(context)!.appBarSearchToggle),
       ]),
       onTap: () => searchFieldToggle.isSearchFieldShown = !isSearchVisible,
     );
@@ -68,7 +44,6 @@ class AlchemyAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       automaticallyImplyLeading: true,
       title: titleLine,
-      actions: actions,
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SearchField extends StatefulWidget {
   const SearchField({Key? key, required this.controller}) : super(key: key);
@@ -28,7 +29,7 @@ class _SearchFieldState extends State<SearchField> {
     final textField = TextField(
       controller: widget.controller,
       decoration: InputDecoration(
-        hintText: 'Search query',
+        hintText: AppLocalizations.of(context)!.searchFieldHintText,
         suffixIcon: IconButton(
           onPressed: widget.controller.clear,
           icon: const Icon(Icons.clear),

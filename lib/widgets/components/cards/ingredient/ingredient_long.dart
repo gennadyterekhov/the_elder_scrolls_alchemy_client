@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/l10n/custom_localization.dart';
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/divider_text.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/effects_by_ingredient.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/web_link.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/lists/effects_by_ingredient.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/links/web_link.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class IngredientCardLong extends StatefulWidget {
   const IngredientCardLong({Key? key, required this.gameName, required this.ingredient}) : super(key: key);
@@ -17,7 +19,8 @@ class _IngredientCardLongState extends State<IngredientCardLong> {
   @override
   Widget build(BuildContext context) {
     SelectableText nameText = SelectableText(
-      widget.ingredient.name,
+      CustomLocalization.getIngredientName(
+          gameName: widget.gameName, englishIngredientName: widget.ingredient.name, context: context),
       textAlign: TextAlign.left,
       style: const TextStyle(
         overflow: TextOverflow.fade,
@@ -45,7 +48,7 @@ class _IngredientCardLongState extends State<IngredientCardLong> {
 
     Widget weightText = widget.ingredient.weight != null
         ? SelectableText(
-            'weight: ${widget.ingredient.weight!}',
+            AppLocalizations.of(context)!.ingredientWeight + ': ${widget.ingredient.weight!}',
             textAlign: TextAlign.left,
             style: const TextStyle(
               fontSize: 15,
@@ -55,7 +58,7 @@ class _IngredientCardLongState extends State<IngredientCardLong> {
 
     Widget valueText = widget.ingredient.value != null
         ? SelectableText(
-            'value: ${widget.ingredient.value!}',
+            AppLocalizations.of(context)!.ingredientValue + ': ${widget.ingredient.value!}',
             textAlign: TextAlign.left,
             style: const TextStyle(
               fontSize: 15,
@@ -64,7 +67,7 @@ class _IngredientCardLongState extends State<IngredientCardLong> {
         : Container();
     Widget harvestProbabilityText = widget.ingredient.harvestProbability != null
         ? SelectableText(
-            'harvest probability: ${widget.ingredient.harvestProbability!}',
+            AppLocalizations.of(context)!.ingredientHarvestProbability + ': ${widget.ingredient.harvestProbability!}',
             textAlign: TextAlign.left,
             style: const TextStyle(
               fontSize: 15,
@@ -77,18 +80,21 @@ class _IngredientCardLongState extends State<IngredientCardLong> {
 
     final longCard = Card(
       child: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          nameText,
-          link,
-          idText,
-          weightText,
-          valueText,
-          harvestProbabilityText,
-          textText,
-          const DividerText(text: 'Effects'),
-          EffectsByIngredient(gameName: widget.gameName, ingredient: widget.ingredient),
-        ]),
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            nameText,
+            link,
+            idText,
+            weightText,
+            valueText,
+            harvestProbabilityText,
+            textText,
+            DividerText(text: AppLocalizations.of(context)!.effectsLeftPanel),
+            EffectsByIngredient(gameName: widget.gameName, ingredient: widget.ingredient),
+          ],
+        ),
       ),
     );
 
