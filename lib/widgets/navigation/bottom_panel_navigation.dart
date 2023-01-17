@@ -37,9 +37,13 @@ class _BottomPanelNavigationState extends State<BottomPanelNavigation> {
     String? url;
     url = ModalRoute.of(context)?.settings.name;
 
-    if (url != null && url.contains('ingredient')) {
+    if (url != null && url.contains('effect')) {
       selectedIndex = 1;
     }
+    if (url != null && url.contains('ingredient')) {
+      selectedIndex = 2;
+    }
+
     return BottomNavigationBar(
       currentIndex: selectedIndex,
       items: getDestinations(),

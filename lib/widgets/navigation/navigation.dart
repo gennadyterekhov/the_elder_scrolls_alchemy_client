@@ -12,8 +12,7 @@ class NavigationItem {
 class Navigation {
   static List<Map<String, String>> getItemsPaths() {
     final List<Map<String, String>> items = [
-      // {'path': '/home'}, // TODO how to get gameName here????
-
+      {'path': '/home'},
       {'path': '/effects'},
       {'path': '/ingredients'},
     ];
@@ -21,14 +20,14 @@ class Navigation {
     return items;
   }
 
-  static List<NavigationItem> getItems({required BuildContext context}) {
+  static Map<String, NavigationItem> getNameToNavigationItemMap({required BuildContext context}) {
     final paths = Navigation.getItemsPaths();
 
-    // final home = NavigationItem(
-    //     icon: const Icon(Icons.house_outlined),
-    //     selectedIcon: const Icon(Icons.house),
-    //     label: AppLocalizations.of(context)!.homeLeftPanel,
-    //     path: paths[0]['path']!);
+    final home = NavigationItem(
+        icon: const Icon(Icons.house_outlined),
+        selectedIcon: const Icon(Icons.house),
+        label: AppLocalizations.of(context)!.homeNavigation,
+        path: '/home/');
 
     final effects = NavigationItem(
         icon: const Icon(Icons.menu_book_outlined),
@@ -42,7 +41,38 @@ class Navigation {
         label: AppLocalizations.of(context)!.ingredientsLeftPanel,
         path: paths[1]['path']!);
 
+    final Map<String, NavigationItem> map = {
+      'home': home,
+      'effects': effects,
+      'ingredients': ingredients,
+    };
+
+    return map;
+  }
+
+  static List<NavigationItem> getItems({required BuildContext context}) {
+    final paths = Navigation.getItemsPaths();
+
+    final home = NavigationItem(
+        icon: const Icon(Icons.house_outlined),
+        selectedIcon: const Icon(Icons.house),
+        label: AppLocalizations.of(context)!.homeNavigation,
+        path: paths[0]['path']!);
+
+    final effects = NavigationItem(
+        icon: const Icon(Icons.menu_book_outlined),
+        selectedIcon: const Icon(Icons.menu_book),
+        label: AppLocalizations.of(context)!.effectsLeftPanel,
+        path: paths[1]['path']!);
+
+    final ingredients = NavigationItem(
+        icon: const Icon(Icons.restaurant_outlined),
+        selectedIcon: const Icon(Icons.restaurant),
+        label: AppLocalizations.of(context)!.ingredientsLeftPanel,
+        path: paths[2]['path']!);
+
     final List<NavigationItem> items = [
+      home,
       effects,
       ingredients,
     ];
