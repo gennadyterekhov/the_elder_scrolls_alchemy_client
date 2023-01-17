@@ -30,5 +30,6 @@
   "homePageChangeGame":"Change game",
   "homePageChangeLanguage": "Change language",
   "homePageDescription": "The Library of Alchemy Effects and Ingredients from 'The Elder Scrolls'.",
-  "homePageDataOriginDescription": "The data are taken from open sources, such as en.uesp.net ."
+  "homePageDataOriginDescription": "The data are taken from open sources, such as en.uesp.net .",
+  "homeNavigation":"Home"
 }

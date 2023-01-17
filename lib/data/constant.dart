@@ -25,12 +25,12 @@ class Constant {
   static const Map<String, String> supportedLanguageCodesToLanguageNamesMap = {
     lcEnglish: 'English',
     lcRussian: 'Русский',
-    lcSpanish: 'Español',
-    lcFrench: 'Français',
-    lcGerman: 'Deutsch',
-    lcPolish: 'Polski',
-    lcItalian: 'Italiano',
-    lcJapanese: '日本語',
-    lcChinese: '中文',
+    // lcSpanish: 'Español',
+    // lcFrench: 'Français',
+    // lcGerman: 'Deutsch',
+    // lcPolish: 'Polski',
+    // lcItalian: 'Italiano',
+    // lcJapanese: '日本語',
+    // lcChinese: '中文',
   };
 }

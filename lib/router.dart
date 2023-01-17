@@ -114,9 +114,9 @@ class AlchemyRouter {
   static String getRouteByIndex({int index = 0}) {
     final items = Navigation.getItemsPaths();
     if (index > items.length) {
-      return Constant.skyrimHomeLink;
+      return '/home';
     }
 
-    return items[index]['path'] ?? Constant.skyrimHomeLink;
+    return items[index]['path'] ?? '/home';
   }
 }

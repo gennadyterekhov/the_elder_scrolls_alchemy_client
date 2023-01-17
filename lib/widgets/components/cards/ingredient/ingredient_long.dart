@@ -3,7 +3,7 @@ import 'package:the_elder_scrolls_alchemy_client/data/l10n/custom_localization.d
 import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/divider_text.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/lists/effects_by_ingredient.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/web_link.dart';
+import 'package:the_elder_scrolls_alchemy_client/widgets/components/links/web_link.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class IngredientCardLong extends StatefulWidget {
