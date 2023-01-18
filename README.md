@@ -4,7 +4,7 @@
 
 # the_elder_scrolls_alchemy_client
 
-The app helps players become better at alchemy in the elder scrolls games.  
+Library of alchemy ingredients and effects from TES games.  
 You can see all the ingredients that have some specific effect - or see all the effects of every ingredient.  
 
 Supported games:  
