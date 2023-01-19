@@ -25,6 +25,11 @@ this command opens chrome window with the app in debug mode
 
 for more commands, see [flutter documentation](https://docs.flutter.dev/get-started/test-drive?tab=terminal)  
 
+### Building
+
+when building for a new release (substitute correct build number):  
+flutter build apk --build-number=3 --build-name=3.0.0
+
 ### Test  
 
 [how to run integration test in browser](https://docs.flutter.dev/testing/integration-tests#running-in-a-browser)
