@@ -28,7 +28,11 @@ for more commands, see [flutter documentation](https://docs.flutter.dev/get-star
 ### Building
 
 when building for a new release (substitute correct build number):  
-flutter build apk --build-number=3 --build-name=3.0.0
+`flutter build apk --build-number=3 --build-name=3.0.0`
+  
+
+Install release app on device:  
+`flutter run --release`
 
 ### Test  
 
