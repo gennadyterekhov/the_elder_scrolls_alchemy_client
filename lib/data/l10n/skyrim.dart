@@ -119,7 +119,7 @@ class SkyrimL10nData {
       },
       "Fortify Health": {
         /*"de": "",*/
-        "ru": "Повышение навыка: восстановление",
+        "ru": "Повышение здоровья",
 /*        "fr": "",
         "es": "",
         "it": "",
@@ -209,7 +209,7 @@ class SkyrimL10nData {
       },
       "Fortify Restoration": {
         /*"de": "",*/
-        "ru": "Повышение здоровья",
+        "ru": "Повышение навыка: восстановление",
 /*        "fr": "",
         "es": "",
         "it": "",
@@ -267,7 +267,7 @@ class SkyrimL10nData {
       },
       "Lingering Damage Health": {
         /*"de": "",*/
-        "ru": "Паралич",
+        "ru": "Затяжной урон здоровью",
 /*        "fr": "",
         "es": "",
         "it": "",
@@ -439,7 +439,7 @@ class SkyrimL10nData {
       },
       "Waterbreathing": {
         /*"de": "",*/
-        "ru": "Повышение магии", /* "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""*/
+        "ru": "Водное дыхание", /* "fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""*/
       },
       "Weakness to Fire": {
         /*"de": "",*/
