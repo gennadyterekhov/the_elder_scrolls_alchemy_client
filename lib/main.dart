@@ -12,16 +12,27 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   String languageCodeFromPreferences = await MyApp.getSafeLanguageCode();
+  String gameNameFromPreferences = await MyApp.getSavedGameName();
 
   runApp(
-    MyApp(languageCode: languageCodeFromPreferences),
+    MyApp(languageCode: languageCodeFromPreferences, gameName: gameNameFromPreferences),
   );
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({Key? key, this.languageCode = Constant.fallbackLanguage}) : super(key: key);
+  MyApp({Key? key, this.languageCode = Constant.fallbackLanguage, this.gameName = Constant.fallbackGameName})
+      : super(key: key);
 
   String languageCode;
+  String gameName;
+
+  static Future<String> getSavedGameName() async {
+    String? gameNameFromPreferences = await getGameNameFromPreferences();
+    if (gameNameFromPreferences == null) {
+      return Constant.fallbackGameName;
+    }
+    return gameNameFromPreferences;
+  }
 
   static String getLocaleLanguageCode(BuildContext context) {
     return Localizations.localeOf(context).languageCode;
@@ -42,11 +53,25 @@ class MyApp extends StatefulWidget {
     return languageCode;
   }
 
+  static Future<String?> getGameNameFromPreferences() async {
+    final prefs = await SharedPreferences.getInstance();
+    final String? gameName = prefs.getString('gameName');
+
+    return gameName;
+  }
+
   static void setLocaleLanguageCode(BuildContext context, String languageCode) async {
     _MyAppState state = context.findAncestorStateOfType<_MyAppState>()!;
     state.setLocaleLanguageCode(languageCode);
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('languageCode', languageCode);
+  }
+
+  static void setGameName(BuildContext context, String gameName) async {
+    _MyAppState state = context.findAncestorStateOfType<_MyAppState>()!;
+    state.setGameName(gameName);
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('gameName', gameName);
   }
 
   @override
@@ -57,6 +82,12 @@ class _MyAppState extends State<MyApp> {
   setLocaleLanguageCode(String languageCode) {
     setState(() {
       widget.languageCode = languageCode;
+    });
+  }
+
+  setGameName(String gameName) {
+    setState(() {
+      widget.gameName = gameName;
     });
   }
 
@@ -107,7 +138,7 @@ class _MyAppState extends State<MyApp> {
         //   Locale.fromSubtags(languageCode: Constant.lcChinese, scriptCode: 'Hant', countryCode: 'HK'),
         // ],
         title: 'TES Alchemy',
-        routerConfig: AlchemyRouter.getRouter(),
+        routerConfig: AlchemyRouter.getRouter(gameName: widget.gameName),
         locale: Locale(widget.languageCode),
         theme: ThemeData(
           primarySwatch: getPrimarySwatch(),
@@ -129,11 +160,10 @@ class _MyAppState extends State<MyApp> {
         },
         child: router,
       );
+
       return correctWidget;
     } catch (exception) {
-      return ErrorScreen(
-        error: exception,
-      );
+      return ErrorScreen(error: exception);
     }
   }
 }

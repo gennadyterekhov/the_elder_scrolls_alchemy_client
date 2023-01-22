@@ -3,6 +3,7 @@ import 'package:the_elder_scrolls_alchemy_client/extensions/capitalize.dart';
 
 class Constant {
   static const String fallbackLanguage = lcEnglish;
+  static const String fallbackGameName = gameNameSkyrim;
 
   static const int positiveEffectBackgroundColor = 0xffd4fae3;
   static const int negativeEffectBackgroundColor = 0xfffad4d4;
@@ -25,9 +26,6 @@ class Constant {
   static const String lcSpanish = 'es';
 
   static const String globalUnknown = 'unknown';
-  static const String skyrimHomeLink = '/${gameNameSkyrim}/home';
-  static const String oblivionHomeLink = '/${gameNameOblivion}/home';
-  static const String morrowindHomeLink = '/${gameNameMorrowind}/home';
 
   static const Map<String, String> supportedLanguageCodesToLanguageNamesMap = {
     lcEnglish: 'English',
@@ -46,5 +44,9 @@ class Constant {
       return Constant.gameNameTesoPresentation;
     }
     return gameName.capitalize();
+  }
+
+  static String getHomeLink(String gameName) {
+    return '/$gameName/home';
   }
 }

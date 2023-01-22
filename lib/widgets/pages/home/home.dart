@@ -1,16 +1,12 @@
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/links/image_link.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/links/web_link.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:the_elder_scrolls_alchemy_client/extensions/capitalize.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.gameName}) : super(key: key);
@@ -99,7 +95,7 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
       items: getGameButtonsDropdown(context),
       onChanged: (String? gameName) {
         if (gameName is String) {
-          GoRouter.of(context).go('/$gameName/home');
+          MyApp.setGameName(context, gameName);
         }
       },
     );
