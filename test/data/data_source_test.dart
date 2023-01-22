@@ -35,7 +35,7 @@ void main() {
     });
 
     test("Test game names", () {
-      expect(DataSource.gameNames.length, 3);
+      expect(DataSource.gameNames.length, 4);
     });
   });
 }
