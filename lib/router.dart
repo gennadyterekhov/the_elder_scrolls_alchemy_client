@@ -42,9 +42,9 @@ class AlchemyRouter {
     return (BuildContext context) => screen;
   }
 
-  static GoRouter getRouter() {
+  static GoRouter getRouter({String gameName = Constant.fallbackGameName}) {
     final GoRouter router = GoRouter(
-      initialLocation: Constant.skyrimHomeLink,
+      initialLocation: Constant.getHomeLink(gameName),
       errorBuilder: (context, state) => ErrorScreen(error: state.error),
       routes: <GoRoute>[
         GoRoute(
@@ -53,7 +53,7 @@ class AlchemyRouter {
             final gameName = state.params['gameName'] as String;
 
             if (!isGameNameValid(gameName: gameName)) {
-              return ErrorScreen(error: 'Unknown game name');
+              return ErrorScreen(error: 'Unknown game name: $gameName');
             }
 
             return HomeScreen(gameName: gameName);
@@ -64,7 +64,7 @@ class AlchemyRouter {
           builder: (context, state) {
             final gameName = state.params['gameName'] as String;
             if (!isGameNameValid(gameName: gameName)) {
-              return ErrorScreen(error: 'Unknown game name');
+              return ErrorScreen(error: 'Unknown game name: $gameName');
             }
             return EffectsScreen(gameName: gameName);
           },
@@ -74,7 +74,7 @@ class AlchemyRouter {
           builder: (context, state) {
             final gameName = state.params['gameName'] as String;
             if (!isGameNameValid(gameName: gameName)) {
-              return ErrorScreen(error: 'Unknown game name');
+              return ErrorScreen(error: 'Unknown game name: $gameName');
             }
 
             return IngredientsScreen(gameName: gameName);
@@ -87,7 +87,7 @@ class AlchemyRouter {
             final gameName = state.params['gameName'] as String;
 
             if (!isEffectValid(gameName: gameName, effectName: effectName)) {
-              return ErrorScreen(error: 'Unknown game or effect name');
+              return ErrorScreen(error: 'Unknown game or effect name: ${gameName}/${effectName}');
             }
             return EffectScreen(gameName: gameName, effectName: effectName);
           },
@@ -99,7 +99,7 @@ class AlchemyRouter {
             final gameName = state.params['gameName'] as String;
 
             if (!isIngredientValid(gameName: gameName, ingredientName: ingredientName)) {
-              return ErrorScreen(error: 'Unknown game or ingredient name');
+              return ErrorScreen(error: 'Unknown game or ingredient name:  ${gameName}/${ingredientName}');
             }
 
             return IngredientScreen(gameName: gameName, ingredientName: ingredientName);

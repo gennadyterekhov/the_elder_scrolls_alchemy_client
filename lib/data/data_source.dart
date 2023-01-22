@@ -39,7 +39,7 @@ class DataSource {
 
   static void checkGameName(String gameName) {
     if (!gameNames.contains(gameName)) {
-      throw Exception('Unknown game name');
+      throw Exception('Unknown game name: $gameName');
     }
   }
 }

@@ -20,7 +20,7 @@ class ErrorScreenState extends State<ErrorScreen> {
   @override
   Widget build(BuildContext context) {
     final homeLinkButton = ElevatedButton(
-      onPressed: () => context.push(Constant.skyrimHomeLink),
+      onPressed: () => context.push(Constant.getHomeLink(Constant.fallbackGameName)),
       child: Text(AppLocalizations.of(context)!.errorScreenHomeLink),
     );
 
