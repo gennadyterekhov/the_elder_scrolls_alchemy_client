@@ -17,9 +17,9 @@ Widget createWidget({String languageCode = Constant.fallbackLanguage}) => Contai
       child: MaterialApp(
         locale: Locale(languageCode),
         home: IngredientCardBig(
-          gameName: DataSource.gameNameSkyrim,
+          gameName: Constant.gameNameSkyrim,
           ingredient:
-              Ingredient.fromMap(DataSource.getMap()[DataSource.gameNameSkyrim]['ingredients']['Abecean Longfin']),
+              Ingredient.fromMap(DataSource.getMap()[Constant.gameNameSkyrim]['ingredients']['Abecean Longfin']),
           // ingredient: Ingredient.fromMap(DataSource.getMap()[DataSource.gameNameMorrowind]['ingredients']['Bread']),
         ),
       ),

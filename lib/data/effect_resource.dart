@@ -32,14 +32,6 @@ class EffectResource {
     return resultMap;
   }
 
-  // List<Effect> searchEffectsByName(String name) {
-  //   final List<String> names = currentMap.keys.toList();
-
-  //   final searchResultNames = names.where((element) => element.toLowerCase().contains(name.toLowerCase())).toList();
-
-  //   return getEffectsByNames(searchResultNames);
-  // }
-
   Effect getEffectByName(String name) {
     if (!currentMap.containsKey(name)) {
       throw NotFoundException(

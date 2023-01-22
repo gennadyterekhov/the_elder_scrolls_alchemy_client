@@ -9,8 +9,8 @@ import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect
 Widget createWidget() => MaterialApp(
       locale: Locale(Constant.fallbackLanguage),
       home: EffectCardBig(
-        gameName: DataSource.gameNameSkyrim,
-        effect: Effect.fromMap(DataSource.getMap()[DataSource.gameNameSkyrim]['effects']['Cure Disease']),
+        gameName: Constant.gameNameSkyrim,
+        effect: Effect.fromMap(DataSource.getMap()[Constant.gameNameSkyrim]['effects']['Cure Disease']),
       ),
     );
 

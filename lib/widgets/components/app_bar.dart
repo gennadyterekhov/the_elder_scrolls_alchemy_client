@@ -21,7 +21,7 @@ class AlchemyAppBar extends StatelessWidget implements PreferredSizeWidget {
   ) {
     final homeLink = InkWell(
       onTap: () => context.push('/$gameName/home'),
-      child: Text(gameName.capitalize()),
+      child: Text(Constant.getGameNameForPresentation(gameName)),
     );
 
     final searchFieldToggle = Provider.of<SearchFieldToggle>(context);

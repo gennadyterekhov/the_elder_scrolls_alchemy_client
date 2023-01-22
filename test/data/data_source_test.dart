@@ -1,10 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 
 void main() {
   group("Test data source", () {
     test("Test skyrim data", () {
-      Map<String, dynamic> map = DataSource.getMap()[DataSource.gameNameSkyrim];
+      Map<String, dynamic> map = DataSource.getMap()[Constant.gameNameSkyrim];
 
       expect(map.containsKey('effects'), true);
       expect(map['effects'].length, 55);
@@ -14,7 +15,7 @@ void main() {
     });
 
     test("Test oblivion data", () {
-      Map<String, dynamic> map = DataSource.getMap()[DataSource.gameNameOblivion];
+      Map<String, dynamic> map = DataSource.getMap()[Constant.gameNameOblivion];
 
       expect(map.containsKey('effects'), true);
       expect(map['effects'].length, 68);
@@ -24,7 +25,7 @@ void main() {
     });
 
     test("Test morrowind data", () {
-      Map<String, dynamic> map = DataSource.getMap()[DataSource.gameNameMorrowind];
+      Map<String, dynamic> map = DataSource.getMap()[Constant.gameNameMorrowind];
 
       expect(map.containsKey('effects'), true);
       expect(map['effects'].length, 67);

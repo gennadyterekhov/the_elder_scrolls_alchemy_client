@@ -1,3 +1,4 @@
+import 'package:the_elder_scrolls_alchemy_client/data/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 
 /// only for russian right now....
@@ -467,8 +468,8 @@ class SearchLocalizedNameIndex {
   };
 
   static const Map<String, Map<String, Map<String, String>>> allIndices = {
-    DataSource.gameNameSkyrim: skyrimIndex,
-    DataSource.gameNameOblivion: oblivionIndex,
-    DataSource.gameNameMorrowind: morrowindIndex,
+    Constant.gameNameSkyrim: skyrimIndex,
+    Constant.gameNameOblivion: oblivionIndex,
+    Constant.gameNameMorrowind: morrowindIndex,
   };
 }

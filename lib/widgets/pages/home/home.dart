@@ -42,7 +42,7 @@ List<DropdownMenuItem<String>> getGameButtonsDropdown(context) {
     popupMenuItems.add(
       DropdownMenuItem(
         value: gameName,
-        child: Text(gameName.capitalize()),
+        child: Text(Constant.getGameNameForPresentation(gameName)),
       ),
     );
   }
