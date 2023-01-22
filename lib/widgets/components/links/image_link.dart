@@ -10,7 +10,7 @@ class ImageWebLink extends StatelessWidget {
   Widget build(BuildContext context) {
     final link = InkWell(
       onTap: () {
-        launch(url);
+        launchUrl(Uri.parse(url));
       },
       child: image,
     );

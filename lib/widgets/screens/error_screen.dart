@@ -25,7 +25,8 @@ class ErrorScreenState extends State<ErrorScreen> {
     );
 
     final issueLinkButton = ElevatedButton(
-      onPressed: () => launch('https://github.com/gennadyterekhov/the_elder_scrolls_alchemy_client/issues'),
+      onPressed: () =>
+          launchUrl(Uri.parse('https://github.com/gennadyterekhov/the_elder_scrolls_alchemy_client/issues')),
       child: Text(AppLocalizations.of(context)!.errorScreenGithub),
     );
 
