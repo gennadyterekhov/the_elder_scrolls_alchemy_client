@@ -16,6 +16,7 @@
   "ingredientWeight":"вес",
   "ingredientText": "описание",
   "ingredientHarvestProbability":"вероятность сбора",
+  "ingredientOrigin":"источник",
 
   "ingredientsByEffectNoIngredients" :"нет ингредиентов",
   "ingredientsByEffectInPosition": "В позиции",

@@ -78,18 +78,19 @@ class EffectResource {
 
     if (languageCode == Constant.lcRussian) {
       ///now there are only russian translations for effects and ingredients
-      Map<String, String> localNameToEnglishNameMap = SearchLocalizedNameIndex.allIndices[this.gameName]!['effects']!;
-      List<String> localNames = localNameToEnglishNameMap.keys.toList();
+      Map localNameToEnglishNameMap = SearchLocalizedNameIndex.allIndices[this.gameName]!['effects'];
+      if (localNameToEnglishNameMap is Map<String, String>) {
+        List<String> localNames = localNameToEnglishNameMap.keys.toList();
+        final filteredLocalNames =
+            localNames.where((element) => element.toLowerCase().contains(nameFromQuery.toLowerCase())).toList();
 
-      final filteredLocalNames =
-          localNames.where((element) => element.toLowerCase().contains(nameFromQuery.toLowerCase())).toList();
+        for (String foundLocalName in filteredLocalNames) {
+          final correspondingEnglishName = localNameToEnglishNameMap[foundLocalName]!;
+          filteredNames.add(correspondingEnglishName);
+        }
 
-      for (String foundLocalName in filteredLocalNames) {
-        final correspondingEnglishName = localNameToEnglishNameMap[foundLocalName]!;
-        filteredNames.add(correspondingEnglishName);
+        return getEffectsByNames(filteredNames);
       }
-
-      return getEffectsByNames(filteredNames);
     }
 
     return getEffectsByNames(filteredNames);
