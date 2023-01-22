@@ -108,6 +108,12 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
     final languagePicker = getLanguagePicker(context);
 
     final gamePicker = getGamePicker(context);
+    final pickers = Padding(
+      padding: const EdgeInsets.only(top: 30.0, bottom: 40.0),
+      child: Column(
+        children: [gamePicker, languagePicker],
+      ),
+    );
 
     final welcomeText = SelectableText(
       AppLocalizations.of(context)!.homePageDescription,
@@ -116,11 +122,13 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
 
     final dataOriginDescriptionText = SelectableText(
       AppLocalizations.of(context)!.homePageDataOriginDescription,
-      style: Theme.of(context).textTheme.headline5,
+      style: Theme.of(context).textTheme.headline6,
     );
 
     const dataRepositoryLink =
         WebLink(text: 'Data Repository', url: 'https://github.com/gennadyterekhov/skyrim_alchemy');
+
+    const licenseLink = WebLink(text: 'License', url: 'https://creativecommons.org/licenses/by-sa/2.5');
 
     final Widget svg = SvgPicture.asset(
       'assets/img/play_stores/rustore/black.svg',
@@ -135,12 +143,13 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
     );
 
     final linksRow = Wrap(
-      alignment: WrapAlignment.spaceEvenly,
+      alignment: WrapAlignment.center,
       spacing: 32,
       runSpacing: 32,
       children: [
         kIsWeb ? ruStoreLink : Container(),
         dataRepositoryLink,
+        licenseLink,
       ],
     );
 
@@ -153,9 +162,8 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               welcomeText,
+              pickers,
               dataOriginDescriptionText,
-              gamePicker,
-              languagePicker,
               const Image(image: AssetImage('assets/img/logo.png')),
               linksRow,
             ],
@@ -166,9 +174,7 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
 
     final height = MediaQuery.of(context).size.height;
     final box = ConstrainedBox(
-      constraints: BoxConstraints(
-        maxHeight: height,
-      ),
+      constraints: BoxConstraints(),
       child: mainCard,
     );
 
