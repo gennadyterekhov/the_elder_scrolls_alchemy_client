@@ -28,10 +28,7 @@ class _CustomScreenState extends State<CustomScreen> {
       },
     );
 
-    return
-        // builder: (context, child) => SearchFieldToggle(),
-
-        Scaffold(
+    return Scaffold(
       appBar: AlchemyAppBar(
         gameName: widget.gameName,
       ),
