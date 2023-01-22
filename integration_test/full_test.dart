@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/effect/effect_big.dart';
@@ -63,7 +64,7 @@ void main() {
 
       await tester.tap(find.byType(PopupMenuButton));
       await tester.pump();
-      await tester.tap(find.text(DataSource.gameNameMorrowind));
+      await tester.tap(find.text(Constant.gameNameMorrowind));
       await tester.pump();
 
       await tester.tap(find.text('Effects'));

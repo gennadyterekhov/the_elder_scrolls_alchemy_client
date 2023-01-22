@@ -12,8 +12,8 @@ Widget createWidget({String languageCode = Constant.fallbackLanguage}) => Contai
       child: MaterialApp(
         locale: Locale(languageCode),
         home: EffectCardSmall(
-          gameName: DataSource.gameNameSkyrim,
-          effect: Effect.fromMap(DataSource.getMap()[DataSource.gameNameSkyrim]['effects']['Cure Disease']),
+          gameName: Constant.gameNameSkyrim,
+          effect: Effect.fromMap(DataSource.getMap()[Constant.gameNameSkyrim]['effects']['Cure Disease']),
         ),
       ),
     );

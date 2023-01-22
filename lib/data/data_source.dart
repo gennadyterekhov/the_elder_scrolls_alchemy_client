@@ -1,9 +1,11 @@
+import 'package:the_elder_scrolls_alchemy_client/data/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/l10n/morrowind.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/l10n/oblivion.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/l10n/skyrim.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/morrowind.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/oblivion.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/skyrim.dart';
+import 'package:the_elder_scrolls_alchemy_client/data/teso.dart';
 
 class DataSource {
   static Map<String, dynamic> getMap() {
@@ -14,25 +16,25 @@ class DataSource {
     return _localizedMap;
   }
 
-  static const gameNameSkyrim = 'skyrim';
-  static const gameNameOblivion = 'oblivion';
-  static const gameNameMorrowind = 'morrowind';
   static const gameNames = [
-    gameNameSkyrim,
-    gameNameOblivion,
-    gameNameMorrowind,
+    Constant.gameNameTeso,
+    Constant.gameNameSkyrim,
+    Constant.gameNameOblivion,
+    Constant.gameNameMorrowind,
   ];
   static const Map<String, dynamic> _globalMap = {
     "_meta": {},
-    gameNameSkyrim: SkyrimData.skyrimData,
-    gameNameOblivion: OblivionData.oblivionData,
-    gameNameMorrowind: MorrowindData.morrowindData,
+    Constant.gameNameTeso: TesoData.tesoData,
+    Constant.gameNameSkyrim: SkyrimData.skyrimData,
+    Constant.gameNameOblivion: OblivionData.oblivionData,
+    Constant.gameNameMorrowind: MorrowindData.morrowindData,
   };
 
   static const Map<String, Map<String, Map<String, Map<String, String>>>> _localizedMap = {
-    gameNameSkyrim: SkyrimL10nData.skyrimL10nData,
-    gameNameOblivion: OblivionL10nData.oblivionL10nData,
-    gameNameMorrowind: MorrowindL10nData.morrowindL10nData,
+    Constant.gameNameTeso: {},
+    Constant.gameNameSkyrim: SkyrimL10nData.skyrimL10nData,
+    Constant.gameNameOblivion: OblivionL10nData.oblivionL10nData,
+    Constant.gameNameMorrowind: MorrowindL10nData.morrowindL10nData,
   };
 
   static void checkGameName(String gameName) {

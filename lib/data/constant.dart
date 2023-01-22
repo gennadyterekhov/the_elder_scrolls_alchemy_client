@@ -1,10 +1,17 @@
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
+import 'package:the_elder_scrolls_alchemy_client/extensions/capitalize.dart';
 
 class Constant {
   static const String fallbackLanguage = lcEnglish;
 
   static const int positiveEffectBackgroundColor = 0xffd4fae3;
   static const int negativeEffectBackgroundColor = 0xfffad4d4;
+
+  static const gameNameSkyrim = 'skyrim';
+  static const gameNameOblivion = 'oblivion';
+  static const gameNameMorrowind = 'morrowind';
+  static const gameNameTeso = 'teso';
+  static const gameNameTesoPresentation = 'TES Online';
 
   /// lc for languageCode
   static const String lcEnglish = 'en';
@@ -18,9 +25,9 @@ class Constant {
   static const String lcSpanish = 'es';
 
   static const String globalUnknown = 'unknown';
-  static const String skyrimHomeLink = '/${DataSource.gameNameSkyrim}/home';
-  static const String oblivionHomeLink = '/${DataSource.gameNameOblivion}/home';
-  static const String morrowindHomeLink = '/${DataSource.gameNameMorrowind}/home';
+  static const String skyrimHomeLink = '/${gameNameSkyrim}/home';
+  static const String oblivionHomeLink = '/${gameNameOblivion}/home';
+  static const String morrowindHomeLink = '/${gameNameMorrowind}/home';
 
   static const Map<String, String> supportedLanguageCodesToLanguageNamesMap = {
     lcEnglish: 'English',
@@ -33,4 +40,11 @@ class Constant {
     // lcJapanese: '日本語',
     // lcChinese: '中文',
   };
+
+  static String getGameNameForPresentation(String gameName) {
+    if (gameName == Constant.gameNameTeso) {
+      return Constant.gameNameTesoPresentation;
+    }
+    return gameName.capitalize();
+  }
 }

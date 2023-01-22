@@ -75,6 +75,16 @@ class _IngredientCardLongState extends State<IngredientCardLong> {
           )
         : Container();
 
+    Widget originText = widget.ingredient.origin != null
+        ? SelectableText(
+            AppLocalizations.of(context)!.ingredientOrigin + ': ${widget.ingredient.origin!}',
+            textAlign: TextAlign.left,
+            style: const TextStyle(
+              fontSize: 15,
+            ),
+          )
+        : Container();
+
     Widget link =
         widget.ingredient.uespUrl != null ? WebLink(text: '[uesp]', url: widget.ingredient.uespUrl!) : Container();
 
@@ -90,6 +100,7 @@ class _IngredientCardLongState extends State<IngredientCardLong> {
             weightText,
             valueText,
             harvestProbabilityText,
+            originText,
             textText,
             DividerText(text: AppLocalizations.of(context)!.effectsLeftPanel),
             EffectsByIngredient(gameName: widget.gameName, ingredient: widget.ingredient),

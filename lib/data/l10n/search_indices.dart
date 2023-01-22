@@ -1,8 +1,10 @@
+import 'package:the_elder_scrolls_alchemy_client/data/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
 
 /// only for russian right now....
 /// maybe I will parse more translations data later and expand the index
 class SearchLocalizedNameIndex {
+  static const Map<String, dynamic> tesoIndex = {'effects': {}, 'ingredients': {}};
   static const Map<String, Map<String, String>> skyrimIndex = {
     'effects': {
       "Исцеление болезней": "Cure Disease",
@@ -173,7 +175,7 @@ class SearchLocalizedNameIndex {
     },
   };
 
-  static const Map<String, Map<String, String>> oblivionIndex = {
+  static const Map<String, dynamic> oblivionIndex = {
     'effects': {},
     'ingredients': {
       "Цветок алканны": "Alkanet Flower",
@@ -321,7 +323,7 @@ class SearchLocalizedNameIndex {
       "Листья полыни": "Wormwood Leaves"
     }
   };
-  static const Map<String, Map<String, String>> morrowindIndex = {
+  static const Map<String, dynamic> morrowindIndex = {
     'effects': {
       "Обуза": "Burden",
       "Излечить моровую болезнь": "Cure Blight Disease",
@@ -466,9 +468,11 @@ class SearchLocalizedNameIndex {
     },
   };
 
-  static const Map<String, Map<String, Map<String, String>>> allIndices = {
-    DataSource.gameNameSkyrim: skyrimIndex,
-    DataSource.gameNameOblivion: oblivionIndex,
-    DataSource.gameNameMorrowind: morrowindIndex,
+  ///static const Map<String, Map<String, Map<String, String>>>
+  static const Map<String, dynamic> allIndices = {
+    Constant.gameNameTeso: tesoIndex,
+    Constant.gameNameSkyrim: skyrimIndex,
+    Constant.gameNameOblivion: oblivionIndex,
+    Constant.gameNameMorrowind: morrowindIndex,
   };
 }

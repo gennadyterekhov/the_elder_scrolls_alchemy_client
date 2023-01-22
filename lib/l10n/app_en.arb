@@ -16,6 +16,7 @@
   "ingredientWeight":"weight",
   "ingredientText": "description",
   "ingredientHarvestProbability":"harvest probability",
+  "ingredientOrigin":"origin",
 
   "ingredientsByEffectNoIngredients" :"no ingredients",
   "ingredientsByEffectInPosition": "In position",

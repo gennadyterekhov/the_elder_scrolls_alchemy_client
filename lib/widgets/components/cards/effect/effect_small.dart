@@ -27,10 +27,10 @@ class _EffectCardSmallState extends State<EffectCardSmall> {
         fontSize: 20,
       ),
     );
-    if (widget.gameName == DataSource.gameNameSkyrim) {
+    if (widget.gameName == Constant.gameNameSkyrim) {
       return nameText;
     }
-    final extension = widget.gameName == DataSource.gameNameMorrowind ? 'jpg' : 'png';
+    final extension = widget.gameName == Constant.gameNameMorrowind ? 'jpg' : 'png';
 
     final rowWithImage = Wrap(
       children: [
