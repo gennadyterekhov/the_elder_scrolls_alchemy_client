@@ -1,5 +1,6 @@
+# pod 'YandexMobileAdsMediation', '~> 5.3.1'
 # Uncomment this line to define a global platform for your project
-# platform :ios, '11.0'
+platform :ios, '12.0'
 
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
@@ -9,6 +10,10 @@ project 'Runner', {
   'Profile' => :release,
   'Release' => :release,
 }
+# hack
+pre_install do |installer|
+  def installer.verify_no_static_framework_transitive_dependencies; end
+end
 
 def flutter_root
   generated_xcode_build_settings_path = File.expand_path(File.join('..', 'Flutter', 'Generated.xcconfig'), __FILE__)

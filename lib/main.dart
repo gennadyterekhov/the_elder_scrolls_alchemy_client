@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,6 +10,7 @@ import 'package:the_elder_scrolls_alchemy_client/state/search_field_toggle.dart'
 import 'package:the_elder_scrolls_alchemy_client/widgets/screens/error_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:yandex_mobileads/mobile_ads.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -79,6 +83,16 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    if (!kIsWeb) {
+      if (Platform.isIOS || Platform.isAndroid) {
+        MobileAds.initialize();
+      }
+    }
+  }
+
   setLocaleLanguageCode(String languageCode) {
     setState(() {
       widget.languageCode = languageCode;

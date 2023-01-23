@@ -38,6 +38,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -77,4 +78,24 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // implementation 'com.yandex.android:mobileads-mediation:5.4.0.0'
 }
+// IronSource
+// maven {
+//        url 'https://android-sdk.is.com/'
+// }
+                  
+// // Pangle
+// maven { 
+//        url 'https://artifact.bytedance.com/repository/pangle'
+// }
+                  
+// // Tapjoy
+// maven { 
+//        url "https://sdk.tapjoy.com/"
+// }
+                  
+// // Mintegral
+// maven { 
+//        url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea"
+// }

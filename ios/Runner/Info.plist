@@ -53,6 +53,16 @@
 	<true/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>SKAdNetworkItems</key>
+	<array>
+		<dict>
+			<!-- Yandex Ads -->
+			<key>SKAdNetworkIdentifier</key>
+			<string>zq492l623r.skadnetwork</string>
+		</dict>
+
+
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

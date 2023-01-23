@@ -7,6 +7,7 @@ import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/links/image_link.dart';
 import 'package:the_elder_scrolls_alchemy_client/widgets/components/links/web_link.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:yandex_mobileads/mobile_ads.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.gameName}) : super(key: key);
@@ -105,6 +106,26 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width as int;
+    final height = MediaQuery.of(context).size.height as int;
+
+    final banner = BannerAd(
+      adUnitId: 'R-M-XXXXXX-Y',
+      // Flex-size
+      adSize: AdSize.flexible(width: width, height: height),
+      // Sticky-size
+      // adSize: AdSize.sticky(width: screenWidth),
+      adRequest: AdRequest(),
+      onAdLoaded: () {
+        debugPrint('ad did  load OK!');
+
+        /* Do something */
+      },
+      onAdFailedToLoad: (error) {
+        debugPrint('ad did not load');
+        /* Do something */
+      },
+    );
     final languagePicker = getLanguagePicker(context);
 
     final gamePicker = getGamePicker(context);
@@ -166,13 +187,18 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
               dataOriginDescriptionText,
               const Image(image: AssetImage('assets/img/logo.png')),
               linksRow,
+              kIsWeb
+                  ? Container()
+                  : AdWidget(
+                      bannerAd: banner,
+                    ),
             ],
           ),
         ),
       ),
     );
 
-    final height = MediaQuery.of(context).size.height;
+    // final height = MediaQuery.of(context).size.height;
     final box = ConstrainedBox(
       constraints: BoxConstraints(),
       child: mainCard,
