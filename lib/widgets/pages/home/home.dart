@@ -52,10 +52,36 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
 
   @override
   String get restorationId => 'nav_rail_demo';
+  BannerAd? _banner;
 
   @override
   void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
     registerForRestoration(_selectedIndex, 'selected_index');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    final width = MediaQuery.of(context).size.width as int;
+    final height = MediaQuery.of(context).size.height as int;
+
+    _banner = BannerAd(
+      adUnitId: 'demo-banner-yandex',
+      // Flex-size
+      adSize: AdSize.flexible(width: width, height: height),
+      // Sticky-size
+      // adSize: AdSize.sticky(width: screenWidth),
+      adRequest: AdRequest(),
+      onAdLoaded: () {
+        debugPrint('ad did  load OK!');
+
+        /* Do something */
+      },
+      onAdFailedToLoad: (error) {
+        debugPrint('ad did not load');
+        /* Do something */
+      },
+    );
   }
 
   @override
@@ -106,26 +132,6 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width as int;
-    final height = MediaQuery.of(context).size.height as int;
-
-    final banner = BannerAd(
-      adUnitId: 'R-M-XXXXXX-Y',
-      // Flex-size
-      adSize: AdSize.flexible(width: width, height: height),
-      // Sticky-size
-      // adSize: AdSize.sticky(width: screenWidth),
-      adRequest: AdRequest(),
-      onAdLoaded: () {
-        debugPrint('ad did  load OK!');
-
-        /* Do something */
-      },
-      onAdFailedToLoad: (error) {
-        debugPrint('ad did not load');
-        /* Do something */
-      },
-    );
     final languagePicker = getLanguagePicker(context);
 
     final gamePicker = getGamePicker(context);
@@ -185,12 +191,12 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
               welcomeText,
               pickers,
               dataOriginDescriptionText,
-              const Image(image: AssetImage('assets/img/logo.png')),
+              const Image(image: AssetImage('assets/img/play_stores/logo.png')),
               linksRow,
-              kIsWeb
+              kIsWeb && (_banner != null)
                   ? Container()
                   : AdWidget(
-                      bannerAd: banner,
+                      bannerAd: _banner!,
                     ),
             ],
           ),
