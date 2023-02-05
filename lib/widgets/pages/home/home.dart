@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -12,6 +14,7 @@ import 'package:yandex_mobileads/mobile_ads.dart';
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.gameName}) : super(key: key);
   final String gameName;
+  final bool isSticky = false;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -49,40 +52,94 @@ List<DropdownMenuItem<String>> getGameButtonsDropdown(context) {
 
 class _HomePageState extends State<HomePage> with RestorationMixin {
   final RestorableInt _selectedIndex = RestorableInt(0);
+  var adRequest = const AdRequest();
+  var isLoading = false;
+  var isBannerAlreadyCreated = false;
 
+  late BannerAd banner;
   @override
   String get restorationId => 'nav_rail_demo';
-  BannerAd? _banner;
+
+  Future<void> _loadBanner() async {
+    final windowSize = MediaQuery.of(context).size;
+    setState(() => isLoading = true);
+
+    if (isBannerAlreadyCreated) {
+      banner.load(adRequest: adRequest);
+    } else {
+      final adSize = widget.isSticky
+          ? AdSize.sticky(width: windowSize.width.toInt())
+          : AdSize.flexible(
+              width: windowSize.width.toInt(),
+              // height: windowSize.height ~/ 3,
+              height: Constant.adBannerHeight,
+            );
+      banner = _createBanner(adSize);
+      setState(() {
+        isBannerAlreadyCreated = true;
+      });
+    }
+  }
+
+  BannerAd _createBanner(AdSize adSize) {
+    return BannerAd(
+      adUnitId: Constant.demoAdUnitId,
+      adSize: adSize,
+      adRequest: adRequest,
+      onAdLoaded: () {
+        setState(() => isLoading = false);
+
+        debugPrint('===================== callback: banner ad loaded');
+      },
+      onAdFailedToLoad: (error) {
+        setState(() => isLoading = false);
+        debugPrint('===================== callback: banner ad failed to load, '
+            'code: ${error.code}, description: ${error.description}');
+      },
+      onAdClicked: () => debugPrint('===================== callback: banner ad clicked'),
+      onLeftApplication: () => debugPrint('===================== callback: left app'),
+      onReturnedToApplication: () => debugPrint('===================== callback: returned to app'),
+      onImpression: (data) => debugPrint('===================== callback: impression: $data'),
+    );
+  }
+
+  @deprecated
+  BannerAd _getBanner() {
+    final int width = MediaQuery.of(context).size.width.toInt();
+    final int height = MediaQuery.of(context).size.height.toInt();
+    final BannerAd banner = BannerAd(
+      adUnitId: 'demo-banner-yandex',
+      // adSize: AdSize.flexible(width: width, height: height),
+      adSize: AdSize.flexible(width: width, height: Constant.adBannerHeight),
+
+      // adSize: AdSize.sticky(width: width),
+      // adSize: AdSize.sticky(width: 600),
+
+      adRequest: AdRequest(),
+      onAdLoaded: () {
+        debugPrint('ad did  load OK!');
+      },
+      onAdFailedToLoad: (error) {
+        debugPrint('ad did not load');
+      },
+    );
+    return banner;
+  }
 
   @override
   void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
     registerForRestoration(_selectedIndex, 'selected_index');
   }
 
-  @override
-  void initState() {
-    super.initState();
-    final width = MediaQuery.of(context).size.width as int;
-    final height = MediaQuery.of(context).size.height as int;
-
-    _banner = BannerAd(
-      adUnitId: 'demo-banner-yandex',
-      // Flex-size
-      adSize: AdSize.flexible(width: width, height: height),
-      // Sticky-size
-      // adSize: AdSize.sticky(width: screenWidth),
-      adRequest: AdRequest(),
-      onAdLoaded: () {
-        debugPrint('ad did  load OK!');
-
-        /* Do something */
-      },
-      onAdFailedToLoad: (error) {
-        debugPrint('ad did not load');
-        /* Do something */
-      },
-    );
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   if (!kIsWeb) {
+  //     if (Platform.isIOS || Platform.isAndroid) {
+  //       MobileAds.initialize();
+  //     }
+  //   }
+  // }
 
   @override
   void dispose() {
@@ -132,6 +189,9 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
 
   @override
   Widget build(BuildContext context) {
+    if (!isBannerAlreadyCreated) {
+      _loadBanner();
+    }
     final languagePicker = getLanguagePicker(context);
 
     final gamePicker = getGamePicker(context);
@@ -180,6 +240,15 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
       ],
     );
 
+    Widget adBanner = Container();
+    if (!kIsWeb && isBannerAlreadyCreated) {
+      debugPrint('===================== constructing ad banner =====================');
+      adBanner = AdWidget(
+        bannerAd: banner,
+        // bannerAd: getBanner(),
+      );
+    }
+
     final mainCard = Card(
       child: Padding(
         padding: const EdgeInsets.all(30.0),
@@ -193,11 +262,7 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
               dataOriginDescriptionText,
               const Image(image: AssetImage('assets/img/play_stores/logo.png')),
               linksRow,
-              kIsWeb && (_banner != null)
-                  ? Container()
-                  : AdWidget(
-                      bannerAd: _banner!,
-                    ),
+              adBanner,
             ],
           ),
         ),

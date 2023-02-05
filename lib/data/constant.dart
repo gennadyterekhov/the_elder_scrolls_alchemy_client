@@ -27,6 +27,9 @@ class Constant {
 
   static const String globalUnknown = 'unknown';
 
+  static const int adBannerHeight = 70;
+  static const String demoAdUnitId = 'demo-banner-yandex';
+
   static const Map<String, String> supportedLanguageCodesToLanguageNamesMap = {
     lcEnglish: 'English',
     lcRussian: 'Русский',
