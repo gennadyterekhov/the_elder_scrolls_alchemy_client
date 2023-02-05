@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gennadyterekhov.the_elder_scrolls_alchemy_client">
+    <uses-permission android:name="android.permission.INTERNET"/>
+
    <application
         android:label="TES Alchemy"
         android:name="${applicationName}"
