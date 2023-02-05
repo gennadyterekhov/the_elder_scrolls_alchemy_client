@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:the_elder_scrolls_alchemy_client/helpers/link_launcher.dart';
 
 class WebLink extends StatelessWidget {
   const WebLink({Key? key, required this.text, required this.url}) : super(key: key);
@@ -10,7 +10,7 @@ class WebLink extends StatelessWidget {
   Widget build(BuildContext context) {
     final link = InkWell(
       onTap: () {
-        launchUrl(Uri.parse(url));
+        LinkLauncher.launch(url: url);
       },
       child: Text(
         text,
