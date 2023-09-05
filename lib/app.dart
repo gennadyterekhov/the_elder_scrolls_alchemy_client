@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/services/settings_manager.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/app_widget.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
 
 class TheElderScrollsAlchemyClientApp extends StatefulWidget {
   TheElderScrollsAlchemyClientApp({
@@ -88,9 +90,16 @@ class _TheElderScrollsAlchemyClientAppState extends State<TheElderScrollsAlchemy
 
   @override
   Widget build(BuildContext context) {
-    return AppWidget(
+    final appWidget = AppWidget(
       languageCode: widget.settingsManager.settings.gameName,
       gameName: widget.settingsManager.settings.language,
     );
+
+    final blocProvider = BlocProvider(
+      create: (_) => AppState(),
+      child: appWidget,
+    );
+
+    return blocProvider;
   }
 }
