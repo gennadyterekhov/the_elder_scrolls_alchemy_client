@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/constant.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/data_resource.dart';
 
 void main() {
   group("Test data source", () {
     test("Test skyrim data", () {
-      Map<String, dynamic> map = DataSource.getMap()[Constant.gameNameSkyrim];
+      Map<String, dynamic> map = DataResource.getMap()[Constant.gameNameSkyrim];
 
       expect(map.containsKey('effects'), true);
       expect(map['effects'].length, 55);
@@ -15,7 +15,7 @@ void main() {
     });
 
     test("Test oblivion data", () {
-      Map<String, dynamic> map = DataSource.getMap()[Constant.gameNameOblivion];
+      Map<String, dynamic> map = DataResource.getMap()[Constant.gameNameOblivion];
 
       expect(map.containsKey('effects'), true);
       expect(map['effects'].length, 68);
@@ -25,7 +25,7 @@ void main() {
     });
 
     test("Test morrowind data", () {
-      Map<String, dynamic> map = DataSource.getMap()[Constant.gameNameMorrowind];
+      Map<String, dynamic> map = DataResource.getMap()[Constant.gameNameMorrowind];
 
       expect(map.containsKey('effects'), true);
       expect(map['effects'].length, 67);
@@ -35,7 +35,7 @@ void main() {
     });
 
     test("Test game names", () {
-      expect(DataSource.gameNames.length, 4);
+      expect(DataResource.gameNames.length, 4);
     });
   });
 }
