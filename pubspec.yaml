@@ -44,6 +44,7 @@ dependencies:
   intl: ^0.17.0
   shared_preferences:
   flutter_svg: ^1.1.6
+  flutter_simple_dependency_injection: ^2.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

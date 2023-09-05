@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/constant.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/navigation/navigation.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/screens/effect_screen.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/screens/effects_screen.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/screens/error_screen.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/screens/home_screen.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/screens/ingredient_screen.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/screens/ingredients_screen.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/data_resource.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/navigation/navigation.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/screens/effect_screen.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/screens/effects_screen.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/screens/error_screen.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/screens/home_screen.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/screens/ingredient_screen.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/screens/ingredients_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AlchemyRouter {
   static bool isGameNameValid({required String gameName}) {
-    return DataSource.gameNames.contains(gameName);
+    return DataResource.gameNames.contains(gameName);
   }
 
   static bool isEffectValid({required String gameName, required String effectName}) {
-    return isGameNameValid(gameName: gameName) && DataSource.getMap()[gameName]['effects'].containsKey(effectName);
+    return isGameNameValid(gameName: gameName) && DataResource.getMap()[gameName]['effects'].containsKey(effectName);
   }
 
   static bool isIngredientValid({required String gameName, required String ingredientName}) {
     return isGameNameValid(gameName: gameName) &&
-        DataSource.getMap()[gameName]['ingredients'].containsKey(ingredientName);
+        DataResource.getMap()[gameName]['ingredients'].containsKey(ingredientName);
   }
 
   static bool isLocaleValid({

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/constant.dart';
-import 'package:the_elder_scrolls_alchemy_client/data/data_source.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/data_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
-import 'package:the_elder_scrolls_alchemy_client/models/effect.dart';
-import 'package:the_elder_scrolls_alchemy_client/models/ingredient.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/components/cards/ingredient/ingredient_big.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/screens/effect_screen.dart';
-import 'package:the_elder_scrolls_alchemy_client/widgets/screens/effects_screen.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/effect.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/ingredient.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/cards/ingredient/ingredient_big.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/screens/effect_screen.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/screens/effects_screen.dart';
 
 const String _languageCode = Constant.fallbackLanguage;
 
@@ -19,7 +19,7 @@ Widget createWidget({String languageCode = Constant.fallbackLanguage}) => Contai
         home: IngredientCardBig(
           gameName: Constant.gameNameSkyrim,
           ingredient:
-              Ingredient.fromMap(DataSource.getMap()[Constant.gameNameSkyrim]['ingredients']['Abecean Longfin']),
+              Ingredient.fromMap(DataResource.getMap()[Constant.gameNameSkyrim]['ingredients']['Abecean Longfin']),
           // ingredient: Ingredient.fromMap(DataSource.getMap()[DataSource.gameNameMorrowind]['ingredients']['Bread']),
         ),
       ),
