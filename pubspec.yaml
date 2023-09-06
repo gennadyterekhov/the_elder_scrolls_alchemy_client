@@ -41,7 +41,7 @@ dependencies:
   provider: ^6.0.5
   flutter_localizations:
     sdk: flutter
-  intl: ^0.17.0
+  intl: ^0.18.1
   shared_preferences:
   flutter_svg: ^1.1.6
   flutter_simple_dependency_injection: ^2.0.0
