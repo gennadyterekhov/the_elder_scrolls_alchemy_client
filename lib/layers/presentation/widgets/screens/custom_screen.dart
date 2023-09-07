@@ -22,6 +22,8 @@ class _CustomScreenState extends State<CustomScreen> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('inside CustomScreen build. widget.gameName:');
+    debugPrint(widget.gameName);
     final orientationBuilder = OrientationBuilder(
       builder: (context, orientation) {
         return MediaQuery.of(context).size.width < 600 ? _buildVerticalLayout() : _buildHorizontalLayout();

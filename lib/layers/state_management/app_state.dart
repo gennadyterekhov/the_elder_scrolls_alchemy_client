@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 
 class AppState extends Cubit<Map<String, dynamic>> {
   AppState()
@@ -17,7 +18,10 @@ class AppState extends Cubit<Map<String, dynamic>> {
   }
 
   void moveToHome() {
+    debugPrint('moveToHome');
+
     final newState = {...state};
+    print(newState);
     newState['chosenTab'] = 'home';
     newState['chosenEffectName'] = '';
     newState['chosenIngredientName'] = '';
@@ -26,8 +30,10 @@ class AppState extends Cubit<Map<String, dynamic>> {
   }
 
   void moveToEffects() {
+    debugPrint('moveToEffects');
+
     final newState = {...state};
-    newState['chosenTab'] = 'effects';
+    print(newState);    newState['chosenTab'] = 'effects';
     newState['chosenEffectName'] = '';
     newState['chosenIngredientName'] = '';
 
@@ -35,8 +41,10 @@ class AppState extends Cubit<Map<String, dynamic>> {
   }
 
   void moveToIngredients() {
+    debugPrint('moveToIngredients');
+
     final newState = {...state};
-    newState['chosenTab'] = 'ingredients';
+    print(newState);    newState['chosenTab'] = 'ingredients';
     newState['chosenEffectName'] = '';
     newState['chosenIngredientName'] = '';
 

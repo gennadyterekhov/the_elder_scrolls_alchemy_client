@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:provider/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/data_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/extensions/capitalize.dart';
@@ -20,6 +19,9 @@ class AlchemyAppBar extends StatelessWidget implements PreferredSizeWidget {
   AppBar build(
     BuildContext context,
   ) {
+    debugPrint('inside AlchemyAppBar build. this.gameName:');
+    debugPrint(this.gameName);
+
     final homeLink = InkWell(
       onTap: () => context.read<AppState>().moveToHome(),
       child: Text(Constant.getGameNameForPresentation(gameName)),
@@ -33,7 +35,8 @@ class AlchemyAppBar extends StatelessWidget implements PreferredSizeWidget {
     final toggleSearchInkWell = InkWell(
       child: Wrap(children: [
         isSearchVisible ? const Icon(Icons.visibility_off) : const Icon(Icons.visibility),
-        Text(' ' + AppLocalizations.of(context)!.appBarSearchToggle),
+        // Text(' ' + AppLocalizations.of(context)!.appBarSearchToggle),
+        Text(' asdfasd'),
       ]),
       // onTap: () => searchFieldToggle.isSearchFieldShown = !isSearchVisible,
     );

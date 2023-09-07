@@ -44,44 +44,45 @@ class _AppWidgetState extends State<AppWidget> {
   }
 
   Widget tryChangeNotifier() {
-    //
-    final languageFromState = context.read<AppState>().get()['language'];
-    debugPrint('languageFromState');
-    debugPrint(languageFromState);
-//html.window.history.pushState(null, 'home', '#/home/other');
-    final router = MaterialApp.router(
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: Constant.supportedLanguageCodesToLanguageNamesMap.keys.map((e) => Locale(e)),
-      title: 'TES Alchemy',
-      routerConfig: AlchemyRouter.getRouter(gameName: widget.gameName),
-      locale: Locale(languageFromState),
-      theme: ThemeData(
-        primarySwatch: getPrimarySwatch(),
-        pageTransitionsTheme: const PageTransitionsTheme(
-          builders: <TargetPlatform, PageTransitionsBuilder>{
-            TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
-            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.linux: FadeUpwardsPageTransitionsBuilder(),
-            TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.windows: FadeUpwardsPageTransitionsBuilder(),
-          },
-        ),
-      ),
-    );
+    return Text('he');
+//     //
+//     final languageFromState = context.read<AppState>().get()['language'];
+//     debugPrint('languageFromState');
+//     debugPrint(languageFromState);
+// //html.window.history.pushState(null, 'home', '#/home/other');
+    // final router = MaterialApp.router(
+    //   localizationsDelegates: const [
+    //     AppLocalizations.delegate,
+    //     GlobalCupertinoLocalizations.delegate,
+    //     GlobalMaterialLocalizations.delegate,
+    //     GlobalWidgetsLocalizations.delegate,
+    //   ],
+    //   supportedLocales: Constant.supportedLanguageCodesToLanguageNamesMap.keys.map((e) => Locale(e)),
+    //   title: 'TES Alchemy',
+    //   routerConfig: AlchemyRouter.getRouter(gameName: widget.gameName),
+    //   locale: Locale(languageFromState),
+    //   theme: ThemeData(
+    //     primarySwatch: getPrimarySwatch(),
+    //     pageTransitionsTheme: const PageTransitionsTheme(
+    //       builders: <TargetPlatform, PageTransitionsBuilder>{
+    //         TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+    //         TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+    //         TargetPlatform.linux: FadeUpwardsPageTransitionsBuilder(),
+    //         TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+    //         TargetPlatform.windows: FadeUpwardsPageTransitionsBuilder(),
+    //       },
+    //     ),
+    //   ),
+    // );
 
-    final correctWidget = ChangeNotifierProvider(
-      create: (BuildContext context) {
-        return SearchFieldToggle();
-      },
-      child: router,
-    );
+//     final correctWidget = ChangeNotifierProvider(
+//       create: (BuildContext context) {
+//         return SearchFieldToggle();
+//       },
+//       child: router,
+//     );
 
-    return correctWidget;
+//     return correctWidget;
   }
 
   Widget buildHomeWidget(BuildContext context) {
@@ -89,10 +90,17 @@ class _AppWidgetState extends State<AppWidget> {
   }
 
   Widget buildWidgetBasedOnState(BuildContext context) {
+    debugPrint('buildWidgetBasedOnState');
     final chosenTab = context.read<AppState>().get()['chosenTab'];
+    debugPrint('chosenTab');
+    debugPrint(chosenTab);
 
     if (chosenTab == Constant.tabHome) {
-      return this.buildHomeWidget(context);
+      final chosenGameName = context.read<AppState>().get()['gameName'];
+
+      debugPrint('going to render HomeScreen with gameName:');
+      debugPrint(chosenGameName);
+      return HomeScreen(gameName: chosenGameName);
     }
 
     if (chosenTab == Constant.tabEffects) {
@@ -110,6 +118,7 @@ class _AppWidgetState extends State<AppWidget> {
       }
       return IngredientsScreen(gameName: widget.gameName);
     }
+    return ErrorScreen(error: {'name': 'hello'});
 
     try {
       return tryChangeNotifier();
@@ -120,6 +129,33 @@ class _AppWidgetState extends State<AppWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final languageFromState = context.read<AppState>().get()['language'];
+    final w = buildWidgetBasedOnState(context);
+    final matApp = MaterialApp(
+      home: w,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: Constant.supportedLanguageCodesToLanguageNamesMap.keys.map((e) => Locale(e)),
+      title: 'TES Alchemy',
+      locale: Locale(languageFromState),
+      theme: ThemeData(
+        primarySwatch: getPrimarySwatch(),
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: <TargetPlatform, PageTransitionsBuilder>{
+            TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.linux: FadeUpwardsPageTransitionsBuilder(),
+            TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.windows: FadeUpwardsPageTransitionsBuilder(),
+          },
+        ),
+      ),
+    );
+    return matApp;
     return buildWidgetBasedOnState(context);
     try {
       return tryChangeNotifier();
