@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/custom_localization.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/ingredient.dart';
 
@@ -40,7 +41,8 @@ class _IngredientCardSmallState extends State<IngredientCardSmall> {
     return Card(
       child: InkWell(
         onTap: () {
-          context.push('/${gameName}/ingredient/${widget.ingredient.name}');
+          context.read<AppState>().moveToIngredient(widget.ingredient.name);
+          // context.push('/${gameName}/ingredient/${widget.ingredient.name}');
         },
         child: Padding(
           padding: const EdgeInsets.all(8.0),

@@ -16,6 +16,15 @@ class AppState extends Cubit<Map<String, dynamic>> {
     return state;
   }
 
+  void moveToHome() {
+    final newState = {...state};
+    newState['chosenTab'] = 'home';
+    newState['chosenEffectName'] = '';
+    newState['chosenIngredientName'] = '';
+
+    emit(newState);
+  }
+
   void moveToEffects() {
     final newState = {...state};
     newState['chosenTab'] = 'effects';

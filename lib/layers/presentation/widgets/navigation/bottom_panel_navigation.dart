@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/router.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/navigation/navigation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
 
 class BottomPanelNavigation extends StatefulWidget {
   const BottomPanelNavigation({Key? key, required this.gameName, required this.notifyParent}) : super(key: key);
@@ -28,7 +29,17 @@ class _BottomPanelNavigationState extends State<BottomPanelNavigation> {
     var gameName = widget.gameName;
 
     String route = AlchemyRouter.getRouteByIndex(index: index);
-    context.push('/$gameName$route');
+    // context.push('/$gameName$route');
+
+    if (route == '/home') {
+      return context.read<AppState>().moveToHome();
+    }
+    if (route == '/effects') {
+      return context.read<AppState>().moveToEffects();
+    }
+    if (route == '/ingredients') {
+      return context.read<AppState>().moveToIngredients();
+    }
   }
 
   @override

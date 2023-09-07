@@ -159,14 +159,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  go_router:
-    dependency: "direct main"
-    description:
-      name: go_router
-      sha256: "406f180e5d3b8bede5cad01bb1091e35d91c2604edc300bb0958434e1fd69d39"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.1.1"
   integration_test:
     dependency: "direct dev"
     description: flutter
@@ -188,14 +180,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
-  logging:
-    dependency: transitive
-    description:
-      name: logging
-      sha256: c0bbfe94d46aedf9b8b3e695cf3bd48c8e14b35e3b2c639e0aa7755d589ba946
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
   matcher:
     dependency: transitive
     description:
@@ -595,4 +579,4 @@ packages:
     version: "6.1.0"
 sdks:
   dart: ">=3.1.0-185.0.dev <4.0.0"
-  flutter: ">=3.3.0"
+  flutter: ">=3.0.0"

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/custom_localization.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/data_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/effect.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
 
 class EffectCardSmall extends StatefulWidget {
   const EffectCardSmall({Key? key, required this.gameName, required this.effect}) : super(key: key);
@@ -51,7 +52,7 @@ class _EffectCardSmallState extends State<EffectCardSmall> {
 
     final inkWell = InkWell(
       onTap: (() {
-        context.push('/${widget.gameName}/effect/${widget.effect.name}');
+        context.read<AppState>().moveToEffect(widget.effect.name);
       }),
       child: effectCard,
     );
