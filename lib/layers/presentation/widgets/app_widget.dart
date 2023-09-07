@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/screens/effect_screen.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/screens/effects_screen.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/screens/home_screen.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/screens/ingredient_screen.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/screens/ingredients_screen.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
 import 'package:the_elder_scrolls_alchemy_client/router.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/state_management/state/search_field_toggle.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/screens/error_screen.dart';
@@ -8,8 +14,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AppWidget extends StatefulWidget {
-  AppWidget({Key? key, required this.languageCode, required this.gameName})
-      : super(key: key);
+  AppWidget({Key? key, required this.languageCode, required this.gameName}) : super(key: key);
 
   String languageCode;
   String gameName;
@@ -39,6 +44,11 @@ class _AppWidgetState extends State<AppWidget> {
   }
 
   Widget tryChangeNotifier() {
+    //
+    final languageFromState = context.read<AppState>().get()['language'];
+    debugPrint('languageFromState');
+    debugPrint(languageFromState);
+//html.window.history.pushState(null, 'home', '#/home/other');
     final router = MaterialApp.router(
       localizationsDelegates: const [
         AppLocalizations.delegate,
@@ -49,7 +59,7 @@ class _AppWidgetState extends State<AppWidget> {
       supportedLocales: Constant.supportedLanguageCodesToLanguageNamesMap.keys.map((e) => Locale(e)),
       title: 'TES Alchemy',
       routerConfig: AlchemyRouter.getRouter(gameName: widget.gameName),
-      locale: Locale(widget.languageCode),
+      locale: Locale(languageFromState),
       theme: ThemeData(
         primarySwatch: getPrimarySwatch(),
         pageTransitionsTheme: const PageTransitionsTheme(
@@ -74,8 +84,43 @@ class _AppWidgetState extends State<AppWidget> {
     return correctWidget;
   }
 
+  Widget buildHomeWidget(BuildContext context) {
+    return HomeScreen(gameName: widget.gameName);
+  }
+
+  Widget buildWidgetBasedOnState(BuildContext context) {
+    final chosenTab = context.read<AppState>().get()['chosenTab'];
+
+    if (chosenTab == Constant.tabHome) {
+      return this.buildHomeWidget(context);
+    }
+
+    if (chosenTab == Constant.tabEffects) {
+      final chosenEffectName = context.read<AppState>().get()['chosenEffectName'];
+      if (chosenEffectName != '') {
+        return EffectScreen(gameName: widget.gameName, effectName: chosenEffectName);
+      }
+      return EffectsScreen(gameName: widget.gameName);
+    }
+
+    if (chosenTab == Constant.tabIngredients) {
+      final chosenIngredientName = context.read<AppState>().get()['chosenIngredientName'];
+      if (chosenIngredientName != '') {
+        return IngredientScreen(gameName: widget.gameName, ingredientName: chosenIngredientName);
+      }
+      return IngredientsScreen(gameName: widget.gameName);
+    }
+
+    try {
+      return tryChangeNotifier();
+    } catch (exception) {
+      return ErrorScreen(error: exception);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    return buildWidgetBasedOnState(context);
     try {
       return tryChangeNotifier();
     } catch (exception) {
