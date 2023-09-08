@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AppState extends Cubit<Map<String, dynamic>> {
   AppState({
@@ -28,6 +29,33 @@ class AppState extends Cubit<Map<String, dynamic>> {
 
   Map<String, dynamic> get() {
     return state;
+  }
+
+  void changeGame(String gameName) async {
+    final newState = {...state};
+    newState['gameName'] = gameName;
+    newState['chosenTab'] = 'home';
+    newState['chosenEffectName'] = '';
+    newState['chosenIngredientName'] = '';
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('gameName', gameName);
+
+    emit(newState);
+  }
+
+  void changeLanguage(String language) async {
+    final newState = {...state};
+    newState['language'] = language;
+    newState['chosenTab'] = 'home';
+    newState['chosenEffectName'] = '';
+    newState['chosenIngredientName'] = '';
+
+    final prefs = await SharedPreferences.getInstance();
+    // await prefs.setString('languageCode', languageCode); ??
+    await prefs.setString('language', language);
+
+    emit(newState);
   }
 
   void moveToHome() {
