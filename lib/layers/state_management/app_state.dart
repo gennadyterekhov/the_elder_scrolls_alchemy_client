@@ -13,6 +13,14 @@ class AppState extends Cubit<Map<String, dynamic>> {
           'chosenIngredientName': "",
         });
 
+  @override
+  void onChange(Change<Map<String, dynamic>> change) {
+    super.onChange(change);
+    print('in cubit onChange');
+
+    print(change);
+  }
+
   Map<String, dynamic> get() {
     return state;
   }
@@ -33,7 +41,8 @@ class AppState extends Cubit<Map<String, dynamic>> {
     debugPrint('moveToEffects');
 
     final newState = {...state};
-    print(newState);    newState['chosenTab'] = 'effects';
+    print(newState);
+    newState['chosenTab'] = 'effects';
     newState['chosenEffectName'] = '';
     newState['chosenIngredientName'] = '';
 
@@ -44,7 +53,8 @@ class AppState extends Cubit<Map<String, dynamic>> {
     debugPrint('moveToIngredients');
 
     final newState = {...state};
-    print(newState);    newState['chosenTab'] = 'ingredients';
+    print(newState);
+    newState['chosenTab'] = 'ingredients';
     newState['chosenEffectName'] = '';
     newState['chosenIngredientName'] = '';
 
