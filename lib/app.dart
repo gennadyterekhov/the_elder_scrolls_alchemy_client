@@ -14,7 +14,6 @@ class TheElderScrollsAlchemyClientApp extends StatefulWidget {
 
   SettingsManager settingsManager;
 
-  @deprecated
   static Future<String> getSavedGameName() async {
     String? gameNameFromPreferences = await getGameNameFromPreferences();
     if (gameNameFromPreferences == null) {
@@ -23,13 +22,11 @@ class TheElderScrollsAlchemyClientApp extends StatefulWidget {
     return gameNameFromPreferences;
   }
 
-  @deprecated
   static String getLocaleLanguageCode(BuildContext context) {
     return Localizations.localeOf(context).languageCode;
   }
 
-  @deprecated
-  static Future<String> getSafeLanguageCode() async {
+  static Future<String> getSavedLanguageCode() async {
     String? languageCodeFromPreferences = await getLanguageCodeFromPreferences();
     if (languageCodeFromPreferences == null) {
       return Constant.fallbackLanguage;
@@ -37,7 +34,6 @@ class TheElderScrollsAlchemyClientApp extends StatefulWidget {
     return languageCodeFromPreferences;
   }
 
-  @deprecated
   static Future<String?> getLanguageCodeFromPreferences() async {
     final prefs = await SharedPreferences.getInstance();
     final String? languageCode = prefs.getString('languageCode');
@@ -45,7 +41,6 @@ class TheElderScrollsAlchemyClientApp extends StatefulWidget {
     return languageCode;
   }
 
-  @deprecated
   static Future<String?> getGameNameFromPreferences() async {
     final prefs = await SharedPreferences.getInstance();
     final String? gameName = prefs.getString('gameName');
@@ -90,8 +85,17 @@ class _TheElderScrollsAlchemyClientAppState extends State<TheElderScrollsAlchemy
 
   @override
   Widget build(BuildContext context) {
+    String savedGameName = Constant.fallbackGameName;
+    String savedLanguage = Constant.fallbackLanguage;
+
+    TheElderScrollsAlchemyClientApp.getSavedGameName().then((value) => savedGameName = value);
+    TheElderScrollsAlchemyClientApp.getSavedLanguageCode().then((value) => savedLanguage = value);
+
     final blocProvider = BlocProvider(
-      create: (_) => AppState(),
+      create: (_) => AppState(
+        gameName: savedGameName,
+        language: savedLanguage,
+      ),
       child: const AppWidget(),
     );
 
