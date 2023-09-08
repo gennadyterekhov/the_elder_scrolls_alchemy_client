@@ -1,13 +1,8 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_elder_scrolls_alchemy_client/app.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/data_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/effect_resource.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/data/storage/l10n/search_indices.dart';
-import 'package:the_elder_scrolls_alchemy_client/main.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/state_management/state/search_field_toggle.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/cards/effect/effect_small.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/cards_grid.dart';
@@ -57,9 +52,6 @@ class _EffectsPageState extends State<EffectsPage> {
 
   @override
   Widget build(BuildContext context) {
-    // final searchFieldToggle = Provider.of<SearchFieldToggle>(context);
-    final bool isSearchVisible = false;//searchFieldToggle.isSearchFieldShown;
-
     final String languageCode = TheElderScrollsAlchemyClientApp.getLocaleLanguageCode(context);
 
     final List<Effect> effects =
@@ -67,15 +59,21 @@ class _EffectsPageState extends State<EffectsPage> {
 
     final List<Widget> effectsCards = _getEffectsGridItems(effects);
 
-    return Column(
-      children: [
-        isSearchVisible ? SearchField(controller: searchFieldController) : Container(),
-        Expanded(
-          child: CardsGrid(
-            cards: effectsCards,
-          ),
-        ),
-      ],
+    final blocBuilder = BlocBuilder<AppState, Map<String, dynamic>>(
+      builder: (context, state) {
+        return Column(
+          children: [
+            state['isSearchVisible'] ? SearchField(controller: searchFieldController) : Container(),
+            Expanded(
+              child: CardsGrid(
+                cards: effectsCards,
+              ),
+            ),
+          ],
+        );
+      },
     );
+
+    return blocBuilder;
   }
 }
