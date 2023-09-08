@@ -7,7 +7,7 @@ class AppState extends Cubit<Map<String, dynamic>> {
           'settings': 0, //?
           'gameName': 'skyrim',
           'language': 'english',
-          'isSearchShown': true,
+          'isSearchVisible': true,
           'chosenTab': 'home',
           'chosenEffectName': "",
           'chosenIngredientName': "",
@@ -81,7 +81,7 @@ class AppState extends Cubit<Map<String, dynamic>> {
 
   void toggleSearch() {
     final newState = {...state};
-    newState['isSearchShown'] = !newState['isSearchShown'];
+    newState['isSearchVisible'] = !newState['isSearchVisible'];
 
     emit(newState);
   }
