@@ -165,7 +165,7 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
               welcomeText,
               pickers,
               dataOriginDescriptionText,
-              const Image(image: AssetImage('assets/img/logo.png')),
+              const Image(image: AssetImage('assets/img/play_stores/logo.png')),
               linksRow,
             ],
           ),
