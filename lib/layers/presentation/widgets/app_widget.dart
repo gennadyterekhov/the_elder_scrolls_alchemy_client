@@ -68,11 +68,7 @@ class _AppWidgetState extends State<AppWidget> {
           }
           return EffectsScreen(gameName: state['gameName']);
 
-          // final bb = BlocBuilder<AppState, Map<String, dynamic>>(
-          //   builder: (context, state) {
-          //     return EffectsScreen(gameName: state['gameName']);
-          //   },
-          // );
+
         }
 
         if (chosenTab == Constant.tabIngredients) {
