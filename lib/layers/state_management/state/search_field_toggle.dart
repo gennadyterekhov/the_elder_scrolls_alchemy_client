@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+@deprecated
 class SearchFieldToggle extends Widget with ChangeNotifier {
   bool _isSearchFieldShown = true;
 
@@ -13,7 +14,6 @@ class SearchFieldToggle extends Widget with ChangeNotifier {
 
   @override
   Element createElement() {
-    // TODO: implement createElement
     throw UnimplementedError();
   }
 }
