@@ -59,8 +59,8 @@ class _IngredientsPageState extends State<IngredientsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final searchFieldToggle = Provider.of<SearchFieldToggle>(context);
-    final isSearchVisible = searchFieldToggle.isSearchFieldShown;
+    // final searchFieldToggle = Provider.of<SearchFieldToggle>(context);
+    final isSearchVisible = false;//searchFieldToggle.isSearchFieldShown;
 
     final gameName = widget.gameName;
     final String languageCode = TheElderScrollsAlchemyClientApp.getLocaleLanguageCode(context);

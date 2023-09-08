@@ -57,8 +57,8 @@ class _EffectsPageState extends State<EffectsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final searchFieldToggle = Provider.of<SearchFieldToggle>(context);
-    final bool isSearchVisible = searchFieldToggle.isSearchFieldShown;
+    // final searchFieldToggle = Provider.of<SearchFieldToggle>(context);
+    final bool isSearchVisible = false;//searchFieldToggle.isSearchFieldShown;
 
     final String languageCode = TheElderScrollsAlchemyClientApp.getLocaleLanguageCode(context);
 

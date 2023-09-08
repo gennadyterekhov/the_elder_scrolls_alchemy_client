@@ -34,6 +34,14 @@ class _LeftPanelNavigationState extends State<LeftPanelNavigation> {
     //
 
     if (route == '/home') {
+      debugPrint('in _LeftPanelNavigationState');
+      debugPrint('route is home');
+      debugPrint('state:');
+      print('${context.read<AppState>().runtimeType}');
+
+      print(context.read<AppState>());
+      print(context.read<AppState>().get());
+
       return context.read<AppState>().moveToHome();
     }
     if (route == '/effects') {
