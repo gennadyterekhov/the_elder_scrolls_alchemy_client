@@ -90,14 +90,9 @@ class _TheElderScrollsAlchemyClientAppState extends State<TheElderScrollsAlchemy
 
   @override
   Widget build(BuildContext context) {
-    final appWidget = AppWidget(
-      languageCode: widget.settingsManager.settings.gameName,
-      gameName: widget.settingsManager.settings.language,
-    );
-
     final blocProvider = BlocProvider(
       create: (_) => AppState(),
-      child: appWidget,
+      child: const AppWidget(),
     );
 
     return blocProvider;

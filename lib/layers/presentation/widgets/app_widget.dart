@@ -10,20 +10,8 @@ import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/scr
 import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/screens/error_screen.dart';
 
-class AppWidget extends StatefulWidget {
-  AppWidget({Key? key, required this.languageCode, required this.gameName}) : super(key: key);
-
-  String languageCode;
-  String gameName;
-
-  @override
-  _AppWidgetState createState() => _AppWidgetState();
-}
-
-class _AppWidgetState extends State<AppWidget> {
-  Widget buildHomeWidget(BuildContext context) {
-    return HomeScreen(gameName: widget.gameName);
-  }
+class AppWidget extends StatelessWidget {
+  const AppWidget({Key? key}) : super(key: key);
 
   Widget buildWidgetBasedOnState(BuildContext context) {
     final blocBuilder = BlocBuilder<AppState, Map<String, dynamic>>(
