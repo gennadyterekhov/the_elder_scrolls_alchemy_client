@@ -27,21 +27,9 @@ class _LeftPanelNavigationState extends State<LeftPanelNavigation> {
   }
 
   void onDestinationSelected(index) {
-    var gameName = widget.gameName;
-
     String route = AlchemyRouter.getRouteByIndex(index: index);
-    // context.push('/$gameName$route');
-    //
 
     if (route == '/home') {
-      debugPrint('in _LeftPanelNavigationState');
-      debugPrint('route is home');
-      debugPrint('state:');
-      print('${context.read<AppState>().runtimeType}');
-
-      print(context.read<AppState>());
-      print(context.read<AppState>().get());
-
       return context.read<AppState>().moveToHome();
     }
     if (route == '/effects') {
