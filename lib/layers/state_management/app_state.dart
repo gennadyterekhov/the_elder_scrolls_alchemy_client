@@ -114,9 +114,11 @@ class AppState extends Cubit<Map<String, dynamic>> {
     emit(newState);
   }
 
-  void toggleSearch() {
+  void toggleSearch() async {
     final newState = {...state};
     newState['isSearchVisible'] = !newState['isSearchVisible'];
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isSearchVisible', newState['isSearchVisible']);
 
     emit(newState);
   }
