@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
 
 class AppState extends Cubit<Map<String, dynamic>> {
   AppState({
@@ -18,6 +19,16 @@ class AppState extends Cubit<Map<String, dynamic>> {
           'chosenEffectName': chosenEffectName,
           'chosenIngredientName': chosenIngredientName,
         });
+
+  bool shouldSearchFieldBeShownOnThisPage() {
+    if (state['chosenTab'] == Constant.tabEffects && state['chosenEffectName'] == '') {
+      return true;
+    }
+    if (state['chosenTab'] == Constant.tabIngredients && state['chosenIngredientName'] == '') {
+      return true;
+    }
+    return false;
+  }
 
   @override
   void onChange(Change<Map<String, dynamic>> change) {
