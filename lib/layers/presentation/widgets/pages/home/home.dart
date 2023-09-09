@@ -1,13 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:the_elder_scrolls_alchemy_client/app.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/data_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/pages/home/game_picker.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/pages/home/language_picker.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
-import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/links/image_link.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/links/web_link.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -37,15 +34,11 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
     super.dispose();
   }
 
-  Widget getGamePicker(context) {
-    return GamePicker(gameName: context.read<AppState>().get()['gameName']);
-  }
-
   @override
   Widget build(BuildContext context) {
     const languagePicker = LanguagePicker();
 
-    final gamePicker = getGamePicker(context);
+    final gamePicker = GamePicker(gameName: context.read<AppState>().get()['gameName']);
     final pickers = Padding(
       padding: const EdgeInsets.only(top: 30.0, bottom: 40.0),
       child: Column(
