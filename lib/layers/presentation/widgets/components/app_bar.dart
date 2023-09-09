@@ -22,13 +22,20 @@ class AlchemyAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     final blocBuilder = BlocBuilder<AppState, Map<String, dynamic>>(
       builder: (context, state) {
-        final toggleSearchInkWell = InkWell(
-          child: Wrap(children: [
-            state['isSearchVisible'] ? const Icon(Icons.visibility_off) : const Icon(Icons.visibility),
-            Text(' ${AppLocalizations.of(context)!.appBarSearchToggle}'),
-          ]),
-          onTap: () => context.read<AppState>().toggleSearch(),
-        );
+        
+        Widget toggleSearchInkWell;
+
+        if (context.read<AppState>().shouldSearchFieldBeShownOnThisPage()) {
+          toggleSearchInkWell = InkWell(
+            child: Wrap(children: [
+              state['isSearchVisible'] ? const Icon(Icons.visibility_off) : const Icon(Icons.visibility),
+              Text(' ${AppLocalizations.of(context)!.appBarSearchToggle}'),
+            ]),
+            onTap: () => context.read<AppState>().toggleSearch(),
+          );
+        } else {
+          toggleSearchInkWell = SizedBox.shrink();
+        }
 
         final titleLine = Wrap(
           alignment: WrapAlignment.spaceEvenly,
