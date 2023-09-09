@@ -4,6 +4,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:the_elder_scrolls_alchemy_client/app.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/data_resource.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/pages/home/game_picker.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/pages/home/language_picker.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/links/image_link.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/links/web_link.dart';
@@ -15,36 +18,6 @@ class HomePage extends StatefulWidget {
 
   @override
   State<HomePage> createState() => _HomePageState();
-}
-
-List<DropdownMenuItem<String>> getLocaleButtonsDropdown(context) {
-  List<DropdownMenuItem<String>> popupMenuItems = [];
-  Constant.supportedLanguageCodesToLanguageNamesMap.forEach((langCode, langName) {
-    popupMenuItems.add(
-      DropdownMenuItem(
-        value: langCode,
-        child: Text(
-          langName,
-        ),
-      ),
-    );
-  });
-
-  return popupMenuItems;
-}
-
-List<DropdownMenuItem<String>> getGameButtonsDropdown(context) {
-  List<DropdownMenuItem<String>> popupMenuItems = [];
-  for (var gameName in DataResource.gameNames) {
-    popupMenuItems.add(
-      DropdownMenuItem(
-        value: gameName,
-        child: Text(Constant.getGameNameForPresentation(gameName)),
-      ),
-    );
-  }
-
-  return popupMenuItems;
 }
 
 class _HomePageState extends State<HomePage> with RestorationMixin {
@@ -64,49 +37,13 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
     super.dispose();
   }
 
-  Widget getLanguagePicker(context) {
-    final currentLanguageCode = TheElderScrollsAlchemyClientApp.getLocaleLanguageCode(context);
-
-    final languagePicker = DropdownButtonFormField(
-      decoration: InputDecoration(
-        prefixIcon: const Icon(Icons.translate),
-        labelText: AppLocalizations.of(context)!.homePageChangeLanguage,
-      ),
-      value: currentLanguageCode,
-      icon: const Icon(Icons.expand_more),
-      items: getLocaleButtonsDropdown(context),
-      onChanged: (String? value) {
-        if (value is String) {
-          TheElderScrollsAlchemyClientApp.setLocaleLanguageCode(context, value);
-        }
-      },
-    );
-
-    return languagePicker;
-  }
-
   Widget getGamePicker(context) {
-    final gamePicker = DropdownButtonFormField(
-      decoration: InputDecoration(
-        prefixIcon: const Icon(Icons.videogame_asset),
-        labelText: AppLocalizations.of(context)!.homePageChangeGame,
-      ),
-      value: widget.gameName,
-      icon: const Icon(Icons.expand_more),
-      items: getGameButtonsDropdown(context),
-      onChanged: (String? gameName) {
-        if (gameName is String) {
-          TheElderScrollsAlchemyClientApp.setGameName(context, gameName);
-        }
-      },
-    );
-
-    return gamePicker;
+    return GamePicker(gameName: context.read<AppState>().get()['gameName']);
   }
 
   @override
   Widget build(BuildContext context) {
-    final languagePicker = getLanguagePicker(context);
+    const languagePicker = LanguagePicker();
 
     final gamePicker = getGamePicker(context);
     final pickers = Padding(
