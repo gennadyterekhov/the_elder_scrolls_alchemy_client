@@ -66,7 +66,7 @@ class _SearchFieldState extends State<SearchField> {
         if (state['chosenTab'] == Constant.tabIngredients && state['chosenIngredientName'] == '') {
           return buildWidget(context, state);
         }
-        return Wrap();
+        return SizedBox.shrink();
       },
     );
 
