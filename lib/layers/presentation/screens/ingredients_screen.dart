@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/pages/ingredients/ingredients.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/screens/custom_screen.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/pages/ingredients.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/screens/custom_screen.dart';
 
 class IngredientsScreen extends StatelessWidget {
   const IngredientsScreen({Key? key, required this.gameName}) : super(key: key);

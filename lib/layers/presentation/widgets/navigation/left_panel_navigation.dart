@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
@@ -42,24 +43,18 @@ class _LeftPanelNavigationState extends State<LeftPanelNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    var selectedIndex = 0;
-    String? url;
-    url = ModalRoute.of(context)?.settings.name;
-
-    if (url != null && url.contains('effect')) {
-      selectedIndex = 1;
-    }
-    if (url != null && url.contains('ingredient')) {
-      selectedIndex = 2;
-    }
-
-    return NavigationRail(
-      backgroundColor: Colors.grey[50],
-      leading: null,
-      selectedIndex: selectedIndex,
-      onDestinationSelected: onDestinationSelected,
-      labelType: NavigationRailLabelType.all,
-      destinations: getDestinations(),
+    final blocBuilder = BlocBuilder<AppState, Map<String, dynamic>>(
+      builder: (context, state) {
+        return NavigationRail(
+          backgroundColor: Colors.grey[50],
+          leading: null,
+          selectedIndex: Navigation.getSelectedIndexFromState(state),
+          onDestinationSelected: onDestinationSelected,
+          labelType: NavigationRailLabelType.all,
+          destinations: getDestinations(),
+        );
+      },
     );
+    return blocBuilder;
   }
 }

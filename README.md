@@ -42,9 +42,10 @@ this command runs specific integration test
 `flutter drive --driver integration_test/driver.dart --target integration_test/full_test.dart --no-dds`  
 
 this command runs cpecific widget/unit test  
-`flutter test test/data/data_source_test.dart`  
+`flutter test test/layers/data/data_source_test.dart`  
 
-
+if there's an error because of dart:html, use this
+`flutter test --platform chrome`
 
  
 ## Data sources 

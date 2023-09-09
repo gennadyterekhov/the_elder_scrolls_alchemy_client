@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
+import 'dart:html' as html;
 
 class AppState extends Cubit<Map<String, dynamic>> {
   AppState({
@@ -12,7 +13,6 @@ class AppState extends Cubit<Map<String, dynamic>> {
     String chosenIngredientName = '',
     String urlPath = '',
   }) : super({
-          'settings': 0, //?
           'gameName': gameName,
           'language': language,
           'isSearchVisible': isSearchVisible,
@@ -35,9 +35,8 @@ class AppState extends Cubit<Map<String, dynamic>> {
   @override
   void onChange(Change<Map<String, dynamic>> change) {
     super.onChange(change);
-    print('in cubit onChange');
 
-    print(change);
+    html.window.history.pushState(null, change.nextState["urlPath"], '${change.nextState["urlPath"]}');
   }
 
   Map<String, dynamic> get() {

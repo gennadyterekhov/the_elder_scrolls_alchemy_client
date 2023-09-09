@@ -8,8 +8,8 @@ import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/cards/ingredient/ingredient_big.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/screens/effect_screen.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/screens/effects_screen.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/screens/effect_screen.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/screens/effects_screen.dart';
 
 const String _languageCode = Constant.fallbackLanguage;
 

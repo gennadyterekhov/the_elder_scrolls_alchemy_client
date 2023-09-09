@@ -1,18 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/services/settings_manager.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/app_widget.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
 
-class TheElderScrollsAlchemyClientApp extends StatefulWidget {
-  TheElderScrollsAlchemyClientApp({
-    Key? key,
-    required this.settingsManager,
-  }) : super(key: key);
-
-  SettingsManager settingsManager;
+class TheElderScrollsAlchemyClientApp extends StatelessWidget {
+  const TheElderScrollsAlchemyClientApp({Key? key}) : super(key: key);
 
   static Future<String> getSavedGameName() async {
     String? gameNameFromPreferences = await getGameNameFromPreferences();
@@ -48,54 +43,45 @@ class TheElderScrollsAlchemyClientApp extends StatefulWidget {
     return gameName;
   }
 
-  @deprecated
-  static void setLocaleLanguageCode(BuildContext context, String languageCode) async {
-    _TheElderScrollsAlchemyClientAppState state =
-        context.findAncestorStateOfType<_TheElderScrollsAlchemyClientAppState>()!;
-    state.setLocaleLanguageCode(languageCode);
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('languageCode', languageCode);
-  }
+  AppState setStateFromUrl() {
+    String savedGameName = Constant.fallbackGameName;
+    String savedLanguage = Constant.fallbackLanguage;
+    TheElderScrollsAlchemyClientApp.getSavedGameName().then((value) => savedGameName = value);
+    TheElderScrollsAlchemyClientApp.getSavedLanguageCode().then((value) => savedLanguage = value);
 
-  @deprecated
-  static void setGameName(BuildContext context, String gameName) async {
-    _TheElderScrollsAlchemyClientAppState state =
-        context.findAncestorStateOfType<_TheElderScrollsAlchemyClientAppState>()!;
-    state.setGameName(gameName);
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('gameName', gameName);
-  }
+    String chosenTab = Constant.tabHome;
+    String objectName = '';
 
-  @override
-  _TheElderScrollsAlchemyClientAppState createState() => _TheElderScrollsAlchemyClientAppState();
-}
+    if (kIsWeb) {
+      final segments = Uri.base.pathSegments;
 
-class _TheElderScrollsAlchemyClientAppState extends State<TheElderScrollsAlchemyClientApp> {
-  setLocaleLanguageCode(String languageCode) {
-    setState(() {
-      // widget.languageCode = languageCode;
-    });
-  }
+      if (segments.length == 2 || segments.length == 3) {
+        savedGameName = segments[0];
 
-  setGameName(String gameName) {
-    setState(() {
-      // widget.gameName = gameName;
-    });
+        chosenTab = segments[1];
+
+        if (segments.length > 2) {
+          objectName = segments[2];
+        }
+      }
+    }
+
+    return AppState(
+      gameName: savedGameName,
+      language: savedLanguage,
+      chosenTab: chosenTab,
+      chosenEffectName: chosenTab == Constant.tabEffects ? objectName : '',
+      chosenIngredientName: chosenTab == Constant.tabIngredients ? objectName : '',
+      urlPath: Uri.base.path,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    String savedGameName = Constant.fallbackGameName;
-    String savedLanguage = Constant.fallbackLanguage;
-
-    TheElderScrollsAlchemyClientApp.getSavedGameName().then((value) => savedGameName = value);
-    TheElderScrollsAlchemyClientApp.getSavedLanguageCode().then((value) => savedLanguage = value);
+    final state = setStateFromUrl();
 
     final blocProvider = BlocProvider(
-      create: (_) => AppState(
-        gameName: savedGameName,
-        language: savedLanguage,
-      ),
+      create: (_) => state,
       child: const AppWidget(),
     );
 
