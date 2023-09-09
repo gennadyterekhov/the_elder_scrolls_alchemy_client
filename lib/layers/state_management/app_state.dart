@@ -10,6 +10,7 @@ class AppState extends Cubit<Map<String, dynamic>> {
     String chosenTab = 'home',
     String chosenEffectName = '',
     String chosenIngredientName = '',
+    String urlPath = '',
   }) : super({
           'settings': 0, //?
           'gameName': gameName,
@@ -18,6 +19,7 @@ class AppState extends Cubit<Map<String, dynamic>> {
           'chosenTab': chosenTab,
           'chosenEffectName': chosenEffectName,
           'chosenIngredientName': chosenIngredientName,
+          'urlPath': urlPath,
         });
 
   bool shouldSearchFieldBeShownOnThisPage() {
@@ -48,6 +50,7 @@ class AppState extends Cubit<Map<String, dynamic>> {
     newState['chosenTab'] = 'home';
     newState['chosenEffectName'] = '';
     newState['chosenIngredientName'] = '';
+    newState['urlPath'] = '${gameName}/home';
 
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('gameName', gameName);
@@ -74,6 +77,8 @@ class AppState extends Cubit<Map<String, dynamic>> {
     newState['chosenTab'] = 'home';
     newState['chosenEffectName'] = '';
     newState['chosenIngredientName'] = '';
+    final gameName = state['gameName'];
+    newState['urlPath'] = '${gameName}/home';
 
     emit(newState);
   }
@@ -83,6 +88,8 @@ class AppState extends Cubit<Map<String, dynamic>> {
     newState['chosenTab'] = 'effects';
     newState['chosenEffectName'] = '';
     newState['chosenIngredientName'] = '';
+    final gameName = state['gameName'];
+    newState['urlPath'] = '${gameName}/effects';
 
     emit(newState);
   }
@@ -92,6 +99,8 @@ class AppState extends Cubit<Map<String, dynamic>> {
     newState['chosenTab'] = 'ingredients';
     newState['chosenEffectName'] = '';
     newState['chosenIngredientName'] = '';
+    final gameName = state['gameName'];
+    newState['urlPath'] = '${gameName}/ingredients';
 
     emit(newState);
   }
@@ -101,6 +110,8 @@ class AppState extends Cubit<Map<String, dynamic>> {
     newState['chosenTab'] = 'effects';
     newState['chosenEffectName'] = effectName;
     newState['chosenIngredientName'] = '';
+    final gameName = state['gameName'];
+    newState['urlPath'] = '${gameName}/effects/$effectName';
 
     emit(newState);
   }
@@ -110,6 +121,8 @@ class AppState extends Cubit<Map<String, dynamic>> {
     newState['chosenTab'] = 'ingredients';
     newState['chosenEffectName'] = '';
     newState['chosenIngredientName'] = ingredientName;
+    final gameName = state['gameName'];
+    newState['urlPath'] = '${gameName}/ingredients/$ingredientName';
 
     emit(newState);
   }
