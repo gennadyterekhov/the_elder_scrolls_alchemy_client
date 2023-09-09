@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
 
 class SearchField extends StatefulWidget {
   const SearchField({Key? key, required this.controller}) : super(key: key);
@@ -10,8 +13,7 @@ class SearchField extends StatefulWidget {
 }
 
 class _SearchFieldState extends State<SearchField> {
-  @override
-  Widget build(BuildContext context) {
+  Widget buildWidget(context, state) {
     final width = MediaQuery.of(context).size.width;
 
     double widthFactor = .95;
@@ -50,6 +52,24 @@ class _SearchFieldState extends State<SearchField> {
       widthFactor: widthFactor,
       child: searchFieldWidget,
     );
+
     return limitedWidthSearch;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final blocBuilder = BlocBuilder<AppState, Map<String, dynamic>>(
+      builder: (context, state) {
+        if (state['chosenTab'] == Constant.tabEffects && state['chosenEffectName'] == '') {
+          return buildWidget(context, state);
+        }
+        if (state['chosenTab'] == Constant.tabIngredients && state['chosenIngredientName'] == '') {
+          return buildWidget(context, state);
+        }
+        return Wrap();
+      },
+    );
+
+    return blocBuilder;
   }
 }

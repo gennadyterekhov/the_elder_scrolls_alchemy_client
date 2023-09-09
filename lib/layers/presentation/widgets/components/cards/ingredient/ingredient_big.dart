@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
 
-import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/cards/ingredient/ingredient_long.dart';
@@ -19,7 +20,8 @@ class IngredientCardBig extends StatefulWidget {
 
 class _IngredientCardBigState extends State<IngredientCardBig> {
   void onTap() {
-    context.push('/${widget.gameName}/ingredient/${widget.ingredient.name}');
+    // context.push('/${widget.gameName}/ingredient/${widget.ingredient.name}');
+    context.read<AppState>().moveToIngredient(widget.ingredient.name);
   }
 
   @override

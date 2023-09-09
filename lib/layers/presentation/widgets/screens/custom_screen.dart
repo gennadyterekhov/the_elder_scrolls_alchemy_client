@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/state_management/state/search_field_toggle.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/app_bar.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/navigation/bottom_panel_navigation.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/navigation/left_panel_navigation.dart';

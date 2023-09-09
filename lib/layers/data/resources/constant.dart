@@ -8,6 +8,10 @@ class Constant {
   static const int positiveEffectBackgroundColor = 0xffd4fae3;
   static const int negativeEffectBackgroundColor = 0xfffad4d4;
 
+  static const tabHome = 'home';
+  static const tabEffects = 'effects';
+  static const tabIngredients = 'ingredients';
+
   static const gameNameSkyrim = 'skyrim';
   static const gameNameOblivion = 'oblivion';
   static const gameNameMorrowind = 'morrowind';

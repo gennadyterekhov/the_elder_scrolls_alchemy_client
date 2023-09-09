@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'package:go_router/go_router.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/custom_localization.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/effect.dart';
 
@@ -20,7 +21,7 @@ class EffectCardMicro extends StatefulWidget {
 
 class _EffectCardMicroState extends State<EffectCardMicro> {
   void _onTap() {
-    context.push('/${widget.gameName}/effect/${widget.effect.name}');
+    context.read<AppState>().moveToEffect(widget.effect.name);
   }
 
   @override

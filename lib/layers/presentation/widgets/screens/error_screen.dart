@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -20,7 +21,8 @@ class ErrorScreenState extends State<ErrorScreen> {
   @override
   Widget build(BuildContext context) {
     final homeLinkButton = ElevatedButton(
-      onPressed: () => context.push(Constant.getHomeLink(Constant.fallbackGameName)),
+      // onPressed: () => context.push(Constant.getHomeLink(Constant.fallbackGameName)),
+      onPressed: () => context.read<AppState>().moveToHome(),
       child: Text(AppLocalizations.of(context)!.errorScreenHomeLink),
     );
 
