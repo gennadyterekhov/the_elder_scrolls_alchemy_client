@@ -1,34 +1,48 @@
-import 'package:flutter/material.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/data_resource.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/navigation/navigation.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/state_management/custom_navigator.dart';
 
 class AlchemyRouter {
-  static bool isGameNameValid({required String gameName}) {
-    return DataResource.gameNames.contains(gameName);
+  AlchemyRouter();
+
+  static void pushStateToNavigator(Map<String, dynamic> updatedState) {
+    CustomNavigator.push(updatedState);
   }
 
-  static bool isEffectValid({required String gameName, required String effectName}) {
-    return isGameNameValid(gameName: gameName) && DataResource.getMap()[gameName]['effects'].containsKey(effectName);
+  static void pushToNavigator(context) {
+    final updatedState = context.read<AppState>().get();
+    pushStateToNavigator(updatedState);
   }
 
-  static bool isIngredientValid({required String gameName, required String ingredientName}) {
-    return isGameNameValid(gameName: gameName) &&
-        DataResource.getMap()[gameName]['ingredients'].containsKey(ingredientName);
+  static popFromNavigator() {
+    return CustomNavigator.pop();
   }
 
-  static bool isLocaleValid({
-    required String locale,
-  }) {
-    return AppLocalizations.supportedLocales.contains(Locale(locale));
+  static Map<String, dynamic> getCurrent() {
+    return CustomNavigator.getCurrent();
   }
 
-  static String getRouteByIndex({int index = 0}) {
-    final items = Navigation.getItemsPaths();
-    if (index > items.length) {
-      return '/home';
-    }
+  static void moveToHome(context) {
+    context.read<AppState>().moveToHome();
+    pushToNavigator(context);
+  }
 
-    return items[index]['path'] ?? '/home';
+  static void moveToEffects(context) {
+    context.read<AppState>().moveToEffects();
+    pushToNavigator(context);
+  }
+
+  static void moveToIngredients(context) {
+    context.read<AppState>().moveToIngredients();
+    pushToNavigator(context);
+  }
+
+  static void moveToEffect(context, String effectName) {
+    context.read<AppState>().moveToEffect(effectName);
+    pushToNavigator(context);
+  }
+
+  static void moveToIngredient(context, String ingredientName) {
+    context.read<AppState>().moveToIngredient(ingredientName);
+    pushToNavigator(context);
   }
 }

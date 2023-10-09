@@ -7,6 +7,7 @@ import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/custom_lo
 import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
 import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/ingredient.dart';
+import 'package:the_elder_scrolls_alchemy_client/router.dart';
 
 class IngredientCardSmall extends StatefulWidget {
   const IngredientCardSmall({Key? key, required this.gameName, required this.ingredient}) : super(key: key);

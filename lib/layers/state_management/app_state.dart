@@ -1,12 +1,15 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
 import 'dart:html' as html;
 
+import 'package:the_elder_scrolls_alchemy_client/router.dart';
+
 class AppState extends Cubit<Map<String, dynamic>> {
   AppState({
     String gameName = 'skyrim',
-    String language = 'english',
+    String language = 'en',
     bool isSearchVisible = true,
     String chosenTab = 'home',
     String chosenEffectName = '',
@@ -22,6 +25,21 @@ class AppState extends Cubit<Map<String, dynamic>> {
           'urlPath': urlPath,
         });
 
+  static const defaultState = {
+    'gameName': 'skyrim',
+    'language': 'en',
+    'isSearchVisible': true,
+    'chosenTab': 'home',
+    'chosenEffectName': '',
+    'chosenIngredientName': '',
+    'urlPath': 'skyrim/home',
+  };
+
+  void setStateFromMap(Map<String, dynamic> updatedState) {
+    AlchemyRouter.pushStateToNavigator(updatedState);
+    emit(updatedState);
+  }
+
   bool shouldSearchFieldBeShownOnThisPage() {
     if (state['chosenTab'] == Constant.tabEffects && state['chosenEffectName'] == '') {
       return true;
@@ -36,7 +54,9 @@ class AppState extends Cubit<Map<String, dynamic>> {
   void onChange(Change<Map<String, dynamic>> change) {
     super.onChange(change);
 
-    html.window.history.pushState(null, change.nextState["urlPath"], '${change.nextState["urlPath"]}');
+    if (kIsWeb) {
+      html.window.history.pushState(null, change.nextState["urlPath"], '${change.nextState["urlPath"]}');
+    }
   }
 
   Map<String, dynamic> get() {
@@ -53,8 +73,7 @@ class AppState extends Cubit<Map<String, dynamic>> {
 
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('gameName', gameName);
-
-    emit(newState);
+    setStateFromMap(newState);
   }
 
   void changeLanguage(String language) async {
@@ -68,7 +87,7 @@ class AppState extends Cubit<Map<String, dynamic>> {
     // await prefs.setString('languageCode', languageCode); ??
     await prefs.setString('language', language);
 
-    emit(newState);
+    setStateFromMap(newState);
   }
 
   void moveToHome() {
@@ -78,8 +97,7 @@ class AppState extends Cubit<Map<String, dynamic>> {
     newState['chosenIngredientName'] = '';
     final gameName = state['gameName'];
     newState['urlPath'] = '${gameName}/home';
-
-    emit(newState);
+    setStateFromMap(newState);
   }
 
   void moveToEffects() {
@@ -90,7 +108,7 @@ class AppState extends Cubit<Map<String, dynamic>> {
     final gameName = state['gameName'];
     newState['urlPath'] = '${gameName}/effects';
 
-    emit(newState);
+    setStateFromMap(newState);
   }
 
   void moveToIngredients() {
@@ -101,7 +119,7 @@ class AppState extends Cubit<Map<String, dynamic>> {
     final gameName = state['gameName'];
     newState['urlPath'] = '${gameName}/ingredients';
 
-    emit(newState);
+    setStateFromMap(newState);
   }
 
   void moveToEffect(String effectName) {
@@ -112,7 +130,7 @@ class AppState extends Cubit<Map<String, dynamic>> {
     final gameName = state['gameName'];
     newState['urlPath'] = '${gameName}/effects/$effectName';
 
-    emit(newState);
+    setStateFromMap(newState);
   }
 
   void moveToIngredient(String ingredientName) {
@@ -123,7 +141,7 @@ class AppState extends Cubit<Map<String, dynamic>> {
     final gameName = state['gameName'];
     newState['urlPath'] = '${gameName}/ingredients/$ingredientName';
 
-    emit(newState);
+    setStateFromMap(newState);
   }
 
   void toggleSearch() async {
@@ -132,6 +150,11 @@ class AppState extends Cubit<Map<String, dynamic>> {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('isSearchVisible', newState['isSearchVisible']);
 
-    emit(newState);
+    setStateFromMap(newState);
+  }
+
+  void goBack() {
+    AlchemyRouter.popFromNavigator();
+    setStateFromMap(AlchemyRouter.getCurrent());
   }
 }

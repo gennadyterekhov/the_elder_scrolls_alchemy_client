@@ -8,6 +8,7 @@ import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/com
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/lists/common_ingredients_by_column.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/divider_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:the_elder_scrolls_alchemy_client/router.dart';
 
 class IngredientCardBig extends StatefulWidget {
   const IngredientCardBig({Key? key, required this.gameName, required this.ingredient}) : super(key: key);

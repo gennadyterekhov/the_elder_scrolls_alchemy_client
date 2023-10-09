@@ -92,4 +92,13 @@ class Navigation {
     }
     return selectedIndex;
   }
+
+  static String getRouteByIndex({int index = 0}) {
+    final items = Navigation.getItemsPaths();
+    if (index > items.length) {
+      return '/home';
+    }
+
+    return items[index]['path'] ?? '/home';
+  }
 }
