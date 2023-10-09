@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/cards/effect/effect_long.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/divider_text.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/lists/ingredients_by_effect.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EffectCardBig extends StatelessWidget {
   const EffectCardBig({Key? key, required this.gameName, required this.effect}) : super(key: key);
@@ -12,24 +12,20 @@ class EffectCardBig extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final listView = [
-      EffectCardLong(gameName: gameName, effect: effect),
-      DividerText(text: AppLocalizations.of(context)!.effectCardBigIngredientsWithThisEffect),
-      IngredientsByEffect(gameName: this.gameName, effect: effect),
-    ];
-
-    final cards = Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: listView);
-
-    final height = MediaQuery.of(context).size.height;
-    final box = ConstrainedBox(
-      constraints: BoxConstraints(
-        minHeight: height,
-      ),
-      child: cards,
-    );
-
     return SingleChildScrollView(
-      child: box,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minHeight: MediaQuery.of(context).size.height,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            EffectCardLong(gameName: gameName, effect: effect),
+            DividerText(text: AppLocalizations.of(context)!.effectCardBigIngredientsWithThisEffect),
+            IngredientsByEffect(gameName: gameName, effect: effect),
+          ],
+        ),
+      ),
     );
   }
 }

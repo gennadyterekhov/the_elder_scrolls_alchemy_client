@@ -26,10 +26,7 @@ class _BottomPanelNavigationState extends State<BottomPanelNavigation> {
   }
 
   void onDestinationSelected(index) {
-    var gameName = widget.gameName;
-
     String route = AlchemyRouter.getRouteByIndex(index: index);
-    // context.push('/$gameName$route');
 
     if (route == '/home') {
       return context.read<AppState>().moveToHome();
@@ -44,23 +41,18 @@ class _BottomPanelNavigationState extends State<BottomPanelNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    var selectedIndex = 0;
-    String? url;
-    url = ModalRoute.of(context)?.settings.name;
-
-    if (url != null && url.contains('effect')) {
-      selectedIndex = 1;
-    }
-    if (url != null && url.contains('ingredient')) {
-      selectedIndex = 2;
-    }
-
-    return BottomNavigationBar(
-      currentIndex: selectedIndex,
-      items: getDestinations(),
-      selectedItemColor: Colors.green[200],
-      unselectedItemColor: Colors.grey[800],
-      onTap: onDestinationSelected,
+    final blocBuilder = BlocBuilder<AppState, Map<String, dynamic>>(
+      builder: (context, state) {
+        return BottomNavigationBar(
+          currentIndex: Navigation.getSelectedIndexFromState(state),
+          items: getDestinations(),
+          selectedItemColor: Colors.green[200],
+          unselectedItemColor: Colors.grey[800],
+          onTap: onDestinationSelected,
+        );
+      },
     );
+
+    return blocBuilder;
   }
 }

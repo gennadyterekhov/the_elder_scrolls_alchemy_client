@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/custom_localization.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/ingredient.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/custom_localization.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/cards/uesp_link.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/divider_text.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/lists/effects_by_ingredient.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/links/web_link.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class IngredientCardLong extends StatefulWidget {
   const IngredientCardLong({Key? key, required this.gameName, required this.ingredient}) : super(key: key);
@@ -34,7 +34,7 @@ class _IngredientCardLongState extends State<IngredientCardLong> {
             'id: ${widget.ingredient.id}',
             textAlign: TextAlign.left,
           )
-        : Container();
+        : const SizedBox.shrink();
 
     Widget textText = widget.ingredient.text != null
         ? SelectableText(
@@ -44,7 +44,7 @@ class _IngredientCardLongState extends State<IngredientCardLong> {
               fontSize: 15,
             ),
           )
-        : Container();
+        : const SizedBox.shrink();
 
     Widget weightText = widget.ingredient.weight != null
         ? SelectableText(
@@ -54,7 +54,7 @@ class _IngredientCardLongState extends State<IngredientCardLong> {
               fontSize: 15,
             ),
           )
-        : Container();
+        : const SizedBox.shrink();
 
     Widget valueText = widget.ingredient.value != null
         ? SelectableText(
@@ -64,7 +64,7 @@ class _IngredientCardLongState extends State<IngredientCardLong> {
               fontSize: 15,
             ),
           )
-        : Container();
+        : const SizedBox.shrink();
     Widget harvestProbabilityText = widget.ingredient.harvestProbability != null
         ? SelectableText(
             AppLocalizations.of(context)!.ingredientHarvestProbability + ': ${widget.ingredient.harvestProbability!}',
@@ -73,7 +73,7 @@ class _IngredientCardLongState extends State<IngredientCardLong> {
               fontSize: 15,
             ),
           )
-        : Container();
+        : const SizedBox.shrink();
 
     Widget originText = widget.ingredient.origin != null
         ? SelectableText(
@@ -83,10 +83,7 @@ class _IngredientCardLongState extends State<IngredientCardLong> {
               fontSize: 15,
             ),
           )
-        : Container();
-
-    Widget link =
-        widget.ingredient.uespUrl != null ? WebLink(text: '[uesp]', url: widget.ingredient.uespUrl!) : Container();
+        : const SizedBox.shrink();
 
     final longCard = Card(
       child: Padding(
@@ -95,7 +92,7 @@ class _IngredientCardLongState extends State<IngredientCardLong> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             nameText,
-            link,
+            UespLink(ingredient: widget.ingredient),
             idText,
             weightText,
             valueText,

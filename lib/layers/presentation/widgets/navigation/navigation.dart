@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
 
 class NavigationItem {
   NavigationItem({key, required this.icon, required this.selectedIcon, required this.label, required this.path});
@@ -78,5 +79,17 @@ class Navigation {
     ];
 
     return items;
+  }
+
+  static getSelectedIndexFromState(Map<String, dynamic> state) {
+    int selectedIndex = 0;
+
+    if (state['chosenTab'] == Constant.tabEffects) {
+      selectedIndex = 1;
+    }
+    if (state['chosenTab'] == Constant.tabIngredients) {
+      selectedIndex = 2;
+    }
+    return selectedIndex;
   }
 }

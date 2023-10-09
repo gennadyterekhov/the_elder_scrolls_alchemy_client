@@ -5,8 +5,6 @@ import 'package:integration_test/integration_test.dart';
 import 'package:the_elder_scrolls_alchemy_client/app.dart';
 import 'package:the_elder_scrolls_alchemy_client/di_container.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/data_resource.dart';
-import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/cards/effect/effect_big.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/cards/effect/effect_small.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/cards/ingredient/ingredient_big.dart';
@@ -15,6 +13,7 @@ import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/com
 void main() {
   final dependencyInjectionContainer = DependencyInjectionContainer().initialise(Injector());
   final app = dependencyInjectionContainer.get<TheElderScrollsAlchemyClientApp>();
+
   group('general', () {
     final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized() as IntegrationTestWidgetsFlutterBinding;
 
@@ -64,8 +63,15 @@ void main() {
 
       await tester.tap(find.text('Effects'));
       await tester.pump();
-
       expect(find.text('Cure Disease'), findsOneWidget);
+
+      await tester.tap(find.byType(PopupMenuButton));
+      await tester.pump();
+      await tester.tap(find.text(Constant.gameNameOblivion));
+      await tester.pump();
+      await tester.tap(find.text('Effects'));
+      await tester.pump();
+      expect(find.text('Shock Shield'), findsOneWidget);
 
       await tester.tap(find.byType(PopupMenuButton));
       await tester.pump();
@@ -100,6 +106,28 @@ void main() {
       expect(find.text('Restore Health'), findsOneWidget);
       expect(find.text('Cure Disease'), findsNothing);
       expect(find.byType(EffectCardSmall), findsOneWidget);
+    });
+  });
+
+  group('left panel', () {
+    testWidgets('items are marked as selected', (tester) async {
+      await tester.pumpWidget(app);
+      await tester.pump();
+
+      final navigationRailFinder = find.byType(NavigationRail);
+      expect(navigationRailFinder, findsOneWidget);
+      NavigationRail navigationRail = tester.firstWidget(navigationRailFinder);
+      expect(navigationRail.selectedIndex, 0);
+
+      await tester.tap(find.text('Effects'));
+      await tester.pump();
+
+      expect(navigationRail.selectedIndex, 1);
+
+      await tester.tap(find.text('Ingredients'));
+      await tester.pump();
+
+      expect(navigationRail.selectedIndex, 2);
     });
   });
 }

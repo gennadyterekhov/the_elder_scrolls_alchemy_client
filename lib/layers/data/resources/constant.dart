@@ -1,4 +1,3 @@
-import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/data_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/extensions/capitalize.dart';
 
 class Constant {
@@ -42,6 +41,8 @@ class Constant {
     // lcJapanese: '日本語',
     // lcChinese: '中文',
   };
+
+  static const layoutWidthThreshold = 600;
 
   static String getGameNameForPresentation(String gameName) {
     if (gameName == Constant.gameNameTeso) {
