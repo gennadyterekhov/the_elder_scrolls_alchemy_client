@@ -4,6 +4,7 @@ import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/ef
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/cards/effect_small_image.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
+import 'package:the_elder_scrolls_alchemy_client/router.dart';
 
 class EffectCardSmall extends StatefulWidget {
   const EffectCardSmall({Key? key, required this.gameName, required this.effect}) : super(key: key);

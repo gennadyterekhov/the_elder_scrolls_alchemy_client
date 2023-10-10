@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/navigation/back_button.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:the_elder_scrolls_alchemy_client/router.dart';
 
 class AlchemyAppBar extends StatelessWidget implements PreferredSizeWidget {
   const AlchemyAppBar({Key? key, required this.gameName}) : super(key: key);
@@ -22,7 +24,6 @@ class AlchemyAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     final blocBuilder = BlocBuilder<AppState, Map<String, dynamic>>(
       builder: (context, state) {
-        
         Widget toggleSearchInkWell;
 
         if (context.read<AppState>().shouldSearchFieldBeShownOnThisPage()) {
@@ -44,7 +45,8 @@ class AlchemyAppBar extends StatelessWidget implements PreferredSizeWidget {
           children: [homeLink, toggleSearchInkWell],
         );
         return AppBar(
-          automaticallyImplyLeading: true,
+          leading: CustomBackButton(),
+          automaticallyImplyLeading: false,
           title: titleLine,
         );
       },

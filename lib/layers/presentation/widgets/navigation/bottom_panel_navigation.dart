@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:the_elder_scrolls_alchemy_client/router.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/navigation/navigation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
+import 'package:the_elder_scrolls_alchemy_client/router.dart';
 
 class BottomPanelNavigation extends StatefulWidget {
-  const BottomPanelNavigation({Key? key, required this.gameName, required this.notifyParent}) : super(key: key);
+  const BottomPanelNavigation({
+    Key? key,
+    required this.gameName,
+    required this.notifyParent,
+  }) : super(key: key);
   final Function() notifyParent;
   final String gameName;
 
@@ -26,7 +30,7 @@ class _BottomPanelNavigationState extends State<BottomPanelNavigation> {
   }
 
   void onDestinationSelected(index) {
-    String route = AlchemyRouter.getRouteByIndex(index: index);
+    String route = Navigation.getRouteByIndex(index: index);
 
     if (route == '/home') {
       return context.read<AppState>().moveToHome();
