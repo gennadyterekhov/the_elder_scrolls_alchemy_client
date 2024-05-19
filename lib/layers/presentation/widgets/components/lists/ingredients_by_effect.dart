@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/ingredient_resource.dart';
-import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/ingredient.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/ingredient_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/cards/ingredient/ingredient_micro.dart';
 
 class IngredientsByEffect extends StatefulWidget {
@@ -13,6 +11,7 @@ class IngredientsByEffect extends StatefulWidget {
   final Effect effect;
   final bool showLabel = false;
   final String gameName;
+
   @override
   State<IngredientsByEffect> createState() => _IngredientsByEffectState();
 }
@@ -23,6 +22,8 @@ class _IngredientsByEffectState extends State<IngredientsByEffect> {
       final List names = widget.effect.ingredientsNamesByPosition[index];
       final List<Ingredient> ingredients =
           names.map((name) => IngredientResource(gameName: widget.gameName).getIngredientByName(name)).toList();
+
+      ingredients.sort((Ingredient a, Ingredient b) => a.name.compareTo(b.name));
 
       return ingredients;
     }
