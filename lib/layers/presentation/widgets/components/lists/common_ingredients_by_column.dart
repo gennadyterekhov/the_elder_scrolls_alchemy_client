@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/custom_localization.dart';
-
-import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/effect_resource.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/ingredient_resource.dart';
-import 'package:the_elder_scrolls_alchemy_client/main.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/ingredient.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/custom_localization.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/effect_resource.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/ingredient_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/cards/ingredient/ingredient_micro.dart';
 
 class CommonIngredientsByColumn extends StatefulWidget {
@@ -18,26 +16,39 @@ class CommonIngredientsByColumn extends StatefulWidget {
 }
 
 class _CommonIngredientsByColumnState extends State<CommonIngredientsByColumn> {
-  List<Ingredient> _getIngredientsByIndex(Effect effect, int index) {
+  List<dynamic> _getIngredientsNamesByIndex(Effect effect, int index) {
     if (index < effect.ingredientsNamesByPosition.length) {
-      final List names = effect.ingredientsNamesByPosition[index];
-
-      final List<Ingredient> ingredients = names
-          .where((ingredientName) => ingredientName != widget.ingredient.name)
-          .map((name) => IngredientResource(gameName: widget.gameName).getIngredientByName(name))
-          .toList();
-
-      return ingredients;
+      return effect.ingredientsNamesByPosition[index];
     }
-
     return [];
   }
 
+  List<Ingredient> _getIngredientsByNames(List<String> names) {
+    final List<Ingredient> ingredients = names
+        .where((ingredientName) => ingredientName != widget.ingredient.name)
+        .map((name) => IngredientResource(gameName: widget.gameName).getIngredientByName(name))
+        .toList();
+
+    return ingredients;
+  }
+
   List<Widget> _getIngredientsCardsByEffect(Effect effect, Ingredient currentIngredient) {
-    List<Widget> ingredients = [];
+    List<String> names = [];
+    List<dynamic> tempDynamicNames = [];
+
     for (var i = 0; i < effect.ingredientsNamesByPosition.length; i += 1) {
-      ingredients.addAll(_getCards(_getIngredientsByIndex(effect, i)));
+      tempDynamicNames = _getIngredientsNamesByIndex(effect, i);
+      for (var j = 0; j < tempDynamicNames.length; j += 1) {
+        if (tempDynamicNames[j] is String && !names.contains(tempDynamicNames[j])) {
+          names.add(tempDynamicNames[j]);
+        }
+      }
     }
+
+    names.sort((dynamic a, dynamic b) => a.compareTo(b));
+
+    List<Widget> ingredients = [];
+    ingredients.addAll(_getCards(_getIngredientsByNames(names)));
 
     return ingredients;
   }
