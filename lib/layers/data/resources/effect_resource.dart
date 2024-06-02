@@ -1,9 +1,10 @@
+import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/exception/not_found.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/data_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/storage/l10n/search_indices.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/exception/not_found.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/exception/wrong_game.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/effect.dart';
+
+import 'custom_localization.dart';
 
 class EffectResource {
   late String gameName;
@@ -45,8 +46,22 @@ class EffectResource {
     return effect;
   }
 
-  List<Effect> getEffectsByNames(List<String> names) {
+  List<Effect> getEffectsByNames(List<String> names, String locale, bool isSort) {
     List<Effect> effects = names.map((name) => getEffectByName(name)).toList();
+
+    effects.sort((Effect a, Effect b) {
+      final aLocalized = CustomLocalization.getEffectName(
+        gameName: this.gameName,
+        englishEffectName: a.name,
+        languageCode: locale,
+      );
+      final bLocalized = CustomLocalization.getEffectName(
+        gameName: this.gameName,
+        englishEffectName: b.name,
+        languageCode: locale,
+      );
+      return aLocalized.compareTo(bLocalized);
+    });
 
     return effects;
   }
@@ -66,14 +81,14 @@ class EffectResource {
     final List<String> englishNames = currentMap.keys.toList();
 
     if (nameFromQuery.length <= _searchQueryLengthThreshold) {
-      return getEffectsByNames(englishNames);
+      return getEffectsByNames(englishNames, languageCode, true);
     }
-
-    List<String> filteredNames =
-        englishNames.where((element) => element.toLowerCase().contains(nameFromQuery.toLowerCase())).toList();
+    List<String> filteredNames = [];
 
     if (languageCode == Constant.lcEnglish) {
-      return getEffectsByNames(filteredNames);
+      filteredNames =
+          englishNames.where((element) => element.toLowerCase().contains(nameFromQuery.toLowerCase())).toList();
+      return getEffectsByNames(filteredNames, languageCode, true);
     }
 
     if (languageCode == Constant.lcRussian) {
@@ -89,10 +104,10 @@ class EffectResource {
           filteredNames.add(correspondingEnglishName);
         }
 
-        return getEffectsByNames(filteredNames);
+        return getEffectsByNames(filteredNames, languageCode, true);
       }
     }
 
-    return getEffectsByNames(filteredNames);
+    return getEffectsByNames(filteredNames, languageCode, true);
   }
 }

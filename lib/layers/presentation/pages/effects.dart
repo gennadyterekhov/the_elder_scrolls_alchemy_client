@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_elder_scrolls_alchemy_client/app.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/effect_resource.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/cards/effect/effect_small.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/effect.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/effect_resource.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/cards/effect/effect_small.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/cards_grid.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/search_field.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
 
 class EffectsPage extends StatefulWidget {
   const EffectsPage({Key? key, required this.gameName}) : super(key: key);
