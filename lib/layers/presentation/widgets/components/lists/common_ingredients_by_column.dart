@@ -6,6 +6,8 @@ import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/effect_re
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/ingredient_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/cards/ingredient/ingredient_micro.dart';
 
+import '../../../../../app.dart';
+
 class CommonIngredientsByColumn extends StatefulWidget {
   const CommonIngredientsByColumn({Key? key, required this.gameName, required this.ingredient}) : super(key: key);
   final Ingredient ingredient;
@@ -79,7 +81,7 @@ class _CommonIngredientsByColumnState extends State<CommonIngredientsByColumn> {
                       CustomLocalization.getEffectName(
                         gameName: widget.gameName,
                         englishEffectName: widget.ingredient.effectsNames[i],
-                        context: context,
+                        languageCode: TheElderScrollsAlchemyClientApp.getLocaleLanguageCode(context),
                       ),
                       style: TextStyle(color: Colors.grey),
                     ),

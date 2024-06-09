@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
+import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/ingredient.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/custom_localization.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
-import 'package:the_elder_scrolls_alchemy_client/main.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/ingredient.dart';
-import 'package:the_elder_scrolls_alchemy_client/router.dart';
+
+import '../../../../../../app.dart';
 
 class IngredientCardMicro extends StatefulWidget {
   const IngredientCardMicro({Key? key, required this.gameName, required this.ingredient}) : super(key: key);
@@ -26,7 +24,9 @@ class _IngredientCardMicroState extends State<IngredientCardMicro> {
   @override
   Widget build(BuildContext context) {
     final label = CustomLocalization.getIngredientName(
-        gameName: widget.gameName, englishIngredientName: widget.ingredient.name, context: context);
+        gameName: widget.gameName,
+        englishIngredientName: widget.ingredient.name,
+        languageCode: TheElderScrollsAlchemyClientApp.getLocaleLanguageCode(context));
     final fontSize = 20.0;
 
     final text = Text(

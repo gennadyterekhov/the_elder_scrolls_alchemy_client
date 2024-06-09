@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
+import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/custom_localization.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
-import 'package:the_elder_scrolls_alchemy_client/main.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/effect.dart';
-import 'package:the_elder_scrolls_alchemy_client/router.dart';
+
+import '../../../../../../app.dart';
 
 class EffectCardMicro extends StatefulWidget {
   const EffectCardMicro({Key? key, required this.gameName, required this.effect, this.fontSize = 30.0})
@@ -28,7 +26,9 @@ class _EffectCardMicroState extends State<EffectCardMicro> {
   @override
   Widget build(BuildContext context) {
     final label = CustomLocalization.getEffectName(
-        gameName: widget.gameName, englishEffectName: widget.effect.name, context: context);
+        gameName: widget.gameName,
+        englishEffectName: widget.effect.name,
+        languageCode: TheElderScrollsAlchemyClientApp.getLocaleLanguageCode(context));
 
     final effectColor = widget.effect.type == 'positive'
         ? Constant.positiveEffectBackgroundColor
