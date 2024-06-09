@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/effect.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/ingredient.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/custom_localization.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/ingredient_resource.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/cards/ingredient/ingredient_micro.dart';
+
+import '../../../../../app.dart';
 
 class IngredientsByEffect extends StatefulWidget {
   const IngredientsByEffect({Key? key, required this.gameName, required this.effect}) : super(key: key);
@@ -17,13 +20,25 @@ class IngredientsByEffect extends StatefulWidget {
 }
 
 class _IngredientsByEffectState extends State<IngredientsByEffect> {
-  List<Ingredient> _getIngredientsByIndex(int index) {
+  List<Ingredient> _getIngredientsByIndex(BuildContext context, int index) {
     if (index < widget.effect.ingredientsNamesByPosition.length) {
       final List names = widget.effect.ingredientsNamesByPosition[index];
       final List<Ingredient> ingredients =
           names.map((name) => IngredientResource(gameName: widget.gameName).getIngredientByName(name)).toList();
 
-      ingredients.sort((Ingredient a, Ingredient b) => a.name.compareTo(b.name));
+      ingredients.sort((Ingredient a, Ingredient b) {
+        final aLocalized = CustomLocalization.getIngredientName(
+          gameName: widget.gameName,
+          englishIngredientName: a.name,
+          languageCode: TheElderScrollsAlchemyClientApp.getLocaleLanguageCode(context),
+        );
+        final bLocalized = CustomLocalization.getIngredientName(
+          gameName: widget.gameName,
+          englishIngredientName: b.name,
+          languageCode: TheElderScrollsAlchemyClientApp.getLocaleLanguageCode(context),
+        );
+        return aLocalized.compareTo(bLocalized);
+      });
 
       return ingredients;
     }
@@ -36,11 +51,11 @@ class _IngredientsByEffectState extends State<IngredientsByEffect> {
     return widgets;
   }
 
-  List<Widget> _getColumns() {
+  List<Widget> _getColumns(BuildContext context) {
     List<Widget> columns = List.filled(4, Column());
 
     for (int i = 0; i < 4; i += 1) {
-      final cards = _getCards(_getIngredientsByIndex(i));
+      final cards = _getCards(_getIngredientsByIndex(context, i));
 
       final text = Container(
         margin: const EdgeInsets.only(bottom: 10.0),
@@ -84,7 +99,7 @@ class _IngredientsByEffectState extends State<IngredientsByEffect> {
     }
     var columns;
     try {
-      columns = _getColumns();
+      columns = _getColumns(context);
     } catch (exception) {
       return Column(children: [CupertinoActivityIndicator(), Text(exception.toString())]);
     }

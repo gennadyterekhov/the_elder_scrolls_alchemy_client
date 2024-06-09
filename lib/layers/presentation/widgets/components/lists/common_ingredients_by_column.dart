@@ -34,7 +34,7 @@ class _CommonIngredientsByColumnState extends State<CommonIngredientsByColumn> {
     return ingredients;
   }
 
-  List<Widget> _getIngredientsCardsByEffect(Effect effect, Ingredient currentIngredient) {
+  List<Widget> _getIngredientsCardsByEffect(BuildContext context, Effect effect, Ingredient currentIngredient) {
     List<String> names = [];
     List<dynamic> tempDynamicNames = [];
 
@@ -47,7 +47,19 @@ class _CommonIngredientsByColumnState extends State<CommonIngredientsByColumn> {
       }
     }
 
-    names.sort((dynamic a, dynamic b) => a.compareTo(b));
+    names.sort((dynamic a, dynamic b) {
+      final aLocalized = CustomLocalization.getIngredientName(
+        gameName: widget.gameName,
+        englishIngredientName: a,
+        languageCode: TheElderScrollsAlchemyClientApp.getLocaleLanguageCode(context),
+      );
+      final bLocalized = CustomLocalization.getIngredientName(
+        gameName: widget.gameName,
+        englishIngredientName: b,
+        languageCode: TheElderScrollsAlchemyClientApp.getLocaleLanguageCode(context),
+      );
+      return aLocalized.compareTo(bLocalized);
+    });
 
     List<Widget> ingredients = [];
     ingredients.addAll(_getCards(_getIngredientsByNames(names)));
@@ -66,6 +78,7 @@ class _CommonIngredientsByColumnState extends State<CommonIngredientsByColumn> {
     List<Widget> cards = [];
     for (var i = 0; i < widget.ingredient.effectsNames.length; i += 1) {
       final ingredientsCardsList = _getIngredientsCardsByEffect(
+          context,
           EffectResource(gameName: widget.gameName).getEffectByName(widget.ingredient.effectsNames[i]),
           widget.ingredient);
       if (ingredientsCardsList.isNotEmpty) {
