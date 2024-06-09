@@ -6,6 +6,8 @@ import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/com
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/divider_text.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/presentation/widgets/components/lists/effects_by_ingredient.dart';
 
+import '../../../../../../app.dart';
+
 class IngredientCardLong extends StatefulWidget {
   const IngredientCardLong({Key? key, required this.gameName, required this.ingredient}) : super(key: key);
   final Ingredient ingredient;
@@ -20,7 +22,9 @@ class _IngredientCardLongState extends State<IngredientCardLong> {
   Widget build(BuildContext context) {
     SelectableText nameText = SelectableText(
       CustomLocalization.getIngredientName(
-          gameName: widget.gameName, englishIngredientName: widget.ingredient.name, context: context),
+          gameName: widget.gameName,
+          englishIngredientName: widget.ingredient.name,
+          languageCode: TheElderScrollsAlchemyClientApp.getLocaleLanguageCode(context)),
       textAlign: TextAlign.left,
       style: const TextStyle(
         overflow: TextOverflow.fade,

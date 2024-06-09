@@ -3,6 +3,8 @@ import 'package:the_elder_scrolls_alchemy_client/layers/business_logic/models/ef
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/custom_localization.dart';
 
+import '../../../../../app.dart';
+
 class EffectSmallImage extends StatelessWidget {
   const EffectSmallImage({Key? key, required this.gameName, required this.effect}) : super(key: key);
   final Effect effect;
@@ -11,7 +13,10 @@ class EffectSmallImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Text nameText = Text(
-      CustomLocalization.getEffectName(gameName: this.gameName, englishEffectName: this.effect.name, context: context),
+      CustomLocalization.getEffectName(
+          gameName: this.gameName,
+          englishEffectName: this.effect.name,
+          languageCode: TheElderScrollsAlchemyClientApp.getLocaleLanguageCode(context)),
       textAlign: TextAlign.center,
       overflow: TextOverflow.visible,
       style: const TextStyle(
