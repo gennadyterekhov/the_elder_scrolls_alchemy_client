@@ -1,5 +1,4 @@
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/data_resource.dart';
 
 /// only for russian right now....
 /// maybe I will parse more translations data later and expand the index
@@ -26,7 +25,8 @@ class SearchLocalizedNameIndex {
       "Повышение навыка: иллюзия": "Fortify Illusion",
       "Повышение навыка: лёгкая броня": "Fortify Light Armor",
       "Повышение навыка: взлом": "Fortify Lockpicking",
-      "Повышение магии": "Waterbreathing",
+      "Повышение магии": "Fortify Magicka",
+      "Водное дыхание": "Waterbreathing",
       "Повышение навыка: стрельба": "Fortify Marksman",
       "Повышение навыка: одноручное оружие": "Fortify One Handed",
       "Повышение навыка: карманные кражи": "Fortify Pickpocket",

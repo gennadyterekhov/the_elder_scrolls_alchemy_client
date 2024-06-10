@@ -41,8 +41,11 @@ Install release app on device:
 this command runs specific integration test  
 `flutter drive --driver integration_test/driver.dart --target integration_test/full_test.dart --no-dds`  
 
-this command runs specific widget/unit test  
+this command runs specific widget/unit test file  
 `flutter test test/layers/data/data_source_test.dart --platform chrome`  
+
+this command runs specific widget/unit test inside a file  
+`flutter test test/layers/data/resource/effect_resource_test.dart --name "Test Waterbreathing is not included where it should not be"`
 
 this commands runs all unit tests  
 `flutter test --platform chrome`
