@@ -50,6 +50,13 @@ void main() {
       List<Effect> effects = EffectResource(gameName: Constant.gameNameOblivion).searchEffectsByName("восс", "ru");
       expect(effects.length, 11);
     });
+
+    test("oblivion Повышение магии is not sorted uppermost", () {
+      List<Effect> effects = EffectResource(gameName: Constant.gameNameOblivion).searchEffectsByName("", "ru");
+      expect(effects.length, 68);
+      expect(effects[0].name, "Silence");
+      expect(effects[1].name, "Water Breathing");
+    });
   });
 }
 
