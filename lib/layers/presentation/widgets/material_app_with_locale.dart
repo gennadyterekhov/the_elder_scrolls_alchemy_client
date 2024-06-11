@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MaterialAppWithLocale extends StatelessWidget {
   const MaterialAppWithLocale(this.home, {super.key});
