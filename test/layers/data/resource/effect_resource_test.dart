@@ -13,8 +13,8 @@ setUpAll() {
 }
 
 void main() {
-  group("Test effect resource", () {
-    test("Test search sorts with respect to localization", () {
+  group("effect resource", () {
+    test("search sorts with respect to localization", () {
       List<Effect> effects = EffectResource(gameName: Constant.gameNameSkyrim).searchEffectsByName("fort", "en");
 
       expect(effects.length, 21);
@@ -36,8 +36,7 @@ void main() {
       expect(effects[3].name, 'Fortify Restoration'); //Повышение
     });
 
-    test("Test Waterbreathing is not included where it should not be", () {
-      // TODO https://github.com/gennadyterekhov/the_elder_scrolls_alchemy_client/issues/134
+    test("Waterbreathing is not included where it should not be", () {
       List<Effect> effects = EffectResource(gameName: Constant.gameNameSkyrim).searchEffectsByName("повышение", "ru");
       Iterable<Effect> wtb = effects.where(isWaterbreathing);
       expect(wtb.length, 0);
@@ -45,6 +44,11 @@ void main() {
       effects = EffectResource(gameName: Constant.gameNameSkyrim).searchEffectsByName("маги", "ru");
       wtb = effects.where(isWaterbreathing);
       expect(wtb.length, 0);
+    });
+
+    test("can search oblivion effects in russian", () {
+      List<Effect> effects = EffectResource(gameName: Constant.gameNameOblivion).searchEffectsByName("восс", "ru");
+      expect(effects.length, 11);
     });
   });
 }
