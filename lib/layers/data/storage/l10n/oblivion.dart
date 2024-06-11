@@ -127,7 +127,7 @@ class OblivionL10nData {
       },
       "Fortify Magicka": {
         /*"de": "",*/
-        "ru": " Повышение магии", /*"fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""*/
+        "ru": "Повышение магии", /*"fr": "", "es": "", "it": "", "pl": "", "jp": "", "zh": ""*/
       },
       "Fortify Personality": {
         /*"de": "",*/

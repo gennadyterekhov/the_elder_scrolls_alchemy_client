@@ -208,7 +208,7 @@ class SearchLocalizedNameIndex {
       "Повышение здоровья": "Fortify Health",
       "Повышение интеллекта": "Fortify Intelligence",
       "Повышение удачи": "Fortify Luck",
-      " Повышение магии": "Fortify Magicka",
+      "Повышение магии": "Fortify Magicka",
       "Повышение обаяния": "Fortify Personality",
       "Повышение скорости": "Fortify Speed",
       "Повышение силы": "Fortify Strength",
