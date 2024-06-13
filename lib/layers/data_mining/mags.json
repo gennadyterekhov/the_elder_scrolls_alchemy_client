@@ -1,0 +1,512 @@
+[
+  {
+    "image": "",
+    "Ingredient Name": "Alocasia Fruit\n            FExxxD62",
+    "Primary Effect": "Regenerate Stamina\n            \n            (1.2×Magnitude\n            ,\n            1.22×Gold)",
+    "Secondary Effect": "Light",
+    "Tertiary Effect": "Ravage Magicka (1.5×Magnitude,1.56×Gold)",
+    "Quaternary Effect": "Regenerate Health (1.2×Magnitude,1.22×Gold)",
+    "price": "22",
+    "weight": "0.25"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Ambrosia\n            FExxx836",
+    "Primary Effect": "Restore Health (1.2×Magnitude,1.22×Gold)",
+    "Secondary Effect": "Regenerate Health (1.2×Magnitude,1.22×Gold)",
+    "Tertiary Effect": "Fortify Health (1.25×Magnitude,1.27×Gold)",
+    "Quaternary Effect": "Cure Poison (1.56×Gold)",
+    "price": "15",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Aster Bloom Core\n            FExxxD66",
+    "Primary Effect": "Resist Magic (2×Magnitude,2.14×Gold)",
+    "Secondary Effect": "Fortify Light Armor (2×Magnitude,2.14×Gold)",
+    "Tertiary Effect": "Fortify Block (1.25×Magnitude,1.27×Gold)",
+    "Quaternary Effect": "Paralysis (2×Duration,2.14×Gold)",
+    "price": "40",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Bittergreen Petals\n            FExxxD68",
+    "Primary Effect": "Lingering Damage Stamina (2×Magnitude,2.14×Gold)",
+    "Secondary Effect": "Invisibility (1.5×Duration,1.56×Gold)",
+    "Tertiary Effect": "Cure Poison",
+    "Quaternary Effect": "Damage Magicka (1.5×Magnitude,1.56×Gold)",
+    "price": "25",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Blind Watcher's Eye\n            FExxx822",
+    "Primary Effect": "Light",
+    "Secondary Effect": "Fortify Magicka (1.25×Magnitude,1.27×Gold)",
+    "Tertiary Effect": "Fortify Alteration (1.25×Magnitude,1.27×Gold)",
+    "Quaternary Effect": "Spell Absorption",
+    "price": "9",
+    "weight": "0.2"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Blister Pod Cap\n            FExxxD6A",
+    "Primary Effect": "Restore Magicka (1.2×Magnitude,1.22×Gold)",
+    "Secondary Effect": "Fortify Magicka (1.25×Magnitude,1.27×Gold)",
+    "Tertiary Effect": "Night Eye",
+    "Quaternary Effect": "Invisibility (1.5×Duration,1.56×Gold)",
+    "price": "25",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Bog Beacon\n            FExxxD6C",
+    "Primary Effect": "Restore Magicka (1.2×Magnitude,1.22×Gold)",
+    "Secondary Effect": "Fortify Heavy Armor (1.5×Magnitude,1.56×Gold)",
+    "Tertiary Effect": "Fear (2×Magnitude,2.14×Gold)",
+    "Quaternary Effect": "Damage Stamina (1.33×Magnitude,1.36×Gold)",
+    "price": "20",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Bungler's Bane\n            FExxx802",
+    "Primary Effect": "Slow (2×Duration,2.14×Gold)",
+    "Secondary Effect": "Ravage Stamina (1.5×Magnitude,3.34×Gold)",
+    "Tertiary Effect": "Damage Stamina Regen (2×Duration,2.14×Gold)",
+    "Quaternary Effect": "Resist Magic (2×Magnitude,2.14×Gold)",
+    "price": "50",
+    "weight": "0.5"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Chokeberry\n            FExxx838",
+    "Primary Effect": "Damage Health (1.5×Magnitude,1.56×Gold)",
+    "Secondary Effect": "Ravage Health (1.5×Magnitude,3.34×Gold)",
+    "Tertiary Effect": "Lingering Damage Health (2×Magnitude,2.14×Gold)",
+    "Quaternary Effect": "Weakness to Poison (1.5×Magnitude,1.56×Gold)",
+    "price": "15",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Chokeweed\n            FExxx804",
+    "Primary Effect": "Weakness to Frost (1.33×Magnitude,1.37×Gold)",
+    "Secondary Effect": "Restore Stamina (1.2×Magnitude,1.22×Gold)",
+    "Tertiary Effect": "Cure Disease (0.36×Gold)",
+    "Quaternary Effect": "Damage Magicka (1.33×Magnitude,1.37×Gold)",
+    "price": "7",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Coda Flower\n            FExxx805",
+    "Primary Effect": "Damage Health (1.5×Magnitude,1.56×Gold)",
+    "Secondary Effect": "Lingering Damage Stamina (2×Magnitude,2.14×Gold)",
+    "Tertiary Effect": "Ravage Magicka (1.5×Magnitude,1.56×Gold)",
+    "Quaternary Effect": "Fortify Carry Weight (1.25×Magnitude,1.27×Gold)",
+    "price": "30",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Comberry\n            FExxx806",
+    "Primary Effect": "Damage Stamina (1.33×Magnitude,1.36×Gold)",
+    "Secondary Effect": "Spell Absorption",
+    "Tertiary Effect": "Restore Magicka (1.2×Magnitude,1.22×Gold)",
+    "Quaternary Effect": "Fortify Destruction (1.2×Magnitude,1.22×Gold)",
+    "price": "12",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Congealed Putrescence\n            FExxx807",
+    "Primary Effect": "Ravage Health (1.5×Magnitude,3.34×Gold)",
+    "Secondary Effect": "Restore Magicka (1.2×Magnitude,1.22×Gold)",
+    "Tertiary Effect": "Weakness to Fire (1.33×Magnitude,1.36×Gold)",
+    "Quaternary Effect": "Fortify Conjuration (1.2×Magnitude,1.22×Gold)",
+    "price": "9",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Corkbulb Root\n            FExxx809",
+    "Primary Effect": "Paralysis (2×Duration,2.14×Gold)",
+    "Secondary Effect": "Restore Health (1.2×Magnitude,1.22×Gold)",
+    "Tertiary Effect": "Resist Shock (1.33×Magnitude,1.36×Gold)",
+    "Quaternary Effect": "Fortify Marksman (1.25×Magnitude,1.27×Gold)",
+    "price": "30",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Daedra Silk\n            FExxx80A",
+    "Primary Effect": "Lingering Damage Stamina (2×Magnitude,2.14×Gold)",
+    "Secondary Effect": "Paralysis (2×Duration,2.14×Gold)",
+    "Tertiary Effect": "Night Eye",
+    "Quaternary Effect": "Invisibility (1.5×Duration,1.56×Gold)",
+    "price": "50",
+    "weight": "0.5"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Daedra Venin\n            FExxx80B",
+    "Primary Effect": "Ravage Health (1.5×Magnitude,3.34×Gold)",
+    "Secondary Effect": "Paralysis (2×Duration,2.14×Gold)",
+    "Tertiary Effect": "Fortify Destruction (1.2×Magnitude,1.22×Gold)",
+    "Quaternary Effect": "Spell Absorption",
+    "price": "50",
+    "weight": "0.2"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Daedroth Teeth\n            FExxx826",
+    "Primary Effect": "Resist Frost (1.33×Magnitude,1.36×Gold)",
+    "Secondary Effect": "Light",
+    "Tertiary Effect": "Damage Magicka Regen (2×Duration,2.14×Gold)",
+    "Quaternary Effect": "Regenerate Stamina (1.2×Magnitude,1.22×Gold)",
+    "price": "50",
+    "weight": "0.5"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Dreugh Wax\n            FExxx827",
+    "Primary Effect": "Weakness to Magic (1.5×Magnitude,1.56×Gold)",
+    "Secondary Effect": "Frenzy (2×Duration,2.14×Gold)",
+    "Tertiary Effect": "Fortify Enchanting (2×Magnitude,2.14×Gold)",
+    "Quaternary Effect": "Fortify Smithing (1.25×Magnitude,1.27×Gold)",
+    "price": "25",
+    "weight": "1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Elytra Ichor\n            FExxx828",
+    "Primary Effect": "Restore Magicka (1.2×Magnitude,1.22×Gold)",
+    "Secondary Effect": "Invisibility (1.5×Duration,1.56×Gold)",
+    "Tertiary Effect": "Slow (2×Duration,2.14×Gold)",
+    "Quaternary Effect": "Fear (2×Magnitude,2.14×Gold)",
+    "price": "30",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Fire Petal\n            FExxx829",
+    "Primary Effect": "Damage Health (1.5×Magnitude,1.56×Gold)",
+    "Secondary Effect": "Resist Fire (1.33×Magnitude,1.36×Gold)",
+    "Tertiary Effect": "Spell Absorption",
+    "Quaternary Effect": "Paralysis (2×Duration,2.14×Gold)",
+    "price": "30",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Flame Stalk\n            FExxx82A",
+    "Primary Effect": "Restore Health (1.2×Magnitude,1.22×Gold)",
+    "Secondary Effect": "Resist Frost (1.33×Magnitude,1.36×Gold)",
+    "Tertiary Effect": "Weakness to Fire (1.33×Magnitude,1.36×Gold)",
+    "Quaternary Effect": "Invisibility (1.5×Duration,1.56×Gold)",
+    "price": "25",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Fungus Stalk\n            FExxx82B",
+    "Primary Effect": "Restore Magicka (1.2×Magnitude,1.22×Gold)",
+    "Secondary Effect": "Fortify Health (1.25×Magnitude,5×Duration,7.5×Gold)",
+    "Tertiary Effect": "Fortify Stamina (1.25×Magnitude,5×Duration,7.5×Gold)",
+    "Quaternary Effect": "Waterbreathing (1.6×Duration,1.67×Gold)",
+    "price": "30",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Gnarl Bark\n            FExxx82C",
+    "Primary Effect": "Damage Health (1.5×Magnitude,1.56×Gold)",
+    "Secondary Effect": "Regenerate Health (1.2×Magnitude,1.22×Gold)",
+    "Tertiary Effect": "Fortify Heavy Armor (1.5×Magnitude,1.56×Gold)",
+    "Quaternary Effect": "Resist Fire (1.33×Magnitude,1.36×Gold)",
+    "price": "15",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Gold Kanet\n            FExxx82D",
+    "Primary Effect": "Paralysis (2×Duration,2.14×Gold)",
+    "Secondary Effect": "Ravage Health (1.5×Magnitude,3.34×Gold)",
+    "Tertiary Effect": "Weakness to Frost (1.33×Magnitude,1.36×Gold)",
+    "Quaternary Effect": "Fortify Smithing (1.25×Magnitude,1.27×Gold)",
+    "price": "30",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Hackle-Lo Leaf\n            FExxx82E",
+    "Primary Effect": "Restore Stamina (1.2×Magnitude,1.22×Gold)",
+    "Secondary Effect": "Paralysis (2×Duration,2.14×Gold)",
+    "Tertiary Effect": "Waterbreathing (1.6×Duration,1.67×Gold)",
+    "Quaternary Effect": "Fortify Restoration (1.25×Magnitude,1.27×Gold)",
+    "price": "30",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Heart of Order\n            FExxx851",
+    "Primary Effect": "Restore Health (1.2×Magnitude,1.22×Gold)",
+    "Secondary Effect": "Fortify Health (1.25×Magnitude,5×Duration,7.5×Gold)",
+    "Tertiary Effect": "Fortify One-handed (1.25×Magnitude,1.27×Gold)",
+    "Quaternary Effect": "Fortify Two-handed (1.25×Magnitude,1.27×Gold)",
+    "price": "40",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Hunger Tongue\n            FExxx80C",
+    "Primary Effect": "Weakness to Fire (1.33×Magnitude,2×Duration,2.93×Gold)",
+    "Secondary Effect": "Cure Disease (0.36×Gold)",
+    "Tertiary Effect": "Cure Poison",
+    "Quaternary Effect": "Fortify Magicka (1.25×Magnitude,1.27×Gold)",
+    "price": "10",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Hydnum Azure Giant Spore\n            FExxx80D",
+    "Primary Effect": "Resist Frost (1.33×Magnitude,1.36×Gold)",
+    "Secondary Effect": "Fortify Health (1.25×Magnitude,5×Duration,7.5×Gold)",
+    "Tertiary Effect": "Regenerate Health (1.2×Magnitude,1.22×Gold)",
+    "Quaternary Effect": "Light",
+    "price": "30",
+    "weight": "0.5"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Hypha Facia\n            FExxx80E",
+    "Primary Effect": "Weakness to Poison (1.5×Magnitude,1.56×Gold)",
+    "Secondary Effect": "Frenzy (2×Duration,2.14×Gold)",
+    "Tertiary Effect": "Ravage Stamina (1.5×Magnitude,3.34×Gold)",
+    "Quaternary Effect": "Resist Magic (2×Magnitude,2.14×Gold)",
+    "price": "23",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Imp Gall\n            FExxx80F",
+    "Primary Effect": "Damage Health (1.5×Magnitude,1.56×Gold)",
+    "Secondary Effect": "Weakness to Fire (1.33×Magnitude,1.36×Gold)",
+    "Tertiary Effect": "Fortify Barter (2×Magnitude,2.14×Gold)",
+    "Quaternary Effect": "Cure Poison",
+    "price": "15",
+    "weight": "0.2"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Kagouti Hide\n            FExxx810",
+    "Primary Effect": "Lingering Damage Stamina (2×Magnitude,2.14×Gold)",
+    "Secondary Effect": "Night Eye",
+    "Tertiary Effect": "Fortify Carry Weight (1.25×Magnitude,1.27×Gold)",
+    "Quaternary Effect": "Resist Shock (1.33×Magnitude,1.36×Gold)",
+    "price": "20",
+    "weight": "1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Kresh Fiber\n            FExxx811",
+    "Primary Effect": "Weakness to Magic (1.5×Magnitude,1.56×Gold)",
+    "Secondary Effect": "Slow (2×Duration,2.14×Gold)",
+    "Tertiary Effect": "Fortify Sneak (1.25×Magnitude,1.27×Gold)",
+    "Quaternary Effect": "Fortify Pickpocket (1.25×Magnitude,1.27×Gold)",
+    "price": "30",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Lichor\n            FExxx837",
+    "Primary Effect": "Restore Magicka (1.2×Magnitude,1.22×Gold)",
+    "Secondary Effect": "Regenerate Magicka (1.2×Magnitude,1.22×Gold)",
+    "Tertiary Effect": "Fortify Magicka (1.25×Magnitude,1.27×Gold)",
+    "Quaternary Effect": "Spell Absorption",
+    "price": "15",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Luminous Russula\n            FExxx813",
+    "Primary Effect": "Lingering Damage Stamina (2×Magnitude,2.14×Gold)",
+    "Secondary Effect": "Lingering Damage Health (2×Magnitude,2.14×Gold)",
+    "Tertiary Effect": "Waterbreathing (1.6×Duration,1.67×Gold)",
+    "Quaternary Effect": "Fear (2×Magnitude,2.14×Gold)",
+    "price": "25",
+    "weight": "0.2"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Marshmerrow\n            FExxx814",
+    "Primary Effect": "Restore Health (1.2×Magnitude,1.22×Gold)",
+    "Secondary Effect": "Fortify Carry Weight (1.25×Magnitude,1.27×Gold)",
+    "Tertiary Effect": "Weakness to Magic (1.5×Magnitude,1.56×Gold)",
+    "Quaternary Effect": "Damage Stamina (1.33×Magnitude,1.36×Gold)",
+    "price": "18",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Minotaur Horn\n            FExxx815",
+    "Primary Effect": "Resist Poison (1.25×Magnitude,1.27×Gold)",
+    "Secondary Effect": "Damage Magicka Regen (2×Duration,2.14×Gold)",
+    "Tertiary Effect": "Regenerate Health (1.2×Magnitude,1.22×Gold)",
+    "Quaternary Effect": "Regenerate Magicka (1.2×Magnitude,1.22×Gold)",
+    "price": "55",
+    "weight": "5"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Ogre's Teeth\n            FExxx816",
+    "Primary Effect": "Weakness to Shock (1.33×Magnitude,1.36×Gold)",
+    "Secondary Effect": "Resist Poison (1.25×Magnitude,1.27×Gold)",
+    "Tertiary Effect": "Lingering Damage Magicka (2×Magnitude,2.12×Gold)",
+    "Quaternary Effect": "Regenerate Health (1.2×Magnitude,1.22×Gold)",
+    "price": "50",
+    "weight": "3"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Red Kelp Gas Bladder\n            FExxx817",
+    "Primary Effect": "Regenerate Stamina (1.2×Magnitude,1.22×Gold)",
+    "Secondary Effect": "Waterbreathing (1.6×Duration,1.67×Gold)",
+    "Tertiary Effect": "Cure Disease (0.36×Gold)",
+    "Quaternary Effect": "Fortify Magicka (1.25×Magnitude,1.27×Gold)",
+    "price": "20",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Redwort Flower\n            FExxx818",
+    "Primary Effect": "Resist Frost (1.33×Magnitude,1.36×Gold)",
+    "Secondary Effect": "Cure Poison",
+    "Tertiary Effect": "Damage Health (1.5×Magnitude,1.56×Gold)",
+    "Quaternary Effect": "Invisibility (1.5×Duration,1.56×Gold)",
+    "price": "25",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Roobrush\n            FExxx819",
+    "Primary Effect": "Weakness to Magic (1.5×Magnitude,1.56×Gold)",
+    "Secondary Effect": "Fortify Sneak (1.25×Magnitude,1.27×Gold)",
+    "Tertiary Effect": "Lingering Damage Health (2×Magnitude,2.14×Gold)",
+    "Quaternary Effect": "Cure Poison",
+    "price": "20",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Saltrice\n            FExxx81A",
+    "Primary Effect": "Restore Stamina (1.2×Magnitude,1.22×Gold)",
+    "Secondary Effect": "Fortify Magicka (1.25×Magnitude,1.27×Gold)",
+    "Tertiary Effect": "Damage Stamina Regen (2×Duration,2.14×Gold)",
+    "Quaternary Effect": "Restore Health (1.2×Magnitude,1.22×Gold)",
+    "price": "6",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Scalon Fin\n            FExxx81B",
+    "Primary Effect": "Waterbreathing (1.6×Duration,1.67×Gold)",
+    "Secondary Effect": "Damage Health (1.5×Magnitude,1.56×Gold)",
+    "Tertiary Effect": "Lingering Damage Magicka (2×Magnitude,2.14×Gold)",
+    "Quaternary Effect": "Damage Magicka Regen (2×Duration,2.14×Gold)",
+    "price": "25",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Scrib Jelly\n            FExxx81C",
+    "Primary Effect": "Regenerate Magicka (1.2×Magnitude,1.22×Gold)",
+    "Secondary Effect": "Cure Poison",
+    "Tertiary Effect": "Cure Disease (0.36×Gold)",
+    "Quaternary Effect": "Regenerate Stamina (1.2×Magnitude,1.22×Gold)",
+    "price": "20",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Scrib Jerky\n            FExxx81D",
+    "Primary Effect": "Restore Stamina (1.2×Magnitude,1.22×Gold)",
+    "Secondary Effect": "Fortify Stamina (1.25×Magnitude,1.27×Gold)",
+    "Tertiary Effect": "Paralysis (2×Duration,2.14×Gold)",
+    "Quaternary Effect": "Waterbreathing (1.6×Duration,1.67×Gold)",
+    "price": "15",
+    "weight": "0.2"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Sload Soap\n            FExxx81E",
+    "Primary Effect": "Resist Fire (1.33×Magnitude,1.36×Gold)",
+    "Secondary Effect": "Fear (2×Magnitude,2.14×Gold)",
+    "Tertiary Effect": "Fortify Conjuration (1.2×Magnitude,1.22×Gold)",
+    "Quaternary Effect": "Fortify Alteration (1.25×Magnitude,1.27×Gold)",
+    "price": "30",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Stoneflower Petals\n            FExxx81F",
+    "Primary Effect": "Weakness to Shock (1.33×Magnitude,1.36×Gold)",
+    "Secondary Effect": "Fortify One-handed (1.25×Magnitude,1.27×Gold)",
+    "Tertiary Effect": "Fortify Magicka (1.25×Magnitude,1.27×Gold)",
+    "Quaternary Effect": "Fortify Enchanting (2×Magnitude,2.14×Gold)",
+    "price": "15",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Void Essence\n            FExxx820",
+    "Primary Effect": "Restore Health (1.2×Magnitude,1.22×Gold)",
+    "Secondary Effect": "Fortify Health (1.25×Magnitude,5×Duration,7.5×Gold)",
+    "Tertiary Effect": "Fortify Stamina (1.25×Magnitude,5×Duration,7.5×Gold)",
+    "Quaternary Effect": "Regenerate Health (1.2×Magnitude,1.22×Gold)",
+    "price": "60",
+    "weight": "0.2"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Watcher's Eye\n            FExxx821",
+    "Primary Effect": "Night Eye",
+    "Secondary Effect": "Fortify Magicka (1.25×Magnitude,1.27×Gold)",
+    "Tertiary Effect": "Fortify Illusion (5×Magnitude,5.87×Gold)",
+    "Quaternary Effect": "Spell Absorption",
+    "price": "9",
+    "weight": "0.2"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Wisp Stalk Caps\n            FExxx823",
+    "Primary Effect": "Damage Health (1.5×Magnitude,1.56×Gold)",
+    "Secondary Effect": "Weakness to Poison (1.5×Magnitude,1.56×Gold)",
+    "Tertiary Effect": "Frenzy (2×Duration,2.14×Gold)",
+    "Quaternary Effect": "Regenerate Stamina (1.2×Magnitude,1.22×Gold)",
+    "price": "20",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Withering Moon\n            FExxx824",
+    "Primary Effect": "Restore Magicka (1.2×Magnitude,1.22×Gold)",
+    "Secondary Effect": "Spell Absorption",
+    "Tertiary Effect": "Fortify Light Armor (1.5×Magnitude,1.56×Gold)",
+    "Quaternary Effect": "Cure Disease (0.36×Gold)",
+    "price": "5",
+    "weight": "0.1"
+  },
+  {
+    "image": "",
+    "Ingredient Name": "Worm's Head Cap\n            FExxx825",
+    "Primary Effect": "Fortify Lockpicking (1.5×Magnitude,1.56×Gold)",
+    "Secondary Effect": "Night Eye",
+    "Tertiary Effect": "Fortify Carry Weight (1.25×Magnitude,1.27×Gold)",
+    "Quaternary Effect": "Slow\n            (2×Duration\n            ,2.14×Gold)",
+    "price": "30",
+    "weight": "0.2"
+  }
+]

@@ -9,14 +9,13 @@ void main() {
       List<Ingredient> ingredients =
           IngredientResource(gameName: Constant.gameNameSkyrim).searchIngredientsByName("flow", "en");
 
-      expect(ingredients.length, 4);
+      expect(ingredients.length, 7);
       expect(ingredients[0].name, 'Blue Mountain Flower');
-      expect(ingredients[1].name, 'Purple Mountain Flower');
-      expect(ingredients[2].name, 'Red Mountain Flower');
-      expect(ingredients[3].name, 'Yellow Mountain Flower');
+      expect(ingredients[1].name, 'Coda Flower');
+      expect(ingredients[6].name, 'Yellow Mountain Flower');
 
       ingredients = IngredientResource(gameName: Constant.gameNameSkyrim).searchIngredientsByName("цвет", "ru");
-
+//TODO this can change after translations are added https://github.com/gennadyterekhov/the_elder_scrolls_alchemy_client/issues/146
       expect(ingredients.length, 6);
       expect(ingredients[0].name, 'Blue Mountain Flower'); // Голубой
       expect(ingredients[1].name, 'Yellow Mountain Flower'); // Желтый
