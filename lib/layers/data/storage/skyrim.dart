@@ -1,6 +1,72 @@
 class SkyrimData {
   static const Map<String, dynamic> skyrimData = {
     "effects": {
+      // AE
+      "Night Eye": {
+        "id": "FExxx803",
+        "name": "Night Eye",
+        "text": "Improved night vision",
+        "magnitude": 1, // uesp does not list data for this
+        "value": 1, // uesp does not list data for this
+        "ingredients": [
+          ["Watcher's Eye"],
+          ["Kagouti Hide", "Worm's Head Cap"],
+          ["Blister Pod Cap", "Daedra Silk"],
+          []
+        ],
+        "type": "positive",
+        "icon": "https://images.uesp.net/thumb/a/ab/SR-icon-spell-Magic_Hat.png/24px-SR-icon-spell-Magic_Hat.png",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Night_Eye_(effect)",
+      },
+      "Spell Absorption": {
+        "id": "FExxx812",
+        "name": "Spell Absorption",
+        "text": "Absorb magicka from hostile spells",
+        "magnitude": 1, // uesp does not list data for this
+        "value": 1, // uesp does not list data for this
+        "ingredients": [
+          [],
+          ["Comberry", "Withering Moon"],
+          ["Fire Petal"],
+          ["Blind Watcher's Eye", "Daedra Venin", "Lichor", "Watcher's Eye"]
+        ],
+        "type": "positive",
+        "icon": "https://images.uesp.net/thumb/a/ab/SR-icon-spell-Magic_Hat.png/24px-SR-icon-spell-Magic_Hat.png",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Spell_Absorption"
+      },
+      "Light": {
+        "id": "FExxx846",
+        "name": "Light",
+        "text": "Emits a small light that lasts for several seconds",
+        "magnitude": 1, // uesp does not list data for this
+        "value": 1, // uesp does not list data for this
+        "ingredients": [
+          ["Blind Watcher's Eye"],
+          ["Alocasia Fruit", "Daedroth Teeth"],
+          [],
+          ["Hydnum Azure Giant Spore"]
+        ],
+        "type": "positive",
+        "icon": "https://images.uesp.net/4/4c/SR-icon-spell-Light.png",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Light"
+      },
+      "Cure Poison": {
+        "id": "00109ADD",
+        "name": "Cure Poison",
+        "text": "Stops poison's continuing effects",
+        "magnitude": 2,
+        "value": 2,
+        "ingredients": [
+          [],
+          ["Redwort Flower", "Scrib Jelly"],
+          ["Bittergreen Petals", "Hunger Tongue"],
+          ["Imp Gall", "Roobrush", "Ambrosia"]
+        ],
+        "type": "positive",
+        "icon": "https://images.uesp.net/thumb/a/ab/SR-icon-spell-Magic_Hat.png/24px-SR-icon-spell-Magic_Hat.png",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Cure_Poison"
+      },
+      //
       "Cure Disease": {
         "id": "000ae723",
         "name": "Cure Disease",
@@ -957,6 +1023,824 @@ class SkyrimData {
       }
     },
     "ingredients": {
+      // <AE>
+      "Alocasia Fruit": {
+        "weight": 0.25,
+        "id": "FExxxD62",
+        "name": "Alocasia Fruit",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Alocasia_Fruit",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Regenerate Stamina", "Light", "Ravage Magicka", "Regenerate Health"],
+        "value": 22,
+        "multipliers": [
+          {"magnitude": 1.2, "value": 1.22},
+          null,
+          {"magnitude": 1.5, "value": 1.56},
+          {"magnitude": 1.2, "value": 1.22}
+        ]
+      },
+      "Ambrosia": {
+        "weight": 0.1,
+        "id": "FExxx836",
+        "name": "Ambrosia",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Ambrosia",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Restore Health", "Regenerate Health", "Fortify Health", "Cure Poison"],
+        "value": 15,
+        "multipliers": [
+          {"magnitude": 1.2, "value": 1.22},
+          {"magnitude": 1.2, "value": 1.22},
+          {"magnitude": 1.25, "value": 1.27},
+          {"value": 1.56}
+        ]
+      },
+      "Aster Bloom Core": {
+        "weight": 0.1,
+        "id": "FExxxD66",
+        "name": "Aster Bloom Core",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Aster_Bloom_Core",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Resist Magic", "Fortify Light Armor", "Fortify Block", "Paralysis"],
+        "value": 40,
+        "multipliers": [
+          {"magnitude": 2.0, "value": 2.14},
+          {"magnitude": 2.0, "value": 2.14},
+          {"magnitude": 1.25, "value": 1.27},
+          {"duration": 2.0, "value": 2.14}
+        ]
+      },
+      "Bittergreen Petals": {
+        "weight": 0.1,
+        "id": "FExxxD68",
+        "name": "Bittergreen Petals",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Bittergreen_Petals",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Lingering Damage Stamina", "Invisibility", "Cure Poison", "Damage Magicka"],
+        "value": 25,
+        "multipliers": [
+          {"magnitude": 2.0, "value": 2.14},
+          {"duration": 1.5, "value": 1.56},
+          null,
+          {"magnitude": 1.5, "value": 1.56}
+        ]
+      },
+      "Blind Watcher's Eye": {
+        "weight": 0.2,
+        "id": "FExxx822",
+        "name": "Blind Watcher's Eye",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Blind_Watcher's_Eye",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Light", "Fortify Magicka", "Fortify Alteration", "Spell Absorption"],
+        "value": 9,
+        "multipliers": [
+          null,
+          {"magnitude": 1.25, "value": 1.27},
+          {"magnitude": 1.25, "value": 1.27},
+          null
+        ]
+      },
+      "Blister Pod Cap": {
+        "weight": 0.1,
+        "id": "FExxxD6A",
+        "name": "Blister Pod Cap",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Blister_Pod_Cap",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Restore Magicka", "Fortify Magicka", "Night Eye", "Invisibility"],
+        "value": 25,
+        "multipliers": [
+          {"magnitude": 1.2, "value": 1.22},
+          {"magnitude": 1.25, "value": 1.27},
+          null,
+          {"duration": 1.5, "value": 1.56}
+        ]
+      },
+      "Bog Beacon": {
+        "weight": 0.1,
+        "id": "FExxxD6C",
+        "name": "Bog Beacon",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Bog_Beacon",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Restore Magicka", "Fortify Heavy Armor", "Fear", "Damage Stamina"],
+        "value": 20,
+        "multipliers": [
+          {"magnitude": 1.2, "value": 1.22},
+          {"magnitude": 1.5, "value": 1.56},
+          {"magnitude": 2.0, "value": 2.14},
+          {"magnitude": 1.33, "value": 1.36}
+        ]
+      },
+      "Bungler's Bane": {
+        "weight": 0.5,
+        "id": "FExxx802",
+        "name": "Bungler's Bane",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Bungler's_Bane",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Slow", "Ravage Stamina", "Damage Stamina Regen", "Resist Magic"],
+        "value": 50,
+        "multipliers": [
+          {"duration": 2.0, "value": 2.14},
+          {"magnitude": 1.5, "value": 3.34},
+          {"duration": 2.0, "value": 2.14},
+          {"magnitude": 2.0, "value": 2.14}
+        ]
+      },
+      "Chokeberry": {
+        "weight": 0.1,
+        "id": "FExxx838",
+        "name": "Chokeberry",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Chokeberry",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Damage Health", "Ravage Health", "Lingering Damage Health", "Weakness to Poison"],
+        "value": 15,
+        "multipliers": [
+          {"magnitude": 1.5, "value": 1.56},
+          {"magnitude": 1.5, "value": 3.34},
+          {"magnitude": 2.0, "value": 2.14},
+          {"magnitude": 1.5, "value": 1.56}
+        ]
+      },
+      "Chokeweed": {
+        "weight": 0.1,
+        "id": "FExxx804",
+        "name": "Chokeweed",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Chokeweed",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Weakness to Frost", "Restore Stamina", "Cure Disease", "Damage Magicka"],
+        "value": 7,
+        "multipliers": [
+          {"magnitude": 1.33, "value": 1.37},
+          {"magnitude": 1.2, "value": 1.22},
+          {"value": 0.36},
+          {"magnitude": 1.33, "value": 1.37}
+        ]
+      },
+      "Coda Flower": {
+        "weight": 0.1,
+        "id": "FExxx805",
+        "name": "Coda Flower",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Coda_Flower",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Damage Health", "Lingering Damage Stamina", "Ravage Magicka", "Fortify Carry Weight"],
+        "value": 30,
+        "multipliers": [
+          {"magnitude": 1.5, "value": 1.56},
+          {"magnitude": 2.0, "value": 2.14},
+          {"magnitude": 1.5, "value": 1.56},
+          {"magnitude": 1.25, "value": 1.27}
+        ]
+      },
+      "Comberry": {
+        "weight": 0.1,
+        "id": "FExxx806",
+        "name": "Comberry",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Comberry",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Damage Stamina", "Spell Absorption", "Restore Magicka", "Fortify Destruction"],
+        "value": 12,
+        "multipliers": [
+          {"magnitude": 1.33, "value": 1.36},
+          null,
+          {"magnitude": 1.2, "value": 1.22},
+          {"magnitude": 1.2, "value": 1.22}
+        ]
+      },
+      "Congealed Putrescence": {
+        "weight": 0.1,
+        "id": "FExxx807",
+        "name": "Congealed Putrescence",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Congealed_Putrescence",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Ravage Health", "Restore Magicka", "Weakness to Fire", "Fortify Conjuration"],
+        "value": 9,
+        "multipliers": [
+          {"magnitude": 1.5, "value": 3.34},
+          {"magnitude": 1.2, "value": 1.22},
+          {"magnitude": 1.33, "value": 1.36},
+          {"magnitude": 1.2, "value": 1.22}
+        ]
+      },
+      "Corkbulb Root": {
+        "weight": 0.1,
+        "id": "FExxx809",
+        "name": "Corkbulb Root",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Corkbulb_Root",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Paralysis", "Restore Health", "Resist Shock", "Fortify Marksman"],
+        "value": 30,
+        "multipliers": [
+          {"duration": 2.0, "value": 2.14},
+          {"magnitude": 1.2, "value": 1.22},
+          {"magnitude": 1.33, "value": 1.36},
+          {"magnitude": 1.25, "value": 1.27}
+        ]
+      },
+      "Daedra Silk": {
+        "weight": 0.5,
+        "id": "FExxx80A",
+        "name": "Daedra Silk",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Daedra_Silk",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Lingering Damage Stamina", "Paralysis", "Night Eye", "Invisibility"],
+        "value": 50,
+        "multipliers": [
+          {"magnitude": 2.0, "value": 2.14},
+          {"duration": 2.0, "value": 2.14},
+          null,
+          {"duration": 1.5, "value": 1.56}
+        ]
+      },
+      "Daedra Venin": {
+        "weight": 0.2,
+        "id": "FExxx80B",
+        "name": "Daedra Venin",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Daedra_Venin",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Ravage Health", "Paralysis", "Fortify Destruction", "Spell Absorption"],
+        "value": 50,
+        "multipliers": [
+          {"magnitude": 1.5, "value": 3.34},
+          {"duration": 2.0, "value": 2.14},
+          {"magnitude": 1.2, "value": 1.22},
+          null
+        ]
+      },
+      "Daedroth Teeth": {
+        "weight": 0.5,
+        "id": "FExxx826",
+        "name": "Daedroth Teeth",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Daedroth_Teeth",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Resist Frost", "Light", "Damage Magicka Regen", "Regenerate Stamina"],
+        "value": 50,
+        "multipliers": [
+          {"magnitude": 1.33, "value": 1.36},
+          null,
+          {"duration": 2.0, "value": 2.14},
+          {"magnitude": 1.2, "value": 1.22}
+        ]
+      },
+      "Dreugh Wax": {
+        "weight": 1.0,
+        "id": "FExxx827",
+        "name": "Dreugh Wax",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Dreugh_Wax",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Weakness to Magic", "Frenzy", "Fortify Enchanting", "Fortify Smithing"],
+        "value": 25,
+        "multipliers": [
+          {"magnitude": 1.5, "value": 1.56},
+          {"duration": 2.0, "value": 2.14},
+          {"magnitude": 2.0, "value": 2.14},
+          {"magnitude": 1.25, "value": 1.27}
+        ]
+      },
+      "Elytra Ichor": {
+        "weight": 0.1,
+        "id": "FExxx828",
+        "name": "Elytra Ichor",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Elytra_Ichor",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Restore Magicka", "Invisibility", "Slow", "Fear"],
+        "value": 30,
+        "multipliers": [
+          {"magnitude": 1.2, "value": 1.22},
+          {"duration": 1.5, "value": 1.56},
+          {"duration": 2.0, "value": 2.14},
+          {"magnitude": 2.0, "value": 2.14}
+        ]
+      },
+      "Fire Petal": {
+        "weight": 0.1,
+        "id": "FExxx829",
+        "name": "Fire Petal",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Fire_Petal",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Damage Health", "Resist Fire", "Spell Absorption", "Paralysis"],
+        "value": 30,
+        "multipliers": [
+          {"magnitude": 1.5, "value": 1.56},
+          {"magnitude": 1.33, "value": 1.36},
+          null,
+          {"duration": 2.0, "value": 2.14}
+        ]
+      },
+      "Flame Stalk": {
+        "weight": 0.1,
+        "id": "FExxx82A",
+        "name": "Flame Stalk",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Flame_Stalk",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Restore Health", "Resist Frost", "Weakness to Fire", "Invisibility"],
+        "value": 25,
+        "multipliers": [
+          {"magnitude": 1.2, "value": 1.22},
+          {"magnitude": 1.33, "value": 1.36},
+          {"magnitude": 1.33, "value": 1.36},
+          {"duration": 1.5, "value": 1.56}
+        ]
+      },
+      "Fungus Stalk": {
+        "weight": 0.1,
+        "id": "FExxx82B",
+        "name": "Fungus Stalk",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Fungus_Stalk",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Restore Magicka", "Fortify Health", "Fortify Stamina", "Waterbreathing"],
+        "value": 30,
+        "multipliers": [
+          {"magnitude": 1.2, "value": 1.22},
+          {"magnitude": 1.25, "duration": 5.0, "value": 7.5},
+          {"magnitude": 1.25, "duration": 5.0, "value": 7.5},
+          {"duration": 1.6, "value": 1.67}
+        ]
+      },
+      "Gnarl Bark": {
+        "weight": 0.1,
+        "id": "FExxx82C",
+        "name": "Gnarl Bark",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Gnarl_Bark",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Damage Health", "Regenerate Health", "Fortify Heavy Armor", "Resist Fire"],
+        "value": 15,
+        "multipliers": [
+          {"magnitude": 1.5, "value": 1.56},
+          {"magnitude": 1.2, "value": 1.22},
+          {"magnitude": 1.5, "value": 1.56},
+          {"magnitude": 1.33, "value": 1.36}
+        ]
+      },
+      "Gold Kanet": {
+        "weight": 0.1,
+        "id": "FExxx82D",
+        "name": "Gold Kanet",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Gold_Kanet",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Paralysis", "Ravage Health", "Weakness to Frost", "Fortify Smithing"],
+        "value": 30,
+        "multipliers": [
+          {"duration": 2.0, "value": 2.14},
+          {"magnitude": 1.5, "value": 3.34},
+          {"magnitude": 1.33, "value": 1.36},
+          {"magnitude": 1.25, "value": 1.27}
+        ]
+      },
+      "Hackle-Lo Leaf": {
+        "weight": 0.1,
+        "id": "FExxx82E",
+        "name": "Hackle-Lo Leaf",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Hackle-Lo_Leaf",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Restore Stamina", "Paralysis", "Waterbreathing", "Fortify Restoration"],
+        "value": 30,
+        "multipliers": [
+          {"magnitude": 1.2, "value": 1.22},
+          {"duration": 2.0, "value": 2.14},
+          {"duration": 1.6, "value": 1.67},
+          {"magnitude": 1.25, "value": 1.27}
+        ]
+      },
+      "Heart of Order": {
+        "weight": 0.1,
+        "id": "FExxx851",
+        "name": "Heart of Order",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Heart_of_Order",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Restore Health", "Fortify Health", "Fortify One-handed", "Fortify Two-handed"],
+        "value": 40,
+        "multipliers": [
+          {"magnitude": 1.2, "value": 1.22},
+          {"magnitude": 1.25, "duration": 5.0, "value": 7.5},
+          {"magnitude": 1.25, "value": 1.27},
+          {"magnitude": 1.25, "value": 1.27}
+        ]
+      },
+      "Hunger Tongue": {
+        "weight": 0.1,
+        "id": "FExxx80C",
+        "name": "Hunger Tongue",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Hunger_Tongue",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Weakness to Fire", "Cure Disease", "Cure Poison", "Fortify Magicka"],
+        "value": 10,
+        "multipliers": [
+          {"magnitude": 1.33, "duration": 2.0, "value": 2.93},
+          {"value": 0.36},
+          null,
+          {"magnitude": 1.25, "value": 1.27}
+        ]
+      },
+      "Hydnum Azure Giant Spore": {
+        "weight": 0.5,
+        "id": "FExxx80D",
+        "name": "Hydnum Azure Giant Spore",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Hydnum_Azure_Giant_Spore",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Resist Frost", "Fortify Health", "Regenerate Health", "Light"],
+        "value": 30,
+        "multipliers": [
+          {"magnitude": 1.33, "value": 1.36},
+          {"magnitude": 1.25, "duration": 5.0, "value": 7.5},
+          {"magnitude": 1.2, "value": 1.22},
+          null
+        ]
+      },
+      "Hypha Facia": {
+        "weight": 0.1,
+        "id": "FExxx80E",
+        "name": "Hypha Facia",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Hypha_Facia",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Weakness to Poison", "Frenzy", "Ravage Stamina", "Resist Magic"],
+        "value": 23,
+        "multipliers": [
+          {"magnitude": 1.5, "value": 1.56},
+          {"duration": 2.0, "value": 2.14},
+          {"magnitude": 1.5, "value": 3.34},
+          {"magnitude": 2.0, "value": 2.14}
+        ]
+      },
+      "Imp Gall": {
+        "weight": 0.2,
+        "id": "FExxx80F",
+        "name": "Imp Gall",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Imp_Gall",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Damage Health", "Weakness to Fire", "Fortify Barter", "Cure Poison"],
+        "value": 15,
+        "multipliers": [
+          {"magnitude": 1.5, "value": 1.56},
+          {"magnitude": 1.33, "value": 1.36},
+          {"magnitude": 2.0, "value": 2.14},
+          null
+        ]
+      },
+      "Kagouti Hide": {
+        "weight": 1.0,
+        "id": "FExxx810",
+        "name": "Kagouti Hide",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Kagouti_Hide",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Lingering Damage Stamina", "Night Eye", "Fortify Carry Weight", "Resist Shock"],
+        "value": 20,
+        "multipliers": [
+          {"magnitude": 2.0, "value": 2.14},
+          null,
+          {"magnitude": 1.25, "value": 1.27},
+          {"magnitude": 1.33, "value": 1.36}
+        ]
+      },
+      "Kresh Fiber": {
+        "weight": 0.1,
+        "id": "FExxx811",
+        "name": "Kresh Fiber",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Kresh_Fiber",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Weakness to Magic", "Slow", "Fortify Sneak", "Fortify Pickpocket"],
+        "value": 30,
+        "multipliers": [
+          {"magnitude": 1.5, "value": 1.56},
+          {"duration": 2.0, "value": 2.14},
+          {"magnitude": 1.25, "value": 1.27},
+          {"magnitude": 1.25, "value": 1.27}
+        ]
+      },
+      "Lichor": {
+        "weight": 0.1,
+        "id": "FExxx837",
+        "name": "Lichor",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Lichor",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Restore Magicka", "Regenerate Magicka", "Fortify Magicka", "Spell Absorption"],
+        "value": 15,
+        "multipliers": [
+          {"magnitude": 1.2, "value": 1.22},
+          {"magnitude": 1.2, "value": 1.22},
+          {"magnitude": 1.25, "value": 1.27},
+          null
+        ]
+      },
+      "Luminous Russula": {
+        "weight": 0.2,
+        "id": "FExxx813",
+        "name": "Luminous Russula",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Luminous_Russula",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Lingering Damage Stamina", "Lingering Damage Health", "Waterbreathing", "Fear"],
+        "value": 25,
+        "multipliers": [
+          {"magnitude": 2.0, "value": 2.14},
+          {"magnitude": 2.0, "value": 2.14},
+          {"duration": 1.6, "value": 1.67},
+          {"magnitude": 2.0, "value": 2.14}
+        ]
+      },
+      "Marshmerrow": {
+        "weight": 0.1,
+        "id": "FExxx814",
+        "name": "Marshmerrow",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Marshmerrow",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Restore Health", "Fortify Carry Weight", "Weakness to Magic", "Damage Stamina"],
+        "value": 18,
+        "multipliers": [
+          {"magnitude": 1.2, "value": 1.22},
+          {"magnitude": 1.25, "value": 1.27},
+          {"magnitude": 1.5, "value": 1.56},
+          {"magnitude": 1.33, "value": 1.36}
+        ]
+      },
+      "Minotaur Horn": {
+        "weight": 5.0,
+        "id": "FExxx815",
+        "name": "Minotaur Horn",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Minotaur_Horn",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Resist Poison", "Damage Magicka Regen", "Regenerate Health", "Regenerate Magicka"],
+        "value": 55,
+        "multipliers": [
+          {"magnitude": 1.25, "value": 1.27},
+          {"duration": 2.0, "value": 2.14},
+          {"magnitude": 1.2, "value": 1.22},
+          {"magnitude": 1.2, "value": 1.22}
+        ]
+      },
+      "Ogre's Teeth": {
+        "weight": 3.0,
+        "id": "FExxx816",
+        "name": "Ogre's Teeth",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Ogre's_Teeth",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Weakness to Shock", "Resist Poison", "Lingering Damage Magicka", "Regenerate Health"],
+        "value": 50,
+        "multipliers": [
+          {"magnitude": 1.33, "value": 1.36},
+          {"magnitude": 1.25, "value": 1.27},
+          {"magnitude": 2.0, "value": 2.12},
+          {"magnitude": 1.2, "value": 1.22}
+        ]
+      },
+      "Red Kelp Gas Bladder": {
+        "weight": 0.1,
+        "id": "FExxx817",
+        "name": "Red Kelp Gas Bladder",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Red_Kelp_Gas_Bladder",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Regenerate Stamina", "Waterbreathing", "Cure Disease", "Fortify Magicka"],
+        "value": 20,
+        "multipliers": [
+          {"magnitude": 1.2, "value": 1.22},
+          {"duration": 1.6, "value": 1.67},
+          {"value": 0.36},
+          {"magnitude": 1.25, "value": 1.27}
+        ]
+      },
+      "Redwort Flower": {
+        "weight": 0.1,
+        "id": "FExxx818",
+        "name": "Redwort Flower",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Redwort_Flower",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Resist Frost", "Cure Poison", "Damage Health", "Invisibility"],
+        "value": 25,
+        "multipliers": [
+          {"magnitude": 1.33, "value": 1.36},
+          null,
+          {"magnitude": 1.5, "value": 1.56},
+          {"duration": 1.5, "value": 1.56}
+        ]
+      },
+      "Roobrush": {
+        "weight": 0.1,
+        "id": "FExxx819",
+        "name": "Roobrush",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Roobrush",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Weakness to Magic", "Fortify Sneak", "Lingering Damage Health", "Cure Poison"],
+        "value": 20,
+        "multipliers": [
+          {"magnitude": 1.5, "value": 1.56},
+          {"magnitude": 1.25, "value": 1.27},
+          {"magnitude": 2.0, "value": 2.14},
+          null
+        ]
+      },
+      "Saltrice": {
+        "weight": 0.1,
+        "id": "FExxx81A",
+        "name": "Saltrice",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Saltrice",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Restore Stamina", "Fortify Magicka", "Damage Stamina Regen", "Restore Health"],
+        "value": 6,
+        "multipliers": [
+          {"magnitude": 1.2, "value": 1.22},
+          {"magnitude": 1.25, "value": 1.27},
+          {"duration": 2.0, "value": 2.14},
+          {"magnitude": 1.2, "value": 1.22}
+        ]
+      },
+      "Scalon Fin": {
+        "weight": 0.1,
+        "id": "FExxx81B",
+        "name": "Scalon Fin",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Scalon_Fin",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Waterbreathing", "Damage Health", "Lingering Damage Magicka", "Damage Magicka Regen"],
+        "value": 25,
+        "multipliers": [
+          {"duration": 1.6, "value": 1.67},
+          {"magnitude": 1.5, "value": 1.56},
+          {"magnitude": 2.0, "value": 2.14},
+          {"duration": 2.0, "value": 2.14}
+        ]
+      },
+      "Scrib Jelly": {
+        "weight": 0.1,
+        "id": "FExxx81C",
+        "name": "Scrib Jelly",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Scrib_Jelly",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Regenerate Magicka", "Cure Poison", "Cure Disease", "Regenerate Stamina"],
+        "value": 20,
+        "multipliers": [
+          {"magnitude": 1.2, "value": 1.22},
+          null,
+          {"value": 0.36},
+          {"magnitude": 1.2, "value": 1.22}
+        ]
+      },
+      "Scrib Jerky": {
+        "weight": 0.2,
+        "id": "FExxx81D",
+        "name": "Scrib Jerky",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Scrib_Jerky",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Restore Stamina", "Fortify Stamina", "Paralysis", "Waterbreathing"],
+        "value": 15,
+        "multipliers": [
+          {"magnitude": 1.2, "value": 1.22},
+          {"magnitude": 1.25, "value": 1.27},
+          {"duration": 2.0, "value": 2.14},
+          {"duration": 1.6, "value": 1.67}
+        ]
+      },
+      "Sload Soap": {
+        "weight": 0.1,
+        "id": "FExxx81E",
+        "name": "Sload Soap",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Sload_Soap",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Resist Fire", "Fear", "Fortify Conjuration", "Fortify Alteration"],
+        "value": 30,
+        "multipliers": [
+          {"magnitude": 1.33, "value": 1.36},
+          {"magnitude": 2.0, "value": 2.14},
+          {"magnitude": 1.2, "value": 1.22},
+          {"magnitude": 1.25, "value": 1.27}
+        ]
+      },
+      "Stoneflower Petals": {
+        "weight": 0.1,
+        "id": "FExxx81F",
+        "name": "Stoneflower Petals",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Stoneflower_Petals",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Weakness to Shock", "Fortify One-handed", "Fortify Magicka", "Fortify Enchanting"],
+        "value": 15,
+        "multipliers": [
+          {"magnitude": 1.33, "value": 1.36},
+          {"magnitude": 1.25, "value": 1.27},
+          {"magnitude": 1.25, "value": 1.27},
+          {"magnitude": 2.0, "value": 2.14}
+        ]
+      },
+      "Void Essence": {
+        "weight": 0.2,
+        "id": "FExxx820",
+        "name": "Void Essence",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Void_Essence",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Restore Health", "Fortify Health", "Fortify Stamina", "Regenerate Health"],
+        "value": 60,
+        "multipliers": [
+          {"magnitude": 1.2, "value": 1.22},
+          {"magnitude": 1.25, "duration": 5.0, "value": 7.5},
+          {"magnitude": 1.25, "duration": 5.0, "value": 7.5},
+          {"magnitude": 1.2, "value": 1.22}
+        ]
+      },
+      "Watcher's Eye": {
+        "weight": 0.2,
+        "id": "FExxx821",
+        "name": "Watcher's Eye",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Watcher's_Eye",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Night Eye", "Fortify Magicka", "Fortify Illusion", "Spell Absorption"],
+        "value": 9,
+        "multipliers": [
+          null,
+          {"magnitude": 1.25, "value": 1.27},
+          {"magnitude": 5.0, "value": 5.87},
+          null
+        ]
+      },
+      "Wisp Stalk Caps": {
+        "weight": 0.1,
+        "id": "FExxx823",
+        "name": "Wisp Stalk Caps",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Wisp_Stalk_Caps",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Damage Health", "Weakness to Poison", "Frenzy", "Regenerate Stamina"],
+        "value": 20,
+        "multipliers": [
+          {"magnitude": 1.5, "value": 1.56},
+          {"magnitude": 1.5, "value": 1.56},
+          {"duration": 2.0, "value": 2.14},
+          {"magnitude": 1.2, "value": 1.22}
+        ]
+      },
+      "Withering Moon": {
+        "weight": 0.1,
+        "id": "FExxx824",
+        "name": "Withering Moon",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Withering_Moon",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Restore Magicka", "Spell Absorption", "Fortify Light Armor", "Cure Disease"],
+        "value": 5,
+        "multipliers": [
+          {"magnitude": 1.2, "value": 1.22},
+          null,
+          {"magnitude": 1.5, "value": 1.56},
+          {"value": 0.36}
+        ]
+      },
+      "Worm's Head Cap": {
+        "weight": 0.2,
+        "id": "FExxx825",
+        "name": "Worm's Head Cap",
+        "icon": "TODO add icons",
+        "uesp_url": "https://en.uesp.net/wiki/Skyrim:Worm's_Head_Cap",
+        "text": "Can be purchased from Khajiit caravans.",
+        "effects": ["Fortify Lockpicking", "Night Eye", "Fortify Carry Weight", "Slow"],
+        "value": 30,
+        "multipliers": [
+          {"magnitude": 1.5, "value": 1.56},
+          null,
+          {"magnitude": 1.25, "value": 1.27},
+          {"duration": 2.0, "value": 2.14}
+        ]
+      },
+      // </AE>
       "Abecean Longfin": {
         "id": "00106e1b",
         "name": "Abecean Longfin",
