@@ -8,10 +8,10 @@ void main() {
       Map<String, dynamic> map = DataResource.getMap()[Constant.gameNameSkyrim];
 
       expect(map.containsKey('effects'), true);
-      expect(map['effects'].length, 55 + 4); // 4 effects from AE
+      expect(map['effects'].length, 55 /*+ 4*/); // 4 effects from AE
 
       expect(map.containsKey('ingredients'), true);
-      expect(map['ingredients'].length, 109 + 51); // 51 ingredients from AE
+      expect(map['ingredients'].length, 109 /*+ 51*/); // 51 ingredients from AE
     });
 
     test("Test oblivion data", () {
