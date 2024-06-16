@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:the_elder_scrolls_alchemy_client/layers/data/resources/constant.dart';
 import 'package:the_elder_scrolls_alchemy_client/layers/state_management/app_state.dart';
 
+@deprecated //https://github.com/gennadyterekhov/the_elder_scrolls_alchemy_client/issues/151
 class LanguagePicker extends StatelessWidget {
   const LanguagePicker({Key? key}) : super(key: key);
 
