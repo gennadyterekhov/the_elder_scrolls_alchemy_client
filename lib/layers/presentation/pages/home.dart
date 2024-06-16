@@ -42,7 +42,10 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
     final pickers = Padding(
       padding: const EdgeInsets.only(top: 30.0, bottom: 40.0),
       child: Column(
-        children: [gamePicker, languagePicker],
+        children: [
+          gamePicker,
+          //languagePicker, // https://github.com/gennadyterekhov/the_elder_scrolls_alchemy_client/issues/151
+        ],
       ),
     );
 
